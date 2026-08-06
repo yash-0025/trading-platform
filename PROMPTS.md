@@ -47,3 +47,27 @@
 **Outcome / Next Step:** User continues with Module 1.1 manual file setup (`Cargo.toml`, `rust-toolchain.toml`, `src/main.rs`).
 
 ---
+
+### 2026-08-06 16:50 IST — Prompt #5
+**Prompt:** "/next let's move to next thing here's the output of cargo run - ..."
+**Context:** User completed manual creation of `Cargo.toml`, `rust-toolchain.toml`, and `src/main.rs` and ran `cargo run` successfully.
+**Output Summary:** AI validated `cargo run` output, taught Concept 7 (`&str` vs `String` fat pointer vs smart pointer, Billboard vs Notepad analogy), committed Concept 7 to EXAMPLES.md, logged in LOGS.md, and proposed completion of Module 1.1 with updates to LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** User runs `cargo clippy` / `cargo fmt`, approves roadmap/learning log updates, and moves to Module 1.2.
+
+---
+
+### 2026-08-06 17:00 IST — Prompt #6
+**Prompt:** "Why the analogy provided has some lines missing in Examples.md ? I want it to be same word to word in the Examples.md update the rules in rules.md..."
+**Context:** User called out that Concept 7 in `EXAMPLES.md` was summarized rather than saved exact word-for-word as presented in chat response.
+**Output Summary:** AI updated Concept 7 in EXAMPLES.md to match exact word-for-word response text. Updated Governance Rule 8 in RULES.md and STEP 3 line 5 in `.agents/workflows/next.md` to strictly mandate exact word-for-word storage without paraphrasing or line omissions. Recorded diffs in LOGS.md.
+**Outcome / Next Step:** User approves LEARNING.md and ROADMAP.md updates for Module 1.1 completion.
+
+---
+
+### 2026-08-06 18:25 IST — Prompt #7
+**Prompt:** "Yes update first then i will ask to tell next"
+**Context:** Learner explicitly approved marking Module 1.1 complete in LEARNING.md and ROADMAP.md.
+**Output Summary:** AI updated LEARNING.md (marked Module 1.1 `[x]` with summary of concepts understood and progress made) and ROADMAP.md (checked off all Module 1.1 items). Logged both edits in LOGS.md.
+**Outcome / Next Step:** Await user prompt to kick off Module 1.2 — Domain Types.
+
+---

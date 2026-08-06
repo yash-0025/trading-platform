@@ -53,10 +53,10 @@ Every module has:
 ---
 
 ### Module 1.1 — Project Setup & Cargo Fundamentals
-- [ ] **You build:** The project skeleton. `cargo new`, `Cargo.toml` configuration, `rust-toolchain.toml`, `.gitignore`, initial `main.rs` that prints a trading platform banner and version.
-- [ ] **Concepts:** `cargo new` / `cargo check` / `cargo run` / `cargo build --release` · `Cargo.toml` vs `Cargo.lock` · Editions (2024) · `rustfmt` + `clippy` from minute one · `rust-toolchain.toml` · Basic `println!` macro · String literals vs `String` type · Program entry point
-- [ ] **Architecture:** Single-binary architecture. Why we start here and evolve into a workspace later.
-- [ ] **Deliverable:** Project compiles and runs. `cargo fmt --check` and `cargo clippy -- -D warnings` pass.
+- [x] **You build:** The project skeleton. `cargo new`, `Cargo.toml` configuration, `rust-toolchain.toml`, `.gitignore`, initial `main.rs` that prints a trading platform banner and version.
+- [x] **Concepts:** `cargo new` / `cargo check` / `cargo run` / `cargo build --release` · `Cargo.toml` vs `Cargo.lock` · Editions (2024) · `rustfmt` + `clippy` from minute one · `rust-toolchain.toml` · Basic `println!` macro · String literals vs `String` type · Program entry point
+- [x] **Architecture:** Single-binary architecture. Why we start here and evolve into a workspace later.
+- [x] **Deliverable:** Project compiles and runs. `cargo fmt --check` and `cargo clippy -- -D warnings` pass.
 
 ---
 

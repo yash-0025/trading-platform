@@ -33,6 +33,86 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-06 18:25 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.1 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** User explicitly approved marking Module 1.1 (Project Setup & Cargo Fundamentals) as completed `[x]` after verifying all deliverables and concepts.
+
+```diff
+[LEARNING.md]
+- | Phase 1 | Rust Foundations Through Real Trading Features | `[ ]` Not started |
++ | Phase 1 | Rust Foundations Through Real Trading Features | `[~]` In progress |
+
++ ### Module 1.1 — Project Setup & Cargo Fundamentals — 2026-08-06
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - `cargo run` compiles and executes binary crates via `src/main.rs`.
++ - `Cargo.toml` vs `Cargo.lock` (human manifest vs deterministic version/hash lockfile).
++ - `&str` string literals are fat pointers (16 bytes on 64-bit stack) pointing to read-only data (`.rodata`) in binary memory, causing zero heap allocations.
++ - `String` is a 3-word struct (24 bytes) holding pointer, length, capacity for growable heap memory.
++ - Single-binary monolith architecture rationale (ADR-001) for Phase 1.
++ - Production linters: `cargo fmt --check` and `cargo clippy -- -D warnings`.
++ **Code I wrote / project progress:**
++ - Created `Cargo.toml`, `rust-toolchain.toml`, `.gitignore`, `src/main.rs`.
++ - Compiled and ran `trading-platform` binary printing the ecosystem initialization banner.
+
+[ROADMAP.md]
+- - [ ] **You build:** The project skeleton...
+- - [ ] **Concepts:** `cargo new` / `cargo check`...
+- - [ ] **Architecture:** Single-binary architecture...
+- - [ ] **Deliverable:** Project compiles and runs...
++ - [x] **You build:** The project skeleton...
++ - [x] **Concepts:** `cargo new` / `cargo check`...
++ - [x] **Architecture:** Single-binary architecture...
++ - [x] **Deliverable:** Project compiles and runs...
+```
+
+</details>
+
+<details>
+<summary>2026-08-06 17:00 IST — [EXAMPLES.md / RULES.md / next.md] — Enforced Exact Word-for-Word Storage</summary>
+
+- **Files:** EXAMPLES.md, RULES.md, .agents/workflows/next.md
+- **Change type:** Modified
+- **Reason:** Updated Concept 7 in EXAMPLES.md to match the exact word-for-word response text provided in chat. Updated Governance Rule 8 in RULES.md and STEP 3 of next.md workflow to strictly require exact word-for-word storage without paraphrasing or omitting lines.
+
+```diff
+[EXAMPLES.md]
+- * **`&str` (String Slice / Literal):** A permanent billboard painted on a building wall (`.rodata` section of the binary)...
++ * **`&str` (String Literal / Slice):** Like a billboard painted directly onto a building wall. You didn't buy the building, and you can't erase or add new words to the wall. But pointing to it (`&`) is instantaneous and costs zero money (zero allocations).
+
+[RULES.md]
+- 8. **ELI5 Analogy Storage & Detail:** ...
++ 8. **Exact Word-for-Word ELI5 Analogy & Technical Detail Storage:** Whenever the AI explains any concept, the AI MUST provide BOTH a simple ELI5 analogy AND a rigorous, deep technical explanation. The AI MUST store the EXACT, word-for-word analogy and deep technical breakdown in `EXAMPLES.md` without any paraphrasing, line omissions, or summary rewrites.
+
+[.agents/workflows/next.md]
+- 5. **ELI5 analogy + deep technical explanation** for every new concept (Rule #8)... Write the entry into `EXAMPLES.md`...
++ 5. **ELI5 analogy + deep technical explanation** for every new concept (Rule #8)... Write the **EXACT, word-for-word** ELI5 analogy and deep technical breakdown into `EXAMPLES.md`...
+```
+
+</details>
+
+<details>
+<summary>2026-08-06 16:50 IST — [EXAMPLES.md] — Added String Literals vs Heap Strings (Concept 7)</summary>
+
+- **File:** EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Added ELI5 analogy (Billboard vs Notepad) and deep technical explanation for `&str` vs `String` memory layout in Module 1.1 per Rule 8.
+
+```diff
++ ### 7. String Literals (`&str`) vs Heap Strings (`String`) — The Billboard vs The Notepad
++ 
++ **Core Concept:** The difference between an unallocated string slice pointing to read-only data (`&str`) and an owned, growable heap buffer (`String`).
++ 
++ **ELI5 Analogy: The Billboard vs The Notepad**
++ * **`&str` (String Slice / Literal):** A permanent billboard painted on a building wall...
++ * **`String` (Owned String):** A physical spiral notepad you bought and carry in your backpack...
+```
+
+</details>
+
+<details>
 <summary>2026-08-06 15:21 IST — [EXAMPLES.md] — Added Cargo & Toolchain Mental Model (Concept 6)</summary>
 
 - **File:** EXAMPLES.md

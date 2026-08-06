@@ -28,7 +28,7 @@
 
 | Phase | Focus Area | Status |
 |---|---|---|
-| Phase 1 | Rust Foundations Through Real Trading Features | `[ ]` Not started |
+| Phase 1 | Rust Foundations Through Real Trading Features | `[~]` In progress |
 | Phase 2 | Production Backend | `[ ]` Not started |
 | Phase 3 | Trading Infrastructure & HFT Concepts | `[ ]` Not started |
 
@@ -36,18 +36,16 @@
 
 ## Module-by-Module Log
 
-> Format for each entry once you start a module:
-> ```
-> ### Module X.Y — <topic title> — <date>
-> **Status:** [~] in progress
-> **What I actually understood:**
-> -
-> **What's still fuzzy / questions I had:**
-> -
-> **Code I wrote / project progress:**
-> -
-> **Mistakes the compiler caught that taught me something:**
-> -
-> ```
+### Module 1.1 — Project Setup & Cargo Fundamentals — 2026-08-06
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- `cargo run` compiles and executes binary crates via `src/main.rs`.
+- `Cargo.toml` vs `Cargo.lock` (human manifest vs deterministic version/hash lockfile).
+- `&str` string literals are fat pointers (16 bytes on 64-bit stack) pointing to read-only data (`.rodata`) in binary memory, causing zero heap allocations.
+- `String` is a 3-word struct (24 bytes) holding pointer, length, capacity for growable heap memory.
+- Single-binary monolith architecture rationale (ADR-001) for Phase 1.
+- Production linters: `cargo fmt --check` and `cargo clippy -- -D warnings`.
+**Code I wrote / project progress:**
+- Created `Cargo.toml`, `rust-toolchain.toml`, `.gitignore`, `src/main.rs`.
+- Compiled and ran `trading-platform` binary printing the ecosystem initialization banner.
 
-*(Entries will be added as modules are started and completed.)*

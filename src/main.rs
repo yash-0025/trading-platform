@@ -3,5 +3,4 @@ fn main() {
     println!("     TRADING PLATFORM ECOSYTEM         ");
     println!("=======================================");
     println!("System status: INITIALIZED");
-
 }

@@ -56,7 +56,7 @@ For the module you're teaching/continuing, include, in order:
 2. **Architecture deep dive** (Rule #15) — system design, ASCII diagram, data flow, thread/memory model where relevant.
 3. **Goal of this step** (Rule #12) — what will exist/work at the end.
 4. **One concept at a time** (Rule #6) — don't dump several unless the learner asks to move faster.
-5. **ELI5 analogy + deep technical explanation** for every new concept (Rule #8) — **mandatory, no confirmation needed.** Only `ROADMAP.md`/`LEARNING.md` need learner yes/no (Rule #1). Write the entry into `EXAMPLES.md` in the SAME turn you explain it, matching the trading-domain style already there. Explaining in chat without writing the file is an incomplete turn — see STEP 7.
+5. **ELI5 analogy + deep technical explanation** for every new concept (Rule #8) — **mandatory, no confirmation needed.** Only `ROADMAP.md`/`LEARNING.md` need learner yes/no (Rule #1). Write the **EXACT, word-for-word** ELI5 analogy and deep technical breakdown into `EXAMPLES.md` in the SAME turn you explain it, without any paraphrasing, summaries, or line omissions. Explaining in chat without writing the exact text into `EXAMPLES.md` is an incomplete turn — see STEP 7.
 6. **Exercise, not a finished answer** (Rule #7, extended) — the learner writes the code. Follow STEP 3.5 instead of a complete solution.
 7. **Line-by-line explanation** of any code YOU show — skeletons, hints, walkthroughs — every `&`, `*`, `mut`, `Option`, method call, `self`.
 

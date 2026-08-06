@@ -111,5 +111,22 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 7. String Literals (`&str`) vs Heap Strings (`String`) — The Billboard vs The Notepad
+
+**ELI5 Analogy: The Billboard vs The Notepad**
+* **`&str` (String Literal / Slice):** Like a billboard painted directly onto a building wall. You didn't buy the building, and you can't erase or add new words to the wall. But pointing to it (`&`) is instantaneous and costs zero money (zero allocations).
+* **`String` (Heap-Allocated String):** Like a spiral notepad in your backpack. You own it, you can tear out pages or write 100 new lines (`push_str`), but carrying around physical notebooks requires effort and memory management overhead.
+
+**Deep Technical Breakdown:**
+- **`&'static str`:** `"======================================="` is baked directly into the `.rodata` (read-only data) segment of your compiled executable. It is represented in stack memory as a fat pointer (16 bytes on 64-bit):
+  - A raw pointer (`*const u8`) to the byte array in binary memory.
+  - A length (`usize`, 39 bytes).
+  - Zero heap allocations (`malloc`) are performed when `println!` prints a `&str`.
+- **`String`:** A 3-word struct (24 bytes on 64-bit stack) holding: pointer (`*mut u8`) to a heap buffer, `usize` length, and `usize` capacity. Creating a `String` calls the global allocator, which can introduce latency spikes in HFT hot paths.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
+
 
