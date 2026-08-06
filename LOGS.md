@@ -33,6 +33,31 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-06 15:21 IST — [EXAMPLES.md] — Added Cargo & Toolchain Mental Model (Concept 6)</summary>
+
+- **File:** EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** User rightly called out that Concept 6 (The Restaurant Kitchen: rustup, rustc, cargo, Cargo.toml, Cargo.lock) taught during Module 1.1 kickoff was missing from EXAMPLES.md, violating Governance Rule 8. Added both the ELI5 analogy and deep technical explanation.
+
+```diff
++ ### 6. Cargo & Toolchain — The Restaurant Kitchen
++ 
++ **Core Concept:** Understanding the responsibilities of `rustup`, `rustc`, `cargo`, `Cargo.toml`, and `Cargo.lock`.
++ 
++ **ELI5 Analogy: The Restaurant Kitchen**
++ * **`rustup` (The Franchise Manager):** Installs and updates the whole kitchen system...
++ * **`rustc` (The Executive Chef):** The raw compiler...
++ * **`cargo` (The Kitchen Manager):** Coordinates the whole operation...
++ * **`Cargo.toml` (The Recipe & Ingredient List):** Human-readable dependency manifest...
++ * **`Cargo.lock` (The Exact Batch Delivery Receipt):** Lockfile guaranteeing byte-for-byte build reproducibility...
++ 
++ **Deep Technical Explanation:**
++ Rust decouples version management (`rustup`), compilation (`rustc`), and package/build orchestration (`cargo`)...
+```
+
+</details>
+
+<details>
 <summary>2026-07-28 02:41 IST — [.gitignore] — Created standard Rust gitignore</summary>
 
 - **File:** .gitignore

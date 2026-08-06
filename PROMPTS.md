@@ -32,3 +32,18 @@
 
 ---
 
+### 2026-08-06 15:01 IST — Prompt #3
+**Prompt:** "/next check everything is setup and let's start"
+**Context:** Kickoff of Module 1.1 — Project Setup & Cargo Fundamentals.
+**Output Summary:** AI verified workspace files, presented the Grand Overview, single-binary architecture diagram, memory flow, and introduced Concept 6 (The Cargo Mental Model / Restaurant Kitchen analogy). Instructed user to run `rustc --version` and manually construct `Cargo.toml`, `rust-toolchain.toml`, and `src/main.rs`.
+**Outcome / Next Step:** User creates project files and runs `cargo run`.
+
+---
+
+### 2026-08-06 15:21 IST — Prompt #4
+**Prompt:** "Why i don't see rules being followed properly the analogies is not bein added in Examples.md"
+**Context:** User called out Rule 8 violation (analogy presented in response was not automatically committed to EXAMPLES.md).
+**Output Summary:** AI acknowledged the mistake, immediately updated EXAMPLES.md with Concept 6 (The Restaurant Kitchen: rustup, rustc, cargo, Cargo.toml, Cargo.lock), and recorded the edit in LOGS.md.
+**Outcome / Next Step:** User continues with Module 1.1 manual file setup (`Cargo.toml`, `rust-toolchain.toml`, `src/main.rs`).
+
+---

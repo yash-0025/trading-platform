@@ -1,0 +1,9 @@
+[package]
+name = "tading-platform"
+version = "0.1.0"
+edition = "2024"
+authors = ["Yash"]
+description = "A production-grade trading ecosystem built from scratch"
+
+[dependencies]
+
