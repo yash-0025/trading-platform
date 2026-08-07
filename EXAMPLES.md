@@ -154,7 +154,25 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 10. Method Receivers (`&self`, `&mut self`, `self`) & Constructors (`Self::new()`) — Car Dashboard, Mechanic's Wrench, and Crusher
+
+**ELI5 Analogy: The Car Dashboard, The Mechanic's Wrench, and The Car Crusher**
+* **`&self` (Read-only inspection / Car Dashboard)**: Glancing at your car's fuel gauge while driving. You get to read the fuel level, but looking at the gauge doesn't change the car's state or destroy the car. Infinite people can look at the dashboard at the same time.
+* **`&mut self` (Exclusive modification / Mechanic's Wrench)**: Taking your car to the mechanic to change the oil or replace a flat tire (`order.fill()`). The mechanic needs exclusive access to modify the car's state (mutating `status` from `Pending` to `Filled`). While the mechanic is working under the hood, nobody else can drive or inspect the car.
+* **`self` (Consuming transfer / The Car Crusher)**: Handing your car over to the junkyard crusher (`order.destroy()`). The crusher takes complete ownership of the car, crushes it, and it ceases to exist. Once you pass `self` into a method, you can never use that variable again.
+
+**Deep Technical Breakdown:**
+- **Method Receiver Mechanics (`self` parameter)**: In Rust `impl` blocks, methods take `self` as their first parameter, desugaring to `self: Self`, `self: &Self`, or `self: &mut Self`.
+- **Constructor Pattern (`Self::new()`)**: Associated function (no `self` parameter). Acts as a factory returning an initialized `Self` on the stack. `Self` is an alias for the type being implemented (`Order`).
+- **Ownership & Lifetime Impact**:
+  - `&self` borrows immutable stack reference (`&Order`), allowing concurrent readers.
+  - `&mut self` borrows exclusive mutable stack reference (`&mut Order`), enabling state mutation while preventing data races.
+  - `self` takes owned move of `Order`, dropping or consuming the struct at the end of the method body.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

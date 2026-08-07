@@ -33,6 +33,32 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-07 14:00 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.2-2, Exercise 1.2-3 & Concept 10</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.2-2 opened after learner completed attempt in `src/models.rs`. Moved Exercise 1.2-2 to solved in EXERCISES.md, added Exercise 1.2-3 skeleton, and added Concept 10 (Method Receivers & Constructors) word-for-word to EXAMPLES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`)
++ **Reference Implementation:**
++ pub struct Price(pub i64);
++ pub struct Quantity(pub u64);
++ pub struct Order { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`) [open]
++ ### Exercise 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`) [open]
++ ### Exercise 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`) [solved]
+
+[EXAMPLES.md]
++ ### 10. Method Receivers (`&self`, `&mut self`, `self`) & Constructors (`Self::new()`) — Car Dashboard, Mechanic's Wrench, and Crusher
+```
+
+</details>
+
+<details>
 <summary>2026-08-07 12:15 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.2-1, Exercise 1.2-2 & Concept 9</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md

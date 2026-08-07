@@ -33,42 +33,49 @@ fn example() -> Result<(), TradingError> {
 - ...
 
 **Compared to your attempt:**
-- What matched.
-- What differed, and why the reference approach was chosen (performance, idiom, correctness).
-- Any misconception the diff reveals, so it doesn't repeat next exercise.
-```
-
----
-
-### Solution 1.2-1 — Core Trading Enums (`Side` and `OrderType`)
-
-**Reference Implementation:**
-```rust
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum Side {
-    Buy,
-    Sell,
-}
-
-#[derive(Debug, Clone, PartialEq)]
-pub enum OrderType {
-    Market,
-    Limit { price: i64 },
-    StopLoss { trigger_price: i64 },
-}
-```
-
-**Line-by-Line Breakdown:**
-- `#[derive(Debug, Clone, PartialEq, Eq)]` — Auto-implements formatting (`Debug`), duplication (`Clone`), and value equality (`PartialEq`, `Eq`) for `Side`.
-- `pub enum Side { Buy, Sell }` — Public enum with two unit variants representing trading sides.
-- `#[derive(Debug, Clone, PartialEq)]` — `OrderType` contains `i64` payloads, so it derives `PartialEq`.
-- `Limit { price: i64 }` — Struct variant holding fixed-point price in cents.
-- `StopLoss { trigger_price: i64 }` — Struct variant holding trigger price in cents.
-
-**Compared to your attempt:**
 - **Matches**: Perfect enum structures, visibility `pub`, correct payload types (`i64`), and derive attributes (`Debug`, `Clone`, `PartialEq`, `Eq`).
 - **Difference**: You named the variant `Stoploss` (lowercase `l`), while idiomatic Rust uses CamelCase `StopLoss`. Both compile and are functionally equivalent.
 
 ---
 
-*(Additional solutions will be added as exercises get gated open.)*
+### Solution 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`)
+
+**Reference Implementation:**
+```rust
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct Price(pub i64);
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct Quantity(pub u64);
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum OrderStatus {
+    Pending,
+    Filled,
+    Cancelled,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct Order {
+    pub id: u64,
+    pub asset: String,
+    pub side: Side,
+    pub order_type: OrderType,
+    pub qty: Quantity,
+    pub status: OrderStatus,
+}
+```
+
+**Line-by-Line Breakdown:**
+- `pub struct Price(pub i64);` — Newtype pattern tuple struct wrapping `i64`. Derives `Copy` for zero-cost stack copying.
+- `pub struct Quantity(pub u64);` — Newtype pattern tuple struct wrapping `u64`.
+- `pub struct Order { ... }` — Named-field struct aggregating fields into a cohesive order entity.
+
+**Compared to your attempt:**
+- **Matches**: Perfect field layout, newtype definitions, visibility `pub`, and enum variants.
+- **Compiler Fix Needed**: You typed `ParitalEq` (typo: `i` before `t`) twice on `Quantity` and `Order`. Changing `ParitalEq` → `PartialEq` will fix compiler errors.
+
+---
+
+*(Additional solutions will be added as exercises get gated open.)*
+

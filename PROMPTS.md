@@ -87,3 +87,11 @@
 **Outcome / Next Step:** Learner attempts Exercise 1.2-2 (`Price`, `Quantity`, `Order`) in `src/models.rs`.
 
 ---
+
+### 2026-08-07 14:00 IST — Prompt #10
+**Prompt:** "Done /next"
+**Context:** Learner implemented `Price`, `Quantity`, `OrderStatus`, and `Order` in `src/models.rs`.
+**Output Summary:** AI checked `src/models.rs` (noted `ParitalEq` typo), opened gated Solution 1.2-2 in SOLUTIONS.md, moved Exercise 1.2-2 to solved in EXERCISES.md, introduced Concept 10 (Method Receivers `&self`/`&mut self`/`self` and Constructors `Self::new()` - Car Dashboard, Mechanic's Wrench, and Crusher analogy), committed Concept 10 to EXAMPLES.md word-for-word, created Exercise 1.2-3 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner fixes `ParitalEq` typo and implements `impl Order` constructor and methods in `src/models.rs`.
+
+---

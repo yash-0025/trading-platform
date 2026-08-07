@@ -38,43 +38,33 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`)
+### Exercise 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`)
 **Status:** open
-**Goal:** Implement the newtype wrapper types `Price` and `Quantity`, and construct the `Order` struct.
+**Goal:** Implement the `new()` constructor and `fill()` method on `Order`.
 
 **Skeleton:**
 ```rust
 // In src/models.rs:
 
-// TODO(1): Define Price as a newtype tuple struct wrapping i64 (cents), derive Debug, Clone, Copy, PartialEq, Eq
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Price(pub i64);
+impl Order {
+    // TODO(1): Associated function constructor taking id, asset, side, order_type, qty. Sets status to Pending.
+    pub fn new(id: u64, asset: String, side: Side, order_type: OrderType, qty: Quantity) -> Self {
+        todo!()
+    }
 
-// TODO(2): Define Quantity as a newtype tuple struct wrapping u64 (shares/units), derive Debug, Clone, Copy, PartialEq, Eq
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Quantity(pub u64);
+    // TODO(2): Method taking &mut self to mutate status from Pending to Filled
+    pub fn fill(&mut self) {
+        todo!()
+    }
 
-// TODO(3): Define OrderStatus enum with Pending, Filled, Cancelled variants, derive Debug, Clone, PartialEq, Eq
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum OrderStatus {
-    Pending,
-    Filled,
-    Cancelled,
-}
-
-// TODO(4): Define Order struct with fields: id (u64), asset (String), side (Side), order_type (OrderType), qty (Quantity), status (OrderStatus)
-#[derive(Debug, Clone, PartialEq)]
-pub struct Order {
-    pub id: u64,
-    pub asset: String,
-    pub side: Side,
-    pub order_type: OrderType,
-    pub qty: Quantity,
-    pub status: OrderStatus,
+    // TODO(3): Method taking &self to check if status is Pending
+    pub fn is_pending(&self) -> bool {
+        todo!()
+    }
 }
 ```
 
-**Constraints:** Ensure `Price` and `Quantity` are tuple structs (`pub struct Price(pub i64)`).
+**Constraints:** `new` is an associated function (`Self::new`), `fill` borrows `&mut self`, `is_pending` borrows `&self`.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
@@ -82,7 +72,13 @@ pub struct Order {
 
 ## Solved
 
+### Exercise 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`)
+**Status:** solved
+**Goal:** Implement the newtype wrapper types `Price` and `Quantity`, and construct the `Order` struct.
+**Note:** Solved in `src/models.rs`. Checked against `SOLUTIONS.md` — fixed `ParitalEq` typo to `PartialEq`.
+
 ### Exercise 1.2-1 — Defining Core Trading Enums (`Side` and `OrderType`)
+
 **Status:** solved
 **Goal:** Define the `Side` and `OrderType` enums to represent trading sides and order types as algebraic data types.
-**Note:** Solved in `src/models.rs`. Checked against `SOLUTIONS.md` — learned CamelCase convention for variants (`StopLoss`).
+**Note:** Solved in `src/models.rs`. Checked against `SOLUTIONS.md` — learned CamelCase convention for variants (`StopLoss`).
