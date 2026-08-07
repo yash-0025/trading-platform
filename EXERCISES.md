@@ -38,9 +38,37 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-*(No open exercises — Module 1.2 exercises completed!)*
+### Exercise 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`)
+**Status:** open
+**Goal:** Build a `Config` struct representing exchange settings and implement `from_env_or_default()` using `Option` combinators.
+
+**Skeleton:**
+```rust
+// Create src/config.rs (or in src/main.rs for testing):
+
+#[derive(Debug, Clone)]
+pub struct Config {
+    pub exchange_name: String,
+    pub currency: String,
+    pub max_order_size: u64,
+    pub log_level: String,
+}
+
+impl Config {
+    // TODO(1): Read "EXCHANGE_NAME" env var using std::env::var().
+    // Use Option/Result helper (or unwrap_or_else) to fall back to "ApexExchange".
+    pub fn from_env_or_default() -> Self {
+        todo!()
+    }
+}
+```
+
+**Constraints:** Use `std::env::var` and lazy evaluation (`unwrap_or_else` or `match`) for string fallbacks.
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
 
 ## Solved
 

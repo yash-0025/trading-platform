@@ -49,3 +49,14 @@
 - Created `Cargo.toml`, `rust-toolchain.toml`, `.gitignore`, `src/main.rs`.
 - Compiled and ran `trading-platform` binary printing the ecosystem initialization banner.
 
+### Module 1.2 — Domain Types: The Language of Trading — 2026-08-07
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Enums as Algebraic Data Types (discriminated unions with variant payloads).
+- Newtype pattern (`struct Price(pub i64)`) for zero-cost type safety.
+- Struct memory layout & derives (`Debug`, `Clone`, `Copy`, `PartialEq`, `Eq`).
+- Method receiver semantics: `&self` (immutable read), `&mut self` (exclusive write), `self` (consuming move).
+**Code I wrote / project progress:**
+- Built `src/models.rs` containing `Side`, `OrderType`, `OrderStatus`, `Price`, `Quantity`, and `Order` with `impl Order` methods (`new`, `fill`, `is_pending`).
+
+

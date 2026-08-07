@@ -61,10 +61,10 @@ Every module has:
 ---
 
 ### Module 1.2 — Domain Types: The Language of Trading
-- [ ] **You build:** Core domain types that represent the trading world: `Asset`, `Side` (Buy/Sell), `OrderType` (Market/Limit/StopLoss), `OrderStatus`, `Order`, `Price`, `Quantity`.
-- [ ] **Concepts:** Structs (named-field, tuple structs, unit structs) · Enums as algebraic data types (not like TS/Java enums) · `match` exhaustiveness · Deriving `Debug`, `Clone`, `PartialEq` · `impl` blocks · `Self::new()` constructor pattern · `&self` vs `&mut self` vs `self` methods · Type aliases · Documentation comments `///`
-- [ ] **Architecture:** Domain-Driven Design — why types should model the business domain. How Zerodha/Binance represent orders internally.
-- [ ] **Deliverable:** All core trading types defined in `src/models/` with constructors, display formatting, and basic unit tests.
+- [x] **You build:** Core domain types that represent the trading world: `Asset`, `Side` (Buy/Sell), `OrderType` (Market/Limit/StopLoss), `OrderStatus`, `Order`, `Price`, `Quantity`.
+- [x] **Concepts:** Structs (named-field, tuple structs, unit structs) · Enums as algebraic data types (not like TS/Java enums) · `match` exhaustiveness · Deriving `Debug`, `Clone`, `PartialEq` · `impl` blocks · `Self::new()` constructor pattern · `&self` vs `&mut self` vs `self` methods · Type aliases · Documentation comments `///`
+- [x] **Architecture:** Domain-Driven Design — why types should model the business domain. How Zerodha/Binance represent orders internally.
+- [x] **Deliverable:** All core trading types defined in `src/models/` with constructors, display formatting, and basic unit tests.
 
 ---
 

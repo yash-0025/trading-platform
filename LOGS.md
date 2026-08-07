@@ -33,6 +33,55 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-07 23:42 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 11 & Exercise 1.3-1</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 11 (Ownership & Borrowing Deep Dive - Deed vs Photo analogy) word-for-word to EXAMPLES.md per Rule 8, and added Exercise 1.3-1 skeleton to EXERCISES.md per STEP 3.5.
+
+```diff
+[EXAMPLES.md]
++ ### 11. Ownership & Borrowing Deep Dive (`String` vs `&str` in Configs) — The Deed vs The Verified Photo
+
+[EXERCISES.md]
++ ### Exercise 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-07 23:41 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.2 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner confirmed `/next` advancing, approving completion of Module 1.2 (Domain Types) `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.2 — Domain Types: The Language of Trading — 2026-08-07
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - Enums as Algebraic Data Types (discriminated unions with variant payloads).
++ - Newtype pattern (`struct Price(pub i64)`) for zero-cost type safety.
++ - Struct memory layout & derives (`Debug`, `Clone`, `Copy`, `PartialEq`, `Eq`).
++ - Method receiver semantics: `&self` (immutable read), `&mut self` (exclusive write), `self` (consuming move).
++ **Code I wrote / project progress:**
++ - Built `src/models.rs` containing `Side`, `OrderType`, `OrderStatus`, `Price`, `Quantity`, and `Order` with `impl Order` methods (`new`, `fill`, `is_pending`).
+
+[ROADMAP.md]
+- - [ ] **You build:** Core domain types...
+- - [ ] **Concepts:** Structs...
+- - [ ] **Architecture:** Domain-Driven Design...
+- - [ ] **Deliverable:** All core trading types defined...
++ - [x] **You build:** Core domain types...
++ - [x] **Concepts:** Structs...
++ - [x] **Architecture:** Domain-Driven Design...
++ - [x] **Deliverable:** All core trading types defined...
+```
+
+</details>
+
+<details>
 <summary>2026-08-07 15:11 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.2-3 & Solved Exercise 1.2-3</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

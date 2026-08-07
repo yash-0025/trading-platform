@@ -171,7 +171,22 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 11. Ownership & Borrowing Deep Dive (`String` vs `&str` in Configs) — The Deed vs The Verified Photo
+
+**ELI5 Analogy: The Original Deed vs The Verified Photo**
+* **Moving an owned `String` (`let config2 = config1;`)**: Handing over the original physical property deed of a trading firm's headquarters building. Once you hand the deed to `config2`, `config1` no longer holds the deed and cannot sell or modify the building.
+* **Borrowing a `&String` or `&str` (`let ref_config = &config1;`)**: Holding up a verified photograph of the building's house number for your auditors to read. You keep the deed safely in your pocket (retain ownership), while auditors read the photograph (`&`).
+* **Cloning an owned `String` (`let copy_config = config1.clone();`)**: Hiring a construction crew to build an exact, second physical duplicate building brick by brick (allocating new heap memory). It works, but it's expensive and slow.
+
+**Deep Technical Breakdown:**
+- **Move Semantics & Stack Value Copying**: `String` is an un-copyable stack struct (pointer, len, cap). Assigning `a = b` performs a shallow 24-byte `memcpy` of the stack fields, then invalidates `b` at compile-time. No heap reallocation happens, but `b` can no longer be accessed.
+- **Borrow Checker & Lifetime Safety**: `&T` borrows a pointer without moving ownership. The Rust borrow checker enforces that the reference `&T` cannot outlive the owned value `T` (preventing dangling pointer vulnerabilities).
+- **`Option<T>` & Fallback Combinators (`unwrap_or`, `unwrap_or_else`)**: `Option<T>` is an enum (`Some(T)` | `None`). `.unwrap_or(default)` eagerly evaluates a default value, while `.unwrap_or_else(|| compute_default())` lazily evaluates the closure only when `None`, saving unnecessary heap allocations in config fallbacks.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

@@ -103,3 +103,11 @@
 **Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.2 completion, then moves to Module 1.3 (Configuration System).
 
 ---
+
+### 2026-08-07 23:41 IST — Prompt #12
+**Prompt:** "/next"
+**Context:** Resuming via `/next` workflow algorithm. Learner approved Module 1.2 completion.
+**Output Summary:** AI updated LEARNING.md (marked Module 1.2 `[x]`) and ROADMAP.md (checked off Module 1.2 items), logged edits in LOGS.md, kicked off Module 1.3 (Configuration System) with Overview, ASCII Hierarchy diagram, Concept 11 (Ownership Deep Dive - Deed vs Photo analogy), committed Concept 11 word-for-word to EXAMPLES.md, created Exercise 1.3-1 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner attempts Exercise 1.3-1 (`Config` struct & `from_env_or_default`).
+
+---
