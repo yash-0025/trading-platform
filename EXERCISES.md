@@ -38,39 +38,16 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`)
-**Status:** open
-**Goal:** Implement the `new()` constructor and `fill()` method on `Order`.
-
-**Skeleton:**
-```rust
-// In src/models.rs:
-
-impl Order {
-    // TODO(1): Associated function constructor taking id, asset, side, order_type, qty. Sets status to Pending.
-    pub fn new(id: u64, asset: String, side: Side, order_type: OrderType, qty: Quantity) -> Self {
-        todo!()
-    }
-
-    // TODO(2): Method taking &mut self to mutate status from Pending to Filled
-    pub fn fill(&mut self) {
-        todo!()
-    }
-
-    // TODO(3): Method taking &self to check if status is Pending
-    pub fn is_pending(&self) -> bool {
-        todo!()
-    }
-}
-```
-
-**Constraints:** `new` is an associated function (`Self::new`), `fill` borrows `&mut self`, `is_pending` borrows `&self`.
-**Hints used:** 0/3
-**My attempt:** *(paste here when ready, even if broken/partial)*
+*(No open exercises — Module 1.2 exercises completed!)*
 
 ---
 
 ## Solved
+
+### Exercise 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`)
+**Status:** solved
+**Goal:** Implement the `new()` constructor and `fill()` method on `Order`.
+**Note:** Solved in `src/models.rs`. Checked against `SOLUTIONS.md` — exact match on struct field init shorthand, `&mut self` mutation, and `&self` status checking.
 
 ### Exercise 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`)
 **Status:** solved
@@ -78,7 +55,7 @@ impl Order {
 **Note:** Solved in `src/models.rs`. Checked against `SOLUTIONS.md` — fixed `ParitalEq` typo to `PartialEq`.
 
 ### Exercise 1.2-1 — Defining Core Trading Enums (`Side` and `OrderType`)
-
 **Status:** solved
 **Goal:** Define the `Side` and `OrderType` enums to represent trading sides and order types as algebraic data types.
 **Note:** Solved in `src/models.rs`. Checked against `SOLUTIONS.md` — learned CamelCase convention for variants (`StopLoss`).
+

@@ -95,3 +95,11 @@
 **Outcome / Next Step:** Learner fixes `ParitalEq` typo and implements `impl Order` constructor and methods in `src/models.rs`.
 
 ---
+
+### 2026-08-07 15:11 IST — Prompt #11
+**Prompt:** "Done check and let's move /next"
+**Context:** Learner completed `impl Order` methods (`new`, `fill`, `is_pending`) in `src/models.rs`.
+**Output Summary:** AI validated `src/models.rs` implementation (exact match on struct field init, `&mut self` mutation, and `&self` equality comparison), opened gated Solution 1.2-3 in SOLUTIONS.md, moved Exercise 1.2-3 to solved in EXERCISES.md, recorded diffs in LOGS.md, verified Module 1.2 completion per Rule 14, and proposed marking Module 1.2 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.2 completion, then moves to Module 1.3 (Configuration System).
+
+---

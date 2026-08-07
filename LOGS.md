@@ -33,6 +33,26 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-07 15:11 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.2-3 & Solved Exercise 1.2-3</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.2-3 opened after learner completed implementation of `impl Order` methods in `src/models.rs`. Moved Exercise 1.2-3 to solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`)
++ **Reference Implementation:**
++ impl Order { pub fn new(...) -> Self { ... } pub fn fill(&mut self) { ... } pub fn is_pending(&self) -> bool { ... } }
+
+[EXERCISES.md]
+- ### Exercise 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`) [open]
++ ### Exercise 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`) [solved]
+```
+
+</details>
+
+<details>
 <summary>2026-08-07 14:00 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.2-2, Exercise 1.2-3 & Concept 10</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md

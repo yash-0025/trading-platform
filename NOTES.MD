@@ -67,3 +67,12 @@
 |  +-------------------------------------------------------------------+  |
 +-------------------------------------------------------------------------+
 
+### Method Receivers (&self, &mut, self )& Constructors (Self::new())
+
+- Merthod Receiver mechanics (self parameter) - In Rust impl blocks, methods take selfas their first parameter , desugaring to self:Self, self:&Self or self:&mut Self
+- Constructor Pattern - Self::new() - Associated function no self parameter. Acts as a factory returning an initialized Self on the stack. Self is an alias for the type being implemented 
+- Ownership and Lifetime impace 
+- &self : Borrows immutable stack reference(&Order) allowing concurrent readers
+- self: takes owned move of Order, dropping or consuming the struct at the end of the method body
+- &mut self : borrows exclusive mutable stack reference(&mut Order), enabling state mutation while preventing data races.
+

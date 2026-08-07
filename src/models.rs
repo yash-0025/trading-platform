@@ -34,3 +34,26 @@ pub enum OrderType {
     Limit { price: i64},
     StopLoss { trigger_price: i64},
 }
+
+
+impl Order {
+
+    pub fn new(id: u64, asset: String, side: Side, order_type: OrderType, qty: Quantity) -> Self {
+        Order {
+            id,
+            asset,
+            side,
+            order_type,
+            qty,
+            status: OrderStatus::Pending
+        }
+    }
+
+    pub fn fill(&mut self) {
+        self.status = OrderStatus::Filled;
+    }
+
+    pub fn is_pending(&self) -> bool {
+        self.status == OrderStatus::Pending
+    }
+}

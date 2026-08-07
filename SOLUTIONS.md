@@ -77,5 +77,43 @@ pub struct Order {
 
 ---
 
+### Solution 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`)
+
+**Reference Implementation:**
+```rust
+impl Order {
+    pub fn new(id: u64, asset: String, side: Side, order_type: OrderType, qty: Quantity) -> Self {
+        Order {
+            id,
+            asset,
+            side,
+            order_type,
+            qty,
+            status: OrderStatus::Pending,
+        }
+    }
+
+    pub fn fill(&mut self) {
+        self.status = OrderStatus::Filled;
+    }
+
+    pub fn is_pending(&self) -> bool {
+        self.status == OrderStatus::Pending
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `impl Order { ... }` — Implementation block attaching functions and methods to the `Order` struct.
+- `pub fn new(...) -> Self` — Associated function constructor. `Self` is a type alias for `Order`. Field init shorthand (`id`, `asset`, etc.) maps parameter names directly to struct fields. Sets default `status: OrderStatus::Pending`.
+- `pub fn fill(&mut self)` — Method taking an exclusive mutable borrow (`&mut self`) to mutate `self.status = OrderStatus::Filled`.
+- `pub fn is_pending(&self) -> bool` — Method taking an immutable shared borrow (`&self`) to inspect status without mutating memory.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation used field initialization shorthand, correct `&mut self` mutation, and `&self` equality comparison. Flawless!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
