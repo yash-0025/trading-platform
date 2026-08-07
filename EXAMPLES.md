@@ -126,7 +126,37 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 8. Enums as Algebraic Data Types (`Side`, `OrderType`) — The Multi-Tool Switch
+
+**ELI5 Analogy: The Multi-Tool Switch**
+* In traditional languages (like C or TypeScript enums), an Enum is just a list of numbered labels (`0 = Buy`, `1 = Sell`).
+* In Rust, an Enum is an **Algebraic Data Type (Sum Type)**: a multi-tool switch where each position can hold completely different tools and data!
+* `Side`: Either `Buy` OR `Sell` (a simple 2-position switch).
+* `OrderType`: Either `Market` (needs no extra data) OR `Limit { price: Price }` (holds a specific price) OR `StopLoss { trigger_price: Price }` (holds a trigger price). It is physically impossible for an order to be a Limit order without a price, or to be both Market AND Limit simultaneously. Rust's type system makes invalid order states unrepresentable!
+
+**Deep Technical Breakdown:**
+- **Tag / Discriminant & Layout**: Rust enums are discriminated unions (tagged unions). In memory, an enum consists of an integer tag (discriminant, 1 byte for up to 256 variants) followed by a payload area sized to fit the largest variant.
+- **Exhaustive Pattern Matching**: The Rust compiler enforces that every `match` statement handles every single variant of an enum. If a variant is added to `OrderType` in the future, `cargo check` instantly flags every unhandled `match` across the entire codebase.
+- **Zero Heap Allocation**: Enums with scalar or struct payloads live entirely on the stack unless explicitly boxed.
+
+---
+
+### 9. Structs & The Newtype Pattern (`Price`, `Quantity`, `Order`) — Currency Wallets & Trading Tickets
+
+**ELI5 Analogy: Currency-Specific Wallets & Custom Order Slips**
+* **Newtype Pattern (`struct Price(pub i64)`)**: Imagine having two green paper bills that look identical, but one is $10 USD and one is €10 EUR. If you throw them into a plain bucket as raw numbers (`i64`), you'll accidentally add 10 + 10 = 20 (invalid money!). By putting them in labelled leather wallets (`struct Price` vs `struct Quantity`), the bank teller (Rust compiler) physically refuses to let you add dollars to shares!
+* **Named-Field Struct (`struct Order`)**: A standardized trading ticket pinned to an exchange board. It has labeled slots: Order ID, Asset Symbol, Side (Buy/Sell), Order Type, Quantity, and Status. Every order ticket must fill out all slots before it can enter the matching engine.
+
+**Deep Technical Breakdown:**
+- **Newtype Pattern (`struct Price(pub i64)`)**: Single-element tuple struct. Zero runtime cost — in compiled machine code/assembly, `Price(i64)` is compiled to a raw `i64` scalar value with zero memory or indirection overhead. At compile time, `Price` and `Quantity` are completely distinct types; passing a `Quantity` where a `Price` is expected is a type error.
+- **Struct Memory Layout (`repr(Rust)`)**: Stack allocation layout. Rust reorders struct fields at compile time to minimize memory padding bytes (e.g. alignment of 8-byte integers vs 1-byte enums).
+- **Deriving `Copy` vs `Clone`**: `Price` and `Quantity` wrap primitive integers (`i64`/`u64`), so they derive `Copy` (bitwise `memcpy` on stack). `Order` contains a `String` (heap allocation pointer), so it can only derive `Clone`, not `Copy`.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
+
 
 
 

@@ -38,10 +38,51 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-*(No exercises yet — the first one lands here once Module 1.1's hands-on portion starts.)*
+### Exercise 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`)
+**Status:** open
+**Goal:** Implement the newtype wrapper types `Price` and `Quantity`, and construct the `Order` struct.
+
+**Skeleton:**
+```rust
+// In src/models.rs:
+
+// TODO(1): Define Price as a newtype tuple struct wrapping i64 (cents), derive Debug, Clone, Copy, PartialEq, Eq
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct Price(pub i64);
+
+// TODO(2): Define Quantity as a newtype tuple struct wrapping u64 (shares/units), derive Debug, Clone, Copy, PartialEq, Eq
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct Quantity(pub u64);
+
+// TODO(3): Define OrderStatus enum with Pending, Filled, Cancelled variants, derive Debug, Clone, PartialEq, Eq
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum OrderStatus {
+    Pending,
+    Filled,
+    Cancelled,
+}
+
+// TODO(4): Define Order struct with fields: id (u64), asset (String), side (Side), order_type (OrderType), qty (Quantity), status (OrderStatus)
+#[derive(Debug, Clone, PartialEq)]
+pub struct Order {
+    pub id: u64,
+    pub asset: String,
+    pub side: Side,
+    pub order_type: OrderType,
+    pub qty: Quantity,
+    pub status: OrderStatus,
+}
+```
+
+**Constraints:** Ensure `Price` and `Quantity` are tuple structs (`pub struct Price(pub i64)`).
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
 ## Solved
 
-*(Nothing here yet. Once an exercise is compared against `SOLUTIONS.md` and understood, it moves here with a one-line note on what you learned from the diff.)*
+### Exercise 1.2-1 — Defining Core Trading Enums (`Side` and `OrderType`)
+**Status:** solved
+**Goal:** Define the `Side` and `OrderType` enums to represent trading sides and order types as algebraic data types.
+**Note:** Solved in `src/models.rs`. Checked against `SOLUTIONS.md` — learned CamelCase convention for variants (`StopLoss`).

@@ -39,3 +39,31 @@
 
 - `&str` **[String Literal / Slice ]** => Like a billboard painted directly onto a building wall. we didn't buy the building and we can't erase or add new words to the wall. But pointing to it `(&)` is instantaneous and costs zero money (zero allocations)
 - `String` **(Heap Allocated String)** => Like a spiral notepad in our backpack. We own it we can tear out pages or write 100 new lines `(push_str)`but carrying around physical notebooks required effort and memory management overhead
+
+- Asset Side - Buy || Sell
+- Order type = Market || Limit || StopLoss
+- Order Status
+- Order
+- Price 
+- Quantity
+
+- In traditional langugaes like Js or python developers ofter pass plain strings like "BUY" or "LIMIT" around. If someone makes a type "buy" or "LMIT" the error happens at runtime in production
+- In rust system engineering the type system makes invalid states unrepresentable at compile time
+
++-------------------------------------------------------------------------+
+|                         src/models/ (Domain Types)                      |
+|                                                                         |
+|  +------------------------+          +-------------------------------+  |
+|  |     Side (Enum)        |          |       OrderType (Enum)        |  |
+|  |   - Buy                |          |   - Market                    |  |
+|  |   - Sell               |          |   - Limit { price: i64 }      |  |
+|  +------------------------+          |   - StopLoss { trigger: i64 } |  |
+|               \                      +-------------------------------+  |
+|                \                                     /                  |
+|                 v                                   v                   |
+|  +-------------------------------------------------------------------+  |
+|  |                           Order (Struct)                          |  |
+|  |   id: u64, asset: String, side: Side, order_type: OrderType, ...  |  |
+|  +-------------------------------------------------------------------+  |
++-------------------------------------------------------------------------+
+

@@ -33,6 +33,54 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-07 12:15 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.2-1, Exercise 1.2-2 & Concept 9</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.2-1 opened after learner completed attempt in `src/models.rs`. Moved Exercise 1.2-1 to solved in EXERCISES.md, added Exercise 1.2-2 skeleton, and added Concept 9 (Newtype Pattern & Structs) word-for-word to EXAMPLES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.2-1 — Core Trading Enums (`Side` and `OrderType`)
++ **Reference Implementation:**
++ pub enum Side { Buy, Sell }
++ pub enum OrderType { Market, Limit { price: i64 }, StopLoss { trigger_price: i64 } }
+
+[EXERCISES.md]
+- ### Exercise 1.2-1 — Defining Core Trading Enums (`Side` and `OrderType`) [open]
++ ### Exercise 1.2-2 — Structs & Newtype Pattern (`Price`, `Quantity`, `Order`) [open]
++ ### Exercise 1.2-1 — Defining Core Trading Enums (`Side` and `OrderType`) [solved]
+
+[EXAMPLES.md]
++ ### 9. Structs & The Newtype Pattern (`Price`, `Quantity`, `Order`) — Currency Wallets & Trading Tickets
+```
+
+</details>
+
+<details>
+<summary>2026-08-06 18:51 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 8 & Exercise 1.2-1</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 8 (Enums as ADTs - Multi-Tool Switch analogy) word-for-word to EXAMPLES.md per Rule 8, and added Exercise 1.2-1 skeleton to EXERCISES.md per STEP 3.5.
+
+```diff
+[EXAMPLES.md]
++ ### 8. Enums as Algebraic Data Types (`Side`, `OrderType`) — The Multi-Tool Switch
++ 
++ **ELI5 Analogy: The Multi-Tool Switch**
++ * In traditional languages (like C or TypeScript enums), an Enum is just a list of numbered labels (`0 = Buy`, `1 = Sell`).
++ * In Rust, an Enum is an **Algebraic Data Type (Sum Type)**: a multi-tool switch where each position can hold completely different tools and data!
+
+[EXERCISES.md]
++ ### Exercise 1.2-1 — Defining Core Trading Enums (`Side` and `OrderType`)
++ **Status:** open
++ **Goal:** Define the `Side` and `OrderType` enums to represent trading sides and order types as algebraic data types.
+```
+
+</details>
+
+<details>
 <summary>2026-08-06 18:25 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.1 Completed</summary>
 
 - **Files:** LEARNING.md, ROADMAP.md

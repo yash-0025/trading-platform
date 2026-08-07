@@ -71,3 +71,19 @@
 **Outcome / Next Step:** Await user prompt to kick off Module 1.2 — Domain Types.
 
 ---
+
+### 2026-08-06 18:51 IST — Prompt #8
+**Prompt:** "/next let's move to next step"
+**Context:** Resuming curriculum via `/next` workflow algorithm. Module 1.1 complete `[x]`, moving to Module 1.2 — Domain Types.
+**Output Summary:** AI presented Module 1.2 overview, Domain Types architecture diagram, and Concept 8 (Enums as ADTs - Multi-Tool Switch analogy). Saved Concept 8 word-for-word into EXAMPLES.md, created Exercise 1.2-1 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner attempts Exercise 1.2-1 in EXERCISES.md.
+
+---
+
+### 2026-08-07 12:15 IST — Prompt #9
+**Prompt:** "Done check models.rs and then we can move to /next"
+**Context:** Learner implemented `Side` and `OrderType` enums in `src/models.rs`.
+**Output Summary:** AI checked `src/models.rs`, opened gated Solution 1.2-1 in SOLUTIONS.md, moved Exercise 1.2-1 to solved in EXERCISES.md, introduced Concept 9 (Newtype Pattern & Structs - Currency Wallets & Trading Tickets analogy), committed Concept 9 to EXAMPLES.md word-for-word, created Exercise 1.2-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner attempts Exercise 1.2-2 (`Price`, `Quantity`, `Order`) in `src/models.rs`.
+
+---

@@ -40,4 +40,35 @@ fn example() -> Result<(), TradingError> {
 
 ---
 
-*(No solutions yet — entries are added here only as exercises in `EXERCISES.md` get gated open.)*
+### Solution 1.2-1 — Core Trading Enums (`Side` and `OrderType`)
+
+**Reference Implementation:**
+```rust
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum Side {
+    Buy,
+    Sell,
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum OrderType {
+    Market,
+    Limit { price: i64 },
+    StopLoss { trigger_price: i64 },
+}
+```
+
+**Line-by-Line Breakdown:**
+- `#[derive(Debug, Clone, PartialEq, Eq)]` — Auto-implements formatting (`Debug`), duplication (`Clone`), and value equality (`PartialEq`, `Eq`) for `Side`.
+- `pub enum Side { Buy, Sell }` — Public enum with two unit variants representing trading sides.
+- `#[derive(Debug, Clone, PartialEq)]` — `OrderType` contains `i64` payloads, so it derives `PartialEq`.
+- `Limit { price: i64 }` — Struct variant holding fixed-point price in cents.
+- `StopLoss { trigger_price: i64 }` — Struct variant holding trigger price in cents.
+
+**Compared to your attempt:**
+- **Matches**: Perfect enum structures, visibility `pub`, correct payload types (`i64`), and derive attributes (`Debug`, `Clone`, `PartialEq`, `Eq`).
+- **Difference**: You named the variant `Stoploss` (lowercase `l`), while idiomatic Rust uses CamelCase `StopLoss`. Both compile and are functionally equivalent.
+
+---
+
+*(Additional solutions will be added as exercises get gated open.)*
