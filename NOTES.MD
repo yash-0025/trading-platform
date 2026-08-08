@@ -76,3 +76,41 @@
 - self: takes owned move of Order, dropping or consuming the struct at the end of the method body
 - &mut self : borrows exclusive mutable stack reference(&mut Order), enabling state mutation while preventing data races.
 
+### Configuration System - Layered settings
+- A trading system needs configurable parameters exchange name, base ,currency, maximum order size limits and log verbosity
+
+- In production systems (Zerodha, Binance ) we cannot hardcode setting into binary executables .. Staging, dev, and production environment require different config values. A robust configuration manager loads setting from files (config.toml) overrides them with environment variables [EXCHANGE_NAME=ApexExchange] and falls back to safe default values
+
++-------------------------------------------------------------------------+
+|                  CONFIGURATION HIERARCHY & RESOLUTION                   |
+|                                                                         |
+|  +---------------------------+                                          |
+|  |  Environment Variables    |  (Highest priority: OVERRIDES file/def)  |
+|  |  EXCHANGE_NAME=ApexEx...  |                                          |
+|  +---------------------------+                                          |
+|               |                                                         |
+|               v                                                         |
+|  +---------------------------+                                          |
+|  |   File: config.toml       |  (Medium priority: reads disk settings)  |
+|  |   currency = "USD"        |                                          |
+|  +---------------------------+                                          |
+|               |                                                         |
+|               v                                                         |
+|  +---------------------------+                                          |
+|  |   Hardcoded Defaults      |  (Fallback: guarantees safe startup)     |
+|  |   max_order_size = 1000   |                                          |
+|  +---------------------------+                                          |
++-------------------------------------------------------------------------+
+
+### Ownership and Borrowing 
+1. Move Semanticsa and Stack Value Copying
+- String is an uncopyable stack struct (pointer len cap). Assigning a = b performs a shallow 24 bytes memcpy of the stack fields, then invalidates b at compile time . No heap reallocation happens but b can no longer be accessed
+2. Borrow Checker and Lifetime safety - &T borrows a pointer without moving ownership . The Rust borrow checker enforces that the refernce &T cannot outlive the owned value T(preventing dangling pointer vulnerabilities)
+3. Option<T> and Fallback Combination - (unwrap_or , unwrap_or_else) : Option<T> is an enum (Some(T) || None). .unwrap_or(default) eagerly evaluates a default value while .unwrap_or_else(|| compute_default()) lazily evaluates teh closure only when None saving unnecessary heap allocations in config fallbacks.
+
+#### Using unwrap_or_else **Idiomatic Functional Pattern**
+- Use std::env::var("KEY_NAME") to look up an environment variable. It returns a Result<String, VarError>
+
+
+#### Using **`match`** Explicit Control flow
+-  use a match expression to explicitly handle Ok vs Err

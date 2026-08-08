@@ -38,39 +38,37 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`)
+### Exercise 1.3-2 — File Parsing & Layered Fallback (`config.toml`, `std::fs::read_to_string`)
 **Status:** open
-**Goal:** Build a `Config` struct representing exchange settings and implement `from_env_or_default()` using `Option` combinators.
+**Goal:** Implement `Config::from_file_or_env(path: &str)` to attempt reading `config.toml` before falling back to env vars / defaults.
 
 **Skeleton:**
 ```rust
-// Create src/config.rs (or in src/main.rs for testing):
-
-#[derive(Debug, Clone)]
-pub struct Config {
-    pub exchange_name: String,
-    pub currency: String,
-    pub max_order_size: u64,
-    pub log_level: String,
-}
+// In src/config.rs:
 
 impl Config {
-    // TODO(1): Read "EXCHANGE_NAME" env var using std::env::var().
-    // Use Option/Result helper (or unwrap_or_else) to fall back to "ApexExchange".
-    pub fn from_env_or_default() -> Self {
+    // TODO(1): Attempt reading config file at `path` using std::fs::read_to_string(path).
+    // TODO(2): If file read fails (Err), return Config::from_env_or_default().
+    // TODO(3): For now, if file read succeeds, return Config::from_env_or_default() (we will add toml parsing next).
+    pub fn from_file_or_env(path: &str) -> Self {
         todo!()
     }
 }
 ```
 
-**Constraints:** Use `std::env::var` and lazy evaluation (`unwrap_or_else` or `match`) for string fallbacks.
+**Constraints:** Do not panic on file missing; fall back safely to `Config::from_env_or_default()`.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
-
 ## Solved
+
+### Exercise 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`)
+**Status:** solved
+**Goal:** Build a `Config` struct representing exchange settings and implement `from_env_or_default()` using `Option` combinators.
+**Note:** Solved in `src/config.rs`. Checked against `SOLUTIONS.md` — learned `unwrap_or_else` vs `match` syntax and placing method bodies inside functions.
+
 
 ### Exercise 1.2-3 — Impl Blocks, Constructors (`Self::new()`), and Method Mutability (`&mut self`)
 **Status:** solved

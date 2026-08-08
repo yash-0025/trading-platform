@@ -111,3 +111,27 @@
 **Outcome / Next Step:** Learner attempts Exercise 1.3-1 (`Config` struct & `from_env_or_default`).
 
 ---
+
+### 2026-08-08 14:03 IST — Prompt #13
+**Prompt:** "I need hints for writing impl Config and from_env_or_dafault function"
+**Context:** Learner requested Hint 1 for Exercise 1.3-1 (`Config::from_env_or_default`).
+**Output Summary:** AI bumped `Hints used: 1/3` in EXERCISES.md, recorded diff in LOGS.md, and provided Hint Tier 1 (conceptual nudge on environment variable inspection and fallback strategy without naming functions or code).
+**Outcome / Next Step:** Learner attempts `Config::from_env_or_default()` implementation or asks for Hint Tier 2.
+
+---
+
+### 2026-08-08 14:05 IST — Prompt #14
+**Prompt:** "I don't know how to write this with syntax"
+**Context:** Learner requested Hint 2 (structural/syntax hint) for Exercise 1.3-1 (`Config::from_env_or_default`).
+**Output Summary:** AI bumped `Hints used: 2/3` in EXERCISES.md, recorded diff in LOGS.md, and provided Hint Tier 2 naming standard functions (`std::env::var`), method combinators (`unwrap_or_else`), and string conversions without providing full solution code.
+**Outcome / Next Step:** Learner attempts `Config::from_env_or_default()` using `std::env::var` and `unwrap_or_else` or asks for Hint Tier 3 / solution.
+
+---
+
+### 2026-08-08 14:47 IST — Prompt #15
+**Prompt:** "Done /next"
+**Context:** Learner attempted `from_env_or_default` logic in `src/config.rs`.
+**Output Summary:** AI checked `src/config.rs` (noted placing code inside function body, `=>` syntax for `match`, and `std::env::var`), opened gated Solution 1.3-1 in SOLUTIONS.md, moved Exercise 1.3-1 to solved in EXERCISES.md, introduced Concept 12 (File Parsing with TOML & Layered Fallback - Restaurant Menu Book vs Verbal Daily Specials analogy), committed Concept 12 to EXAMPLES.md word-for-word, created Exercise 1.3-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner adjusts `src/config.rs` syntax and implements Exercise 1.3-2 (`Config::from_file_or_env`).
+
+---

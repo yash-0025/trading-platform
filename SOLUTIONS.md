@@ -114,6 +114,60 @@ impl Order {
 
 ---
 
+### Solution 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`)
+
+**Reference Implementation:**
+```rust
+#[derive(Debug, Clone)]
+pub struct Config {
+    pub exchange_name: String,
+    pub currency: String,
+    pub max_order_size: u64,
+    pub log_level: String,
+}
+
+impl Config {
+    pub fn from_env_or_default() -> Self {
+        let exchange_name = std::env::var("EXCHANGE_NAME")
+            .unwrap_or_else(|_| "ApexExchange".to_string());
+
+        let currency = std::env::var("CURRENCY")
+            .unwrap_or_else(|_| "USD".to_string());
+
+        let max_order_size = std::env::var("MAX_ORDER_SIZE")
+            .ok()
+            .and_then(|val| val.parse::<u64>().ok())
+            .unwrap_or(1_000_000);
+
+        let log_level = std::env::var("LOG_LEVEL")
+            .unwrap_or_else(|_| "INFO".to_string());
+
+        Config {
+            exchange_name,
+            currency,
+            max_order_size,
+            log_level,
+        }
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `pub fn from_env_or_default() -> Self` — Associated constructor function returning a `Config` instance.
+- `std::env::var("EXCHANGE_NAME")` — Queries environment table, returning `Result<String, VarError>`.
+- `.unwrap_or_else(|_| "ApexExchange".to_string())` — Lazily falls back to `"ApexExchange"` if the environment variable is missing.
+- `Config { exchange_name, currency, max_order_size, log_level }` — Field init shorthand returning `Self`.
+
+**Compared to your attempt:**
+- **Matches**: Excellent logic! You wrote both the `unwrap_or_else` functional pattern and the `match` expression pattern.
+- **Adjustments Needed**:
+  1. Move the statements inside the body of `pub fn from_env_or_default() -> Self { ... }`.
+  2. Change `match` arm syntax from `->` to `=>` (e.g. `Ok(val) => val`).
+  3. Change `std::env("CURRENCY")` and `std::var(...)` to `std::env::var(...)`.
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 

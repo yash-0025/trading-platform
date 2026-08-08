@@ -33,6 +33,60 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-08 14:47 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.3-1, Exercise 1.3-2 & Concept 12</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.3-1 opened after learner completed implementation of `from_env_or_default` in `src/config.rs`. Moved Exercise 1.3-1 to solved in EXERCISES.md, added Exercise 1.3-2 skeleton, and added Concept 12 (File Parsing & Fallback Algorithm) word-for-word to EXAMPLES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`)
++ **Reference Implementation:**
++ impl Config { pub fn from_env_or_default() -> Self { ... } }
+
+[EXERCISES.md]
+- ### Exercise 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`) [open]
++ ### Exercise 1.3-2 — File Parsing & Layered Fallback (`config.toml`, `std::fs::read_to_string`) [open]
++ ### Exercise 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`) [solved]
+
+[EXAMPLES.md]
++ ### 12. File Parsing with TOML & Layered Fallback — The Restaurant Menu Book vs Verbal Daily Specials
+```
+
+</details>
+
+<details>
+<summary>2026-08-08 14:05 IST — [EXERCISES.md] — Bumped Hints used to 2/3 for Exercise 1.3-1</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner requested syntax/structural hint for Exercise 1.3-1 (`Config::from_env_or_default`). Bumped `Hints used: 2/3` per STEP 3.5-B.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 1/3
++ **Hints used:** 2/3
+```
+
+</details>
+
+<details>
+<summary>2026-08-08 14:03 IST — [EXERCISES.md] — Bumped Hints used to 1/3 for Exercise 1.3-1</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner requested hint for Exercise 1.3-1 (`Config::from_env_or_default`). Bumped `Hints used: 1/3` per STEP 3.5-B.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 0/3
++ **Hints used:** 1/3
+```
+
+</details>
+
+<details>
 <summary>2026-08-07 23:42 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 11 & Exercise 1.3-1</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md

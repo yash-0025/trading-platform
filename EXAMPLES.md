@@ -185,7 +185,24 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 12. File Parsing with TOML & Layered Fallback — The Restaurant Menu Book vs Verbal Daily Specials
+
+**ELI5 Analogy: The Restaurant Menu Book vs Verbal Daily Specials**
+* **Reading `config.toml` (`std::fs::read_to_string` + `toml::from_str`)**: Opening a printed menu book sitting on the dining table. The menu book is written in a structured format (TOML sections like `[exchange]`). The waiter reads the entire book at once into memory, making sure every page is valid printed text.
+* **Environment Overrides**: The manager walking up to your table and saying "Today's special exchange name is ApexPrime". The verbal instruction overrides what was printed in the menu book.
+
+**Deep Technical Breakdown:**
+- **File I/O (`std::fs::read_to_string`)**: Synchronous filesystem read. Reads raw UTF-8 bytes from disk into a heap-allocated `String`. Returns `io::Result<String>`.
+- **Serde & TOML Parsing (`toml::from_str::<Config>(&contents)`)**: Deserializes a TOML-formatted string into a Rust struct via Serde (`#[derive(Deserialize)]`). Derives field mapping at compile time, performing type validation (e.g. ensuring integer bounds for `u64`).
+- **Layered Fallback Algorithm**:
+  1. Attempt `Config::from_file("config.toml")`.
+  2. If file missing or unreadable (`Err`), fall back to `Config::from_env_or_default()`.
+  3. Overwrite specific fields if corresponding environment variables (`EXCHANGE_NAME`, `CURRENCY`) are set.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

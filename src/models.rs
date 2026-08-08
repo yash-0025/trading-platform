@@ -11,7 +11,7 @@ pub enum OrderStatus {
     Cancelled,
 }
 
-#[derive(Debug, Clone, ParitalEq)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Order {
     pub id: u64,
     pub asset: String,

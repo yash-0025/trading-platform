@@ -1,3 +1,6 @@
+mod models;
+mod config;
+
 fn main() {
     println!("=======================================");
     println!("     TRADING PLATFORM ECOSYTEM         ");
