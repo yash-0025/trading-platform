@@ -33,6 +33,30 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-10 14:17 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.3-2, Exercise 1.3-3 & Concept 13</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.3-2 opened after learner completed implementation of `from_file_or_env` in `src/config.rs`. Moved Exercise 1.3-2 to solved in EXERCISES.md, added Exercise 1.3-3 skeleton, and added Concept 13 (Serde TOML Deserialization) word-for-word to EXAMPLES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.3-2 — File Parsing & Layered Fallback (`config.toml`, `std::fs::read_to_string`)
++ **Reference Implementation:**
++ impl Config { pub fn from_file_or_env(path: &str) -> Self { ... } }
+
+[EXERCISES.md]
+- ### Exercise 1.3-2 — File Parsing & Layered Fallback (`config.toml`, `std::fs::read_to_string`) [open]
++ ### Exercise 1.3-3 — Serde TOML Deserialization (`serde`, `toml::from_str`) [open]
++ ### Exercise 1.3-2 — File Parsing & Layered Fallback (`config.toml`, `std::fs::read_to_string`) [solved]
+
+[EXAMPLES.md]
++ ### 13. Serde TOML Deserialization (`#[derive(Deserialize)]` & `toml::from_str`) — The Automated Customs Scanner
+```
+
+</details>
+
+<details>
 <summary>2026-08-08 14:47 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.3-1, Exercise 1.3-2 & Concept 12</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md

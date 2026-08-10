@@ -201,7 +201,21 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 13. Serde TOML Deserialization (`#[derive(Deserialize)]` & `toml::from_str`) — The Automated Customs Scanner
+
+**ELI5 Analogy: The Automated Customs Scanner**
+* Without Serde (`serde`), reading a config file is like manually reading every line of a foreign customs form with a magnifying glass, checking each character by hand.
+* With Serde (`#[derive(Deserialize)]` & `toml::from_str`): An automated high-speed customs scanner. You slide the raw TOML text string into the scanner (`toml::from_str(&contents)`), and the scanner instantly converts the raw text into a neatly structured, type-checked `Config` object in memory. If a field is missing or has the wrong type, the scanner sounds a clear alarm (`Result::Err`).
+
+**Deep Technical Breakdown:**
+- **Serde Data Model & Procedural Macros**: `#[derive(Deserialize)]` generates a compile-time `Visitor` implementation for `Config`. It maps TOML keys (`exchange_name`) to struct fields, validating integer bounds and string encodings without runtime reflection overhead.
+- **Cargo Dependency Management (`serde = { version = "1.0", features = ["derive"] }`, `toml = "0.8"`)**: External dependencies declared in `Cargo.toml`. Enabling the `"derive"` feature enables Serde's proc-macro attributes.
+- **Deserialization Desugaring**: `toml::from_str::<Config>(&contents)` takes `&str` reference, parses the TOML AST, invokes Serde's `Deserialize` implementation, and allocates heap memory for fields (`String`) while returning `Result<Config, toml::de::Error>`.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

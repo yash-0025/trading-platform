@@ -135,3 +135,11 @@
 **Outcome / Next Step:** Learner adjusts `src/config.rs` syntax and implements Exercise 1.3-2 (`Config::from_file_or_env`).
 
 ---
+
+### 2026-08-10 14:17 IST — Prompt #16
+**Prompt:** "Done /next"
+**Context:** Learner completed `Config::from_file_or_env` in `src/config.rs`.
+**Output Summary:** AI validated `src/config.rs` implementation, opened gated Solution 1.3-2 in SOLUTIONS.md, moved Exercise 1.3-2 to solved in EXERCISES.md, introduced Concept 13 (Serde TOML Deserialization `#[derive(Deserialize)]` & `toml::from_str` - Automated Customs Scanner analogy), committed Concept 13 to EXAMPLES.md word-for-word, created Exercise 1.3-3 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner adds `serde` & `toml` to `Cargo.toml`, derives `Deserialize`, and implements TOML parsing in `from_file_or_env`.
+
+---

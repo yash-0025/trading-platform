@@ -167,7 +167,36 @@ impl Config {
 
 ---
 
+### Solution 1.3-2 — File Parsing & Layered Fallback (`config.toml`, `std::fs::read_to_string`)
+
+**Reference Implementation:**
+```rust
+impl Config {
+    pub fn from_file_or_env(path: &str) -> Self {
+        match std::fs::read_to_string(path) {
+            Ok(_contents) => {
+                Self::from_env_or_default()
+            }
+            Err(_) => {
+                Self::from_env_or_default()
+            }
+        }
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `pub fn from_file_or_env(path: &str) -> Self` — Associated function taking a string slice path to `config.toml`.
+- `std::fs::read_to_string(path)` — Reads raw UTF-8 file contents into a heap `String`, returning `io::Result<String>`.
+- `match` arms — Handles `Ok(_contents)` and `Err(_)`, safely falling back to `Self::from_env_or_default()`.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation used `match std::fs::read_to_string(path)` with `Ok(_contents)` and `Err(_)` fallbacks flawlessly!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

@@ -38,31 +38,56 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.3-2 — File Parsing & Layered Fallback (`config.toml`, `std::fs::read_to_string`)
+### Exercise 1.3-3 — Serde TOML Deserialization (`serde`, `toml::from_str`)
 **Status:** open
-**Goal:** Implement `Config::from_file_or_env(path: &str)` to attempt reading `config.toml` before falling back to env vars / defaults.
+**Goal:** Add `serde` and `toml` dependencies to `Cargo.toml`, derive `Deserialize` on `Config`, and parse raw TOML strings in `from_file_or_env`.
 
 **Skeleton:**
 ```rust
-// In src/config.rs:
+// 1. In Cargo.toml:
+// [dependencies]
+// serde = { version = "1.0", features = ["derive"] }
+// toml = "0.8"
+
+// 2. In src/config.rs:
+use serde::Deserialize;
+
+// TODO(1): Add #[derive(Deserialize)] to Config struct
+#[derive(Debug, Clone, Deserialize)]
+pub struct Config {
+    pub exchange_name: String,
+    pub currency: String,
+    pub max_order_size: u64,
+    pub log_level: String,
+}
 
 impl Config {
-    // TODO(1): Attempt reading config file at `path` using std::fs::read_to_string(path).
-    // TODO(2): If file read fails (Err), return Config::from_env_or_default().
-    // TODO(3): For now, if file read succeeds, return Config::from_env_or_default() (we will add toml parsing next).
     pub fn from_file_or_env(path: &str) -> Self {
-        todo!()
+        match std::fs::read_to_string(path) {
+            Ok(contents) => {
+                // TODO(2): Parse contents with toml::from_str::<Config>(&contents).
+                // If Ok(cfg), return cfg. If Err(_), fall back to Self::from_env_or_default().
+                todo!()
+            }
+            Err(_) => Self::from_env_or_default(),
+        }
     }
 }
 ```
 
-**Constraints:** Do not panic on file missing; fall back safely to `Config::from_env_or_default()`.
+**Constraints:** Uncomment/add `serde` and `toml` in `Cargo.toml`. Derives `Deserialize` on `Config`.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
 ## Solved
+
+### Exercise 1.3-2 — File Parsing & Layered Fallback (`config.toml`, `std::fs::read_to_string`)
+**Status:** solved
+**Goal:** Implement `Config::from_file_or_env(path: &str)` to attempt reading `config.toml` before falling back to env vars / defaults.
+**Note:** Solved in `src/config.rs`. Checked against `SOLUTIONS.md` — exact match on `match std::fs::read_to_string(path)` file fallback logic.
+
 
 ### Exercise 1.3-1 — Config Struct & Env Fallback (`Option<T>` & `unwrap_or_else`)
 **Status:** solved

@@ -114,3 +114,5 @@
 
 #### Using **`match`** Explicit Control flow
 -  use a match expression to explicitly handle Ok vs Err
+
+#### File I/O (std::fs::read_to_string)
