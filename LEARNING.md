@@ -59,4 +59,15 @@
 **Code I wrote / project progress:**
 - Built `src/models.rs` containing `Side`, `OrderType`, `OrderStatus`, `Price`, `Quantity`, and `Order` with `impl Order` methods (`new`, `fill`, `is_pending`).
 
+### Module 1.3 — Configuration System — 2026-08-10
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Ownership & Borrowing: `String` heap moves vs `&str` stack slices.
+- `Option<T>` combinators: `unwrap_or` (eager) vs `unwrap_or_else` (lazy closure evaluation).
+- Layered configuration architecture: File (`config.toml`) → Environment (`std::env::var`) → Hardcoded Defaults.
+- Serde deserialization: `#[derive(Deserialize)]` & `toml::from_str::<Config>(&contents)`.
+**Code I wrote / project progress:**
+- Added `serde` and `toml` dependencies to `Cargo.toml`.
+- Created `src/config.rs` containing `Config` struct, `from_env_or_default()`, and `from_file_or_env()`.
+- Linked `mod config;` in `src/main.rs`.
 

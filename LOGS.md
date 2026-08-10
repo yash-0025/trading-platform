@@ -33,6 +33,57 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-10 23:27 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 14 & Exercise 1.4-1</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 14 (Derive-Based CLI Parsers with clap - Bank Teller Counter vs Service Windows analogy) word-for-word to EXAMPLES.md per Rule 8, and added Exercise 1.4-1 skeleton to EXERCISES.md per STEP 3.5.
+
+```diff
+[EXAMPLES.md]
++ ### 14. Derive-Based CLI Parsers with `clap` Subcommands (`#[derive(Parser, Subcommand)]`) — Bank Teller Counter vs Dedicated Service Windows
+
+[EXERCISES.md]
++ ### Exercise 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-10 23:26 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.3 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner explicitly confirmed marking Module 1.3 (Configuration System) complete `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.3 — Configuration System — 2026-08-10
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - Ownership & Borrowing: `String` heap moves vs `&str` stack slices.
++ - `Option<T>` combinators: `unwrap_or` (eager) vs `unwrap_or_else` (lazy closure evaluation).
++ - Layered configuration architecture: File (`config.toml`) → Environment (`std::env::var`) → Hardcoded Defaults.
++ - Serde deserialization: `#[derive(Deserialize)]` & `toml::from_str::<Config>(&contents)`.
++ **Code I wrote / project progress:**
++ - Added `serde` and `toml` dependencies to `Cargo.toml`.
++ - Created `src/config.rs` containing `Config` struct, `from_env_or_default()`, and `from_file_or_env()`.
++ - Linked `mod config;` in `src/main.rs`.
+
+[ROADMAP.md]
+- - [ ] **You build:** A configuration loader...
+- - [ ] **Concepts:** Ownership deep dive...
+- - [ ] **Architecture:** Configuration hierarchy...
+- - [ ] **Deliverable:** Config system that loads from file...
++ - [x] **You build:** A configuration loader...
++ - [x] **Concepts:** Ownership deep dive...
++ - [x] **Architecture:** Configuration hierarchy...
++ - [x] **Deliverable:** Config system that loads from file...
+```
+
+</details>
+
+<details>
 <summary>2026-08-10 23:10 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.3-3 & Solved Exercise 1.3-3</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

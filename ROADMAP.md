@@ -69,10 +69,10 @@ Every module has:
 ---
 
 ### Module 1.3 — Configuration System
-- [ ] **You build:** A configuration loader that reads settings from a TOML file (`config.toml`) and falls back to environment variables. Settings: exchange name, default currency, max order size, log level.
-- [ ] **Concepts:** Ownership deep dive — `String` vs `&str`, moves, clones · Borrowing: `&T` (shared) vs `&mut T` (exclusive) · The borrow checker as compile-time data-race prevention · `std::fs::read_to_string` · `toml` crate for parsing · `std::env::var` · `Option<T>` for optional config values · `unwrap()` vs `unwrap_or` vs `unwrap_or_else`
-- [ ] **Architecture:** Configuration hierarchy (file → env → defaults). How production systems handle config.
-- [ ] **Deliverable:** Config system that loads from file with env var overrides. Unit tests for each fallback path.
+- [x] **You build:** A configuration loader that reads settings from a TOML file (`config.toml`) and falls back to environment variables. Settings: exchange name, default currency, max order size, log level.
+- [x] **Concepts:** Ownership deep dive — `String` vs `&str`, moves, clones · Borrowing: `&T` (shared) vs `&mut T` (exclusive) · The borrow checker as compile-time data-race prevention · `std::fs::read_to_string` · `toml` crate for parsing · `std::env::var` · `Option<T>` for optional config values · `unwrap()` vs `unwrap_or` vs `unwrap_or_else`
+- [x] **Architecture:** Configuration hierarchy (file → env → defaults). How production systems handle config.
+- [x] **Deliverable:** Config system that loads from file with env var overrides. Unit tests for each fallback path.
 
 ---
 

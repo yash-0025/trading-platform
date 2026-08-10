@@ -38,9 +38,53 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-*(No open exercises — Module 1.3 exercises completed!)*
+### Exercise 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`)
+**Status:** open
+**Goal:** Add `clap = { version = "4.4", features = ["derive"] }` to `Cargo.toml`, build `src/cli.rs`, and define `Cli` struct with subcommands (`Buy`, `Sell`, `Balance`, `Orders`).
+
+**Skeleton:**
+```rust
+// 1. In Cargo.toml:
+// [dependencies]
+// clap = { version = "4.4", features = ["derive"] }
+
+// 2. Create src/cli.rs:
+use clap::{Parser, Subcommand};
+
+#[derive(Parser, Debug)]
+#[command(name = "trading-platform", author, version, about = "CLI Trading Terminal")]
+pub struct Cli {
+    #[command(subcommand)]
+    pub command: Commands,
+}
+
+#[derive(Subcommand, Debug)]
+pub enum Commands {
+    // TODO(1): Buy subcommand taking symbol: String, qty: u64, price: i64
+    Buy {
+        symbol: String,
+        qty: u64,
+        price: i64,
+    },
+    // TODO(2): Sell subcommand taking symbol: String, qty: u64, price: i64
+    Sell {
+        symbol: String,
+        qty: u64,
+        price: i64,
+    },
+    // TODO(3): Balance subcommand (no fields)
+    Balance,
+    // TODO(4): Orders subcommand (no fields)
+    Orders,
+}
+```
+
+**Constraints:** Use `clap` derive API (`Parser`, `Subcommand`).
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
 
 ## Solved
 
