@@ -143,3 +143,11 @@
 **Outcome / Next Step:** Learner adds `serde` & `toml` to `Cargo.toml`, derives `Deserialize`, and implements TOML parsing in `from_file_or_env`.
 
 ---
+
+### 2026-08-10 23:10 IST — Prompt #17
+**Prompt:** "done /next"
+**Context:** Learner completed `serde` dependency setup and `toml::from_str` deserialization in `Cargo.toml` and `src/config.rs`.
+**Output Summary:** AI validated `src/config.rs` and `Cargo.toml`, opened gated Solution 1.3-3 in SOLUTIONS.md, moved Exercise 1.3-3 to solved in EXERCISES.md, recorded diffs in LOGS.md, verified Module 1.3 completion per Rule 14, and proposed marking Module 1.3 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.3 completion, then moves to Module 1.4 (Order Management Engine - In-Memory State & Collections).
+
+---

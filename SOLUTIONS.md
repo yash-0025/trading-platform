@@ -195,7 +195,52 @@ impl Config {
 
 ---
 
+### Solution 1.3-3 — Serde TOML Deserialization (`serde`, `toml::from_str`)
+
+**Reference Implementation:**
+```rust
+// Cargo.toml:
+// [dependencies]
+// serde = { version = "1.0", features = ["derive"] }
+// toml = "0.8"
+
+// src/config.rs:
+use serde::Deserialize;
+
+#[derive(Debug, Clone, Deserialize)]
+pub struct Config {
+    pub exchange_name: String,
+    pub currency: String,
+    pub max_order_size: u64,
+    pub log_level: String,
+}
+
+impl Config {
+    pub fn from_file_or_env(path: &str) -> Self {
+        match std::fs::read_to_string(path) {
+            Ok(contents) => match toml::from_str::<Config>(&contents) {
+                Ok(config) => config,
+                Err(_) => Self::from_env_or_default(),
+            },
+            Err(_) => Self::from_env_or_default(),
+        }
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `use serde::Deserialize;` — Imports Serde's `Deserialize` derive macro.
+- `#[derive(Debug, Clone, Deserialize)]` — Instructs compiler to generate a Serde deserializer for `Config`.
+- `toml::from_str::<Config>(&contents)` — Deserializes raw UTF-8 string `&contents` into a `Config` struct instance.
+- Nested `match` — Safely handles TOML parse errors, falling back to `Self::from_env_or_default()`.
+
+**Compared to your attempt:**
+- **Exact Match!**: You declared `serde` and `toml` in `Cargo.toml`, derived `Deserialize` on `Config`, and wrote the nested `match toml::from_str::<Config>(&contents)` flawlessly!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

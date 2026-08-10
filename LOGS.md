@@ -33,6 +33,26 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-10 23:10 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.3-3 & Solved Exercise 1.3-3</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.3-3 opened after learner completed implementation of Serde TOML deserialization in `Cargo.toml` and `src/config.rs`. Moved Exercise 1.3-3 to solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.3-3 — Serde TOML Deserialization (`serde`, `toml::from_str`)
++ **Reference Implementation:**
++ match toml::from_str::<Config>(&contents) { Ok(config) => config, Err(_) => Self::from_env_or_default() }
+
+[EXERCISES.md]
+- ### Exercise 1.3-3 — Serde TOML Deserialization (`serde`, `toml::from_str`) [open]
++ ### Exercise 1.3-3 — Serde TOML Deserialization (`serde`, `toml::from_str`) [solved]
+```
+
+</details>
+
+<details>
 <summary>2026-08-10 14:17 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.3-2, Exercise 1.3-3 & Concept 13</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md

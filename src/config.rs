@@ -1,4 +1,6 @@
-#[derive(Debug, Clone)]
+use serde::Deserialize;
+
+#[derive(Debug, Clone, Deserialize)]
 pub struct Config {
     pub exchange_name: String,
     pub currency: String,
@@ -62,8 +64,13 @@ impl Config {
     pub fn from_file_or_env(path: &str) -> Self {
         // Attempt to read files
         match std::fs::read_to_string(path) {
-            Ok(_contents) => {
-                Self::from_env_or_default()
+            Ok(contents) => {
+                // Self::from_env_or_default()
+                // Deseiralization Desugaring 
+                match toml::from_str::<Config>(&contents) {
+                    Ok(config) => config,
+                    Err(_) => Self::from_env_or_default(),
+                }
             }
             Err(_) => {
                 Self::from_env_or_default()
