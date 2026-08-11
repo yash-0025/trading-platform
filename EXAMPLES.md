@@ -227,7 +227,21 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 15. CLI Parsing, Command Dispatching & Module System (`Cli::parse()`, `match cli.command`, `pub(crate)`) — Central Train Station Dispatcher & VIP Security Passes
+
+**ELI5 Analogy: Central Train Station Dispatcher & VIP Security Passes**
+* **Command Dispatching (`match cli.command`)**: The central train station dispatcher standing at the main platform. As passengers arrive holding ticket stubs (subcommand variants like `Commands::Buy { symbol, qty, price }`), the dispatcher routes each passenger to their specific platform track (e.g. `println!("Executing BUY for {}...", symbol)`).
+* **Visibility Rules (`pub` vs `pub(crate)`)**: Security access passes inside the station building. `pub` is a public ticket counter open to all external passengers (other crates/users). `pub(crate)` is an internal staff badge that allows employees within the same train company (inside the current crate) to access private employee break rooms, while blocking outside passengers.
+
+**Deep Technical Breakdown:**
+- **Command Line Argument Parsing & Trait Traversal (`Cli::parse()`)**: Calls `clap::Parser::parse()`, accessing `std::env::args_os()`. Validates positional arguments and flags at runtime, exiting cleanly with status code 0 on `--help` / `--version` or code 2 on invalid flags.
+- **Exhaustive Enum Matching & Subcommand Destructuring**: Matching on `cli.command` leverages Rust's compile-time exhaustiveness checking. Destructuring fields (`Commands::Buy { symbol, qty, price }`) binds local variables by value/copy.
+- **Rust Visibility Modifiers (`pub`, `pub(crate)`, `pub(super)`, private)**: Struct fields and functions are private by default within their parent module. `pub(crate)` restricts visibility strictly to the current crate binary/library boundary, preventing leakage of internal implementation details into external API surfaces.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

@@ -38,55 +38,56 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`)
+### Exercise 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`)
 **Status:** open
-**Goal:** Add `clap = { version = "4.4", features = ["derive"] }` to `Cargo.toml`, build `src/cli.rs`, and define `Cli` struct with subcommands (`Buy`, `Sell`, `Balance`, `Orders`).
+**Goal:** In `src/main.rs`, parse command line args via `Cli::parse()` and dispatch each subcommand variant (`Buy`, `Sell`, `Balance`, `Orders`) using a `match` statement.
 
 **Skeleton:**
 ```rust
-// 1. In Cargo.toml:
-// [dependencies]
-// clap = { version = "4.4", features = ["derive"] }
+// In src/main.rs:
+use clap::Parser;
+mod cli;
+mod config;
+mod models;
 
-// 2. Create src/cli.rs:
-use clap::{Parser, Subcommand};
+use cli::{Cli, Commands};
 
-#[derive(Parser, Debug)]
-#[command(name = "trading-platform", author, version, about = "CLI Trading Terminal")]
-pub struct Cli {
-    #[command(subcommand)]
-    pub command: Commands,
-}
+fn main() {
+    let cli = Cli::parse();
 
-#[derive(Subcommand, Debug)]
-pub enum Commands {
-    // TODO(1): Buy subcommand taking symbol: String, qty: u64, price: i64
-    Buy {
-        symbol: String,
-        qty: u64,
-        price: i64,
-    },
-    // TODO(2): Sell subcommand taking symbol: String, qty: u64, price: i64
-    Sell {
-        symbol: String,
-        qty: u64,
-        price: i64,
-    },
-    // TODO(3): Balance subcommand (no fields)
-    Balance,
-    // TODO(4): Orders subcommand (no fields)
-    Orders,
+    match &cli.command {
+        // TODO(1): Handle Buy { symbol, qty, price } -> print formatted order summary
+        Commands::Buy { symbol, qty, price } => {
+            todo!()
+        }
+        // TODO(2): Handle Sell { symbol, qty, price } -> print formatted order summary
+        Commands::Sell { symbol, qty, price } => {
+            todo!()
+        }
+        // TODO(3): Handle Balance -> print balance message
+        Commands::Balance => {
+            todo!()
+        }
+        // TODO(4): Handle Orders -> print open orders message
+        Commands::Orders => {
+            todo!()
+        }
+    }
 }
 ```
 
-**Constraints:** Use `clap` derive API (`Parser`, `Subcommand`).
+**Constraints:** Use `Cli::parse()` and exhaustive `match` on `cli.command`.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
-
 ## Solved
+
+### Exercise 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`)
+**Status:** solved
+**Goal:** Add `clap = { version = "4.4", features = ["derive"] }` to `Cargo.toml`, build `src/cli.rs`, and define `Cli` struct with subcommands (`Buy`, `Sell`, `Balance`, `Orders`).
+**Note:** Solved in `src/cli.rs` & `Cargo.toml`. Checked against `SOLUTIONS.md` — exact match on `clap` derive attributes and `Commands` enum variants.
 
 ### Exercise 1.3-3 — Serde TOML Deserialization (`serde`, `toml::from_str`)
 **Status:** solved

@@ -1,5 +1,6 @@
 mod models;
 mod config;
+mod cli;
 
 fn main() {
     println!("=======================================");

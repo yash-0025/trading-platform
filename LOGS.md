@@ -33,6 +33,30 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-11 13:55 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.4-1, Exercise 1.4-2 & Concept 15</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.4-1 opened after learner completed implementation of `Cli` and `Commands` in `src/cli.rs`. Moved Exercise 1.4-1 to solved in EXERCISES.md, added Exercise 1.4-2 skeleton, and added Concept 15 (CLI Parsing, Command Dispatching & Module System) word-for-word to EXAMPLES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`)
++ **Reference Implementation:**
++ pub struct Cli { pub command: Commands } pub enum Commands { Buy { ... }, Sell { ... }, Balance, Orders }
+
+[EXERCISES.md]
+- ### Exercise 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`) [open]
++ ### Exercise 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`) [open]
++ ### Exercise 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`) [solved]
+
+[EXAMPLES.md]
++ ### 15. CLI Parsing, Command Dispatching & Module System (`Cli::parse()`, `match cli.command`, `pub(crate)`) — Central Train Station Dispatcher & VIP Security Passes
+```
+
+</details>
+
+<details>
 <summary>2026-08-10 23:27 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 14 & Exercise 1.4-1</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md

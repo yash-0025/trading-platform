@@ -239,7 +239,55 @@ impl Config {
 
 ---
 
+### Solution 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`)
+
+**Reference Implementation:**
+```rust
+// Cargo.toml:
+// [dependencies]
+// clap = { version = "4.4", features = ["derive"] }
+
+// src/cli.rs:
+use clap::{Parser, Subcommand};
+
+#[derive(Parser, Debug)]
+#[command(name = "trading-platform", author, version, about = "CLI Trading Terminal")]
+pub struct Cli {
+    #[command(subcommand)]
+    pub command: Commands,
+}
+
+#[derive(Subcommand, Debug)]
+pub enum Commands {
+    Buy {
+        symbol: String,
+        qty: u64,
+        price: i64,
+    },
+    Sell {
+        symbol: String,
+        qty: u64,
+        price: i64,
+    },
+    Balance,
+    Orders,
+}
+```
+
+**Line-by-Line Breakdown:**
+- `use clap::{Parser, Subcommand};` — Imports `clap`'s derive macros for command line parsing.
+- `#[derive(Parser, Debug)]` — Generates a top-level CLI argument parser.
+- `#[command(name = "trading-platform", ...)]` — Sets application metadata shown in `--help` output.
+- `#[derive(Subcommand, Debug)]` — Generates subcommand parsing for enum variants.
+- `Buy { symbol, qty, price }` / `Sell { symbol, qty, price }` — Enum variants carrying named argument payloads.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/cli.rs` and dependency declaration in `Cargo.toml` were flawless!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

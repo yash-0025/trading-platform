@@ -159,3 +159,11 @@
 **Outcome / Next Step:** Learner adds `clap` to `Cargo.toml`, creates `src/cli.rs`, and implements `Cli` struct & `Commands` enum.
 
 ---
+
+### 2026-08-11 13:55 IST — Prompt #19
+**Prompt:** "Done /next"
+**Context:** Learner completed `Cli` struct and `Commands` enum in `src/cli.rs` and added `clap` to `Cargo.toml`.
+**Output Summary:** AI validated `src/cli.rs`, `Cargo.toml`, and `src/main.rs`, opened gated Solution 1.4-1 in SOLUTIONS.md, moved Exercise 1.4-1 to solved in EXERCISES.md, introduced Concept 15 (CLI Parsing, Command Dispatching & Module System `Cli::parse()`, `match cli.command`, `pub(crate)` - Central Train Station Dispatcher & VIP Security Passes analogy), committed Concept 15 to EXAMPLES.md word-for-word, created Exercise 1.4-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner wires `Cli::parse()` in `src/main.rs` and implements subcommand dispatching via `match`.
+
+---

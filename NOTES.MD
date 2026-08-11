@@ -116,3 +116,26 @@
 -  use a match expression to explicitly handle Ok vs Err
 
 #### File I/O (std::fs::read_to_string)
+
+
+#### CLI Interface
++-------------------------------------------------------------------------+
+|                  CLI COMMAND PARSING & DISPATCH FLOW                    |
+|                                                                         |
+|  $ cargo run -- buy --symbol BTC --qty 2 --price 5000000                |
+|               |                                                         |
+|               v                                                         |
+|  +---------------------------+                                          |
+|  |  clap::Parser             |  (Parses std::env::args_os tokens)      |
+|  +---------------------------+                                          |
+|               |                                                         |
+|               v                                                         |
+|  +---------------------------+                                          |
+|  |  cli::Commands Enum       |  (Commands::Buy { symbol, qty, price })  |
+|  +---------------------------+                                          |
+|               |                                                         |
+|               v                                                         |
+|  +---------------------------+                                          |
+|  |  Trading Engine Dispatch  |  (Executes order logic on models)        |
+|  +---------------------------+                                          |
++-------------------------------------------------------------------------+
