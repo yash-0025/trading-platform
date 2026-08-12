@@ -403,7 +403,68 @@ pub type Result<T> = std::result::Result<T, TradingError>;
 
 ---
 
+### Solution 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`)
+
+**Reference Implementation:**
+```rust
+// Cargo.toml:
+// [dependencies]
+// uuid = { version = "1.6", features = ["v4"] }
+// sha2 = "0.10"
+// chrono = "0.4"
+
+// src/user.rs (or src/users.rs):
+use uuid::Uuid;
+use chrono::{DateTime, Utc};
+use sha2::{Sha256, Digest};
+
+#[derive(Debug, Clone)]
+pub struct User {
+    pub id: Uuid,
+    pub username: String,
+    pub password_hash: String,
+    pub created_at: DateTime<Utc>,
+}
+
+impl User {
+    pub fn new(username: String, password: &str) -> Self {
+        let id = Uuid::new_v4();
+        let password_hash = Self::hash_password(password);
+        let created_at = Utc::now();
+
+        User {
+            id,
+            username,
+            password_hash,
+            created_at,
+        }
+    }
+
+    pub fn hash_password(password: &str) -> String {
+        let mut hasher = Sha256::new();
+        hasher.update(password.as_bytes());
+        format!("{:x}", hasher.finalize())
+    }
+
+    pub fn verify_password(&self, password: &str) -> bool {
+        Self::hash_password(password) == self.password_hash
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `Uuid::new_v4()` — Generates a 128-bit cryptographically unique user identity identifier.
+- `Sha256::new()` & `hasher.update(...)` — Feeds password bytes into the SHA-256 cryptographic hash function.
+- `format!("{:x}", hasher.finalize())` — Formats the 32-byte binary hash digest as a 64-character lowercase hex string.
+- `verify_password(&self, password: &str)` — Computes candidate password hash and verifies equality against stored hash.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/users.rs` correctly integrated `Uuid`, `Sha256`, `Utc`, and password hashing logic!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

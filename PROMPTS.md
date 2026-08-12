@@ -223,3 +223,11 @@
 **Outcome / Next Step:** Learner adds `uuid`, `sha2`, `chrono` to `Cargo.toml`, creates `src/user.rs`, and implements `User::new`, `hash_password`, and `verify_password`.
 
 ---
+
+### 2026-08-12 16:20 IST — Prompt #27
+**Prompt:** "done /next"
+**Context:** Learner completed `User` domain model in `src/users.rs` (or `src/user.rs`) with password hashing and verification.
+**Output Summary:** AI validated `src/users.rs`, opened gated Solution 1.6-1 in SOLUTIONS.md, moved Exercise 1.6-1 to solved in EXERCISES.md, introduced Concept 19 (User Management & Authentication Service `UserManager`, `HashMap<Uuid, User>`, Dual-Index Lookup - Exchange Membership Registry & Security Checkpoint analogy), committed Concept 19 to EXAMPLES.md word-for-word, created Exercise 1.6-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements `UserManager` with registration and authentication methods in `src/users.rs`.
+
+---

@@ -38,51 +38,50 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`)
+### Exercise 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication)
 **Status:** open
-**Goal:** Add `uuid`, `sha2`, and `chrono` to `Cargo.toml`, create `src/user.rs`, and implement `User::new`, `hash_password`, and `verify_password`.
+**Goal:** In `src/users.rs`, implement `UserManager` storing `users: HashMap<Uuid, User>` and `username_index: HashMap<String, Uuid>`, providing `register` and `authenticate` methods.
 
 **Skeleton:**
 ```rust
-// 1. In Cargo.toml:
-// [dependencies]
-// uuid = { version = "1.6", features = ["v4"] }
-// sha2 = "0.10"
-// chrono = "0.4"
+// In src/users.rs:
+use std::collections::HashMap;
+use crate::errors::{TradingError, Result};
 
-// 2. Create src/user.rs:
-use uuid::Uuid;
-use chrono::{DateTime, Utc};
-use sha2::{Sha256, Digest};
-
-#[derive(Debug, Clone)]
-pub struct User {
-    pub id: Uuid,
-    pub username: String,
-    pub password_hash: String,
-    pub created_at: DateTime<Utc>,
+#[derive(Debug, Default)]
+pub struct UserManager {
+    pub users: HashMap<Uuid, User>,
+    pub username_index: HashMap<String, Uuid>,
 }
 
-impl User {
-    // TODO(1): Implement hash_password(password: &str) -> String
-    // Compute Sha256 hash of password bytes and format as hex string (`format!("{:x}", hasher.finalize())`)
+impl UserManager {
+    pub fn new() -> Self {
+        Self::default()
+    }
 
-    // TODO(2): Implement User::new(username: String, password: &str) -> User
-    // Construct User with Uuid::new_v4(), username, hashed password, and Utc::now()
+    // TODO(1): Implement register(&mut self, username: String, password: &str) -> Result<&User>
+    // Check if username_index contains username; if so return Err(TradingError::InvalidQuantity { message: "Username taken".into() })
+    // Construct new User, insert into users map and username_index map, return reference to inserted User.
 
-    // TODO(3): Implement verify_password(&self, password: &str) -> bool
-    // Compare hash_password(password) against self.password_hash
+    // TODO(2): Implement authenticate(&self, username: &str, password: &str) -> Result<&User>
+    // Look up username in username_index to get Uuid, get User from users map, check verify_password.
+    // If valid return Ok(user), else return Err(TradingError::InvalidQuantity { message: "Invalid credentials".into() })
 }
 ```
 
-**Constraints:** Use `Sha256` for hashing and `Uuid::new_v4()` for user IDs.
+**Constraints:** Maintain dual indexes (`users` by `Uuid`, `username_index` by `String`).
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
-
 ## Solved
+
+### Exercise 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`)
+**Status:** solved
+**Goal:** Add `uuid`, `sha2`, and `chrono` to `Cargo.toml`, create `src/user.rs`, and implement `User::new`, `hash_password`, and `verify_password`.
+**Note:** Solved in `src/users.rs`. Checked against `SOLUTIONS.md` — exact match on `Uuid`, `Sha256`, `Utc`, and password hashing logic.
+
 
 ### Exercise 1.5-2 — Automatic Error Conversions (`#[from]`) & Custom `Result` Type Alias
 **Status:** solved

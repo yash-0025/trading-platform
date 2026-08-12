@@ -4,7 +4,7 @@ mod models;
 mod config;
 mod cli;
 mod errors;
-
+mod users;
 
 use cli::{Cli, Commands};
 

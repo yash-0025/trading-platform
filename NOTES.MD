@@ -170,3 +170,35 @@
 #### Automatic Error conversions and Result Alias
 - We enhance TradingError with automatic conversion of standard library and third-party errors (std::io::Error, toml::de::Error) using #[from] and define a crate-wide Result<T> type alias
 - `? Operator , #[from], Result<T>`
+
+
+- In any trading exchange user identity is the core pillar of auditability regulatory compliance KYC and portfolio isolation
+- Every buy/sell order, balance update and trade execution must be immutably attributed to a unique trader. To achieve this securely
+1. Every user receives a gloablly unique Uuid.
+2. Raw password are NEVER stored in plain text. Instead passwords are run through one-way-cryptographic hash function (SHA-256) before persistence
+
++-------------------------------------------------------------------------+
+|                  USER AUTHENTICATION ARCHITECTURE                       |
+|                                                                         |
+|  Registration:                                                          |
+|  CLI Input ("alice", "SecretPass123")                                   |
+|          |                                                              |
+|          v                                                              |
+|  +-------------------------------------+                                |
+|  | SHA-256 One-Way Hash Engine         |                                |
+|  | Sha256("SecretPass123")             |                                |
+|  +-------------------------------------+                                |
+|          |                                                              |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | User Struct { id: Uuid, username, password_hash, created_at }     |  |
+|  +-------------------------------------------------------------------+  |
+|                                                                         |
+|  Login Verification:                                                    |
+|  Input Password -> SHA-256 -> Compare Hash against Stored User Hash     |
++-------------------------------------------------------------------------+
+
+#### Domain Identity, Trait contracts and Password hashing (User Struct , sha2, uuid::Uuid, chrono::Utc)
+- `Uuid::new_v4()`
+- `sha2::Sha256` - `Sha256::digest()`
+- `chrono::DateTime<Utc>`- `chrono` [`created_at, last_login`]

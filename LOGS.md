@@ -33,6 +33,30 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-12 16:20 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.6-1, Exercise 1.6-2 & Concept 19</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.6-1 opened after learner completed implementation of `User` in `src/users.rs`. Moved Exercise 1.6-1 to solved in EXERCISES.md, added Exercise 1.6-2 skeleton, and added Concept 19 (User Management & Authentication Service) word-for-word to EXAMPLES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`)
++ **Reference Implementation:**
++ pub struct User { pub id: Uuid, pub username: String, pub password_hash: String, pub created_at: DateTime<Utc> }
+
+[EXERCISES.md]
+- ### Exercise 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`) [open]
++ ### Exercise 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication) [open]
++ ### Exercise 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`) [solved]
+
+[EXAMPLES.md]
++ ### 19. User Management & Authentication Service (`UserManager`, `HashMap<Uuid, User>`, Dual-Index Lookup) — The Exchange Membership Registry & Security Checkpoint
+```
+
+</details>
+
+<details>
 <summary>2026-08-12 15:32 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 18 & Exercise 1.6-1</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md
