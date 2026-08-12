@@ -215,3 +215,11 @@
 **Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.5 completion, then moves to Module 1.6 (User & Authentication System).
 
 ---
+
+### 2026-08-12 15:31 IST — Prompt #26
+**Prompt:** "Done /next"
+**Context:** Learner approved Module 1.5 completion and committed changes to Git.
+**Output Summary:** AI updated LEARNING.md (marked Module 1.5 `[x]`) and ROADMAP.md (checked off Module 1.5 items), logged edits in LOGS.md, kicked off Module 1.6 (User & Authentication System) with Overview, ASCII Auth Architecture diagram, Concept 18 (Domain Identity, Trait Contracts & Password Hashing with `uuid`, `sha2`, `chrono` - Secure Digital Identity Badge & One-Way Vault Key analogy), committed Concept 18 word-for-word to EXAMPLES.md, created Exercise 1.6-1 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner adds `uuid`, `sha2`, `chrono` to `Cargo.toml`, creates `src/user.rs`, and implements `User::new`, `hash_password`, and `verify_password`.
+
+---

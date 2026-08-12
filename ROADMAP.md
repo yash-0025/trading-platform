@@ -85,10 +85,10 @@ Every module has:
 ---
 
 ### Module 1.5 — Error Handling: When Trades Fail
-- [ ] **You build:** A custom `TradingError` enum covering: `InsufficientFunds`, `OrderNotFound`, `InvalidQuantity`, `AuthenticationFailed`, `ConfigError`, `StorageError`. Propagation through the entire call stack.
-- [ ] **Concepts:** `Result<T, E>` as the alternative to exceptions · `?` operator and `From::from` desugaring · `panic!` vs `Result` — when each is appropriate · Custom error enums with `thiserror` · `anyhow` for application-level errors · `From`/`Into` for error conversion · `unwrap()`, `expect()` in production = code smell · `Display` trait for user-facing errors
-- [ ] **Architecture:** Error hierarchy design. How trading platforms handle cascading failures. Why typed errors matter for order rejection reasons.
-- [ ] **Deliverable:** `TradingError` used across all modules. No `unwrap()` in non-test code. Descriptive error messages for every failure path.
+- [x] **You build:** A custom `TradingError` enum covering: `InsufficientFunds`, `OrderNotFound`, `InvalidQuantity`, `AuthenticationFailed`, `ConfigError`, `StorageError`. Propagation through the entire call stack.
+- [x] **Concepts:** `Result<T, E>` as the alternative to exceptions · `?` operator and `From::from` desugaring · `panic!` vs `Result` — when each is appropriate · Custom error enums with `thiserror` · `anyhow` for application-level errors · `From`/`Into` for error conversion · `unwrap()`, `expect()` in production = code smell · `Display` trait for user-facing errors
+- [x] **Architecture:** Error hierarchy design. How trading platforms handle cascading failures. Why typed errors matter for order rejection reasons.
+- [x] **Deliverable:** `TradingError` used across all modules. No `unwrap()` in non-test code. Descriptive error messages for every failure path.
 
 ---
 

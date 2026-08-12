@@ -33,6 +33,57 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-12 15:32 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 18 & Exercise 1.6-1</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 18 (Domain Identity, Trait Contracts & Password Hashing - Secure Digital Identity Badge & One-Way Vault Key analogy) word-for-word to EXAMPLES.md per Rule 8, and added Exercise 1.6-1 skeleton to EXERCISES.md per STEP 3.5.
+
+```diff
+[EXAMPLES.md]
++ ### 18. Domain Identity, Trait Contracts & Password Hashing (`User` Struct, `sha2`, `uuid::Uuid`, `chrono::Utc`) — The Secure Digital Identity Badge & One-Way Vault Key
+
+[EXERCISES.md]
++ ### Exercise 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-12 15:31 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.5 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner explicitly confirmed marking Module 1.5 (Error Handling: When Trades Fail) complete `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.5 — Error Handling: When Trades Fail — 2026-08-12
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - `Result<T, E>` as explicit, zero-cost error handling (vs exceptions / `panic!`).
++ - Custom error enums with `thiserror::Error` and `#[error("...")]` format attributes.
++ - `?` operator desugaring and automatic `From` conversions via `#[from]`.
++ - Idiomatic crate-level `pub type Result<T>` type aliasing.
++ **Code I wrote / project progress:**
++ - Added `thiserror` to `Cargo.toml`.
++ - Created `src/errors.rs` with `TradingError` enum and `Result<T>` alias.
++ - Linked `mod errors;` in `src/main.rs`.
+
+[ROADMAP.md]
+- - [ ] **You build:** A custom `TradingError` enum...
+- - [ ] **Concepts:** `Result<T, E>` as the alternative to exceptions...
+- - [ ] **Architecture:** Error hierarchy design...
+- - [ ] **Deliverable:** `TradingError` used across all modules...
++ - [x] **You build:** A custom `TradingError` enum...
++ - [x] **Concepts:** `Result<T, E>` as the alternative to exceptions...
++ - [x] **Architecture:** Error hierarchy design...
++ - [x] **Deliverable:** `TradingError` used across all modules...
+```
+
+</details>
+
+<details>
 <summary>2026-08-12 14:11 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.5-2 & Solved Exercise 1.5-2</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

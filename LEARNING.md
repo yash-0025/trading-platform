@@ -82,3 +82,16 @@
 - Added `clap` to `Cargo.toml`.
 - Created `src/cli.rs` with `Cli` and `Commands`.
 - Wired `Cli::parse()` and subcommand `match` handler in `src/main.rs`.
+
+### Module 1.5 — Error Handling: When Trades Fail — 2026-08-12
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- `Result<T, E>` as explicit, zero-cost error handling (vs exceptions / `panic!`).
+- Custom error enums with `thiserror::Error` and `#[error("...")]` format attributes.
+- `?` operator desugaring and automatic `From` conversions via `#[from]`.
+- Idiomatic crate-level `pub type Result<T>` type aliasing.
+**Code I wrote / project progress:**
+- Added `thiserror` to `Cargo.toml`.
+- Created `src/errors.rs` with `TradingError` enum and `Result<T>` alias.
+- Linked `mod errors;` in `src/main.rs`.
+

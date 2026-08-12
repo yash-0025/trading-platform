@@ -38,9 +38,49 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-*(No open exercises — Module 1.5 exercises completed!)*
+### Exercise 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`)
+**Status:** open
+**Goal:** Add `uuid`, `sha2`, and `chrono` to `Cargo.toml`, create `src/user.rs`, and implement `User::new`, `hash_password`, and `verify_password`.
+
+**Skeleton:**
+```rust
+// 1. In Cargo.toml:
+// [dependencies]
+// uuid = { version = "1.6", features = ["v4"] }
+// sha2 = "0.10"
+// chrono = "0.4"
+
+// 2. Create src/user.rs:
+use uuid::Uuid;
+use chrono::{DateTime, Utc};
+use sha2::{Sha256, Digest};
+
+#[derive(Debug, Clone)]
+pub struct User {
+    pub id: Uuid,
+    pub username: String,
+    pub password_hash: String,
+    pub created_at: DateTime<Utc>,
+}
+
+impl User {
+    // TODO(1): Implement hash_password(password: &str) -> String
+    // Compute Sha256 hash of password bytes and format as hex string (`format!("{:x}", hasher.finalize())`)
+
+    // TODO(2): Implement User::new(username: String, password: &str) -> User
+    // Construct User with Uuid::new_v4(), username, hashed password, and Utc::now()
+
+    // TODO(3): Implement verify_password(&self, password: &str) -> bool
+    // Compare hash_password(password) against self.password_hash
+}
+```
+
+**Constraints:** Use `Sha256` for hashing and `Uuid::new_v4()` for user IDs.
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
 
 ## Solved
 
