@@ -53,18 +53,14 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum TradingError {
-    // TODO(1): InsufficientFunds variant taking required: u64, available: u64
-    // #[error("Insufficient funds: required {required}, available {available}")]
-    #[error("Insufficient funds: required {required}, available {available}")]
-    InsufficientFunds { required: u64, available: u64 },
+    // TODO(1): Define InsufficientFunds variant taking fields required: u64, available: u64
+    // with #[error("Insufficient funds: required {required}, available {available}")] attribute.
 
-    // TODO(2): OrderNotFound variant taking order_id: u64
-    #[error("Order not found with ID {order_id}")]
-    OrderNotFound { order_id: u64 },
+    // TODO(2): Define OrderNotFound variant taking order_id: u64
+    // with #[error("Order not found with ID {order_id}")] attribute.
 
-    // TODO(3): InvalidQuantity variant taking message: String
-    #[error("Invalid order quantity: {message}")]
-    InvalidQuantity { message: String },
+    // TODO(3): Define InvalidQuantity variant taking message: String
+    // with #[error("Invalid order quantity: {message}")] attribute.
 }
 ```
 

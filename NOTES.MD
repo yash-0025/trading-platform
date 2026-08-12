@@ -139,3 +139,30 @@
 |  |  Trading Engine Dispatch  |  (Executes order logic on models)        |
 |  +---------------------------+                                          |
 +-------------------------------------------------------------------------+
+
+
+#### Erro handling
+- IN real world trading engines invalid trade attemps (insufficient funds, nonexistent order IDs , bad order quantities) happen constantly
+- Crashing the entire paltform process with panic! or unwrap() during live trading is catastrophic. Instead , production sytems use typed domain errors (Result<T, E>) to reject individual incalid operation cleanly, returning descriptive failure causes while keeping the exchange engine running at 100% uptime.
+
++-------------------------------------------------------------------------+
+|                PRODUCTION ERROR PROPAGATION (& RESULT<T, E>)            |
+|                                                                         |
+|  Order Request (Buy 10 BTC, $50k)                                       |
+|          |                                                              |
+|          v                                                              |
+|  +-------------------------------------+                                |
+|  | Engine Validation                   |                                |
+|  | Account Balance Check: $100 vs $50k |                                |
+|  +-------------------------------------+                                |
+|          |                                                              |
+|          +---> Err(TradingError::InsufficientFunds { .. })              |
+|                     |                                                   |
+|                     v  (? Operator)                                     |
+|  +-----------------------------------+                                  |
+|  | CLI / API Handler                 |                                  |
+|  | Catch Err & Format Display Output |  (No panic! Engine stays alive)  |
+|  +-----------------------------------+                                  |
++-------------------------------------------------------------------------+
+
+- `Result<T,E> , thiserror, ? operator`

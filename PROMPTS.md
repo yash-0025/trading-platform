@@ -191,3 +191,11 @@
 **Outcome / Next Step:** Learner adds `thiserror` to `Cargo.toml`, creates `src/errors.rs`, and defines `TradingError` enum.
 
 ---
+
+### 2026-08-12 13:48 IST — Prompt #23
+**Prompt:** "You are still not following rule 16 like you are giving the exercise and the solution in the same go..."
+**Context:** Learner caught pre-exposed solution variants in Exercise 1.5-1 skeleton.
+**Output Summary:** AI acknowledged error, updated `EXERCISES.md` to remove pre-exposed variants, logged fix in `LOGS.md`, and provided a strict blanked skeleton per Rule 16.
+**Outcome / Next Step:** Learner defines `TradingError` variants in `src/errors.rs`.
+
+---

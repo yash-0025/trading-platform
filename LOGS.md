@@ -33,6 +33,25 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-12 13:48 IST — [EXERCISES.md] — Fixed Exercise 1.5-1 Skeleton (Blanked Variants per Rule 16)</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Corrected Exercise 1.5-1 skeleton to remove pre-exposed solution variants, leaving `todo!()` comments for learner implementation per Rule 16.
+
+```diff
+[EXERCISES.md]
+- InsufficientFunds { required: u64, available: u64 },
+- OrderNotFound { order_id: u64 },
+- InvalidQuantity { message: String },
++ // TODO(1): Define InsufficientFunds variant...
++ // TODO(2): Define OrderNotFound variant...
++ // TODO(3): Define InvalidQuantity variant...
+```
+
+</details>
+
+<details>
 <summary>2026-08-12 12:50 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 16 & Exercise 1.5-1</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md
