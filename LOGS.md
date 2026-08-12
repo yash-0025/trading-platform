@@ -33,6 +33,57 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-12 12:50 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 16 & Exercise 1.5-1</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 16 (Custom Error Types with thiserror - Security Alarm vs Emergency Power Cut analogy) word-for-word to EXAMPLES.md per Rule 8, and added Exercise 1.5-1 skeleton to EXERCISES.md per STEP 3.5.
+
+```diff
+[EXAMPLES.md]
++ ### 16. Custom Error Types & Error Hierarchy (`Result<T, E>`, `thiserror`, `?` operator) — The Security Alarm System vs Emergency Power Cut
+
+[EXERCISES.md]
++ ### Exercise 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-12 12:49 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.4 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner explicitly confirmed marking Module 1.4 (CLI Interface: Interactive Trading Terminal) complete `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.4 — CLI Interface: Interactive Trading Terminal — 2026-08-12
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - `clap` derive API: `#[derive(Parser)]` and `#[derive(Subcommand)]`.
++ - Positional arguments vs named flags (`#[arg(long)]`).
++ - Rust Module System & Visibility Rules: `mod`, `pub`, `pub(crate)`.
++ - Command Pattern Dispatching: `Cli::parse()` -> `match cli.command` variant destructuring.
++ **Code I wrote / project progress:**
++ - Added `clap` to `Cargo.toml`.
++ - Created `src/cli.rs` with `Cli` and `Commands`.
++ - Wired `Cli::parse()` and subcommand `match` handler in `src/main.rs`.
+
+[ROADMAP.md]
+- - [ ] **You build:** A `clap`-based CLI...
+- - [ ] **Concepts:** `clap` derive API...
+- - [ ] **Architecture:** Command pattern...
+- - [ ] **Deliverable:** Working CLI skeleton...
++ - [x] **You build:** A `clap`-based CLI...
++ - [x] **Concepts:** `clap` derive API...
++ - [x] **Architecture:** Command pattern...
++ - [x] **Deliverable:** Working CLI skeleton...
+```
+
+</details>
+
+<details>
 <summary>2026-08-12 12:46 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.4-2 & Solved Exercise 1.4-2</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

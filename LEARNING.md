@@ -71,3 +71,14 @@
 - Created `src/config.rs` containing `Config` struct, `from_env_or_default()`, and `from_file_or_env()`.
 - Linked `mod config;` in `src/main.rs`.
 
+### Module 1.4 — CLI Interface: Interactive Trading Terminal — 2026-08-12
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- `clap` derive API: `#[derive(Parser)]` and `#[derive(Subcommand)]`.
+- Positional arguments vs named flags (`#[arg(long)]`).
+- Rust Module System & Visibility Rules: `mod`, `pub`, `pub(crate)`.
+- Command Pattern Dispatching: `Cli::parse()` -> `match cli.command` variant destructuring.
+**Code I wrote / project progress:**
+- Added `clap` to `Cargo.toml`.
+- Created `src/cli.rs` with `Cli` and `Commands`.
+- Wired `Cli::parse()` and subcommand `match` handler in `src/main.rs`.

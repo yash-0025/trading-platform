@@ -77,10 +77,10 @@ Every module has:
 ---
 
 ### Module 1.4 — CLI Interface: Interactive Trading Terminal
-- [ ] **You build:** A `clap`-based CLI with subcommands: `register`, `login`, `deposit`, `withdraw`, `balance`, `buy`, `sell`, `portfolio`, `orders`, `cancel`. Interactive menu mode.
-- [ ] **Concepts:** `clap` derive API · Module system: `mod`, `pub`, `pub(crate)`, file-based modules · `use` imports, re-exports · Visibility rules · `std::io` for reading user input · Shadowing vs mutation · `loop` + `break` for REPL
-- [ ] **Architecture:** Command pattern — how CLIs map to domain operations. How trading terminals work (Bloomberg Terminal, TOS).
-- [ ] **Deliverable:** Working CLI skeleton that accepts all subcommands and prints placeholder responses.
+- [x] **You build:** A `clap`-based CLI with subcommands: `register`, `login`, `deposit`, `withdraw`, `balance`, `buy`, `sell`, `portfolio`, `orders`, `cancel`. Interactive menu mode.
+- [x] **Concepts:** `clap` derive API · Module system: `mod`, `pub`, `pub(crate)`, file-based modules · `use` imports, re-exports · Visibility rules · `std::io` for reading user input · Shadowing vs mutation · `loop` + `break` for REPL
+- [x] **Architecture:** Command pattern — how CLIs map to domain operations. How trading terminals work (Bloomberg Terminal, TOS).
+- [x] **Deliverable:** Working CLI skeleton that accepts all subcommands and prints placeholder responses.
 
 ---
 

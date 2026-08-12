@@ -183,3 +183,11 @@
 **Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.4 completion, then moves to Module 1.5 (Order Management Engine - In-Memory State & Collections).
 
 ---
+
+### 2026-08-12 12:49 IST — Prompt #22
+**Prompt:** "Approved now update the files then we will move forward once you complete"
+**Context:** Learner approved Module 1.4 completion and committed changes to Git.
+**Output Summary:** AI updated LEARNING.md (marked Module 1.4 `[x]`) and ROADMAP.md (checked off Module 1.4 items), logged edits in LOGS.md, kicked off Module 1.5 (Error Handling: When Trades Fail) with Overview, ASCII Error Propagation diagram, Concept 16 (Custom Error Types & Error Hierarchy with `thiserror` - Security Alarm System vs Emergency Power Cut analogy), committed Concept 16 word-for-word to EXAMPLES.md, created Exercise 1.5-1 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner adds `thiserror` to `Cargo.toml`, creates `src/errors.rs`, and defines `TradingError` enum.
+
+---

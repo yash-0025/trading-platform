@@ -38,9 +38,42 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-*(No open exercises — Module 1.4 exercises completed!)*
+### Exercise 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`)
+**Status:** open
+**Goal:** Add `thiserror = "1.0"` to `Cargo.toml`, create `src/errors.rs`, and define the `TradingError` enum with formatted error variants.
+
+**Skeleton:**
+```rust
+// 1. In Cargo.toml:
+// [dependencies]
+// thiserror = "1.0"
+
+// 2. Create src/errors.rs:
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum TradingError {
+    // TODO(1): InsufficientFunds variant taking required: u64, available: u64
+    // #[error("Insufficient funds: required {required}, available {available}")]
+    #[error("Insufficient funds: required {required}, available {available}")]
+    InsufficientFunds { required: u64, available: u64 },
+
+    // TODO(2): OrderNotFound variant taking order_id: u64
+    #[error("Order not found with ID {order_id}")]
+    OrderNotFound { order_id: u64 },
+
+    // TODO(3): InvalidQuantity variant taking message: String
+    #[error("Invalid order quantity: {message}")]
+    InvalidQuantity { message: String },
+}
+```
+
+**Constraints:** Use `thiserror::Error` derive macro and `#[error(...)]` formatting attributes.
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
 
 ## Solved
 

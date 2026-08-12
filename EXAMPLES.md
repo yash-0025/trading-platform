@@ -240,7 +240,21 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 16. Custom Error Types & Error Hierarchy (`Result<T, E>`, `thiserror`, `?` operator) — The Security Alarm System vs Emergency Power Cut
+
+**ELI5 Analogy: The Security Alarm System vs Emergency Power Cut**
+* **`panic!` (Emergency Power Cut)**: Pulling the main emergency electrical breaker in the exchange building. Everything shuts down instantly, stopping all operations everywhere. In production trading systems, panicking on a simple invalid order size is a catastrophic mistake because it crashes the entire trading engine for all users.
+* **`Result<T, E>` & Custom `TradingError` (Typed Security Alarms)**: A dedicated security alarm console at a trading desk. If an order fails (e.g. `InsufficientFunds { required: 500, available: 100 }`), the console sounds a specific, typed alarm bell. The exchange remains running smoothly, and the user receives an exact, clear reason why their trade was rejected.
+
+**Deep Technical Breakdown:**
+- **Zero-Cost Explicit Error Return (`Result<T, E>`)**: Rust does not use runtime exception stacks or unwinding overhead (`try/catch`). `Result<T, E>` is an ADT enum (`Ok(T) | Err(E)`) layout-optimized on the stack.
+- **Procedural Error Formatting (`thiserror::Error`)**: `#[derive(thiserror::Error)]` implements `std::fmt::Display` and `std::error::Error` at compile time using macro attributes (`#[error("Insufficient funds: required {required}, available {available}")]`).
+- **The `?` Operator & Error Conversion**: The `?` operator unwraps `Ok(val)` or early-returns `Err(From::from(err))` from the enclosing function, seamlessly converting inner subsystem errors into higher-level domain errors.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 
