@@ -202,3 +202,8 @@
 - `Uuid::new_v4()`
 - `sha2::Sha256` - `Sha256::digest()`
 - `chrono::DateTime<Utc>`- `chrono` [`created_at, last_login`]
+
+#### In Memory `UserManager` & Dual Index - Authentication
+- we build the UserManager service to maintain registered users in memory with fast $O(1)$ dual index lookup `HashMap<Uuid, User> and HashMap<String, Uuid>`
+
+

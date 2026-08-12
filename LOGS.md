@@ -33,6 +33,42 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-12 20:48 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.6-2 & Solved Exercise 1.6-2</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Opened Solution 1.6-2 after learner submitted attempt and explicitly requested solution. Moved Exercise 1.6-2 to solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication)
++ **Reference Implementation:**
++ pub fn register(&mut self, username: String, password: &str) -> Result<&User> { ... }
++ pub fn authenticate(&self, username: &str, password: &str) -> Result<&User> { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication) [open]
++ ### Exercise 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-12 18:08 IST — [EXERCISES.md] — Incremented Hints Used (1/3) for Exercise 1.6-2</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner requested hints for Exercise 1.6-2 (`UserManager` registration and authentication). Incremented Hints used to 1/3.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 0/3
++ **Hints used:** 1/3
+```
+
+</details>
+
+<details>
 <summary>2026-08-12 16:20 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.6-1, Exercise 1.6-2 & Concept 19</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md

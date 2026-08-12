@@ -38,49 +38,22 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication)
-**Status:** open
-**Goal:** In `src/users.rs`, implement `UserManager` storing `users: HashMap<Uuid, User>` and `username_index: HashMap<String, Uuid>`, providing `register` and `authenticate` methods.
-
-**Skeleton:**
-```rust
-// In src/users.rs:
-use std::collections::HashMap;
-use crate::errors::{TradingError, Result};
-
-#[derive(Debug, Default)]
-pub struct UserManager {
-    pub users: HashMap<Uuid, User>,
-    pub username_index: HashMap<String, Uuid>,
-}
-
-impl UserManager {
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // TODO(1): Implement register(&mut self, username: String, password: &str) -> Result<&User>
-    // Check if username_index contains username; if so return Err(TradingError::InvalidQuantity { message: "Username taken".into() })
-    // Construct new User, insert into users map and username_index map, return reference to inserted User.
-
-    // TODO(2): Implement authenticate(&self, username: &str, password: &str) -> Result<&User>
-    // Look up username in username_index to get Uuid, get User from users map, check verify_password.
-    // If valid return Ok(user), else return Err(TradingError::InvalidQuantity { message: "Invalid credentials".into() })
-}
-```
-
-**Constraints:** Maintain dual indexes (`users` by `Uuid`, `username_index` by `String`).
-**Hints used:** 0/3
-**My attempt:** *(paste here when ready, even if broken/partial)*
+*(No open exercises — Module 1.6 exercises completed!)*
 
 ---
 
 ## Solved
 
+### Exercise 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication)
+**Status:** solved
+**Goal:** In `src/users.rs`, implement `UserManager` storing `users: HashMap<Uuid, User>` and `username_index: HashMap<String, Uuid>`, providing `register` and `authenticate` methods.
+**Note:** Solved in `src/users.rs`. Checked against `SOLUTIONS.md` — compared attempt, explained map insertion and reference return mechanics.
+
 ### Exercise 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`)
 **Status:** solved
 **Goal:** Add `uuid`, `sha2`, and `chrono` to `Cargo.toml`, create `src/user.rs`, and implement `User::new`, `hash_password`, and `verify_password`.
 **Note:** Solved in `src/users.rs`. Checked against `SOLUTIONS.md` — exact match on `Uuid`, `Sha256`, `Utc`, and password hashing logic.
+
 
 
 ### Exercise 1.5-2 — Automatic Error Conversions (`#[from]`) & Custom `Result` Type Alias

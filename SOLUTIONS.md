@@ -463,7 +463,88 @@ impl User {
 
 ---
 
+### Solution 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication)
+
+**Reference Implementation:**
+```rust
+// src/users.rs:
+use std::collections::HashMap;
+use uuid::Uuid;
+use chrono::{DateTime, Utc};
+use sha2::{Sha256, Digest};
+use crate::errors::{TradingError, Result};
+
+#[derive(Debug, Default)]
+pub struct UserManager {
+    pub users: HashMap<Uuid, User>,
+    pub username_index: HashMap<String, Uuid>,
+}
+
+impl UserManager {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn register(&mut self, username: String, password: &str) -> Result<&User> {
+        if self.username_index.contains_key(&username) {
+            return Err(TradingError::InvalidQuantity {
+                message: format!("Username '{}' already exists", username),
+            });
+        }
+
+        let user = User::new(username.clone(), password);
+        let user_id = user.id;
+
+        self.users.insert(user_id, user);
+        self.username_index.insert(username, user_id);
+
+        Ok(self.users.get(&user_id).unwrap())
+    }
+
+    pub fn authenticate(&self, username: &str, password: &str) -> Result<&User> {
+        let user_id = self.username_index.get(username).ok_or_else(|| {
+            TradingError::InvalidQuantity {
+                message: "Invalid credentials".into(),
+            }
+        })?;
+
+        let user = self.users.get(user_id).ok_or_else(|| {
+            TradingError::InvalidQuantity {
+                message: "User record missing".into(),
+            }
+        })?;
+
+        if user.verify_password(password) {
+            Ok(user)
+        } else {
+            Err(TradingError::InvalidQuantity {
+                message: "Invalid credentials".into(),
+            })
+        }
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `if self.username_index.contains_key(&username)` — Checks for duplicate username before inserting.
+- `let user = User::new(username.clone(), password);` — Constructs new `User` with auto-generated `Uuid`, SHA-256 password hash, and `Utc::now()`.
+- `self.users.insert(user_id, user);` — Stores primary record in `users` map by `Uuid`.
+- `self.username_index.insert(username, user_id);` — Maps username to `Uuid` in secondary fast-lookup index.
+- `Ok(self.users.get(&user_id).unwrap())` — Retrieves borrowed reference `&User` from `self.users` to return back to caller.
+- `.get(username).ok_or_else(...)` — Converts `Option<&Uuid>` to `Result<&Uuid, TradingError>`.
+- `if user.verify_password(password)` — Verifies candidate password against stored SHA-256 hash.
+
+**Compared to your attempt:**
+- **What matched:** You wrote the duplicate check `self.username_index.contains_key(&username)` and constructed the `User` struct correctly!
+- **What differed:**
+  1. In `TradingError::InvalidQuantity { message: ... }`, `TradingError` variants are named struct fields `{ message: ... }`, so you write `TradingError::InvalidQuantity { message: "..." }` instead of tuple `TradingError::InvalidQuantity(...)`.
+  2. After creating `user`, you need to store it in both collections using `self.users.insert(user_id, user)` and `self.username_index.insert(username, user_id)`.
+  3. In Rust, returning a reference `&User` from `&mut self` requires looking up the stored value from `self.users.get(&user_id)` so the reference lifetime is tied to `&self.users`.
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

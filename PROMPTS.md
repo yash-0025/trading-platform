@@ -231,3 +231,27 @@
 **Outcome / Next Step:** Learner implements `UserManager` with registration and authentication methods in `src/users.rs`.
 
 ---
+
+### 2026-08-12 18:08 IST — Prompt #28
+**Prompt:** "Need hints i am not able to solve it"
+**Context:** Learner requested hints for Exercise 1.6-2 (`UserManager` registration and authentication).
+**Output Summary:** AI provided Tier 1 conceptual hint for `register` and `authenticate` flows in `UserManager`, incremented hints used counter in `EXERCISES.md` to 1/3, and logged update in `LOGS.md`.
+**Outcome / Next Step:** Learner attempts `register` and `authenticate` using Tier 1 conceptual guidance.
+
+---
+
+### 2026-08-12 20:48 IST — Prompt #29
+**Prompt:** "I want you to show me solution"
+**Context:** Learner submitted attempt in `src/users.rs` and explicitly requested the solution for Exercise 1.6-2.
+**Output Summary:** AI opened Solution 1.6-2 in `SOLUTIONS.md`, moved Exercise 1.6-2 to solved in `EXERCISES.md`, recorded diffs in `LOGS.md`, and walked through comparison between learner's attempt and reference implementation.
+**Outcome / Next Step:** Learner completes `UserManager` in `src/users.rs` and verifies with `cargo check`.
+
+---
+
+### 2026-08-12 22:45 IST — Prompt #30
+**Prompt:** "Done /next"
+**Context:** Learner completed `UserManager` in `src/users.rs` with `register` and `authenticate` methods.
+**Output Summary:** AI validated `src/users.rs` implementation, verified Module 1.6 completion per Rule 14, and proposed marking Module 1.6 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.6 completion, then moves to Module 1.7 (Order Management Engine - In-Memory State & Collections).
+
+---
