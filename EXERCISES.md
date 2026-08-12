@@ -38,9 +38,44 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-*(No open exercises — Module 1.6 exercises completed!)*
+### Exercise 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection)
+**Status:** open
+**Goal:** Create `src/wallet.rs` and implement `Wallet` supporting `deposit`, `withdraw`, and `get_balance` using the `HashMap` Entry API and overdraft protection.
+
+**Skeleton:**
+```rust
+// In src/wallet.rs:
+use std::collections::HashMap;
+use crate::errors::{TradingError, Result};
+
+#[derive(Debug, Default)]
+pub struct Wallet {
+    pub balances: HashMap<String, u64>,
+}
+
+impl Wallet {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    // TODO(1): Implement deposit(&mut self, currency: String, amount: u64)
+    // Use self.balances.entry(currency).or_insert(0) to atomically add amount to balance.
+
+    // TODO(2): Implement withdraw(&mut self, currency: &str, amount: u64) -> Result<()>
+    // Look up current balance. If balance < amount, return Err(TradingError::InsufficientFunds { required: amount, available: balance }).
+    // Otherwise deduct amount from balance and return Ok(()).
+
+    // TODO(3): Implement get_balance(&self, currency: &str) -> u64
+    // Return stored balance for currency or 0 if currency doesn't exist in map.
+}
+```
+
+**Constraints:** Use `HashMap::entry` API for atomic deposits and enforce overdraft protection on withdrawals.
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
 
 ## Solved
 

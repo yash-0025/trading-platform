@@ -95,3 +95,14 @@
 - Created `src/errors.rs` with `TradingError` enum and `Result<T>` alias.
 - Linked `mod errors;` in `src/main.rs`.
 
+### Module 1.6 — User & Authentication System — 2026-08-12
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Globally unique identity generation using `uuid::Uuid::new_v4()`.
+- One-way cryptographic password hashing using `sha2::Sha256`.
+- Timezone-aware timestamping with `chrono::Utc`.
+- Dual-index in-memory data structures (`HashMap<Uuid, User>` & `HashMap<String, Uuid>`).
+**Code I wrote / project progress:**
+- Added `uuid`, `sha2`, `chrono` dependencies to `Cargo.toml`.
+- Created `src/users.rs` with `User` and `UserManager`.
+- Linked `mod users;` in `src/main.rs`.

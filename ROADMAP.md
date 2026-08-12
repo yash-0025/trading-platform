@@ -93,10 +93,10 @@ Every module has:
 ---
 
 ### Module 1.6 — User & Authentication System
-- [ ] **You build:** User registration with username/password, login verification, session tracking. Passwords stored as hashes (SHA-256 or argon2). User profiles with creation date, last login.
-- [ ] **Concepts:** Traits — defining behavior contracts · Implementing traits for types · Default trait implementations · Trait bounds · Generic functions · `From`/`Into`/`TryFrom`/`TryInto` · `Display` and `Debug` traits · `Hash` trait · `chrono` crate for timestamps · `uuid` crate for user IDs
-- [ ] **Architecture:** Authentication flow in trading platforms. Why user identity matters for order attribution, audit trails, compliance (KYC).
-- [ ] **Deliverable:** Register/login flow working end-to-end through CLI. Passwords hashed. User data persisted (in-memory for now, file in Module 1.10).
+- [x] **You build:** User registration with username/password, login verification, session tracking. Passwords stored as hashes (SHA-256 or argon2). User profiles with creation date, last login.
+- [x] **Concepts:** Traits — defining behavior contracts · Implementing traits for types · Default trait implementations · Trait bounds · Generic functions · `From`/`Into`/`TryFrom`/`TryInto` · `Display` and `Debug` traits · `Hash` trait · `chrono` crate for timestamps · `uuid` crate for user IDs
+- [x] **Architecture:** Authentication flow in trading platforms. Why user identity matters for order attribution, audit trails, compliance (KYC).
+- [x] **Deliverable:** Register/login flow working end-to-end through CLI. Passwords hashed. User data persisted (in-memory for now, file in Module 1.10).
 
 ---
 

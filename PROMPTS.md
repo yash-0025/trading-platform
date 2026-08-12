@@ -255,3 +255,11 @@
 **Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.6 completion, then moves to Module 1.7 (Order Management Engine - In-Memory State & Collections).
 
 ---
+
+### 2026-08-12 22:46 IST — Prompt #31
+**Prompt:** "Approved"
+**Context:** Learner approved Module 1.6 completion and committed changes to Git.
+**Output Summary:** AI updated LEARNING.md (marked Module 1.6 `[x]`) and ROADMAP.md (checked off Module 1.6 items), logged edits in LOGS.md, kicked off Module 1.7 (Wallet System: Money Management) with Overview, ASCII Wallet Architecture diagram, Concept 20 (HashMap Entry API & Atomic Wallet Operations with `HashMap::entry`, `.or_insert()`, `Wallet` - Bank Safety Deposit Lockers & Smart Locker Keymaster analogy), committed Concept 20 word-for-word to EXAMPLES.md, created Exercise 1.7-1 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner creates `src/wallet.rs` and implements `Wallet` with `deposit`, `withdraw`, and `get_balance`.
+
+---

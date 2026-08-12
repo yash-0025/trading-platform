@@ -294,7 +294,21 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 20. HashMap Entry API & Atomic Wallet Operations (`HashMap::entry`, `.or_insert()`, `Wallet`) — The Bank Safety Deposit Lockers & Smart Locker Keymaster
+
+**ELI5 Analogy: The Bank Safety Deposit Lockers & Smart Locker Keymaster**
+* **Without Entry API (Manual Double-Lookup)**: Checking if a bank customer has a safety deposit box by walking to the back room, looking up their name in a file cabinet, walking back out, and if they don't have one, walking back to create a new locker. That double-trip is slow and error-prone.
+* **With HashMap `Entry` API (`.entry(currency).or_insert(0)`)**: A smart locker keymaster standing right at the vault door. You tell the keymaster: *"Find the USD locker. If it doesn't exist yet, build one instantly with $0 initial balance and hand me the key directly (`&mut u64`)."* Zero double-lookups, zero wasted motion, completely atomic in memory.
+
+**Deep Technical Breakdown:**
+- **In-Place Mutation via In-Memory References (`std::collections::hash_map::Entry`)**: `HashMap::entry(key)` computes the hash of `key` once and returns an `Entry` enum (`Occupied(OccupiedEntry)` or `Vacant(VacantEntry)`), avoiding redundant key hashing and lookup overhead.
+- **Atomic Balance Updates (`.or_insert()`)**: Calling `.or_insert(default)` turns a `VacantEntry` into an `OccupiedEntry` containing `default`, returning a mutable reference `&mut V` directly into the table bucket.
+- **Overdraft Protection & Invariant Guards**: Before deducting funds during withdrawals, wallet methods check numeric bounds (`available < amount`) to return explicit `TradingError::InsufficientFunds` rejections, maintaining non-negative balance invariants across multi-currency ledgers.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

@@ -33,6 +33,57 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-12 22:47 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 20 & Exercise 1.7-1</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 20 (HashMap Entry API & Atomic Wallet Operations - Bank Safety Deposit Lockers & Smart Locker Keymaster analogy) word-for-word to EXAMPLES.md per Rule 8, and added Exercise 1.7-1 skeleton to EXERCISES.md per STEP 3.5.
+
+```diff
+[EXAMPLES.md]
++ ### 20. HashMap Entry API & Atomic Wallet Operations (`HashMap::entry`, `.or_insert()`, `Wallet`) — The Bank Safety Deposit Lockers & Smart Locker Keymaster
+
+[EXERCISES.md]
++ ### Exercise 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection)
+```
+
+</details>
+
+<details>
+<summary>2026-08-12 22:46 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.6 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner explicitly confirmed marking Module 1.6 (User & Authentication System) complete `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.6 — User & Authentication System — 2026-08-12
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - Globally unique identity generation using `uuid::Uuid::new_v4()`.
++ - One-way cryptographic password hashing using `sha2::Sha256`.
++ - Timezone-aware timestamping with `chrono::Utc`.
++ - Dual-index in-memory data structures (`HashMap<Uuid, User>` & `HashMap<String, Uuid>`).
++ **Code I wrote / project progress:**
++ - Added `uuid`, `sha2`, `chrono` dependencies to `Cargo.toml`.
++ - Created `src/users.rs` with `User` and `UserManager`.
++ - Linked `mod users;` in `src/main.rs`.
+
+[ROADMAP.md]
+- - [ ] **You build:** User registration with username/password...
+- - [ ] **Concepts:** Traits — defining behavior contracts...
+- - [ ] **Architecture:** Authentication flow in trading platforms...
+- - [ ] **Deliverable:** Register/login flow working end-to-end...
++ - [x] **You build:** User registration with username/password...
++ - [x] **Concepts:** Traits — defining behavior contracts...
++ - [x] **Architecture:** Authentication flow in trading platforms...
++ - [x] **Deliverable:** Register/login flow working end-to-end...
+```
+
+</details>
+
+<details>
 <summary>2026-08-12 20:48 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.6-2 & Solved Exercise 1.6-2</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md
