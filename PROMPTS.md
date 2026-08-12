@@ -167,3 +167,19 @@
 **Outcome / Next Step:** Learner wires `Cli::parse()` in `src/main.rs` and implements subcommand dispatching via `match`.
 
 ---
+
+### 2026-08-11 14:38 IST — Prompt #20
+**Prompt:** "The issue i am facing with you is that you hallucinate alot and now instead of giving exercise you are providing exercise and solution at the same time..."
+**Context:** Learner pointed out solution code pre-exposure in chat prompts and reported a `clap` parsing error (`unexpected argument '--symbol'`).
+**Output Summary:** AI added **Rule 16** (Strict Exercise Isolation & Zero-Solution Pre-exposure) to `RULES.md` and `.agents/workflows/next.md`, logged edits in `LOGS.md`, and explained `clap` positional vs named flag attributes (`#[arg(long)]`).
+**Outcome / Next Step:** Learner tests positional arguments (`cargo run -- buy BTC 2 50000`) or adds `#[arg(long)]` to `src/cli.rs`, then completes Exercise 1.4-2.
+
+---
+
+### 2026-08-12 12:46 IST — Prompt #21
+**Prompt:** "Done lets move to /next"
+**Context:** Learner completed `Cli::parse()` and subcommand `match` dispatching in `src/main.rs`.
+**Output Summary:** AI validated `src/main.rs` implementation, opened gated Solution 1.4-2 in SOLUTIONS.md, moved Exercise 1.4-2 to solved in EXERCISES.md, recorded diffs in LOGS.md, verified Module 1.4 completion per Rule 14, and proposed marking Module 1.4 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.4 completion, then moves to Module 1.5 (Order Management Engine - In-Memory State & Collections).
+
+---

@@ -38,56 +38,22 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`)
-**Status:** open
-**Goal:** In `src/main.rs`, parse command line args via `Cli::parse()` and dispatch each subcommand variant (`Buy`, `Sell`, `Balance`, `Orders`) using a `match` statement.
-
-**Skeleton:**
-```rust
-// In src/main.rs:
-use clap::Parser;
-mod cli;
-mod config;
-mod models;
-
-use cli::{Cli, Commands};
-
-fn main() {
-    let cli = Cli::parse();
-
-    match &cli.command {
-        // TODO(1): Handle Buy { symbol, qty, price } -> print formatted order summary
-        Commands::Buy { symbol, qty, price } => {
-            todo!()
-        }
-        // TODO(2): Handle Sell { symbol, qty, price } -> print formatted order summary
-        Commands::Sell { symbol, qty, price } => {
-            todo!()
-        }
-        // TODO(3): Handle Balance -> print balance message
-        Commands::Balance => {
-            todo!()
-        }
-        // TODO(4): Handle Orders -> print open orders message
-        Commands::Orders => {
-            todo!()
-        }
-    }
-}
-```
-
-**Constraints:** Use `Cli::parse()` and exhaustive `match` on `cli.command`.
-**Hints used:** 0/3
-**My attempt:** *(paste here when ready, even if broken/partial)*
+*(No open exercises — Module 1.4 exercises completed!)*
 
 ---
 
 ## Solved
 
+### Exercise 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`)
+**Status:** solved
+**Goal:** In `src/main.rs`, parse command line args via `Cli::parse()` and dispatch each subcommand variant (`Buy`, `Sell`, `Balance`, `Orders`) using a `match` statement.
+**Note:** Solved in `src/main.rs`. Checked against `SOLUTIONS.md` — exact match on `Cli::parse()` and exhaustive `match` dispatching.
+
 ### Exercise 1.4-1 — CLI Commands & Subcommands (`clap`, `Parser`, `Subcommand`)
 **Status:** solved
 **Goal:** Add `clap = { version = "4.4", features = ["derive"] }` to `Cargo.toml`, build `src/cli.rs`, and define `Cli` struct with subcommands (`Buy`, `Sell`, `Balance`, `Orders`).
 **Note:** Solved in `src/cli.rs` & `Cargo.toml`. Checked against `SOLUTIONS.md` — exact match on `clap` derive attributes and `Commands` enum variants.
+
 
 ### Exercise 1.3-3 — Serde TOML Deserialization (`serde`, `toml::from_str`)
 **Status:** solved

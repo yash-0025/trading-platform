@@ -33,6 +33,44 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-12 12:46 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.4-2 & Solved Exercise 1.4-2</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.4-2 opened after learner completed implementation of `Cli::parse()` and subcommand dispatching in `src/main.rs`. Moved Exercise 1.4-2 to solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`)
++ **Reference Implementation:**
++ match &cli.command { Commands::Buy { .. } => ..., Commands::Sell { .. } => ..., Commands::Balance => ..., Commands::Orders => ... }
+
+[EXERCISES.md]
+- ### Exercise 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`) [open]
++ ### Exercise 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-11 14:38 IST — [RULES.md / .agents/workflows/next.md] — Added Rule 16 (Strict Exercise Isolation & Zero-Solution Pre-exposure)</summary>
+
+- **Files:** RULES.md, .agents/workflows/next.md
+- **Change type:** Modified
+- **Reason:** Learner requested strict enforcement preventing solution code pre-exposure in chat prompts or exercise descriptions before attempts are submitted. Added Rule 16 and updated workflow self-audit gates.
+
+```diff
+[RULES.md]
++ 22. **Strict Exercise Isolation & Zero-Solution Pre-exposure:** When presenting an exercise to the learner (STEP 3.5), the AI MUST provide ONLY a skeleton containing `todo!()` blocks for the parts to be implemented. The AI MUST NEVER include the full solution body inside the exercise prompt, chat message, or `EXERCISES.md` skeleton before the learner submits their attempt.
+
+[.agents/workflows/next.md]
++ - [ ] If a hands-on portion was reached: a skeleton exercise exists in `EXERCISES.md` (STEP 3.5-A) — a finished solution was NOT given in chat or exercise files instead (Rule #16).
++ - Never paste a complete working solution in chat or exercise descriptions before the learner attempts the exercise (Rule #16) — skeleton with `todo!()` + teaching comes first.
+```
+
+</details>
+
+<details>
 <summary>2026-08-11 13:55 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.4-1, Exercise 1.4-2 & Concept 15</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md

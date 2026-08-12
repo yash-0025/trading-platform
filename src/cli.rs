@@ -7,6 +7,22 @@ pub struct Cli {
     pub command: Commands,
 }
 
+/* 
+Enable --symbol, --qty, --price Flags
+If you want named flags like --symbol BTC --qty 2 --price 50000, add #[arg(long)] above each field
+#[derive(Subcommand, Debug)]
+pub enum Commands {
+    Buy {
+        #[arg(long)]
+        symbol: String,
+        #[arg(long)]
+        qty: u64,
+        #[arg(long)]
+        price: i64,
+    },
+    // ...
+}
+ */
 #[derive(Subcommand, Debug)]
 pub enum Commands {
     Buy {

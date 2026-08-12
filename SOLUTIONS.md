@@ -286,7 +286,52 @@ pub enum Commands {
 
 ---
 
+### Solution 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`)
+
+**Reference Implementation:**
+```rust
+// src/main.rs:
+use clap::Parser;
+
+mod cli;
+mod config;
+mod models;
+
+use cli::{Cli, Commands};
+
+fn main() {
+    let cli = Cli::parse();
+
+    match &cli.command {
+        Commands::Buy { symbol, qty, price } => {
+            println!("[ORDER SUBMITTED] BUY {} shares of {} at ${}", qty, symbol, price);
+        }
+        Commands::Sell { symbol, qty, price } => {
+            println!("[ORDER SUBMITTED] SELL {} shares of {} at ${}", qty, symbol, price);
+        }
+        Commands::Balance => {
+            println!("[ACCOUNT BALANCE] $100,000.00 USD");
+        }
+        Commands::Orders => {
+            println!("[OPEN ORDERS] No open orders.");
+        }
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `use clap::Parser;` — Brings `Parser` trait into scope to call `Cli::parse()`.
+- `let cli = Cli::parse();` — Reads OS command-line arguments, validates subcommands/flags, and parses into `Cli`.
+- `match &cli.command` — Borrows `cli.command` to exhaustively handle every subcommand variant.
+- `Commands::Buy { symbol, qty, price } => ...` — Destructures payload fields for clean string formatting output.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/main.rs` destructured fields and handled all subcommand variants cleanly and correctly!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

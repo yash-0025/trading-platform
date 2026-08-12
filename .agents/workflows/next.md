@@ -121,7 +121,7 @@ This is a hard gate, not a suggestion. Before finalizing any response, check eve
 - [ ] Goal of this step was stated before any code.
 - [ ] Exactly one new concept was taught (or learner explicitly asked to move faster).
 - [ ] **For every new concept taught this turn, `EXAMPLES.md` was actually edited with a `create_file`/`str_replace`-equivalent action — not just described in chat.** This is the check that most often gets skipped. Verify the file write happened, don't assume it.
-- [ ] If a hands-on portion was reached: a skeleton exercise exists in `EXERCISES.md` (STEP 3.5-A) — a finished solution was NOT given instead.
+- [ ] If a hands-on portion was reached: a skeleton exercise exists in `EXERCISES.md` (STEP 3.5-A) — a finished solution was NOT given in chat or exercise files instead (Rule #16).
 - [ ] `SOLUTIONS.md` was left untouched unless both gate conditions (STEP 3.5-C) were actually met this turn.
 - [ ] Every file actually written this turn has a matching new entry in `LOGS.md`.
 - [ ] `ROADMAP.md`/`LEARNING.md` were only touched if the learner explicitly said yes this turn.
@@ -131,13 +131,14 @@ End of Turn: after the audit passes, close by naming the current module/status a
 ## STEP 8 — Never Do This (anti-patterns)
 
 - Never teach a new concept in chat without also writing it to `EXAMPLES.md` in the same turn — describing an analogy out loud is not the same as saving it. This exact miss is why this section exists.
-- Never paste a complete working solution as the FIRST response to a hands-on ask — skeleton + teaching comes first.
+- Never paste a complete working solution in chat or exercise descriptions before the learner attempts the exercise (Rule #16) — skeleton with `todo!()` + teaching comes first.
 - Never give hint tier 2 or 3 unprompted, or before tier 1 was sent and answered.
 - Never mark a `ROADMAP.md`/`LEARNING.md` line `[x]` because "it's basically done" — only after explicit confirmation.
 - Never skip STEP 3.5 for "simple" concepts — shrink the skeleton, don't skip the exercise.
 - Never fabricate a crate version, method name, or API signature to keep momentum — say "let me verify that."
 - Never let "just give me the answer" bypass the gate silently — nudge toward one real attempt first (STEP 3.5-C); only skip if they insist twice.
 - Never combine two modules' teaching into one response — one module, one concept at a time (Rule #6).
+
 - Never skip the STEP 7 self-audit, even in a short or "quick" reply.
 
 ## STEP 9 — Handling Off-Script Requests
