@@ -33,6 +33,50 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-12 14:11 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.5-2 & Solved Exercise 1.5-2</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.5-2 opened after learner completed implementation of `#[from]` conversions and `Result<T>` type alias in `src/errors.rs`. Moved Exercise 1.5-2 to solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.5-2 — Automatic Error Conversions (`#[from]`) & Custom `Result` Type Alias
++ **Reference Implementation:**
++ Io(#[from] std::io::Error), ConfigParse(#[from] toml::de::Error), pub type Result<T> = std::result::Result<T, TradingError>;
+
+[EXERCISES.md]
+- ### Exercise 1.5-2 — Automatic Error Conversions (`#[from]`) & Custom `Result` Type Alias [open]
++ ### Exercise 1.5-2 — Automatic Error Conversions (`#[from]`) & Custom `Result` Type Alias [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-12 13:55 IST — [SOLUTIONS.md / EXERCISES.md / EXAMPLES.md] — Added Solution 1.5-1, Exercise 1.5-2 & Concept 17</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md, EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Gated Solution 1.5-1 opened after learner completed implementation of `TradingError` in `src/errors.rs`. Moved Exercise 1.5-1 to solved in EXERCISES.md, added Exercise 1.5-2 skeleton, and added Concept 17 (Error Propagation & Automatic Conversions) word-for-word to EXAMPLES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`)
++ **Reference Implementation:**
++ pub enum TradingError { InsufficientFunds { .. }, OrderNotFound { .. }, InvalidQuantity { .. } }
+
+[EXERCISES.md]
+- ### Exercise 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`) [open]
++ ### Exercise 1.5-2 — Automatic Error Conversions (`#[from]`) & Custom `Result` Type Alias [open]
++ ### Exercise 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`) [solved]
+
+[EXAMPLES.md]
++ ### 17. Error Propagation & Automatic Conversions (`?` Operator, `#[from]`, `Result<T>` Type Alias) — The Automatic Passport Translator at Border Control
+```
+
+</details>
+
+<details>
 <summary>2026-08-12 13:48 IST — [EXERCISES.md] — Fixed Exercise 1.5-1 Skeleton (Blanked Variants per Rule 16)</summary>
 
 - **File:** EXERCISES.md

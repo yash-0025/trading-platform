@@ -199,3 +199,19 @@
 **Outcome / Next Step:** Learner defines `TradingError` variants in `src/errors.rs`.
 
 ---
+
+### 2026-08-12 13:55 IST — Prompt #24
+**Prompt:** "Done /next"
+**Context:** Learner completed `TradingError` enum in `src/errors.rs` and added `thiserror` to `Cargo.toml`.
+**Output Summary:** AI validated `src/errors.rs`, opened gated Solution 1.5-1 in SOLUTIONS.md, moved Exercise 1.5-1 to solved in EXERCISES.md, introduced Concept 17 (Error Propagation & Automatic Conversions `?` Operator, `#[from]`, `Result<T>` Type Alias - Automatic Passport Translator analogy), committed Concept 17 to EXAMPLES.md word-for-word, created Exercise 1.5-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner adds `#[from]` variants for `std::io::Error` and `toml::de::Error` and defines crate `Result<T>` type alias.
+
+---
+
+### 2026-08-12 14:11 IST — Prompt #25
+**Prompt:** "Done /next"
+**Context:** Learner completed `#[from]` error conversions and crate `Result<T>` type alias in `src/errors.rs`.
+**Output Summary:** AI validated `src/errors.rs` implementation, opened gated Solution 1.5-2 in SOLUTIONS.md, moved Exercise 1.5-2 to solved in EXERCISES.md, recorded diffs in LOGS.md, verified Module 1.5 completion per Rule 14, and proposed marking Module 1.5 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.5 completion, then moves to Module 1.6 (User & Authentication System).
+
+---

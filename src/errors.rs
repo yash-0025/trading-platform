@@ -12,4 +12,13 @@ pub enum TradingError {
     #[error("Invalid order Quantity: {message}")]
     InvalidQuantity { message: String},
 
+    #[error("I/O error: {0} ")]
+    Io(#[from] std::io::Error),
+
+    #[error("Config parse error: [0]")]
+    ConfigParse(#[from] toml::de::Error),
+
 }
+
+// Crate level Result<T> type alias
+pub type Result<T> = std::result::Result<T, TradingError>;

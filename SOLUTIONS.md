@@ -330,7 +330,82 @@ fn main() {
 
 ---
 
+### Solution 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`)
+
+**Reference Implementation:**
+```rust
+// Cargo.toml:
+// [dependencies]
+// thiserror = "1.0"
+
+// src/errors.rs:
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum TradingError {
+    #[error("Insufficient funds: required {required}, available {available}")]
+    InsufficientFunds { required: u64, available: u64 },
+
+    #[error("Order not found with ID {order_id}")]
+    OrderNotFound { order_id: u64 },
+
+    #[error("Invalid order quantity: {message}")]
+    InvalidQuantity { message: String },
+}
+```
+
+**Line-by-Line Breakdown:**
+- `use thiserror::Error;` — Imports Serde's/thiserror's procedural derive macro.
+- `#[derive(Error, Debug)]` — Generates implementations of `std::fmt::Display` and `std::error::Error` for `TradingError`.
+- `#[error("Insufficient funds...")]` — Macro attribute specifying exact user-facing formatting rules using named struct fields.
+- `InsufficientFunds { required, available }` — Typed enum variant carrying precise numeric diagnostic payload.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/errors.rs` and dependency declaration in `Cargo.toml` were flawless!
+
+---
+
+### Solution 1.5-2 — Automatic Error Conversions (`#[from]`) & Custom `Result` Type Alias
+
+**Reference Implementation:**
+```rust
+// src/errors.rs:
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum TradingError {
+    #[error("Insufficient funds: required {required}, available {available}")]
+    InsufficientFunds { required: u64, available: u64 },
+
+    #[error("Order not found with ID {order_id}")]
+    OrderNotFound { order_id: u64 },
+
+    #[error("Invalid order quantity: {message}")]
+    InvalidQuantity { message: String },
+
+    #[error("I/O error: {0}")]
+    Io(#[from] std::io::Error),
+
+    #[error("Config parse error: {0}")]
+    ConfigParse(#[from] toml::de::Error),
+}
+
+pub type Result<T> = std::result::Result<T, TradingError>;
+```
+
+**Line-by-Line Breakdown:**
+- `Io(#[from] std::io::Error)` — Generates `impl From<std::io::Error> for TradingError`, converting I/O failures automatically when using `?`.
+- `ConfigParse(#[from] toml::de::Error)` — Generates `impl From<toml::de::Error> for TradingError`, converting TOML deserialization errors automatically.
+- `pub type Result<T> = std::result::Result<T, TradingError>;` — Custom crate-wide type alias defaulting error parameter `E` to `TradingError`.
+
+**Compared to your attempt:**
+- **Great Job!**: Your implementation in `src/errors.rs` successfully derived `#[from]` for `std::io::Error` and `toml::de::Error` and declared the `Result<T>` type alias! (Note: change `[0]` to `{0}` in `ConfigParse` display string so `thiserror` formats the error message dynamically instead of printing literal `[0]`).
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
+
 
 
 

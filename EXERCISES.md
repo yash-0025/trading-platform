@@ -38,40 +38,23 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`)
-**Status:** open
-**Goal:** Add `thiserror = "1.0"` to `Cargo.toml`, create `src/errors.rs`, and define the `TradingError` enum with formatted error variants.
-
-**Skeleton:**
-```rust
-// 1. In Cargo.toml:
-// [dependencies]
-// thiserror = "1.0"
-
-// 2. Create src/errors.rs:
-use thiserror::Error;
-
-#[derive(Error, Debug)]
-pub enum TradingError {
-    // TODO(1): Define InsufficientFunds variant taking fields required: u64, available: u64
-    // with #[error("Insufficient funds: required {required}, available {available}")] attribute.
-
-    // TODO(2): Define OrderNotFound variant taking order_id: u64
-    // with #[error("Order not found with ID {order_id}")] attribute.
-
-    // TODO(3): Define InvalidQuantity variant taking message: String
-    // with #[error("Invalid order quantity: {message}")] attribute.
-}
-```
-
-**Constraints:** Use `thiserror::Error` derive macro and `#[error(...)]` formatting attributes.
-**Hints used:** 0/3
-**My attempt:** *(paste here when ready, even if broken/partial)*
+*(No open exercises — Module 1.5 exercises completed!)*
 
 ---
 
-
 ## Solved
+
+### Exercise 1.5-2 — Automatic Error Conversions (`#[from]`) & Custom `Result` Type Alias
+**Status:** solved
+**Goal:** Add `#[from]` conversions for `std::io::Error` and `toml::de::Error` in `TradingError`, and define `pub type Result<T> = std::result::Result<T, TradingError>;`.
+**Note:** Solved in `src/errors.rs`. Checked against `SOLUTIONS.md` — exact match on `#[from]` attributes and custom `Result<T>` type alias.
+
+### Exercise 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`)
+**Status:** solved
+**Goal:** Add `thiserror = "1.0"` to `Cargo.toml`, create `src/errors.rs`, and define the `TradingError` enum with formatted error variants.
+**Note:** Solved in `src/errors.rs`. Checked against `SOLUTIONS.md` — exact match on `thiserror` attributes and variants.
+
+
 
 ### Exercise 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`)
 **Status:** solved

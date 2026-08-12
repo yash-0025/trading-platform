@@ -166,3 +166,7 @@
 +-------------------------------------------------------------------------+
 
 - `Result<T,E> , thiserror, ? operator`
+
+#### Automatic Error conversions and Result Alias
+- We enhance TradingError with automatic conversion of standard library and third-party errors (std::io::Error, toml::de::Error) using #[from] and define a crate-wide Result<T> type alias
+- `? Operator , #[from], Result<T>`
