@@ -543,7 +543,71 @@ impl UserManager {
 
 ---
 
+### Solution 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection)
+
+**Reference Implementation:**
+```rust
+// src/wallet.rs:
+use std::collections::HashMap;
+use crate::errors::{TradingError, Result};
+
+#[derive(Debug, Default)]
+pub struct Wallet {
+    pub balances: HashMap<String, u64>,
+}
+
+impl Wallet {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn deposit(&mut self, currency: String, amount: u64) -> Result<()> {
+        *self.balances.entry(currency).or_insert(0) += amount;
+        Ok(())
+    }
+
+    pub fn withdraw(&mut self, currency: &str, amount: u64) -> Result<()> {
+        match self.balances.get_mut(currency) {
+            Some(bal) if *bal >= amount => {
+                *bal -= amount;
+                Ok(())
+            }
+            Some(bal) => Err(TradingError::InsufficientFunds {
+                required: amount,
+                available: *bal,
+            }),
+            None => Err(TradingError::InsufficientFunds {
+                required: amount,
+                available: 0,
+            }),
+        }
+    }
+
+    pub fn get_balance(&self, currency: &str) -> u64 {
+        self.balances.get(currency).copied().unwrap_or(0)
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `use std::collections::HashMap;` — Imports standard library `HashMap` (in `std::collections`, with an `s`).
+- `*self.balances.entry(currency).or_insert(0) += amount;` — Uses `Entry` API to lookup or initialize balance bucket to 0, dereferencing `*` to add `amount`.
+- `match self.balances.get_mut(currency)` — Looks up mutable reference `Option<&mut u64>` for the currency.
+- `Some(bal) if *bal >= amount` — Matches when funds are sufficient, deducting `*bal -= amount`.
+- `Some(bal)` — Matches when currency exists but funds are insufficient, returning `available: *bal`.
+- `None` — Matches when currency is not in map, returning `available: 0`.
+- `self.balances.get(currency).copied().unwrap_or(0)` — Converts `Option<&u64>` to `u64`, defaulting missing currencies to 0.
+
+**Compared to your attempt:**
+- **What matched:** Your `deposit` method with `*...or_insert(0) += amount` and `get_balance` with `.copied().unwrap_or(0)` were spot-on!
+- **What differed:**
+  1. Module path: `std::collections::HashMap` instead of `std::collection::HashMap`.
+  2. In `withdraw`, `match self.balances.get_mut(currency)` creates inner binding `bal: &mut u64` in `Some(bal)`, which you dereference as `*bal`. In `None`, no inner `bal` exists, so `available: 0`.
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

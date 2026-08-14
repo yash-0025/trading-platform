@@ -263,3 +263,35 @@
 **Outcome / Next Step:** Learner creates `src/wallet.rs` and implements `Wallet` with `deposit`, `withdraw`, and `get_balance`.
 
 ---
+
+### 2026-08-14 23:32 IST — Prompt #32
+**Prompt:** "Check and help me with hints what's wrong in their"
+**Context:** Learner asked for code review and hints for `src/wallet.rs` implementation.
+**Output Summary:** AI reviewed `src/wallet.rs`, highlighted 5 specific syntax/type issues (`std::collections`, `*` dereference on `or_insert`, `TradingError` named fields, `copied().unwrap_or(0)`), incremented hints used counter in `EXERCISES.md` to 1/3, and logged update in `LOGS.md`.
+**Outcome / Next Step:** Learner corrects the 5 identified lines in `src/wallet.rs`.
+
+---
+
+### 2026-08-14 23:38 IST — Prompt #33
+**Prompt:** "Didn;t able to find out how to write those Error in withdraw function help me with that"
+**Context:** Learner asked for Tier 2 structural hint on `TradingError::InsufficientFunds` syntax in `Wallet::withdraw`.
+**Output Summary:** AI explained `TradingError::InsufficientFunds { required, available }` struct variant syntax, incremented hints used counter in `EXERCISES.md` to 2/3, and logged update in `LOGS.md`.
+**Outcome / Next Step:** Learner constructs `TradingError::InsufficientFunds { required: amount, available: ... }` in `src/wallet.rs`.
+
+---
+
+### 2026-08-14 23:46 IST — Prompt #34
+**Prompt:** "so bal will not with Some(bal) and it has no connection than how we are going to check the balance of the currency if i didn't use that bal . Give me solution"
+**Context:** Learner submitted attempt in `src/wallet.rs` and explicitly requested the solution for Exercise 1.7-1.
+**Output Summary:** AI opened Solution 1.7-1 in `SOLUTIONS.md`, moved Exercise 1.7-1 to solved in `EXERCISES.md`, recorded diffs in `LOGS.md`, and walked through comparison between learner's attempt and reference implementation.
+**Outcome / Next Step:** Learner completes `Wallet` in `src/wallet.rs` and verifies with `cargo check`.
+
+---
+
+### 2026-08-14 23:55 IST — Prompt #35
+**Prompt:** "Done /next"
+**Context:** Learner completed `Wallet` in `src/wallet.rs` with `deposit`, `withdraw`, and `get_balance`.
+**Output Summary:** AI validated `src/wallet.rs`, introduced Concept 21 (Rust Iterators & Closure Filtering `Iterator`, `.filter()`, Closures, `.collect()` - Bank Statement Conveyor Belt & Automated Quality Filter analogy), committed Concept 21 to EXAMPLES.md word-for-word, created Exercise 1.7-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner adds `TransactionRecord` and `get_history` iterator filter chain to `src/wallet.rs`.
+
+---

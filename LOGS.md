@@ -33,6 +33,75 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-14 23:55 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 21 & Exercise 1.7-2</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 21 (Rust Iterators & Closure Filtering - Bank Statement Conveyor Belt & Automated Quality Filter analogy) word-for-word to EXAMPLES.md per Rule 8, and added Exercise 1.7-2 skeleton to EXERCISES.md per STEP 3.5.
+
+```diff
+[EXAMPLES.md]
++ ### 21. Rust Iterators & Closure Filtering (`Iterator`, `.filter()`, Closures, `.collect()`) — The Bank Statement Conveyor Belt & Automated Quality Filter
+
+[EXERCISES.md]
++ ### Exercise 1.7-2 — Transaction Audit History & Iterator Filtering (`TransactionRecord`, `.filter()`, `.collect()`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-14 23:46 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.7-1 & Solved Exercise 1.7-1</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Opened Solution 1.7-1 after learner submitted attempt and explicitly requested solution. Moved Exercise 1.7-1 to solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection)
++ **Reference Implementation:**
++ pub fn deposit(&mut self, currency: String, amount: u64) -> Result<()> { ... }
++ pub fn withdraw(&mut self, currency: &str, amount: u64) -> Result<()> { ... }
++ pub fn get_balance(&self, currency: &str) -> u64 { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection) [open]
++ ### Exercise 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-14 23:38 IST — [EXERCISES.md] — Incremented Hints Used (2/3) for Exercise 1.7-1</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner requested Tier 2 structural hint for `TradingError::InsufficientFunds` in `Wallet::withdraw`. Incremented Hints used to 2/3.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 1/3
++ **Hints used:** 2/3
+```
+
+</details>
+
+<details>
+<summary>2026-08-14 23:32 IST — [EXERCISES.md] — Incremented Hints Used (1/3) for Exercise 1.7-1</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner requested code check & hints for Exercise 1.7-1 (`Wallet` deposit, withdraw, get_balance). Incremented Hints used to 1/3.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 0/3
++ **Hints used:** 1/3
+```
+
+</details>
+
+<details>
 <summary>2026-08-12 22:47 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 20 & Exercise 1.7-1</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md

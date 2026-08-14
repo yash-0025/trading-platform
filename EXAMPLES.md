@@ -307,7 +307,21 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 21. Rust Iterators & Closure Filtering (`Iterator`, `.filter()`, Closures, `.collect()`) — The Bank Statement Conveyor Belt & Automated Quality Filter
+
+**ELI5 Analogy: The Bank Statement Conveyor Belt & Automated Quality Filter**
+* **Hand-rolled Loop (`for` loop)**: A bank clerk manually opening every single paper binder in a filing cabinet, reading each row out loud, checking if it matches "USD", and copying matching rows into a new binder by hand.
+* **Iterator Pipeline (`.iter().filter(|tx| tx.currency == "USD").cloned().collect()`)**: A high-speed bank statement conveyor belt. The transactions flow past an automated optical scanner (`.filter()`) running a custom check rule (the closure `|tx| ...`). Matching transactions drop directly into a sorted output tray (`.collect()`). Zero intermediate memory allocations until `.collect()` is called, making it lightning-fast and declarative.
+
+**Deep Technical Breakdown:**
+- **Zero-Cost Abstractions & Iterator Laziness**: Iterators in Rust implement the `Iterator` trait and are lazy — calling `.iter().filter(...)` constructs a lightweight wrapper struct without iterating over elements until a consuming adaptor (like `.collect()` or `.fold()`) is called.
+- **Closure Capture Semantics (`Fn`, `FnMut`, `FnOnce`)**: Closures (e.g. `|tx| tx.currency == target_currency`) capture environment variables. In filtering read-only references, closures implement the non-mutating `Fn` trait.
+- **Type Transformation via Turbofish (`.collect::<Vec<_>>()`)**: `.collect()` uses the `FromIterator` trait to assemble iterated elements into a target collection (`Vec<TransactionRecord>`), leveraging Rust type inference or explicit Turbofish syntax `::<>`.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

@@ -38,39 +38,46 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection)
+### Exercise 1.7-2 — Transaction Audit History & Iterator Filtering (`TransactionRecord`, `.filter()`, `.collect()`)
 **Status:** open
-**Goal:** Create `src/wallet.rs` and implement `Wallet` supporting `deposit`, `withdraw`, and `get_balance` using the `HashMap` Entry API and overdraft protection.
+**Goal:** Add `TransactionRecord` struct, store transaction history in `Wallet`, log records during deposits/withdrawals, and implement `get_history` using iterator filter chains.
 
 **Skeleton:**
 ```rust
 // In src/wallet.rs:
-use std::collections::HashMap;
-use crate::errors::{TradingError, Result};
+use chrono::{DateTime, Utc};
 
+#[derive(Debug, Clone, PartialEq)]
+pub enum TransactionType {
+    Deposit,
+    Withdrawal,
+}
+
+#[derive(Debug, Clone)]
+pub struct TransactionRecord {
+    pub tx_type: TransactionType,
+    pub currency: String,
+    pub amount: u64,
+    pub timestamp: DateTime<Utc>,
+}
+
+// Update Wallet struct:
 #[derive(Debug, Default)]
 pub struct Wallet {
     pub balances: HashMap<String, u64>,
+    pub history: Vec<TransactionRecord>,
 }
 
 impl Wallet {
-    pub fn new() -> Self {
-        Self::default()
-    }
+    // TODO(1): In deposit and withdraw methods, push a TransactionRecord into self.history on success.
+    // Set timestamp to Utc::now().
 
-    // TODO(1): Implement deposit(&mut self, currency: String, amount: u64)
-    // Use self.balances.entry(currency).or_insert(0) to atomically add amount to balance.
-
-    // TODO(2): Implement withdraw(&mut self, currency: &str, amount: u64) -> Result<()>
-    // Look up current balance. If balance < amount, return Err(TradingError::InsufficientFunds { required: amount, available: balance }).
-    // Otherwise deduct amount from balance and return Ok(()).
-
-    // TODO(3): Implement get_balance(&self, currency: &str) -> u64
-    // Return stored balance for currency or 0 if currency doesn't exist in map.
+    // TODO(2): Implement get_history(&self, currency: &str) -> Vec<TransactionRecord>
+    // Filter self.history using `.iter().filter(|tx| tx.currency == currency).cloned().collect()`.
 }
 ```
 
-**Constraints:** Use `HashMap::entry` API for atomic deposits and enforce overdraft protection on withdrawals.
+**Constraints:** Log all successful deposits and withdrawals into `self.history`, and use an iterator chain (`.iter().filter(...).cloned().collect()`) for filtering.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
@@ -79,10 +86,16 @@ impl Wallet {
 
 ## Solved
 
+### Exercise 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection)
+**Status:** solved
+**Goal:** Create `src/wallet.rs` and implement `Wallet` supporting `deposit`, `withdraw`, and `get_balance` using the `HashMap` Entry API and overdraft protection.
+**Note:** Solved in `src/wallet.rs`. Checked against `SOLUTIONS.md` — compared attempt, explained `Option<&mut u64>` destructuring in `match` branches.
+
 ### Exercise 1.6-2 — In-Memory `UserManager` & Authentication Service (`HashMap`, Registration, Authentication)
 **Status:** solved
 **Goal:** In `src/users.rs`, implement `UserManager` storing `users: HashMap<Uuid, User>` and `username_index: HashMap<String, Uuid>`, providing `register` and `authenticate` methods.
 **Note:** Solved in `src/users.rs`. Checked against `SOLUTIONS.md` — compared attempt, explained map insertion and reference return mechanics.
+
 
 ### Exercise 1.6-1 — `User` Domain Model & Password Hashing (`uuid`, `sha2`, `chrono`)
 **Status:** solved

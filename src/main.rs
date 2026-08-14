@@ -5,6 +5,8 @@ mod config;
 mod cli;
 mod errors;
 mod users;
+mod wallet;
+
 
 use cli::{Cli, Commands};
 

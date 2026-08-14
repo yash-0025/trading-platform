@@ -206,4 +206,29 @@
 #### In Memory `UserManager` & Dual Index - Authentication
 - we build the UserManager service to maintain registered users in memory with fast $O(1)$ dual index lookup `HashMap<Uuid, User> and HashMap<String, Uuid>`
 
+#### Wallet system - Money Management
 
+- In trading platform , the Wallet Subsystem is the financial ledger. before a trader can place a buy order for 2 BTC and 50,000 the exchange wallet must verify that the user holds at least $100,000 USD in available funds . To guarantee balance integrity
+    1. Operations on currency balances must be atomic (avoiding race conditions or double lookups)
+    2. Withdrawals must enforce overdraft protection (rejecting attempts that exceed available balance)
+
++-------------------------------------------------------------------------+
+|                    MULTI-CURRENCY WALLET ARCHITECTURE                   |
+|                                                                         |
+|  Deposit Request (e.g. Deposit $10,000 USD)                             |
+|          |                                                              |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | HashMap Entry API: balances.entry("USD").or_insert(0)             |  |
+|  | *balance += 10_000                                                |  |
+|  +-------------------------------------------------------------------+  |
+|                                                                         |
+|  Withdrawal Request (e.g. Withdraw $15,000 USD)                         |
+|          |                                                              |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | Overdraft Check: available ($10,000) < required ($15,000)         |  |
+|  +-------------------------------------------------------------------+  |
+|          |                                                              |
+|          +---> Err(TradingError::InsufficientFunds { .. })              |
++-------------------------------------------------------------------------+
