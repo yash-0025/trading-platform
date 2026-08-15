@@ -10,7 +10,7 @@
 
 ## System Architecture and Component flow
 - Single Binary Monolith Architecture - This ensures we master Rust's core memmory rules before adding multi-crate workspace overhead
-
+```
 +-----------------------------------------------------------------------+
 |                    TRADING PLATFORM CLI (Phase 1)                     |
 |                                                                       |
@@ -29,6 +29,7 @@
 |  |               File Persistence Manager (JSON / Serde)           |  |
 |  +-----------------------------------------------------------------+  |
 +-----------------------------------------------------------------------+
+```
 
 ### Data & Memory Flow
 1. Command input - User issues a CLI command (eg - buy --asset AAPL --qty 10 --price 15000)
@@ -49,7 +50,7 @@
 
 - In traditional langugaes like Js or python developers ofter pass plain strings like "BUY" or "LIMIT" around. If someone makes a type "buy" or "LMIT" the error happens at runtime in production
 - In rust system engineering the type system makes invalid states unrepresentable at compile time
-
+```
 +-------------------------------------------------------------------------+
 |                         src/models/ (Domain Types)                      |
 |                                                                         |
@@ -66,6 +67,7 @@
 |  |   id: u64, asset: String, side: Side, order_type: OrderType, ...  |  |
 |  +-------------------------------------------------------------------+  |
 +-------------------------------------------------------------------------+
+```
 
 ### Method Receivers (&self, &mut, self )& Constructors (Self::new())
 
@@ -80,7 +82,7 @@
 - A trading system needs configurable parameters exchange name, base ,currency, maximum order size limits and log verbosity
 
 - In production systems (Zerodha, Binance ) we cannot hardcode setting into binary executables .. Staging, dev, and production environment require different config values. A robust configuration manager loads setting from files (config.toml) overrides them with environment variables [EXCHANGE_NAME=ApexExchange] and falls back to safe default values
-
+```
 +-------------------------------------------------------------------------+
 |                  CONFIGURATION HIERARCHY & RESOLUTION                   |
 |                                                                         |
@@ -101,6 +103,7 @@
 |  |   max_order_size = 1000   |                                          |
 |  +---------------------------+                                          |
 +-------------------------------------------------------------------------+
+```
 
 ### Ownership and Borrowing 
 1. Move Semanticsa and Stack Value Copying
@@ -119,6 +122,7 @@
 
 
 #### CLI Interface
+```
 +-------------------------------------------------------------------------+
 |                  CLI COMMAND PARSING & DISPATCH FLOW                    |
 |                                                                         |
@@ -126,7 +130,7 @@
 |               |                                                         |
 |               v                                                         |
 |  +---------------------------+                                          |
-|  |  clap::Parser             |  (Parses std::env::args_os tokens)      |
+|  |  clap::Parser             |  (Parses std::env::args_os tokens)       |
 |  +---------------------------+                                          |
 |               |                                                         |
 |               v                                                         |
@@ -139,12 +143,12 @@
 |  |  Trading Engine Dispatch  |  (Executes order logic on models)        |
 |  +---------------------------+                                          |
 +-------------------------------------------------------------------------+
-
+```
 
 #### Erro handling
 - IN real world trading engines invalid trade attemps (insufficient funds, nonexistent order IDs , bad order quantities) happen constantly
 - Crashing the entire paltform process with panic! or unwrap() during live trading is catastrophic. Instead , production sytems use typed domain errors (Result<T, E>) to reject individual incalid operation cleanly, returning descriptive failure causes while keeping the exchange engine running at 100% uptime.
-
+```
 +-------------------------------------------------------------------------+
 |                PRODUCTION ERROR PROPAGATION (& RESULT<T, E>)            |
 |                                                                         |
@@ -164,6 +168,7 @@
 |  | Catch Err & Format Display Output |  (No panic! Engine stays alive)  |
 |  +-----------------------------------+                                  |
 +-------------------------------------------------------------------------+
+```
 
 - `Result<T,E> , thiserror, ? operator`
 
@@ -177,6 +182,7 @@
 1. Every user receives a gloablly unique Uuid.
 2. Raw password are NEVER stored in plain text. Instead passwords are run through one-way-cryptographic hash function (SHA-256) before persistence
 
+```
 +-------------------------------------------------------------------------+
 |                  USER AUTHENTICATION ARCHITECTURE                       |
 |                                                                         |
@@ -197,6 +203,7 @@
 |  Login Verification:                                                    |
 |  Input Password -> SHA-256 -> Compare Hash against Stored User Hash     |
 +-------------------------------------------------------------------------+
+``` 
 
 #### Domain Identity, Trait contracts and Password hashing (User Struct , sha2, uuid::Uuid, chrono::Utc)
 - `Uuid::new_v4()`
@@ -212,6 +219,7 @@
     1. Operations on currency balances must be atomic (avoiding race conditions or double lookups)
     2. Withdrawals must enforce overdraft protection (rejecting attempts that exceed available balance)
 
+```
 +-------------------------------------------------------------------------+
 |                    MULTI-CURRENCY WALLET ARCHITECTURE                   |
 |                                                                         |
@@ -232,6 +240,7 @@
 |          |                                                              |
 |          +---> Err(TradingError::InsufficientFunds { .. })              |
 +-------------------------------------------------------------------------+
+```
 
 #### Transaction history and Iterator based Filtering
 - We will add transaction history audit logging to wallet  and implement iterator filter pipelines
@@ -271,3 +280,31 @@
 #### Portfolio Tracker Engine and Custom Position Sorting
 #### Data Structure Ordering and Custom Vector sorting
 - `BTreeMap` vs `HashMap` , `.sort_by()`, `PartialOrd::partial_cmp`
+
+#### Order management - Basic OMS engine
+- In real financial exchanges the order management system OMS coordinate trade execution . When a trader submits an order
+    1. The exchange assigns a type-sage globally unique ID (OrderId(u64))
+    2. The order enters the system in a Pending state
+    3. Orders move through a strict State Maching Lifecycle: Pending -> Filled -> Cancelled/Rejected. Invalid state transitions are strictly rejected by type invariants
+
+```
++-------------------------------------------------------------------------+
+|                  ORDER MANAGEMENT ENGINE & STATE MACHINE                |
+|                                                                         |
+|  Order Creation (Order::new)                                            |
+|          |                                                              |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | State: OrderStatus::Pending                                       |  |
+|  +-------------------------------------------------------------------+  |
+|          |                                     |                        |
+|          | (Fill Match)                        | (User Cancel)          |
+|          v                                     v                        |
+|  +---------------------------+       +-------------------------------+  |
+|  | OrderStatus::Filled       |       | OrderStatus::Cancelled        |  |
+|  +---------------------------+       +-------------------------------+  |
++-------------------------------------------------------------------------+
+
+```
+
+- `Newtype Pattern` and `Order Lifecycle state machine`

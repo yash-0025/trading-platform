@@ -33,6 +33,28 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-16 01:31 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.9-1 & Exercise 1.9-2</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Opened Solution 1.9-1 after learner completed `Order` state machine in `src/orders.rs`. Moved Exercise 1.9-1 to solved in EXERCISES.md, and added Exercise 1.9-2 skeleton.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`)
++ **Reference Implementation:**
++ pub struct OrderId(pub u64);
++ pub fn cancel(&mut self) -> bool { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`) [open]
++ ### Exercise 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation) [open]
++ ### Exercise 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`) [solved]
+```
+
+</details>
+
+<details>
 <summary>2026-08-15 23:15 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.8-2 & Exercise 1.9-1</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

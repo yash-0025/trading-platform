@@ -359,3 +359,11 @@
 **Outcome / Next Step:** Learner creates `src/orders.rs` and implements `OrderId`, `OrderSide`, `OrderStatus`, and `Order` with `cancel`.
 
 ---
+
+### 2026-08-16 01:31 IST — Prompt #44
+**Prompt:** "Done check my solution and /next"
+**Context:** Learner completed `OrderId`, `OrderSide`, `OrderStatus`, and `Order` with `cancel` in `src/orders.rs`.
+**Output Summary:** AI validated `src/orders.rs`, opened gated Solution 1.9-1 in SOLUTIONS.md, moved Exercise 1.9-1 to solved in EXERCISES.md, introduced Concept 25 (The Builder Pattern & Method Chaining `OrderBuilder` - Custom Order Customizer Form analogy), committed Concept 25 to EXAMPLES.md word-for-word, created Exercise 1.9-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements `OrderBuilder` with method chaining and validation in `src/orders.rs`.
+
+---

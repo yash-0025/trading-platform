@@ -38,69 +38,71 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`)
+### Exercise 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation)
 **Status:** open
-**Goal:** Create `src/orders.rs` with `OrderId` newtype struct, `OrderSide` enum (`Buy`, `Sell`), `OrderStatus` enum (`Pending`, `Filled`, `Cancelled`, `Rejected`), and `Order` struct with `new` and `cancel` state transition methods.
+**Goal:** In `src/orders.rs`, implement `OrderBuilder` struct supporting method chaining (`symbol`, `side`, `qty`, `price`) and `build(self, id: u64) -> Result<Order, TradingError>`.
 
 **Skeleton:**
 ```rust
-// Create src/orders.rs:
-use chrono::{DateTime, Utc};
+// In src/orders.rs:
+use crate::errors::TradingError;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct OrderId(pub u64);
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum OrderSide {
-    Buy,
-    Sell,
+#[derive(Debug, Default)]
+pub struct OrderBuilder {
+    pub symbol: Option<String>,
+    pub side: Option<OrderSide>,
+    pub qty: Option<u64>,
+    pub price: Option<u64>,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum OrderStatus {
-    Pending,
-    Filled,
-    Cancelled,
-    Rejected,
-}
-
-#[derive(Debug, Clone)]
-pub struct Order {
-    pub id: OrderId,
-    pub symbol: String,
-    pub side: OrderSide,
-    pub qty: u64,
-    pub price: u64,
-    pub status: OrderStatus,
-    pub created_at: DateTime<Utc>,
-}
-
-impl Order {
-    pub fn new(id: u64, symbol: String, side: OrderSide, qty: u64, price: u64) -> Self {
-        Order {
-            id: OrderId(id),
-            symbol,
-            side,
-            qty,
-            price,
-            status: OrderStatus::Pending,
-            created_at: Utc::now(),
-        }
+impl OrderBuilder {
+    pub fn new() -> Self {
+        Self::default()
     }
 
-    // TODO(1): Implement cancel(&mut self) -> bool
-    // If self.status == OrderStatus::Pending, transition status to OrderStatus::Cancelled and return true.
-    // Otherwise return false (cannot cancel already filled/cancelled orders).
+    pub fn symbol(mut self, symbol: String) -> Self {
+        self.symbol = Some(symbol);
+        self
+    }
+
+    pub fn side(mut self, side: OrderSide) -> Self {
+        self.side = Some(side);
+        self
+    }
+
+    pub fn qty(mut self, qty: u64) -> Self {
+        self.qty = Some(qty);
+        self
+    }
+
+    pub fn price(mut self, price: u64) -> Self {
+        self.price = Some(price);
+        self
+    }
+
+    // TODO(1): Implement build(self, id: u64) -> Result<Order, TradingError>
+    // Validate:
+    // 1. symbol must be Some and non-empty (if missing/empty, return Err(TradingError::InvalidOrder("Missing symbol".into())))
+    // 2. side must be Some (if missing, return Err(TradingError::InvalidOrder("Missing order side".into())))
+    // 3. qty must be Some and > 0 (if missing/0, return Err(TradingError::InvalidOrder("Quantity must be greater than zero".into())))
+    // 4. price must be Some and > 0 (if missing/0, return Err(TradingError::InvalidOrder("Price must be greater than zero".into())))
+    // If all valid, return Ok(Order::new(id, symbol, side, qty, price)).
 }
 ```
 
-**Constraints:** Wrap numeric ID in `OrderId` newtype tuple struct, and enforce `Pending -> Cancelled` state transition.
+**Constraints:** Support fluent method chaining returning `Self`, and return `Result<Order, TradingError>` on `build`.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
 ## Solved
+
+### Exercise 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`)
+**Status:** solved
+**Goal:** Create `src/orders.rs` with `OrderId` newtype struct, `OrderSide` enum (`Buy`, `Sell`), `OrderStatus` enum (`Pending`, `Filled`, `Cancelled`, `Rejected`), and `Order` struct with `new` and `cancel` state transition methods.
+**Note:** Solved in `src/orders.rs`. Checked against `SOLUTIONS.md` — exact match on `OrderId`, `OrderSide`, `OrderStatus`, and `cancel`.
+
 
 ### Exercise 1.8-2 — `Portfolio` Tracker Engine & Custom Sorting (`HashMap`, `sort_by`, `PartialOrd`)
 **Status:** solved

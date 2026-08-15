@@ -7,6 +7,7 @@ mod errors;
 mod users;
 mod wallet;
 mod portfolio;
+mod orders;
 
 use cli::{Cli, Commands};
 

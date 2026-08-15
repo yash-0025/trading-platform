@@ -705,7 +705,78 @@ impl Portfolio {
 
 ---
 
+### Solution 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`)
+
+**Reference Implementation:**
+```rust
+// src/orders.rs:
+use chrono::{DateTime, Utc};
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+pub struct OrderId(pub u64);
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum OrderSide {
+    Buy,
+    Sell,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum OrderStatus {
+    Pending,
+    Filled,
+    Cancelled,
+    Rejected,
+}
+
+#[derive(Debug, Clone)]
+pub struct Order {
+    pub id: OrderId,
+    pub symbol: String,
+    pub side: OrderSide,
+    pub qty: u64,
+    pub price: u64,
+    pub status: OrderStatus,
+    pub created_at: DateTime<Utc>,
+}
+
+impl Order {
+    pub fn new(id: u64, symbol: String, side: OrderSide, qty: u64, price: u64) -> Self {
+        Order {
+            id: OrderId(id),
+            symbol,
+            side,
+            qty,
+            price,
+            status: OrderStatus::Pending,
+            created_at: Utc::now(),
+        }
+    }
+
+    pub fn cancel(&mut self) -> bool {
+        if self.status == OrderStatus::Pending {
+            self.status = OrderStatus::Cancelled;
+            true
+        } else {
+            false
+        }
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `pub struct OrderId(pub u64);` — Wraps `u64` in a type-safe tuple struct.
+- `pub enum OrderSide { Buy, Sell }` — Closed domain set for order directions.
+- `pub enum OrderStatus { Pending, Filled, Cancelled, Rejected }` — Order lifecycle states.
+- `if self.status == OrderStatus::Pending` — Enforces state machine transition rules so only `Pending` orders can transition to `Cancelled`.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/orders.rs` cleanly defined all domain types and state machine transition rules!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 
