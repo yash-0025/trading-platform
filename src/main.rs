@@ -6,7 +6,7 @@ mod cli;
 mod errors;
 mod users;
 mod wallet;
-
+mod portfolio;
 
 use cli::{Cli, Commands};
 

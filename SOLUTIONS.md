@@ -606,7 +606,52 @@ impl Wallet {
 
 ---
 
+### Solution 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`)
+
+**Reference Implementation:**
+```rust
+// src/portfolio.rs:
+#[derive(Debug, Clone, PartialEq)]
+pub struct Position {
+    pub symbol: String,
+    pub quantity: f64,
+    pub avg_cost: f64,
+}
+
+impl Position {
+    pub fn new(symbol: String, quantity: f64, price: f64) -> Self {
+        Position {
+            symbol,
+            quantity,
+            avg_cost: price,
+        }
+    }
+
+    pub fn update(&mut self, add_qty: f64, buy_price: f64) {
+        let total_cost = (self.quantity * self.avg_cost) + (add_qty * buy_price);
+        let total_qty = self.quantity + add_qty;
+        self.avg_cost = total_cost / total_qty;
+        self.quantity = total_qty;
+    }
+
+    pub fn unrealized_pnl(&self, current_price: f64) -> f64 {
+        self.quantity * (current_price - self.avg_cost)
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `let total_cost = (self.quantity * self.avg_cost) + (add_qty * buy_price);` — Computes total dollars invested across existing holdings and new buy fill.
+- `self.avg_cost = total_cost / total_qty;` — Divides total cost by new total quantity to obtain weighted average cost basis per unit.
+- `self.quantity * (current_price - self.avg_cost)` — Computes dollar gain/loss relative to current market price.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/portfolio.rs` correctly calculated weighted average cost basis and unrealized P&L!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

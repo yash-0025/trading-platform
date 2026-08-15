@@ -38,45 +38,59 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`)
+### Exercise 1.8-2 — `Portfolio` Tracker Engine & Custom Sorting (`HashMap`, `sort_by`, `PartialOrd`)
 **Status:** open
-**Goal:** Create `src/portfolio.rs` and implement `Position` with `update` (recalculating quantity and weighted average cost basis) and `unrealized_pnl(market_price)`.
+**Goal:** In `src/portfolio.rs`, implement `Portfolio` storing `positions: HashMap<String, Position>`, providing `add_position`, `get_position`, and `get_sorted_positions`.
 
 **Skeleton:**
 ```rust
-// Create src/portfolio.rs:
-#[derive(Debug, Clone, PartialEq)]
-pub struct Position {
-    pub symbol: String,
-    pub quantity: f64,
-    pub avg_cost: f64,
+use std::collections::HashMap;
+use std::cmp::Ordering;
+
+#[derive(Debug, Default)]
+pub struct Portfolio {
+    pub positions: HashMap<String, Position>,
 }
 
-impl Position {
-    pub fn new(symbol: String, quantity: f64, price: f64) -> Self {
-        Position {
-            symbol,
-            quantity,
-            avg_cost: price,
-        }
+impl Portfolio {
+    pub fn new() -> Self {
+        Self::default()
     }
 
-    // TODO(1): Implement update(&mut self, add_qty: f64, buy_price: f64)
-    // Recalculate average cost basis: new_avg = (old_qty * old_avg + add_qty * buy_price) / (old_qty + add_qty)
-    // Update self.quantity += add_qty and self.avg_cost = new_avg.
+    // TODO(1): Implement add_position(&mut self, symbol: String, quantity: f64, price: f64)
+    // Use self.positions.entry(symbol.clone()):
+    // If Occupied, call pos.update(quantity, price).
+    // If Vacant, insert Position::new(symbol, quantity, price).
 
-    // TODO(2): Implement unrealized_pnl(&self, current_price: f64) -> f64
-    // Formula: self.quantity * (current_price - self.avg_cost)
+    // TODO(2): Implement get_position(&self, symbol: &str) -> Option<&Position>
+    // Return self.positions.get(symbol).
+
+    // TODO(3): Implement get_sorted_positions(&self, current_prices: &HashMap<String, f64>) -> Vec<Position>
+    // Collect all positions into a Vec<Position>, then sort descending by unrealized_pnl:
+    // vec.sort_by(|a, b| {
+    //     let price_a = current_prices.get(&a.symbol).copied().unwrap_or(0.0);
+    //     let price_b = current_prices.get(&b.symbol).copied().unwrap_or(0.0);
+    //     b.unrealized_pnl(price_b)
+    //      .partial_cmp(&a.unrealized_pnl(price_a))
+    //      .unwrap_or(Ordering::Equal)
+    // });
+    // Return the sorted Vec<Position>.
 }
 ```
 
-**Constraints:** Calculate weighted average cost basis on position updates and unrealized P&L given current market price.
+**Constraints:** Use `HashMap::entry` for upserting positions and `sort_by` with `PartialOrd::partial_cmp` for descending P&L sorting.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
 ## Solved
+
+### Exercise 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`)
+**Status:** solved
+**Goal:** Create `src/portfolio.rs` and implement `Position` with `update` (recalculating quantity and weighted average cost basis) and `unrealized_pnl(market_price)`.
+**Note:** Solved in `src/portfolio.rs`. Checked against `SOLUTIONS.md` — exact match on `Position`, `update` weighted average cost basis, and `unrealized_pnl`.
+
 
 ### Exercise 1.7-2 — Transaction Audit History & Iterator Filtering (`TransactionRecord`, `.filter()`, `.collect()`)
 **Status:** solved

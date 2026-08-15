@@ -33,6 +33,28 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-15 17:34 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.8-1 & Exercise 1.8-2</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Opened Solution 1.8-1 after learner completed `Position` in `src/portfolio.rs`. Moved Exercise 1.8-1 to solved in EXERCISES.md, and added Exercise 1.8-2 skeleton.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`)
++ **Reference Implementation:**
++ pub fn update(&mut self, add_qty: f64, buy_price: f64) { ... }
++ pub fn unrealized_pnl(&self, current_price: f64) -> f64 { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`) [open]
++ ### Exercise 1.8-2 — `Portfolio` Tracker Engine & Custom Sorting (`HashMap`, `sort_by`, `PartialOrd`) [open]
++ ### Exercise 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`) [solved]
+```
+
+</details>
+
+<details>
 <summary>2026-08-15 16:50 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 22 & Exercise 1.8-1</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md

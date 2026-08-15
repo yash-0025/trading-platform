@@ -327,3 +327,11 @@
 **Outcome / Next Step:** Learner creates `src/portfolio.rs` and implements `Position` with `update` and `unrealized_pnl`.
 
 ---
+
+### 2026-08-15 17:34 IST — Prompt #40
+**Prompt:** "Done /next"
+**Context:** Learner completed `Position` struct in `src/portfolio.rs` with weighted average cost basis and unrealized P&L calculation.
+**Output Summary:** AI validated `src/portfolio.rs`, opened gated Solution 1.8-1 in SOLUTIONS.md, moved Exercise 1.8-1 to solved in EXERCISES.md, introduced Concept 23 (Data Structure Ordering & Custom Vector Sorting `BTreeMap` vs `HashMap`, `.sort_by()`, `PartialOrd::partial_cmp` - Alphabetical Ledger vs Dynamic Sorting Leaderboard analogy), committed Concept 23 to EXAMPLES.md word-for-word, created Exercise 1.8-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements `Portfolio` manager with `add_position`, `get_position`, and `get_sorted_positions` in `src/portfolio.rs`.
+
+---

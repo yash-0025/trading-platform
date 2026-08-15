@@ -240,3 +240,29 @@
 - Calling `.cone()` tries to clone the iterator adapter struct itself 
 - Calling `.cloned()` clones the items inside the iterator(converting &TransactionRecord) into TransactionRecord
 - .collect() then gathers those owned TransactionRecord items into a Vec<TransactionRecord>
+
+
+#### Portfolio management - your holdings
+- In stock and crpto trading platforms , A portfolio tracks an investor's net market positions
+- When a trader buys 1 BTC at $40000 and later buys 1 more BTC at $60000.
+    1. they don't just hold two isolated tickets, the broker tracks their aggregate Position (2 BTC) with a Weighted Average cost Basis ($50,000 per BTC)
+    2. As market prices fluctuate, the broker computes Unrealized P&L to display live profit/loss percentage and total portfolio valuation
+
++-------------------------------------------------------------------------+
+|                  PORTFOLIO POSITION TRACKER ARCHITECTURE                |
+|                                                                         |
+|  Buy Order Executed (e.g., Buy 1 BTC @ $60,000)                         |
+|          |                                                              |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | Position State Update:                                            |  |
+|  | new_qty = old_qty + add_qty                                       |  |
+|  | new_avg = (old_qty * old_avg + add_qty * buy_price) / new_qty     |  |
+|  +-------------------------------------------------------------------+  |
+|          |                                                              |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | Real-Time P&L Valuation:                                          |  |
+|  | unrealized_pnl = qty * (current_market_price - avg_cost)          |  |
+|  +-------------------------------------------------------------------+  |
++-------------------------------------------------------------------------+
