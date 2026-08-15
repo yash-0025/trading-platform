@@ -38,53 +38,51 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.7-2 — Transaction Audit History & Iterator Filtering (`TransactionRecord`, `.filter()`, `.collect()`)
+### Exercise 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`)
 **Status:** open
-**Goal:** Add `TransactionRecord` struct, store transaction history in `Wallet`, log records during deposits/withdrawals, and implement `get_history` using iterator filter chains.
+**Goal:** Create `src/portfolio.rs` and implement `Position` with `update` (recalculating quantity and weighted average cost basis) and `unrealized_pnl(market_price)`.
 
 **Skeleton:**
 ```rust
-// In src/wallet.rs:
-use chrono::{DateTime, Utc};
-
+// Create src/portfolio.rs:
 #[derive(Debug, Clone, PartialEq)]
-pub enum TransactionType {
-    Deposit,
-    Withdrawal,
+pub struct Position {
+    pub symbol: String,
+    pub quantity: f64,
+    pub avg_cost: f64,
 }
 
-#[derive(Debug, Clone)]
-pub struct TransactionRecord {
-    pub tx_type: TransactionType,
-    pub currency: String,
-    pub amount: u64,
-    pub timestamp: DateTime<Utc>,
-}
+impl Position {
+    pub fn new(symbol: String, quantity: f64, price: f64) -> Self {
+        Position {
+            symbol,
+            quantity,
+            avg_cost: price,
+        }
+    }
 
-// Update Wallet struct:
-#[derive(Debug, Default)]
-pub struct Wallet {
-    pub balances: HashMap<String, u64>,
-    pub history: Vec<TransactionRecord>,
-}
+    // TODO(1): Implement update(&mut self, add_qty: f64, buy_price: f64)
+    // Recalculate average cost basis: new_avg = (old_qty * old_avg + add_qty * buy_price) / (old_qty + add_qty)
+    // Update self.quantity += add_qty and self.avg_cost = new_avg.
 
-impl Wallet {
-    // TODO(1): In deposit and withdraw methods, push a TransactionRecord into self.history on success.
-    // Set timestamp to Utc::now().
-
-    // TODO(2): Implement get_history(&self, currency: &str) -> Vec<TransactionRecord>
-    // Filter self.history using `.iter().filter(|tx| tx.currency == currency).cloned().collect()`.
+    // TODO(2): Implement unrealized_pnl(&self, current_price: f64) -> f64
+    // Formula: self.quantity * (current_price - self.avg_cost)
 }
 ```
 
-**Constraints:** Log all successful deposits and withdrawals into `self.history`, and use an iterator chain (`.iter().filter(...).cloned().collect()`) for filtering.
-**Hints used:** 2/3
+**Constraints:** Calculate weighted average cost basis on position updates and unrealized P&L given current market price.
+**Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
-
 ## Solved
+
+### Exercise 1.7-2 — Transaction Audit History & Iterator Filtering (`TransactionRecord`, `.filter()`, `.collect()`)
+**Status:** solved
+**Goal:** Add `TransactionRecord` struct, store transaction history in `Wallet`, log records during deposits/withdrawals, and implement `get_history` using iterator filter chains.
+**Note:** Solved in `src/wallet.rs`. Checked against `SOLUTIONS.md` — exact match on `TransactionRecord`, `.cloned()`, and timestamp logging.
+
 
 ### Exercise 1.7-1 — Multi-Currency `Wallet` Engine (`HashMap::entry`, Overdraft Protection)
 **Status:** solved

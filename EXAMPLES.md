@@ -320,7 +320,24 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 22. Position Cost Basis & P&L Mechanics (`Position` Struct, Weighted Average Cost Basis, Unrealized P&L) — The Inventory Bucket & Weighted Average Price Scale
+
+**ELI5 Analogy: The Inventory Bucket & Weighted Average Price Scale**
+* **First Purchase**: You buy 1 BTC at $40,000. Your inventory bucket has 1 BTC, average cost = $40,000.
+* **Second Purchase (Averaging In)**: You buy 1 more BTC at $60,000. Your total spent is $100,000 for 2 BTC. Your scale recalculates the **Weighted Average Cost Basis**: $\frac{\$40,000 + \$60,000}{2} = \$50,000$ per BTC.
+* **Unrealized P&L**: If current market price is $55,000, your unrealized profit per BTC is $\$55,000 - \$50,000 = +\$5,000$ (total $+\$10,000$). This calculation reflects your net exposure instantly regardless of how many buy orders were filled.
+
+**Deep Technical Breakdown:**
+- **Weighted Average Cost Basis State Updating**: When adding quantity $q_{\text{new}}$ at price $p_{\text{new}}$ to an existing position with quantity $q_{\text{old}}$ and average cost $p_{\text{old}}$, the updated average cost $p_{\text{new\_avg}}$ is calculated as:
+  $$p_{\text{new\_avg}} = \frac{(q_{\text{old}} \cdot p_{\text{old}}) + (q_{\text{new}} \cdot p_{\text{new}})}{q_{\text{old}} + q_{\text{new}}}$$
+- **Unrealized Profit & Loss (P&L) Formula**: Given current market price $p_{\text{market}}$, total quantity $q$, and average cost $p_{\text{avg}}$, unrealized P&L is:
+  $$\text{Unrealized P\&L} = q \cdot (p_{\text{market}} - p_{\text{avg}})$$
+- **Floating Point Representation Constraints**: Floating-point types (`f64`) represent IEEE 754 floating point numbers. In production financial ledgers, integer fixed-point (e.g. cents/sats) or decimal crates (`rust_decimal`) prevent rounding drift; for memory representation in learning modules, `f64` provides standard mathematical ops.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

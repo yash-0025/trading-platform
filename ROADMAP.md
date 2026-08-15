@@ -101,10 +101,10 @@ Every module has:
 ---
 
 ### Module 1.7 — Wallet System: Money Management
-- [ ] **You build:** Multi-currency wallet supporting deposits, withdrawals, balance queries, and transaction history. Overdraft protection. Transaction logging with timestamps.
-- [ ] **Concepts:** Iterators — `Iterator` trait, laziness, consuming methods · Closures — `Fn`, `FnMut`, `FnOnce`, capture semantics · Iterator chains: `.map()`, `.filter()`, `.fold()`, `.sum()`, `.collect()` · `HashMap<K, V>` for currency balances · `Entry` API (`.entry().or_insert()`) · Turbofish syntax `::<>` · Zero-cost abstractions — iterator chains vs hand-rolled loops
-- [ ] **Architecture:** Wallet architecture in exchanges. Double-entry bookkeeping concept. Why atomicity matters (what happens if deposit succeeds but balance update fails?).
-- [ ] **Deliverable:** Deposit/withdraw/balance working. Transaction history with iterator-based filtering (by date, by currency, by type).
+- [x] **You build:** Multi-currency wallet supporting deposits, withdrawals, balance queries, and transaction history. Overdraft protection. Transaction logging with timestamps.
+- [x] **Concepts:** Iterators — `Iterator` trait, laziness, consuming methods · Closures — `Fn`, `FnMut`, `FnOnce`, capture semantics · Iterator chains: `.map()`, `.filter()`, `.fold()`, `.sum()`, `.collect()` · `HashMap<K, V>` for currency balances · `Entry` API (`.entry().or_insert()`) · Turbofish syntax `::<>` · Zero-cost abstractions — iterator chains vs hand-rolled loops
+- [x] **Architecture:** Wallet architecture in exchanges. Double-entry bookkeeping concept. Why atomicity matters (what happens if deposit succeeds but balance update fails?).
+- [x] **Deliverable:** Deposit/withdraw/balance working. Transaction history with iterator-based filtering (by date, by currency, by type).
 
 ---
 

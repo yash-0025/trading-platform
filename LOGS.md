@@ -33,6 +33,56 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-15 16:50 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 22 & Exercise 1.8-1</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 22 (Position Cost Basis & P&L Mechanics - Inventory Bucket & Weighted Average Price Scale analogy) word-for-word to EXAMPLES.md per Rule 8, and added Exercise 1.8-1 skeleton to EXERCISES.md per STEP 3.5.
+
+```diff
+[EXAMPLES.md]
++ ### 22. Position Cost Basis & P&L Mechanics (`Position` Struct, Weighted Average Cost Basis, Unrealized P&L) — The Inventory Bucket & Weighted Average Price Scale
+
+[EXERCISES.md]
++ ### Exercise 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-15 16:49 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.7 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner explicitly confirmed marking Module 1.7 (Wallet System: Money Management) complete `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.7 — Wallet System: Money Management — 2026-08-15
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - Atomic in-place map mutation via `HashMap::entry().or_insert()`.
++ - Overdraft protection logic using match guards and custom error variants.
++ - Rust iterator laziness and pipeline adapters (`.filter()`, `.cloned()`, `.collect()`).
++ - Difference between `.clone()` (iterator adapter clone) and `.cloned()` (item clone).
++ **Code I wrote / project progress:**
++ - Created `src/wallet.rs` with `Wallet`, `TransactionRecord`, and `TransactionType`.
++ - Linked `mod wallet;` in `src/main.rs`.
+
+[ROADMAP.md]
+- - [ ] **You build:** Multi-currency wallet supporting deposits, withdrawals...
+- - [ ] **Concepts:** Iterators — `Iterator` trait, laziness, consuming methods...
+- - [ ] **Architecture:** Wallet architecture in exchanges. Double-entry bookkeeping concept...
+- - [ ] **Deliverable:** Deposit/withdraw/balance working. Transaction history with iterator-based filtering...
++ - [x] **You build:** Multi-currency wallet supporting deposits, withdrawals...
++ - [x] **Concepts:** Iterators — `Iterator` trait, laziness, consuming methods...
++ - [x] **Architecture:** Wallet architecture in exchanges. Double-entry bookkeeping concept...
++ - [x] **Deliverable:** Deposit/withdraw/balance working. Transaction history with iterator-based filtering...
+```
+
+</details>
+
+<details>
 <summary>2026-08-15 14:24 IST — [EXERCISES.md] — Incremented Hints Used (2/3) for Exercise 1.7-2</summary>
 
 - **File:** EXERCISES.md

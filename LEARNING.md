@@ -106,3 +106,14 @@
 - Added `uuid`, `sha2`, `chrono` dependencies to `Cargo.toml`.
 - Created `src/users.rs` with `User` and `UserManager`.
 - Linked `mod users;` in `src/main.rs`.
+
+### Module 1.7 — Wallet System: Money Management — 2026-08-15
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Atomic in-place map mutation via `HashMap::entry().or_insert()`.
+- Overdraft protection logic using match guards and custom error variants.
+- Rust iterator laziness and pipeline adapters (`.filter()`, `.cloned()`, `.collect()`).
+- Difference between `.clone()` (iterator adapter clone) and `.cloned()` (item clone).
+**Code I wrote / project progress:**
+- Created `src/wallet.rs` with `Wallet`, `TransactionRecord`, and `TransactionType`.
+- Linked `mod wallet;` in `src/main.rs`.
