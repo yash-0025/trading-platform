@@ -232,3 +232,11 @@
 |          |                                                              |
 |          +---> Err(TradingError::InsufficientFunds { .. })              |
 +-------------------------------------------------------------------------+
+
+#### Transaction history and Iterator based Filtering
+- We will add transaction history audit logging to wallet  and implement iterator filter pipelines
+- .iter().filter(...).collect() to query history by currency
+
+- Calling `.cone()` tries to clone the iterator adapter struct itself 
+- Calling `.cloned()` clones the items inside the iterator(converting &TransactionRecord) into TransactionRecord
+- .collect() then gathers those owned TransactionRecord items into a Vec<TransactionRecord>

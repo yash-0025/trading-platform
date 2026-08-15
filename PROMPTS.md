@@ -295,3 +295,27 @@
 **Outcome / Next Step:** Learner adds `TransactionRecord` and `get_history` iterator filter chain to `src/wallet.rs`.
 
 ---
+
+### 2026-08-15 14:11 IST — Prompt #36
+**Prompt:** "Not able to understand how to write the get history function help me with that"
+**Context:** Learner asked for help on `get_history` implementation in `src/wallet.rs`.
+**Output Summary:** AI explained the difference between `.clone()` (cloning the iterator adapter) and `.cloned()` (cloning the iterated items), incremented hints used counter in `EXERCISES.md` to 1/3, and logged update in `LOGS.md`.
+**Outcome / Next Step:** Learner changes `.clone()` to `.cloned()` in `get_history` in `src/wallet.rs`.
+
+---
+
+### 2026-08-15 14:24 IST — Prompt #37
+**Prompt:** "what is wrong with deposit function"
+**Context:** Learner asked for review of `deposit` method in `src/wallet.rs`.
+**Output Summary:** AI explained the Rust ownership/move issue on `entry(currency)` vs `currency.clone()`, incremented hints used counter in `EXERCISES.md` to 2/3, and logged update in `LOGS.md`.
+**Outcome / Next Step:** Learner clones `currency` inside `entry(currency.clone())` or constructs `TransactionRecord` before `entry`.
+
+---
+
+### 2026-08-15 16:48 IST — Prompt #38
+**Prompt:** "Done /next"
+**Context:** Learner completed `TransactionRecord` audit history logging and `get_history` iterator filtering in `src/wallet.rs`.
+**Output Summary:** AI validated `src/wallet.rs` implementation, verified Module 1.7 completion per Rule 14, and proposed marking Module 1.7 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.7 completion, then moves to Module 1.8 (Portfolio Management: Your Holdings).
+
+---

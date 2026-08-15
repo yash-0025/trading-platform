@@ -78,7 +78,7 @@ impl Wallet {
 ```
 
 **Constraints:** Log all successful deposits and withdrawals into `self.history`, and use an iterator chain (`.iter().filter(...).cloned().collect()`) for filtering.
-**Hints used:** 0/3
+**Hints used:** 2/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---

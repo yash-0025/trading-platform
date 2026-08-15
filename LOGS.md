@@ -33,6 +33,36 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-15 14:24 IST — [EXERCISES.md] — Incremented Hints Used (2/3) for Exercise 1.7-2</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner asked what was wrong in `deposit` function (`currency` move issue). Incremented Hints used to 2/3.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 1/3
++ **Hints used:** 2/3
+```
+
+</details>
+
+<details>
+<summary>2026-08-15 14:11 IST — [EXERCISES.md] — Incremented Hints Used (1/3) for Exercise 1.7-2</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner asked for help on `get_history` in Exercise 1.7-2 (`cloned()` vs `clone()`). Incremented Hints used to 1/3.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 0/3
++ **Hints used:** 1/3
+```
+
+</details>
+
+<details>
 <summary>2026-08-14 23:55 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 21 & Exercise 1.7-2</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md
