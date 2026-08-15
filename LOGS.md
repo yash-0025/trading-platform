@@ -33,6 +33,61 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-15 23:15 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.8-2 & Exercise 1.9-1</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Opened Solution 1.8-2 after learner completed `Portfolio` in `src/portfolio.rs`. Moved Exercise 1.8-2 to solved in EXERCISES.md, and added Exercise 1.9-1 skeleton.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.8-2 — `Portfolio` Tracker Engine & Custom Sorting (`HashMap`, `sort_by`, `PartialOrd`)
++ **Reference Implementation:**
++ pub fn add_position(&mut self, symbol: String, quantity: f64, price: f64) { ... }
++ pub fn get_sorted_positions(&self, current_prices: &HashMap<String, f64>) -> Vec<Position> { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.8-2 — `Portfolio` Tracker Engine & Custom Sorting (`HashMap`, `sort_by`, `PartialOrd`) [open]
++ ### Exercise 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`) [open]
++ ### Exercise 1.8-2 — `Portfolio` Tracker Engine & Custom Sorting (`HashMap`, `sort_by`, `PartialOrd`) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-15 23:14 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.8 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner explicitly confirmed marking Module 1.8 (Portfolio Management: Your Holdings) complete `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.8 — Portfolio Management: Your Holdings — 2026-08-15
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - Weighted average cost basis state tracking across multiple position fills.
++ - `HashMap` vs `BTreeMap` ordering trade-offs.
++ - Safe floating-point (`f64`) sorting using `PartialOrd::partial_cmp` and `unwrap_or(Ordering::Equal)`.
++ - Entry upserting via `.and_modify()` and `.or_insert_with()`.
++ **Code I wrote / project progress:**
++ - Created `src/portfolio.rs` with `Position` and `Portfolio`.
++ - Linked `mod portfolio;` in `src/main.rs`.
+
+[ROADMAP.md]
+- - [ ] **You build:** Portfolio tracker showing: current holdings, average buy price...
+- - [ ] **Concepts:** `BTreeMap` vs `HashMap` — sorted vs unsorted, when each fits...
+- - [ ] **Architecture:** Portfolio management at scale. How brokers calculate P&L...
+- - [ ] **Deliverable:** Portfolio view with real-time P&L calculation. Multiple sort options...
++ - [x] **You build:** Portfolio tracker showing: current holdings, average buy price...
++ - [x] **Concepts:** `BTreeMap` vs `HashMap` — sorted vs unsorted, when each fits...
++ - [x] **Architecture:** Portfolio management at scale. How brokers calculate P&L...
++ - [x] **Deliverable:** Portfolio view with real-time P&L calculation. Multiple sort options...
+```
+
+</details>
+
+<details>
 <summary>2026-08-15 19:09 IST — [EXERCISES.md] — Incremented Hints Used (1/3) for Exercise 1.8-2</summary>
 
 - **File:** EXERCISES.md

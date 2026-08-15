@@ -117,3 +117,14 @@
 **Code I wrote / project progress:**
 - Created `src/wallet.rs` with `Wallet`, `TransactionRecord`, and `TransactionType`.
 - Linked `mod wallet;` in `src/main.rs`.
+
+### Module 1.8 — Portfolio Management: Your Holdings — 2026-08-15
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Weighted average cost basis state tracking across multiple position fills.
+- `HashMap` vs `BTreeMap` ordering trade-offs.
+- Safe floating-point (`f64`) sorting using `PartialOrd::partial_cmp` and `unwrap_or(Ordering::Equal)`.
+- Entry upserting via `.and_modify()` and `.or_insert_with()`.
+**Code I wrote / project progress:**
+- Created `src/portfolio.rs` with `Position` and `Portfolio`.
+- Linked `mod portfolio;` in `src/main.rs`.

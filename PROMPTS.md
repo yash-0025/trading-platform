@@ -351,3 +351,11 @@
 **Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.8 completion, then moves to Module 1.9 (Market Data Feed: Prices & Orderbooks).
 
 ---
+
+### 2026-08-15 23:14 IST — Prompt #43
+**Prompt:** "Approved"
+**Context:** Learner approved Module 1.8 completion and committed changes to Git.
+**Output Summary:** AI updated LEARNING.md (marked Module 1.8 `[x]`) and ROADMAP.md (checked off Module 1.8 items), logged edits in LOGS.md, kicked off Module 1.9 (Order Management Basic) with Overview, ASCII OMS Architecture diagram, Concept 24 (Newtype Pattern & Order Lifecycle State Machine with `OrderId(u64)`, `OrderStatus`, `OrderSide` - Stamped Order Ticket & Official Order Status Tag analogy), committed Concept 24 word-for-word to EXAMPLES.md, created Exercise 1.9-1 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner creates `src/orders.rs` and implements `OrderId`, `OrderSide`, `OrderStatus`, and `Order` with `cancel`.
+
+---

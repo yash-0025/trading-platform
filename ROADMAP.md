@@ -109,10 +109,10 @@ Every module has:
 ---
 
 ### Module 1.8 — Portfolio Management: Your Holdings
-- [ ] **You build:** Portfolio tracker showing: current holdings, average buy price, unrealized P&L per asset, total portfolio value. Sorting by value, by P&L, alphabetically.
-- [ ] **Concepts:** `BTreeMap` vs `HashMap` — sorted vs unsorted, when each fits · Advanced iterator patterns: `.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`, `.take()`, `.skip()` · `Ord`, `PartialOrd` for custom sorting · `Display` trait for formatted output · Floating-point precision issues in financial calculations · `f64` vs integer-based price representation
-- [ ] **Architecture:** Portfolio management at scale. How brokers calculate P&L. FIFO vs LIFO vs average cost basis.
-- [ ] **Deliverable:** Portfolio view with real-time P&L calculation. Multiple sort options. Formatted table output.
+- [x] **You build:** Portfolio tracker showing: current holdings, average buy price, unrealized P&L per asset, total portfolio value. Sorting by value, by P&L, alphabetically.
+- [x] **Concepts:** `BTreeMap` vs `HashMap` — sorted vs unsorted, when each fits · Advanced iterator patterns: `.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`, `.take()`, `.skip()` · `Ord`, `PartialOrd` for custom sorting · `Display` trait for formatted output · Floating-point precision issues in financial calculations · `f64` vs integer-based price representation
+- [x] **Architecture:** Portfolio management at scale. How brokers calculate P&L. FIFO vs LIFO vs average cost basis.
+- [x] **Deliverable:** Portfolio view with real-time P&L calculation. Multiple sort options. Formatted table output.
 
 ---
 

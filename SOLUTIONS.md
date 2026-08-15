@@ -650,7 +650,63 @@ impl Position {
 
 ---
 
+### Solution 1.8-2 — `Portfolio` Tracker Engine & Custom Sorting (`HashMap`, `sort_by`, `PartialOrd`)
+
+**Reference Implementation:**
+```rust
+// src/portfolio.rs:
+use std::collections::HashMap;
+use std::cmp::Ordering;
+
+#[derive(Debug, Default)]
+pub struct Portfolio {
+    pub positions: HashMap<String, Position>,
+}
+
+impl Portfolio {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn add_position(&mut self, symbol: String, quantity: f64, price: f64) {
+        self.positions
+            .entry(symbol.clone())
+            .and_modify(|pos| pos.update(quantity, price))
+            .or_insert_with(|| Position::new(symbol, quantity, price));
+    }
+
+    pub fn get_position(&self, symbol: &str) -> Option<&Position> {
+        self.positions.get(symbol)
+    }
+
+    pub fn get_sorted_positions(&self, current_prices: &HashMap<String, f64>) -> Vec<Position> {
+        let mut positions: Vec<Position> = self.positions.values().cloned().collect();
+        positions.sort_by(|a, b| {
+            let price_a = current_prices.get(&a.symbol).copied().unwrap_or(0.0);
+            let price_b = current_prices.get(&b.symbol).copied().unwrap_or(0.0);
+            b.unrealized_pnl(price_b)
+             .partial_cmp(&a.unrealized_pnl(price_a))
+             .unwrap_or(Ordering::Equal)
+        });
+
+        positions
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `.and_modify(|pos| pos.update(quantity, price))` — Updates existing `Position` in-place when symbol exists.
+- `.or_insert_with(|| Position::new(symbol, quantity, price))` — Lazily constructs new `Position` when symbol is vacant.
+- `positions.sort_by(|a, b| ...)` — Sorts position vector in descending order by unrealized P&L.
+- `b.unrealized_pnl(price_b).partial_cmp(&a.unrealized_pnl(price_a)).unwrap_or(Ordering::Equal)` — Safely handles floating-point comparisons.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/portfolio.rs` correctly used `.and_modify().or_insert_with()` and implemented descending P&L sorting!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 
