@@ -335,3 +335,19 @@
 **Outcome / Next Step:** Learner implements `Portfolio` manager with `add_position`, `get_position`, and `get_sorted_positions` in `src/portfolio.rs`.
 
 ---
+
+### 2026-08-15 19:09 IST — Prompt #41
+**Prompt:** "I am not able to get how to write this occupied thing"
+**Context:** Learner asked for Tier 1 hint on handling `HashMap::entry` (`.and_modify()` / `Occupied` vs `Vacant`) in `add_position`.
+**Output Summary:** AI explained the two common ways to handle `HashMap::entry` (`.and_modify().or_insert_with()` and `match entry`), incremented hints used counter in `EXERCISES.md` to 1/3, and logged update in `LOGS.md`.
+**Outcome / Next Step:** Learner completes `add_position` in `src/portfolio.rs`.
+
+---
+
+### 2026-08-15 23:12 IST — Prompt #42
+**Prompt:** "Done /next"
+**Context:** Learner completed `Portfolio` manager with `add_position`, `get_position`, and `get_sorted_positions` in `src/portfolio.rs`.
+**Output Summary:** AI validated `src/portfolio.rs` implementation, verified Module 1.8 completion per Rule 14, and proposed marking Module 1.8 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.8 completion, then moves to Module 1.9 (Market Data Feed: Prices & Orderbooks).
+
+---

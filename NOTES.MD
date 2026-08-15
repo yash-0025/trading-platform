@@ -266,3 +266,8 @@
 |  | unrealized_pnl = qty * (current_market_price - avg_cost)          |  |
 |  +-------------------------------------------------------------------+  |
 +-------------------------------------------------------------------------+
+
+
+#### Portfolio Tracker Engine and Custom Position Sorting
+#### Data Structure Ordering and Custom Vector sorting
+- `BTreeMap` vs `HashMap` , `.sort_by()`, `PartialOrd::partial_cmp`

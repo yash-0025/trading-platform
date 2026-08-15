@@ -33,6 +33,21 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-15 19:09 IST — [EXERCISES.md] — Incremented Hints Used (1/3) for Exercise 1.8-2</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner asked how to write occupied/vacant handling on `HashMap::entry` in `add_position`. Incremented Hints used to 1/3.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 0/3
++ **Hints used:** 1/3
+```
+
+</details>
+
+<details>
 <summary>2026-08-15 17:34 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.8-1 & Exercise 1.8-2</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

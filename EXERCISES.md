@@ -79,7 +79,7 @@ impl Portfolio {
 ```
 
 **Constraints:** Use `HashMap::entry` for upserting positions and `sort_by` with `PartialOrd::partial_cmp` for descending P&L sorting.
-**Hints used:** 0/3
+**Hints used:** 1/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
