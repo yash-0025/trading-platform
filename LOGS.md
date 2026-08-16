@@ -33,6 +33,64 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-16 15:54 IST — [Cargo.toml / EXAMPLES.md / EXERCISES.md / SOLUTIONS.md] — Added serde_json, Concept 26, Exercise 1.10-1, & Solution 1.9-2</summary>
+
+- **Files:** Cargo.toml, EXAMPLES.md, EXERCISES.md, SOLUTIONS.md
+- **Change type:** Modified
+- **Reason:** Added `serde_json = "1.0"` to Cargo.toml for file persistence, unlocked Solution 1.9-2 in SOLUTIONS.md, added Concept 26 (Serde Data Serialization & File Paths - Universal Packing Crate & Shipping Manifest analogy) to EXAMPLES.md word-for-word per Rule 8, moved Exercise 1.9-2 to solved in EXERCISES.md, and added Exercise 1.10-1 skeleton.
+
+```diff
+[Cargo.toml]
++ serde_json = "1.0"
+
+[EXAMPLES.md]
++ ### 26. Serde Data Serialization & File Paths (`serde`, `Serialize`/`Deserialize`, `PathBuf` vs `Path`) — The Universal Packing Crate & Shipping Manifest
+
+[SOLUTIONS.md]
++ ### Solution 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation)
+
+[EXERCISES.md]
+- ### Exercise 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation) [open]
++ ### Exercise 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`) [open]
++ ### Exercise 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-16 15:53 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.9 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner explicitly confirmed marking Module 1.9 (Order Management Basic) complete `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.9 — Order Management (Basic) — 2026-08-16
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - Zero-cost type safety using the Newtype pattern (`struct OrderId(pub u64)`).
++ - Enforcing domain invariants via enum state machines (`OrderStatus::Pending -> Cancelled`).
++ - The Builder Pattern with method chaining (`mut self` returns) and atomic validation on `.build()`.
++ - Struct variant error construction (`TradingError::InvalidOrder { message: String }`).
++ **Code I wrote / project progress:**
++ - Created `src/orders.rs` with `OrderId`, `OrderSide`, `OrderStatus`, `Order`, and `OrderBuilder`.
++ - Linked `mod orders;` in `src/main.rs`.
+
+[ROADMAP.md]
+- - [ ] **You build:** Submit market/limit orders, cancel pending orders...
+- - [ ] **Concepts:** Builder pattern — `OrderBuilder` with method chaining...
+- - [ ] **Architecture:** Order Management System (OMS) design. Order lifecycle...
+- - [ ] **Deliverable:** Full order CRUD. State transitions enforced by types...
++ - [x] **You build:** Submit market/limit orders, cancel pending orders...
++ - [x] **Concepts:** Builder pattern — `OrderBuilder` with method chaining...
++ - [x] **Architecture:** Order Management System (OMS) design. Order lifecycle...
++ - [x] **Deliverable:** Full order CRUD. State transitions enforced by types...
+```
+
+</details>
+
+<details>
 <summary>2026-08-16 15:01 IST — [errors.rs / EXERCISES.md] — Added InvalidOrder Variant & Incremented Hints (1/3)</summary>
 
 - **Files:** src/errors.rs, EXERCISES.md

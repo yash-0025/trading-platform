@@ -38,65 +38,46 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation)
+### Exercise 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`)
 **Status:** open
-**Goal:** In `src/orders.rs`, implement `OrderBuilder` struct supporting method chaining (`symbol`, `side`, `qty`, `price`) and `build(self, id: u64) -> Result<Order, TradingError>`.
+**Goal:** Create `src/storage.rs` with `StorageEngine` supporting `save_json<T: Serialize>(path: &Path, data: &T)` and `load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError>`.
 
 **Skeleton:**
 ```rust
-// In src/orders.rs:
+// Create src/storage.rs:
+use std::fs;
+use std::path::Path;
+use serde::{Serialize, de::DeserializeOwned};
 use crate::errors::TradingError;
 
-#[derive(Debug, Default)]
-pub struct OrderBuilder {
-    pub symbol: Option<String>,
-    pub side: Option<OrderSide>,
-    pub qty: Option<u64>,
-    pub price: Option<u64>,
-}
+pub struct StorageEngine;
 
-impl OrderBuilder {
-    pub fn new() -> Self {
-        Self::default()
-    }
+impl StorageEngine {
+    // TODO(1): Implement save_json<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError>
+    // 1. Serialize data to pretty JSON string using serde_json::to_string_pretty(data).
+    // 2. Write string to file using fs::write(path, json_str)?.
+    // Return Ok(()).
 
-    pub fn symbol(mut self, symbol: String) -> Self {
-        self.symbol = Some(symbol);
-        self
-    }
-
-    pub fn side(mut self, side: OrderSide) -> Self {
-        self.side = Some(side);
-        self
-    }
-
-    pub fn qty(mut self, qty: u64) -> Self {
-        self.qty = Some(qty);
-        self
-    }
-
-    pub fn price(mut self, price: u64) -> Self {
-        self.price = Some(price);
-        self
-    }
-
-    // TODO(1): Implement build(self, id: u64) -> Result<Order, TradingError>
-    // Validate:
-    // 1. symbol must be Some and non-empty (if missing/empty, return Err(TradingError::InvalidOrder("Missing symbol".into())))
-    // 2. side must be Some (if missing, return Err(TradingError::InvalidOrder("Missing order side".into())))
-    // 3. qty must be Some and > 0 (if missing/0, return Err(TradingError::InvalidOrder("Quantity must be greater than zero".into())))
-    // 4. price must be Some and > 0 (if missing/0, return Err(TradingError::InvalidOrder("Price must be greater than zero".into())))
-    // If all valid, return Ok(Order::new(id, symbol, side, qty, price)).
+    // TODO(2): Implement load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError>
+    // 1. Read JSON file content using fs::read_to_string(path)?.
+    // 2. Deserialize string using serde_json::from_str::<T>(&json_str).
+    // Return Ok(data).
 }
 ```
 
-**Constraints:** Support fluent method chaining returning `Self`, and return `Result<Order, TradingError>` on `build`.
-**Hints used:** 1/3
+**Constraints:** Use `&Path` slice reference for borrowed file paths, and return `Result<T, TradingError>` with automatic `From` error conversion for `std::io::Error`.
+**Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
 ## Solved
+
+### Exercise 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation)
+**Status:** solved
+**Goal:** In `src/orders.rs`, implement `OrderBuilder` struct supporting method chaining (`symbol`, `side`, `qty`, `price`) and `build(self, id: u64) -> Result<Order, TradingError>`.
+**Note:** Solved in `src/orders.rs`. Checked against `SOLUTIONS.md` — exact match on `OrderBuilder` method chaining, zero/empty checks, and `TradingError::InvalidOrder` return.
+
 
 ### Exercise 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`)
 **Status:** solved

@@ -117,10 +117,10 @@ Every module has:
 ---
 
 ### Module 1.9 — Order Management (Basic)
-- [ ] **You build:** Submit market/limit orders, cancel pending orders, view order history with status tracking. Order lifecycle: `Pending → Filled/Cancelled/Rejected`. Order ID generation.
-- [ ] **Concepts:** Builder pattern — `OrderBuilder` with method chaining · Newtype pattern — `struct OrderId(u64)` for type safety · `enum` with data variants · State machine pattern via enums · `Vec<Order>` with iterator-based filtering · Sorting and searching · `Eq`, `PartialEq`, `Hash` for ID types
-- [ ] **Architecture:** Order Management System (OMS) design. Order lifecycle in real exchanges. Why order IDs must be globally unique. How Zerodha/Binance track order state.
-- [ ] **Deliverable:** Full order CRUD. State transitions enforced by types. Order history with filtering by status, asset, date.
+- [x] **You build:** Submit market/limit orders, cancel pending orders, view order history with status tracking. Order lifecycle: `Pending → Filled/Cancelled/Rejected`. Order ID generation.
+- [x] **Concepts:** Builder pattern — `OrderBuilder` with method chaining · Newtype pattern — `struct OrderId(u64)` for type safety · `enum` with data variants · State machine pattern via enums · `Vec<Order>` with iterator-based filtering · Sorting and searching · `Eq`, `PartialEq`, `Hash` for ID types
+- [x] **Architecture:** Order Management System (OMS) design. Order lifecycle in real exchanges. Why order IDs must be globally unique. How Zerodha/Binance track order state.
+- [x] **Deliverable:** Full order CRUD. State transitions enforced by types. Order history with filtering by status, asset, date.
 
 ---
 

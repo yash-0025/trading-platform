@@ -128,3 +128,14 @@
 **Code I wrote / project progress:**
 - Created `src/portfolio.rs` with `Position` and `Portfolio`.
 - Linked `mod portfolio;` in `src/main.rs`.
+
+### Module 1.9 — Order Management (Basic) — 2026-08-16
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Zero-cost type safety using the Newtype pattern (`struct OrderId(pub u64)`).
+- Enforcing domain invariants via enum state machines (`OrderStatus::Pending -> Cancelled`).
+- The Builder Pattern with method chaining (`mut self` returns) and atomic validation on `.build()`.
+- Struct variant error construction (`TradingError::InvalidOrder { message: String }`).
+**Code I wrote / project progress:**
+- Created `src/orders.rs` with `OrderId`, `OrderSide`, `OrderStatus`, `Order`, and `OrderBuilder`.
+- Linked `mod orders;` in `src/main.rs`.
