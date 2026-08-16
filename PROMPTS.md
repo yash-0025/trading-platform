@@ -367,3 +367,35 @@
 **Outcome / Next Step:** Learner implements `OrderBuilder` with method chaining and validation in `src/orders.rs`.
 
 ---
+
+### 2026-08-16 15:01 IST — Prompt #45
+**Prompt:** "Need help with the solution please check mine and help me with it"
+**Context:** Learner asked for Tier 1 hint on `OrderBuilder::build` validation logic and error variants in `src/orders.rs`.
+**Output Summary:** AI added `TradingError::InvalidOrder` variant to `src/errors.rs`, gave Tier 1 hint explaining zero/empty checks on `symbol.is_empty()`, `qty == 0`, `price == 0`, incremented hints used counter in `EXERCISES.md` to 1/3, and logged update in `LOGS.md`.
+**Outcome / Next Step:** Learner updates `build` method in `src/orders.rs`.
+
+---
+
+### 2026-08-16 15:25 IST — Prompt #46
+**Prompt:** "why i am getting this error - E0533 expected value, found struct variant TradingError::InvalidOrder"
+**Context:** Learner encountered `E0533` tuple vs struct variant error when instantiating `TradingError::InvalidOrder`.
+**Output Summary:** AI explained Rust struct variant syntax `{ message: "..." }` vs tuple variant syntax `(...)`, and pointed out that `OrderSide` does not have `.is_empty()`.
+**Outcome / Next Step:** Learner fixes `TradingError::InvalidOrder { message: "...".into() }` in `src/orders.rs`.
+
+---
+
+### 2026-08-16 15:38 IST — Prompt #47
+**Prompt:** "cargo check error E0599 no method named is_empty found for enum OrderSide"
+**Context:** Learner encountered `E0599` calling `side.is_empty()` on `OrderSide` enum.
+**Output Summary:** AI explained that `OrderSide` is an enum (not a String) and `ok_or_else` already handles missing side, directing learner to remove `if side.is_empty()`.
+**Outcome / Next Step:** Learner removes `if side.is_empty()` in `src/orders.rs`.
+
+---
+
+### 2026-08-16 15:40 IST — Prompt #48
+**Prompt:** "Done /next"
+**Context:** Learner completed `OrderBuilder` with method chaining and validation in `src/orders.rs`.
+**Output Summary:** AI validated `src/orders.rs` implementation, verified Module 1.9 completion per Rule 14, and proposed marking Module 1.9 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.9 completion, then moves to Module 1.10 (Market Data Feed: Prices & Orderbooks).
+
+---

@@ -91,7 +91,7 @@ impl OrderBuilder {
 ```
 
 **Constraints:** Support fluent method chaining returning `Self`, and return `Result<Order, TradingError>` on `build`.
-**Hints used:** 0/3
+**Hints used:** 1/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---

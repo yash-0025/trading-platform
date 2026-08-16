@@ -308,3 +308,5 @@
 ```
 
 - `Newtype Pattern` and `Order Lifecycle state machine`
+- The Builder Pattern and method => Chaining OrderBuilder , Fluent Interface, Validation
+- Encapsulation and Staging Incomplete state

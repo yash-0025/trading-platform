@@ -33,6 +33,25 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-16 15:01 IST — [errors.rs / EXERCISES.md] — Added InvalidOrder Variant & Incremented Hints (1/3)</summary>
+
+- **Files:** src/errors.rs, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added `InvalidOrder { message: String }` variant to `TradingError` in `src/errors.rs` so `TradingError::InvalidOrder` works, and incremented Hints used to 1/3 in EXERCISES.md.
+
+```diff
+[src/errors.rs]
++ #[error("Invalid order: {message}")]
++ InvalidOrder { message: String},
+
+[EXERCISES.md]
+- **Hints used:** 0/3
++ **Hints used:** 1/3
+```
+
+</details>
+
+<details>
 <summary>2026-08-16 01:31 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.9-1 & Exercise 1.9-2</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

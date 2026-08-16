@@ -12,6 +12,9 @@ pub enum TradingError {
     #[error("Invalid order Quantity: {message}")]
     InvalidQuantity { message: String},
 
+    #[error("Invalid order: {message}")]
+    InvalidOrder { message: String},
+
     #[error("I/O error: {0} ")]
     Io(#[from] std::io::Error),
 
