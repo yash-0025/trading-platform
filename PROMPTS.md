@@ -583,3 +583,19 @@
 **Outcome / Next Step:** Learner verifies `filter_transactions` in `src/wallet.rs` and moves to Gap 3 (Module 1.8: `BTreeMap`, `.zip()`, `.enumerate()`, `.flat_map()`, `Display` trait in `src/portfolio.rs`).
 
 ---
+
+### 2026-08-17 22:57 IST — Prompt #72
+**Prompt:** "Let's move to next"
+**Context:** Learner completed Exercise 1.7-3 (`filter_transactions` in `src/wallet.rs`). Moving to Gap 3 (Module 1.8: `BTreeMap`, `.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`, `Display` trait).
+**Output Summary:** AI introduced Concept 32 (BTreeMap vs HashMap, Advanced Iterator Adapters, Display Trait), committed word-for-word to EXAMPLES.md, created Exercise 1.8-3 skeleton in EXERCISES.md with 4 TODOs, logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements 4 TODOs in `src/portfolio.rs`: `add_to_sorted` (BTreeMap), `portfolio_report` (`.enumerate()` + `.chain()`), `Display for Position`, and `Display for Portfolio`.
+
+---
+
+### 2026-08-17 23:25 IST — Prompt #73
+**Prompt:** "GIve me solution"
+**Context:** Learner attempted code changes in `src/portfolio.rs` (adding `BTreeMap` field, `fmt` import, and starting `add_to_sorted`), and requested the solution for Exercise 1.8-3.
+**Output Summary:** AI placed Solution 1.8-3 in exact numerical position in SOLUTIONS.md, appended plain English explanation to SOLUTIONS_EXPLANATIONS.md per Rule 19, moved Exercise 1.8-3 to Solved in EXERCISES.md, logged diffs in LOGS.md, and walked through line-by-line breakdown and comparison.
+**Outcome / Next Step:** Learner completes `src/portfolio.rs` with `add_to_sorted`, `portfolio_report`, and `Display` impls, verifies compilation with `cargo check`, and moves to Gap 4 (Module 1.9: Builder Pattern, Newtype Pattern in `src/orders.rs`).
+
+---

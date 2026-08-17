@@ -33,6 +33,48 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-17 23:25 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.8-3 & Solved Exercise 1.8-3 in Exact Numerical Order</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed attempt for Exercise 1.8-3 in `src/portfolio.rs` and requested solution. Placed Solution 1.8-3 in exact numerical position in SOLUTIONS.md, added plain English thought translation to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.8-3 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.8-3 — `BTreeMap` Portfolio View, Advanced Iterator Chains & `Display` Trait (`.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`, `fmt::Display`)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.8-3 — `BTreeMap` Portfolio View, Advanced Iterator Chains & `Display` Trait
++ [Plain English thought translation + line-by-line breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.8-3 — `BTreeMap` Portfolio View, Advanced Iterator Chains & `Display` Trait [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 22:57 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 32 & Exercise 1.8-3</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Gap 3 (Module 1.8): `BTreeMap`, `.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`, and `Display` trait are listed in ROADMAP.md but never coded in `src/portfolio.rs`. Added Concept 32 word-for-word to EXAMPLES.md and created Exercise 1.8-3 skeleton in EXERCISES.md.
+
+```diff
+[EXAMPLES.md]
++ ### 32. `BTreeMap` vs `HashMap`, Advanced Iterator Adapters (`.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`), and `Display` Trait Formatting
++ [ELI5 analogies + deep technical breakdowns for all 6 concepts]
+
+[EXERCISES.md]
++ ### Exercise 1.8-3 — `BTreeMap` Portfolio View, Advanced Iterator Chains & `Display` Trait
++ **Status:** open
++ [4 TODOs: add_to_sorted BTreeMap, portfolio_report with .enumerate()/.chain(), Display for Position, Display for Portfolio]
+```
+
+</details>
+
+<details>
 <summary>2026-08-17 22:45 IST — [.agents/workflows/next.md] — Compressed from 12,928 to 10,380 bytes (all content preserved)</summary>
 
 - **File:** .agents/workflows/next.md

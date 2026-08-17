@@ -1,10 +1,12 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, BTreeMap};
 use std::cmp::Ordering;
 use serde::{Serialize, Deserialize};
+use std::fmt;
 
 #[derive(Debug, Default, Serialize, Deserialize)]
 pub struct Portfolio {
     pub positions: HashMap<String, Position>,
+    pub sorted_holdings: BTreeMap<String, Position>,
 }
 
 impl Portfolio {
@@ -54,7 +56,39 @@ impl Portfolio {
 
         positions
     }
+
+    pub fn add_to_sorted(&mut self, symbol: String, quantity: f64, price: f64) {
+        self.add_position(symbol.clone(), quantity, price);
+        self.sorted_holdings
+            .entry(symbol.clone())
+            .and_modify(|pos| pos.update(quantity, price))
+            .or_insert_with(|| Position::new(symbol, quantity, price));
+    }
+
+    pub fn portfolio_report(&self, _current_prices: &HashMap<String, f64>) -> Vec<String> {
+        let lines = self.sorted_holdings.values().enumerate().map(|(idx, pos)| {
+            format!("# {}: {}", idx + 1, pos)
+        });
+        let summary = std::iter::once(format!("Total Positions: {}", self.sorted_holdings.len()));
+        lines.chain(summary).collect::<Vec<String>>()
+    }
 }
+
+impl fmt::Display for Position {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}: {:.2} shares @ avg ${:.2}", self.symbol, self.quantity, self.avg_cost)
+    }
+}
+
+impl fmt::Display for Portfolio {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        for (idx, pos) in self.sorted_holdings.values().enumerate() {
+            writeln!(f, "# {}: {}", idx + 1, pos)?;
+        }
+        Ok(())
+    }
+}
+
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Position {

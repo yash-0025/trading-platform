@@ -29,6 +29,21 @@
 
 ---
 
+### Solution 1.8-3 — `BTreeMap` Portfolio View, Advanced Iterator Chains & `Display` Trait (`.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`, `fmt::Display`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Keep a second map of positions in a `BTreeMap` so that whenever I list my portfolio holdings, they automatically come out sorted alphabetically (AAPL, BTC, GOOG, TSLA). For the portfolio report, number each position sequentially (`#1`, `#2`, `#3`), turn each into a formatted text string, attach a summary footer line at the end, and return the whole list. For printing, give `Position` and `Portfolio` their own name tag printers using `Display` so `println!("{}", portfolio)` prints a clean, user-friendly report."*
+
+#### 🔍 Line-by-Line Breakdown:
+1. `pub sorted_holdings: BTreeMap<String, Position>` — BTreeMap automatically maintains keys in sorted order, guaranteeing alphabetical iteration.
+2. `self.sorted_holdings.entry(symbol.clone()).and_modify(...).or_insert_with(...)` — Updates or creates position in the sorted map using identical Entry API semantics.
+3. `self.sorted_holdings.values().enumerate().map(...)` — Uses `.enumerate()` to pair each sorted position with a 0-based rank index (`0, 1, 2...`).
+4. `lines.chain(summary).collect::<Vec<String>>()` — Uses `.chain()` to append a single footer line iterator (`std::iter::once`) onto the position lines before collecting.
+5. `impl fmt::Display for Position` — Implements custom user-facing output formatting using `write!(f, "{}: {:.2} shares @ avg ${:.2}", ...)`.
+6. `impl fmt::Display for Portfolio` — Iterates sorted holdings with `.enumerate()` and uses `writeln!(f, ...)?` to format each position on its own line.
+
+---
+
 ### Solution 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
 
 #### 🗣️ Plain English "Thought Translation":

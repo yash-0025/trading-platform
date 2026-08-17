@@ -469,6 +469,45 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 32. `BTreeMap` vs `HashMap`, Advanced Iterator Adapters (`.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`), and `Display` Trait Formatting
+
+**ELI5 Analogy: The Two Filing Cabinets, The Assembly Line Combo Tools, and The Name Tag Printer**
+
+* **`BTreeMap` vs `HashMap` — Two Types of Filing Cabinet**:
+  - `HashMap` is the giant warehouse bin — you toss files in randomly, and retrieval is instant (O(1)) because every file has a hash-code sticker, but if you open the bin, the files are in NO order whatsoever.
+  - `BTreeMap` is the alphabetical filing cabinet — files are always kept in sorted key order (O(log n) lookup). When you open the drawer and read from front to back, you get A → B → C → Z automatically. Use `BTreeMap` when you need sorted iteration (like listing portfolio holdings alphabetically).
+
+* **`.zip()` — The Zipper Merger**:
+  Think of two parallel conveyor belts: Belt A carries stock symbols `["AAPL", "GOOG", "TSLA"]` and Belt B carries prices `[150.0, 2800.0, 700.0]`. `.zip()` is the zipper mechanism that pairs them together into tuples: `("AAPL", 150.0)`, `("GOOG", 2800.0)`, `("TSLA", 700.0)`. If one belt is shorter, the zipper stops when the shorter belt runs out.
+
+* **`.enumerate()` — The Ticket Counter**:
+  A ticket machine that stamps a sequential number on every item as it passes: item 0, item 1, item 2... It yields `(index, value)` tuples. Useful for "show me the rank of each position."
+
+* **`.flat_map()` — The Box Unpacker**:
+  Each box on the conveyor contains multiple items inside. `.flat_map()` opens every box and puts all the inner items onto a single flat conveyor belt. A `Vec<Vec<Order>>` (list of lists) becomes a single flat `Iterator<Order>`.
+
+* **`.chain()` — The Belt Connector**:
+  Two separate conveyor belts joined end-to-end. All items from Belt A come out first, then all items from Belt B. Useful for combining "active positions" + "closed positions" into one report.
+
+* **`Display` Trait — The Name Tag Printer**:
+  When you implement `Display` for your `Position` struct, you're building a name tag printer. Every time someone calls `println!("{}", position)`, the printer produces a human-readable formatted string like `"BTC: 2.5 shares @ $41,200.00 (P&L: +$3,500.00)"`.
+
+**Deep Technical Breakdown:**
+
+- **`BTreeMap<K, V>`**: A self-balancing binary search tree (B-Tree) from `std::collections`. Keys must implement `Ord` (total ordering). Iteration yields keys in sorted order. Use when: sorted output needed, range queries (`range(start..end)`), or deterministic iteration order matters.
+
+- **`.zip(other)`**: Combines two iterators into a single iterator of pairs `(A, B)`. Stops at the shorter iterator. Signature: `fn zip<U>(self, other: U) -> Zip<Self, U::IntoIter> where U: IntoIterator`.
+
+- **`.enumerate()`**: Wraps an iterator to yield `(usize, T)` pairs with a zero-based index. No allocation — just tracks a counter internally.
+
+- **`.flat_map(f)`**: Applies closure `f` to each element, where `f` returns an iterator, then flattens all resulting iterators into one. Equivalent to `.map(f).flatten()`. Signature: `fn flat_map<U, F>(self, f: F) -> FlatMap<Self, U, F> where F: FnMut(Self::Item) -> U, U: IntoIterator`.
+
+- **`.chain(other)`**: Concatenates two iterators sequentially. First exhausts `self`, then yields from `other`. Both must yield the same `Item` type.
+
+- **`impl fmt::Display for T`**: Requires implementing `fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`. This is what `{}` in `format!`/`println!` calls. Unlike `Debug` (which uses `{:?}` and can be `#[derive]`'d), `Display` must be manually implemented and represents the user-facing string representation.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
 
 

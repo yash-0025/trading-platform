@@ -770,6 +770,81 @@ impl Portfolio {
 
 ---
 
+### Solution 1.8-3 — `BTreeMap` Portfolio View, Advanced Iterator Chains & `Display` Trait (`.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`, `fmt::Display`)
+
+**Reference Implementation:**
+```rust
+// src/portfolio.rs:
+use std::collections::{HashMap, BTreeMap};
+use std::cmp::Ordering;
+use serde::{Serialize, Deserialize};
+use std::fmt;
+
+#[derive(Debug, Default, Serialize, Deserialize)]
+pub struct Portfolio {
+    pub positions: HashMap<String, Position>,
+    pub sorted_holdings: BTreeMap<String, Position>,
+}
+
+impl Portfolio {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn add_position(&mut self, symbol: String, quantity: f64, price: f64) {
+        self.positions
+            .entry(symbol.clone())
+            .and_modify(|pos| pos.update(quantity, price))
+            .or_insert_with(|| Position::new(symbol, quantity, price));
+    }
+
+    pub fn add_to_sorted(&mut self, symbol: String, quantity: f64, price: f64) {
+        self.add_position(symbol.clone(), quantity, price);
+        self.sorted_holdings
+            .entry(symbol.clone())
+            .and_modify(|pos| pos.update(quantity, price))
+            .or_insert_with(|| Position::new(symbol, quantity, price));
+    }
+
+    pub fn portfolio_report(&self, _current_prices: &HashMap<String, f64>) -> Vec<String> {
+        let lines = self.sorted_holdings.values().enumerate().map(|(idx, pos)| {
+            format!("# {}: {}", idx + 1, pos)
+        });
+        let summary = std::iter::once(format!("Total Positions: {}", self.sorted_holdings.len()));
+        lines.chain(summary).collect::<Vec<String>>()
+    }
+}
+
+impl fmt::Display for Position {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}: {:.2} shares @ avg ${:.2}", self.symbol, self.quantity, self.avg_cost)
+    }
+}
+
+impl fmt::Display for Portfolio {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        for (idx, pos) in self.sorted_holdings.values().enumerate() {
+            writeln!(f, "# {}: {}", idx + 1, pos)?;
+        }
+        Ok(())
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `pub sorted_holdings: BTreeMap<String, Position>` — BTreeMap guarantees keys (`symbol`) are stored and iterated in sorted alphabetical order.
+- `self.sorted_holdings.entry(symbol.clone()).and_modify(...).or_insert_with(...)` — Applies the exact same entry mutation pattern to `sorted_holdings` as `positions`.
+- `self.sorted_holdings.values().enumerate().map(|(idx, pos)| format!("# {}: {}", idx + 1, pos))` — Iterates sorted positions with 0-based indices, formats each using `Position`'s `Display` implementation.
+- `lines.chain(summary).collect::<Vec<String>>()` — Concatenates formatted position lines with summary footer using `.chain()`.
+- `impl fmt::Display for Position` — Custom `Display` formatting using `write!(f, "{}: {:.2} shares @ avg ${:.2}", ...)` for human-readable output.
+- `impl fmt::Display for Portfolio` — Custom `Display` formatting using `writeln!(f, ...)?` over enumerated BTreeMap values.
+
+**Compared to your attempt:**
+- **Great Start!**: You correctly added `sorted_holdings: BTreeMap<String, Position>` to `Portfolio`, added imports for `BTreeMap` and `fmt`, and started `add_to_sorted`!
+- **Key Completion**: `add_to_sorted` needs `.entry(symbol.clone()).and_modify(|pos| pos.update(quantity, price)).or_insert_with(|| Position::new(symbol, quantity, price))`, and `portfolio_report` uses `.enumerate()` + `.chain()`.
+
+---
+
 ### Solution 1.9-1 — Newtype `OrderId` & `Order` Domain State Machine (`OrderId`, `OrderSide`, `OrderStatus`)
 
 **Reference Implementation:**

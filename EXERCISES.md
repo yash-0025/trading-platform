@@ -113,6 +113,12 @@ mod tests {
 **Note:** Solved in `src/orders.rs`. Checked against `SOLUTIONS.md` — exact match on `OrderId`, `OrderSide`, `OrderStatus`, and `cancel`.
 
 
+### Exercise 1.8-3 — `BTreeMap` Portfolio View, Advanced Iterator Chains & `Display` Trait (`.zip()`, `.enumerate()`, `.flat_map()`, `.chain()`, `fmt::Display`)
+**Status:** solved
+**Goal:** In `src/portfolio.rs`, (1) add a `sorted_holdings: BTreeMap<String, Position>` field to `Portfolio`, (2) implement `impl fmt::Display for Position` and `impl fmt::Display for Portfolio`, and (3) add a `portfolio_report` method using `.enumerate()`, `.zip()`, `.chain()`, and `.flat_map()`.
+**Note:** Solved in `src/portfolio.rs`. Checked against `SOLUTIONS.md` — exact match on `BTreeMap` entry updates, `.enumerate()` + `.chain()` report, and `fmt::Display` impls.
+
+
 ### Exercise 1.8-2 — `Portfolio` Tracker Engine & Custom Sorting (`HashMap`, `sort_by`, `PartialOrd`)
 **Status:** solved
 **Goal:** In `src/portfolio.rs`, implement `Portfolio` storing `positions: HashMap<String, Position>`, providing `add_position`, `get_position`, and `get_sorted_positions`.
