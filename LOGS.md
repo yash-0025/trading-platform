@@ -33,6 +33,61 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-17 17:44 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.10-2 & Exercise 1.11-1</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Opened Solution 1.10-2 after learner completed Exercise 1.10-2 in `src/storage.rs`. Moved Exercise 1.10-2 to solved in EXERCISES.md, and added Exercise 1.11-1 skeleton.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.10-2 — Domain Struct Serde Derives & Round-Trip Persistence Testing (`#[derive(Serialize, Deserialize)]`, `#[test]`)
++ **Reference Implementation:**
++ fn test_storage_rountrip() { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.10-2 — Domain Struct Serde Derives & Round-Trip Persistence Testing (`#[derive(Serialize, Deserialize)]`, `#[test]`) [open]
++ ### Exercise 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution) [open]
++ ### Exercise 1.10-2 — Domain Struct Serde Derives & Round-Trip Persistence Testing (`#[derive(Serialize, Deserialize)]`, `#[test]`) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 17:43 IST — [LEARNING.md / ROADMAP.md] — Marked Module 1.10 Completed</summary>
+
+- **Files:** LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Learner explicitly confirmed marking Module 1.10 (File Persistence: Saving State) complete `[x]`.
+
+```diff
+[LEARNING.md]
++ ### Module 1.10 — File Persistence: Saving State — 2026-08-17
++ **Status:** `[x]` completed & understood
++ **What I actually understood:**
++ - Generic serialization and deserialization bounds (`T: Serialize`, `T: DeserializeOwned`).
++ - Flexible file path borrowing with `&Path` vs heap-allocated `PathBuf`.
++ - Crate feature flags (`uuid = { features = ["serde"] }`, `chrono = { features = ["serde"] }`) for external Serde support.
++ - Writing unit tests (`#[cfg(test)]`) to verify round-trip JSON persistence and file cleanup.
++ **Code I wrote / project progress:**
++ - Created `src/storage.rs` with `StorageEngine` and `test_storage_rountrip`.
++ - Derived `Serialize` and `Deserialize` across all domain models.
++ - Linked `mod storage;` in `src/main.rs`.
+
+[ROADMAP.md]
+- - [ ] **You build:** JSON-based persistence for all data: users, wallets, orders, portfolio...
+- - [ ] **Concepts:** `serde` + `serde_json` for serialization · `#[derive(Serialize, Deserialize)]`...
+- - [ ] **Architecture:** Persistence strategies. Why JSON for dev, binary/DB for production...
+- - [ ] **Deliverable:** All state survives process restarts. Graceful handling of corrupted/missing files...
++ - [x] **You build:** JSON-based persistence for all data: users, wallets, orders, portfolio...
++ - [x] **Concepts:** `serde` + `serde_json` for serialization · `#[derive(Serialize, Deserialize)]`...
++ - [x] **Architecture:** Persistence strategies. Why JSON for dev, binary/DB for production...
++ - [x] **Deliverable:** All state survives process restarts. Graceful handling of corrupted/missing files...
+```
+
+</details>
+
+<details>
 <summary>2026-08-17 17:38 IST — [Cargo.toml] — Enabled Serde Feature Flags on uuid and chrono</summary>
 
 - **File:** Cargo.toml

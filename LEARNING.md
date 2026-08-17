@@ -139,3 +139,16 @@
 **Code I wrote / project progress:**
 - Created `src/orders.rs` with `OrderId`, `OrderSide`, `OrderStatus`, `Order`, and `OrderBuilder`.
 - Linked `mod orders;` in `src/main.rs`.
+
+### Module 1.10 — File Persistence: Saving State — 2026-08-17
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Generic serialization and deserialization bounds (`T: Serialize`, `T: DeserializeOwned`).
+- Flexible file path borrowing with `&Path` vs heap-allocated `PathBuf`.
+- Crate feature flags (`uuid = { features = ["serde"] }`, `chrono = { features = ["serde"] }`) for external Serde support.
+- Writing unit tests (`#[cfg(test)]`) to verify round-trip JSON persistence and file cleanup.
+**Code I wrote / project progress:**
+- Created `src/storage.rs` with `StorageEngine` and `test_storage_rountrip`.
+- Derived `Serialize` and `Deserialize` across all domain models.
+- Linked `mod storage;` in `src/main.rs`.
+

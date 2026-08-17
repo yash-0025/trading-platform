@@ -125,10 +125,10 @@ Every module has:
 ---
 
 ### Module 1.10 — File Persistence: Saving State
-- [ ] **You build:** JSON-based persistence for all data: users, wallets, orders, portfolio. Load on startup, save on every state change. File locking to prevent corruption.
-- [ ] **Concepts:** `serde` + `serde_json` for serialization · `#[derive(Serialize, Deserialize)]` · Serde attributes: `#[serde(rename_all = "camelCase")]`, `#[serde(default)]`, `#[serde(skip)]` · Lifetimes in structs — `struct Config<'a> { ... }` · `'static` lifetime · File I/O with proper error propagation · `PathBuf` vs `Path` (owned vs borrowed, like `String` vs `&str`)
-- [ ] **Architecture:** Persistence strategies. Why JSON for dev, binary/DB for production. Write-ahead logging concept. Crash recovery.
-- [ ] **Deliverable:** All state survives process restarts. Graceful handling of corrupted/missing files. Unit tests for round-trip serialization.
+- [x] **You build:** JSON-based persistence for all data: users, wallets, orders, portfolio. Load on startup, save on every state change. File locking to prevent corruption.
+- [x] **Concepts:** `serde` + `serde_json` for serialization · `#[derive(Serialize, Deserialize)]` · Serde attributes: `#[serde(rename_all = "camelCase")]`, `#[serde(default)]`, `#[serde(skip)]` · Lifetimes in structs — `struct Config<'a> { ... }` · `'static` lifetime · File I/O with proper error propagation · `PathBuf` vs `Path` (owned vs borrowed, like `String` vs `&str`)
+- [x] **Architecture:** Persistence strategies. Why JSON for dev, binary/DB for production. Write-ahead logging concept. Crash recovery.
+- [x] **Deliverable:** All state survives process restarts. Graceful handling of corrupted/missing files. Unit tests for round-trip serialization.
 
 ---
 

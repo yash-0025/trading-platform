@@ -900,7 +900,48 @@ impl StorageEngine {
 
 ---
 
+### Solution 1.10-2 — Domain Struct Serde Derives & Round-Trip Persistence Testing (`#[derive(Serialize, Deserialize)]`, `#[test]`)
+
+**Reference Implementation:**
+```rust
+// src/storage.rs unit test block:
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::portfolio::{Portfolio, Position};
+    use std::path::PathBuf;
+
+    #[test]
+    fn test_storage_rountrip() {
+        let mut portfolio = Portfolio::new();
+        portfolio.add_position("BTC".into(), 1.5, 40000.0);
+
+        let test_path = PathBuf::from("test_portfolio.json");
+
+        StorageEngine::save_json(&test_path, &portfolio).unwrap();
+
+        let load_portfolio: Portfolio = StorageEngine::load_json(&test_path).unwrap();
+
+        assert_eq!(load_portfolio.positions.get("BTC"), portfolio.positions.get("BTC"));
+        std::fs::remove_file(&test_path).unwrap();
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `#[cfg(test)]` — Compiles test module only when running `cargo test`.
+- `StorageEngine::save_json(&test_path, &portfolio)` — Serializes portfolio to JSON file on disk.
+- `StorageEngine::load_json(&test_path)` — Deserializes JSON string back into a `Portfolio` struct.
+- `assert_eq!(...)` — Confirms that loaded position matches original in-memory data.
+- `std::fs::remove_file(&test_path)` — Cleans up temporary test file.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/storage.rs` cleanly implemented the round-trip test and file cleanup!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

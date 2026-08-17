@@ -411,7 +411,24 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 28. Heap Allocation & Shared Interior Mutability (`Box<T>`, `Rc<T>`, `RefCell<T>`, `Rc<RefCell<T>>`) — The Bank Safe Deposit Box & Shared Master Ledger
+
+**ELI5 Analogy: The Bank Safe Deposit Box & Shared Master Ledger**
+* **`Box<T>` (The Custom Storage Safe)**: Moving a massive gold bar off your tiny office desk (the stack) into a secure bank vault box (the heap) and keeping only the vault key on your desk.
+* **`Rc<T>` (The Shared Ownership Card)**: Issuing 5 duplicate library cards to 5 different members. As long as at least 1 member holds a card (reference count > 0), the library book remains active. When all 5 return their cards (count hits 0), the book is archived.
+* **`RefCell<T>` (The Single-Threaded Glass Display Lock)**: A glass case with a sign that permits only ONE person at a time to borrow (`borrow_mut()`) the contents. If a second person tries to modify it simultaneously, the guard immediately stops them (runtime panic!).
+* **`Rc<RefCell<T>>` (The Shared Master Ledger)**: Combining `Rc` (multiple traders pointing to the exact same shared position record) and `RefCell` (allowing any trader to update the position quantity and cost basis dynamically when an order fills).
+
+**Deep Technical Breakdown:**
+- **Heap Allocation (`Box<T>`)**: Allocates value `T` on the heap and stores a 64-bit pointer on the stack. Useful for recursive types, large structs, or trait objects.
+- **Reference Counting (`Rc<T>`)**: Provides shared read-only ownership of a heap allocation in single-threaded code. Calling `Rc::clone(&ptr)` increments the reference count without deep-copying data.
+- **Interior Mutability (`RefCell<T>`)**: Moves Rust's borrowing rules from compile time to runtime. `.borrow()` returns `Ref<T>` (shared reference), while `.borrow_mut()` returns `RefMut<T>` (exclusive mutable reference). If borrowing rules are violated at runtime, it panics.
+- **`Rc<RefCell<T>>` Pattern**: Enables multiple entities (e.g., both an `OrderExecution` handler and a `Portfolio` manager) to hold references to the exact same underlying heap object and mutate it safely in single-threaded code.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 
