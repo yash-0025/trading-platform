@@ -76,4 +76,17 @@ impl Wallet {
     pub fn get_history(&self, currency: &str) -> Vec<TransactionRecord> {
         self.history.iter().filter(|tx| tx.currency == currency).cloned().collect()
     }
+
+    pub fn total_balance(&self) -> u64 {
+        self.balances.values().sum::<u64>()
+    }
+
+    pub fn filter_transactions<F>(&self, predicate: F) -> Vec<TransactionRecord> where F: Fn(&TransactionRecord) -> bool, 
+    {
+        self.history
+            .iter()
+            .filter(|rec| predicate(rec))
+            .cloned()
+            .collect::<Vec<_>>()
+    }
 }

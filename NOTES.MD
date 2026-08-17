@@ -246,10 +246,31 @@
 - We will add transaction history audit logging to wallet  and implement iterator filter pipelines
 - .iter().filter(...).collect() to query history by currency
 
-- Calling `.cone()` tries to clone the iterator adapter struct itself 
+- Calling `.clone()` tries to clone the iterator adapter struct itself 
 - Calling `.cloned()` clones the items inside the iterator(converting &TransactionRecord) into TransactionRecord
 - .collect() then gathers those owned TransactionRecord items into a Vec<TransactionRecord>
 
+#### Wallet Accumulation turbofish `::<>` ,&Closure Generics
+
+```
++-------------------------------------------------------------------------+
+|                  WALLET ACCUMULATION & CLOSURE FLOW                     |
+|                                                                         |
+|  balances: HashMap<String, u64> -> .values().sum::<u64>()               |
+|                                         |                               |
+|                                         v                               |
+|                                 Total Portfolio Sum                     |
+|                                                                         |
+|  history: Vec<TransactionRecord> -> .iter()                             |
+|                                       |                                 |
+|                                       v                                 |
+|                  predicate(&record) matching filter                     |
+|                                       |                                 |
+|                                       v                                 |
+|                  Turbofish .collect::<Vec<TransactionRecord>>()         |
++-------------------------------------------------------------------------+
+
+```
 
 #### Portfolio management - your holdings
 - In stock and crpto trading platforms , A portfolio tracks an investor's net market positions

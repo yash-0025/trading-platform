@@ -40,6 +40,7 @@ fn example() -> Result<(), TradingError> {
 
 
 ### Exercise 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
+
 **Status:** open
 **Goal:** In `src/tracker.rs`, add a comprehensive unit test suite (`#[cfg(test)] mod tests`) testing `process_fill` across multiple buy and sell trades and verifying exact realized vs total P&L calculations.
 
@@ -122,6 +123,12 @@ mod tests {
 **Status:** solved
 **Goal:** Create `src/portfolio.rs` and implement `Position` with `update` (recalculating quantity and weighted average cost basis) and `unrealized_pnl(market_price)`.
 **Note:** Solved in `src/portfolio.rs`. Checked against `SOLUTIONS.md` — exact match on `Position`, `update` weighted average cost basis, and `unrealized_pnl`.
+
+
+### Exercise 1.7-3 — Wallet Accumulation & Closure Trait Queries (`.sum()`, Turbofish `::<>`, `Fn`)
+**Status:** solved
+**Goal:** In `src/wallet.rs`, implement `total_balance(&self) -> u64` using `.values().sum::<u64>()` and `filter_transactions<F>(&self, predicate: F) -> Vec<TransactionRecord> where F: Fn(&TransactionRecord) -> bool` using Turbofish `.collect::<Vec<_>>()`.
+**Note:** Solved in `src/wallet.rs`. Checked against `SOLUTIONS.md` — exact match on `.sum::<u64>()`, closure predicate filtering, and `.collect::<Vec<_>>()`.
 
 
 ### Exercise 1.7-2 — Transaction Audit History & Iterator Filtering (`TransactionRecord`, `.filter()`, `.collect()`)

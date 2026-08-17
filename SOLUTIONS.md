@@ -636,7 +636,42 @@ impl Wallet {
 
 ---
 
+### Solution 1.7-3 — Wallet Accumulation & Closure Trait Queries (`.sum()`, Turbofish `::<>`, `Fn`)
+
+**Reference Implementation:**
+```rust
+// src/wallet.rs:
+impl Wallet {
+    pub fn total_balance(&self) -> u64 {
+        self.balances.values().sum::<u64>()
+    }
+
+    pub fn filter_transactions<F>(&self, predicate: F) -> Vec<TransactionRecord>
+    where
+        F: Fn(&TransactionRecord) -> bool,
+    {
+        self.history
+            .iter()
+            .filter(|rec| predicate(rec))
+            .cloned()
+            .collect::<Vec<_>>()
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `self.balances.values().sum::<u64>()` — Calls `.sum::<u64>()` with Turbofish syntax to sum all balances in `HashMap`.
+- `where F: Fn(&TransactionRecord) -> bool` — Generic closure trait bound accepting immutable references to `TransactionRecord`.
+- `self.history.iter().filter(|rec| predicate(rec))` — Applies closure predicate to filter transaction history records.
+- `.cloned().collect::<Vec<_>>()` — Clones matching records and uses Turbofish `.collect::<Vec<_>>()` to return a `Vec<TransactionRecord>`.
+
+**Compared to your attempt:**
+- **Great Job!**: Your `total_balance` implementation with `self.balances.values().sum::<u64>()` was 100% exact! For `filter_transactions`, completing the method body with `self.history.iter().filter(|rec| predicate(rec)).cloned().collect::<Vec<_>>()` makes it compile cleanly!
+
+---
+
 ### Solution 1.8-1 — Portfolio Holdings & Weighted Average Cost Basis (`Position`, `unrealized_pnl`)
+
 
 **Reference Implementation:**
 ```rust

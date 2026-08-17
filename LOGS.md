@@ -33,6 +33,96 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-17 22:45 IST — [.agents/workflows/next.md] — Compressed from 12,928 to 10,380 bytes (all content preserved)</summary>
+
+- **File:** .agents/workflows/next.md
+- **Change type:** Modified
+- **Reason:** File exceeded 12,000-byte limit (was 12,928 bytes). Compressed to 10,380 bytes by tightening verbose phrasing, removing redundant blank lines, and shortening repeated explanations. All 19 rules, all 10 STEPs, all audit checks, all anti-patterns, and all off-script handlers remain fully intact and detailed.
+
+```diff
+- Total Bytes: 12,928 (over limit)
++ Total Bytes: 10,380 (under 12,000 limit, 2,548 bytes saved)
+  All STEPs (-1 through 9): preserved
+  All 19 governance rules: referenced
+  All 11 self-audit checkboxes: preserved
+  All 9 anti-patterns: preserved
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 22:31 IST — [.agents/workflows/next.md] — Synchronized All Governance Rules (16, 17, 18, 19) into Workflow Script</summary>
+
+- **File:** .agents/workflows/next.md
+- **Change type:** Modified
+- **Reason:** Synchronized workflow script to reflect all 19 governance rules, updating rule count in STEP 0, adding Rules 17-19 to STEP 3 checklist, and incorporating Rules 17-19 into STEP 7 mandatory self-audit.
+
+```diff
+[.agents/workflows/next.md]
+- 1. RULES.md — 15 governance rules. Re-internalize before proceeding; obey silently.
++ 1. RULES.md — 19 governance rules. Re-internalize before proceeding; obey silently.
++ - [ ] Rule 17: Plain English "thought translation" was provided alongside technical breakdown.
++ - [ ] Rule 18: Every concept in ROADMAP.md has an active hands-on code exercise in src/. Theory-only is forbidden.
++ - [ ] Rule 19: If a solution was revealed, its plain English thought translation was appended to SOLUTIONS_EXPLANATIONS.md in exact numerical order.
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 22:28 IST — [RULES.md / SOLUTIONS_EXPLANATIONS.md / next.md] — Added Rule 19 & Created SOLUTIONS_EXPLANATIONS.md</summary>
+
+- **Files:** RULES.md, SOLUTIONS_EXPLANATIONS.md, .agents/workflows/next.md
+- **Change type:** Created / Modified
+- **Reason:** Learner requested adding Rule 19 requiring all revealed solution plain English explanations and line-by-line breakdowns to be permanently preserved in `SOLUTIONS_EXPLANATIONS.md` in exact numerical order, and updated `.agents/workflows/next.md` workflow.
+
+```diff
+[RULES.md]
++ 19. **Solution Plain English Explanation Storage (`SOLUTIONS_EXPLANATIONS.md`):** Whenever a solution is created and added to `SOLUTIONS.md`, the AI MUST also create/append an entry in `SOLUTIONS_EXPLANATIONS.md` storing the plain natural English "thought translation" and line-by-line breakdown of that solution in exact numerical order.
+
+[SOLUTIONS_EXPLANATIONS.md]
++ Created SOLUTIONS_EXPLANATIONS.md with plain English thought translations and line-by-line breakdowns for Solutions 1.4-3, 1.7-3, and 1.11-1 in exact numerical order.
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 22:25 IST — [SOLUTIONS.md / EXERCISES.md] — Placed Solution 1.7-3 & Solved Exercise 1.7-3 in Strict Numerical Order</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed Exercise 1.7-3 in `src/wallet.rs`. Added Solution 1.7-3 in exact numerical position in SOLUTIONS.md and moved Exercise 1.7-3 to exact numerical position under Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.7-3 — Wallet Accumulation & Closure Trait Queries (`.sum()`, Turbofish `::<>`, `Fn`)
++ **Reference Implementation:**
++ pub fn total_balance(&self) -> u64 { self.balances.values().sum::<u64>() }
++ pub fn filter_transactions<F>(&self, predicate: F) -> Vec<TransactionRecord> where F: Fn(&TransactionRecord) -> bool { ... }
+
+[EXERCISES.md]
++ ### Exercise 1.7-3 — Wallet Accumulation & Closure Trait Queries (`.sum()`, Turbofish `::<>`, `Fn`) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 22:02 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 31 & Exercise 1.7-3</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 31 (Advanced Iterator Accumulation, Turbofish Syntax & Closure Generics) word-for-word to EXAMPLES.md per Rule 8, and created Exercise 1.7-3 skeleton in EXERCISES.md to fill Module 1.7 roadmap code gaps.
+
+```diff
+[EXAMPLES.md]
++ ### 31. Advanced Iterator Accumulation, Turbofish Syntax & Closure Generics (`.fold()`, `.sum()`, `::<>`, `Fn`)
+
+[EXERCISES.md]
++ ### Exercise 1.7-3 — Wallet Accumulation & Closure Trait Queries (`.sum()`, Turbofish `::<>`, `Fn`)
+```
+
+</details>
+
+<details>
 <summary>2026-08-17 21:59 IST — [SOLUTIONS.md / EXERCISES.md] — Updated Exercise 1.4-3 Field Target to max_order_size</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

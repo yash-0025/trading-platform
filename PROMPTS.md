@@ -551,3 +551,35 @@
 **Outcome / Next Step:** Learner updates `self.max_order_size` in `src/config.rs` and verifies compilation with `cargo check`.
 
 ---
+
+### 2026-08-17 22:02 IST — Prompt #68
+**Prompt:** "lets move to next"
+**Context:** Learner completed Exercise 1.4-3, committed to git, and requested to move to the next gap in sequence.
+**Output Summary:** AI moved to Gap 2 (Module 1.7: Wallet Accumulation, Turbofish Syntax, & Closure Generics), introduced Concept 31, committed Concept 31 to EXAMPLES.md word-for-word, created Exercise 1.7-3 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements `total_balance` and `filter_transactions` in `src/wallet.rs`.
+
+---
+
+### 2026-08-17 22:25 IST — Prompt #69
+**Prompt:** "Now provide the solution with explanation"
+**Context:** Learner completed Exercise 1.7-3 attempt in `src/wallet.rs` and asked to reveal the reference solution and explanation.
+**Output Summary:** AI placed Solution 1.7-3 in exact numerical position in SOLUTIONS.md, moved Exercise 1.7-3 to exact numerical position under Solved in EXERCISES.md, logged diffs in LOGS.md, and walked through line-by-line comparison of learner attempt vs reference implementation.
+**Outcome / Next Step:** Learner completes `filter_transactions` in `src/wallet.rs` and moves to Gap 3 (Module 1.8: `BTreeMap`, `.zip()`, `.enumerate()`, `.flat_map()`, `Display` trait in `src/portfolio.rs`).
+
+---
+
+### 2026-08-17 22:28 IST — Prompt #70
+**Prompt:** "Add one more rule in there which should say that whenever solution is created and added in solution.md file now we have one more file solution_explanations.md file you have to add the solution english explanation in that file from now on we can't add the previous one i guess if possible add it but update the rules and agent workflow to use every rules mentioned"
+**Context:** Learner requested adding Rule 19, creating `SOLUTIONS_EXPLANATIONS.md`, storing solution English explanations in numerical order, and updating `.agents/workflows/next.md`.
+**Output Summary:** AI added Rule 19 to RULES.md, created `SOLUTIONS_EXPLANATIONS.md` populated with plain English solution translations in exact numerical order, updated `.agents/workflows/next.md` workflow, and logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner completes `filter_transactions` in `src/wallet.rs` and moves to Gap 3 (Module 1.8: `BTreeMap`, `.zip()`, `.enumerate()`, `.flat_map()`, `Display` trait in `src/portfolio.rs`).
+
+---
+
+### 2026-08-17 22:31 IST — Prompt #71
+**Prompt:** "In our next.md agent workflow script it has old rules only nothing related to new rules is added like it says there is only 15 governance rules but we have more now so fix that file too don't delete anything just updated and add and fix it"
+**Context:** Learner requested updating `.agents/workflows/next.md` to reflect all 19 governance rules across STEP 0, STEP 3, and STEP 7.
+**Output Summary:** AI updated `.agents/workflows/next.md` workflow script with all 19 rules (including Rules 16, 17, 18, 19 in read order, teaching checklist, and self-audit gate), and logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner verifies `filter_transactions` in `src/wallet.rs` and moves to Gap 3 (Module 1.8: `BTreeMap`, `.zip()`, `.enumerate()`, `.flat_map()`, `Display` trait in `src/portfolio.rs`).
+
+---

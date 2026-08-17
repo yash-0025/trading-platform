@@ -18,3 +18,5 @@ Thumbs.db
 # Environment & Secrets
 .env
 *.env
+
+/History.md
