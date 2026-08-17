@@ -3,8 +3,9 @@ use chrono::{DateTime, Utc};
 use sha2::{Sha256, Digest};
 use std::collections::HashMap;
 use crate::errors::{TradingError, Result};
+use serde::{Serialize, Deserialize};
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 pub struct UserManager {
     users: HashMap<Uuid, User>,
     username_index: HashMap<String, Uuid>,
@@ -56,7 +57,7 @@ impl UserManager {
     
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct User {
     pub id: Uuid,
     pub username: String,

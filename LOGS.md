@@ -33,6 +33,23 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-17 17:38 IST — [Cargo.toml] — Enabled Serde Feature Flags on uuid and chrono</summary>
+
+- **File:** Cargo.toml
+- **Change type:** Modified
+- **Reason:** Enabled `"serde"` feature flags on `uuid` (`features = ["v4", "serde"]`) and `chrono` (`features = ["serde"]`) so `Uuid` and `DateTime<Utc>` implement `Serialize` and `Deserialize`.
+
+```diff
+[Cargo.toml]
+- uuid = { version = "1.6", features = ["v4"] }
++ uuid = { version = "1.6", features = ["v4", "serde"] }
+- chrono = "0.4"
++ chrono = { version = "0.4", features = ["serde"] }
+```
+
+</details>
+
+<details>
 <summary>2026-08-17 15:15 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.10-1 & Exercise 1.10-2</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md

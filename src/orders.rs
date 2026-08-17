@@ -1,5 +1,6 @@
 use chrono::{DateTime, Utc};
 use crate::errors::TradingError;
+use serde::{Serialize, Deserialize};
 
 
 #[derive(Debug, Default)]
@@ -59,16 +60,16 @@ impl OrderBuilder {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub struct OrderId(pub u64);
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum OrderSide {
     Buy,
     Sell,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum OrderStatus {
     Pending,
     Filled,
@@ -76,7 +77,7 @@ pub enum OrderStatus {
     Rejected,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Order {
     pub id: OrderId,
     pub symbol: String,

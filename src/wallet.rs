@@ -1,14 +1,15 @@
 use std::collections::HashMap;
 use crate::errors::{TradingError, Result};
 use chrono::{DateTime, Utc};
+use serde::{Serialize, Deserialize};
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum TransactionType {
     Deposit,
     Withdrawal,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TransactionRecord {
     pub tx_type: TransactionType,
     pub currency: String,
@@ -16,7 +17,7 @@ pub struct TransactionRecord {
     pub timestamp: DateTime<Utc>,
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug, Default, Serialize, Deserialize)]
 pub struct Wallet {
     pub balances: HashMap<String, u64>,
     pub history: Vec<TransactionRecord>,

@@ -347,3 +347,12 @@
 
 ```
 
+- `#[derive(Serialize, Deserialize)]` - Auto generates serialization code for custom structs and enums at compile time without reflection overhead
+- PathBuf vs &Path - `std::path::PathBuf` owns its underlying path buffer on the heap and support mutation (path.push("data.json"))
+- `std::path::Path` is an unsized path slice reference (&Path) used in function parameter signatures for flexible borrowing.
+
+
+#### Deriving serde traits and serde field customization attributes (#[defive(Serialize, Deserialize)], #[serde(rename_all = "...")], #[serde(skip)], Serde Round-Trip Testing)
+
+- Serialize and Deserialize - Stamping every item in our store with a universal bar code tag so any automatic scanning robot can instatnly register pack or unpack it without needing custom instructions
+- Applying #[derive(Serialize,Deserialize)] to struct and enums invokes Rust procedural macros to generate Serializer and Deserializer trait implementations at compile time, maintaining zero-overhead performance 
