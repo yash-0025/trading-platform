@@ -44,6 +44,20 @@
 
 ---
 
+### Solution 1.9-3 — Data-Bearing Enums (`OrderType`), Auto-Incrementing IDs (`OrderId`), & `OrderManager` Query Engine (`OrderType`, `OrderManager`, `.filter()`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"For order types, use a data-bearing enum so a Market order carries no extra price field, but a Limit order carries its target price right inside the variant (`Limit { limit_price }`). For `OrderManager`, keep an internal counter starting at 1: whenever a new order is submitted, assign it the current counter number, increment the counter for the next order, and store the order in a list. For order searches, search through the order list and collect matching orders for pending status or stock symbol."*
+
+#### 🔍 Line-by-Line Breakdown:
+1. `pub enum OrderType { Market, Limit { limit_price: u64 } }` — Enum variant `Limit` stores target limit price directly inside its data structure.
+2. `let id = self.next_id; self.next_id += 1;` — Auto-increments next ID sequentially for each submitted order.
+3. `if let Some(order) = self.orders.iter_mut().find(|o| o.id == id)` — Iterates mutable references to find matching order ID and call `order.cancel()`.
+4. `self.orders.iter().filter(|o| o.status == OrderStatus::Pending).cloned().collect()` — Filters orders matching `Pending` status and collects into `Vec<Order>`.
+5. `self.orders.iter().filter(|o| o.symbol == symbol).cloned().collect()` — Filters orders matching stock symbol and collects into `Vec<Order>`.
+
+---
+
 ### Solution 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
 
 #### 🗣️ Plain English "Thought Translation":

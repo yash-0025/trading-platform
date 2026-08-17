@@ -38,7 +38,6 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-
 ### Exercise 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
 
 **Status:** open
@@ -99,6 +98,14 @@ mod tests {
 **Goal:** Create `src/storage.rs` with `StorageEngine` supporting `save_json<T: Serialize>(path: &Path, data: &T)` and `load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError>`.
 **Note:** Solved in `src/storage.rs`. Checked against `SOLUTIONS.md` — exact match on `save_json` and `load_json` with `&Path` slice references and generic type bounds.
 
+
+---
+
+
+### Exercise 1.9-3 — Data-Bearing Enums (`OrderType`), Auto-Incrementing IDs (`OrderId`), & `OrderManager` Query Engine (`OrderType`, `OrderManager`, `.filter()`)
+**Status:** solved
+**Goal:** In `src/orders.rs`, (1) define `enum OrderType { Market, Limit { limit_price: u64 } }`, (2) update `Order` to include `order_type: OrderType`, and (3) create `OrderManager` with `next_id: u64` and `orders: Vec<Order>`, implementing `submit_order`, `cancel_order`, `get_pending_orders`, and `filter_by_symbol`.
+**Note:** Solved in `src/orders.rs`. Checked against `SOLUTIONS.md` — exact match on `OrderType` data variants, `OrderManager` auto-incrementing IDs, and iterator search filtering.
 
 
 ### Exercise 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation)

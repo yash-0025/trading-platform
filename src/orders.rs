@@ -3,6 +3,12 @@ use crate::errors::TradingError;
 use serde::{Serialize, Deserialize};
 
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum OrderType {
+    Market,
+    Limit { limit_price: u64 },
+}
+
 #[derive(Debug, Default)]
 pub struct OrderBuilder {
     pub symbol: Option<String>,
@@ -10,6 +16,7 @@ pub struct OrderBuilder {
     pub qty: Option<u64>,
     pub price: Option<u64>,
 }
+
 
 impl OrderBuilder {
     pub fn new() -> Self {
@@ -85,11 +92,18 @@ pub struct Order {
     pub qty: u64,
     pub price: u64,
     pub status: OrderStatus,
+    pub order_type: OrderType,
     pub created_at: DateTime<Utc>,
 }
 
 impl Order {
     pub fn new(id: u64, symbol: String, side: OrderSide, qty: u64, price: u64) -> Self {
+        let order_type = if price == 0 {
+            OrderType::Market
+        } else {
+            OrderType::Limit { limit_price: price }
+        };
+
         Order {
             id: OrderId(id),
             symbol,
@@ -97,6 +111,7 @@ impl Order {
             qty,
             price,
             status: OrderStatus::Pending,
+            order_type,
             created_at: Utc::now(),
         }
     }
@@ -108,5 +123,59 @@ impl Order {
         } else {
             false
         }
+    }
+}
+
+#[derive(Debug, Default, Serialize, Deserialize)]
+pub struct OrderManager {
+    pub next_id: u64,
+    pub orders: Vec<Order>,
+}
+
+
+impl OrderManager {
+    pub fn new() -> Self {
+        Self {
+            next_id: 1,
+            orders: Vec::new(),
+        }
+    }
+
+    pub fn submit(&mut self, symbol: String, side: OrderSide, order_type: OrderType, qty: u64) -> OrderId {
+        let id = self.next_id;
+        self.next_id += 1;
+        let price = match order_type {
+            OrderType::Market => 0,
+            OrderType::Limit { limit_price } => limit_price,
+        };
+        let mut order = Order::new(id, symbol, side, qty, price);
+        order.order_type = order_type;
+        self.orders.push(order.clone());
+        OrderId(id)
+    } 
+
+
+    pub fn cancel(&mut self, id: OrderId) -> bool {
+        if let Some(order) = self.orders.iter_mut().find(|o| o.id == id) {
+            order.cancel() 
+        } else {
+            false
+        }
+    }
+
+    pub fn get_pending_orders(&self) -> Vec<Order> {
+        self.orders
+            .iter()
+            .filter(|o| o.status == OrderStatus::Pending)
+            .cloned()
+            .collect()
+    }
+
+    pub fn filter_by_symbol(&self, symbol: &str) -> Vec<Order> {
+        self.orders
+            .iter()
+            .filter(|o| o.symbol == symbol)
+            .cloned()
+            .collect()
     }
 }

@@ -508,6 +508,47 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 33. Enums with Data Variants (`OrderType`), Auto-Incrementing ID Generator (`OrderId`), & `OrderManager` Search Filtering
+
+**ELI5 Analogy: The Custom Order Ticket, The Ticket Dispenser, and The Ledger Inspector**
+
+* **Enums with Data Variants (`OrderType::Market` vs `OrderType::Limit { price: u64 }`) — The Ticket Types**:
+  - A **Market Order ticket (`OrderType::Market`)** is a simple green slip that says: *"Buy this stock immediately at whatever the current market price is."* It needs no extra price number written on it.
+  - A **Limit Order ticket (`OrderType::Limit { price: 50000 }`)** is a yellow slip with a dedicated box stamped on it containing a target price ($50,000). It says: *"Only execute this buy IF the stock price drops to $50,000 or lower!"*
+  - In Rust, enums are not just numbers or labels — variants can hold data directly inside themselves. A `Market` variant has zero extra data, while a `Limit` variant carries its target `price` inside its own structure.
+
+* **Auto-Incrementing `OrderId` Generator — The Ticket Machine**:
+  A red metal ticket dispenser on the wall. Every time an order comes in, the machine clicks down: Order `#1`, Order `#2`, Order `#3`. Wrapping the `u64` number in `struct OrderId(pub u64)` ensures nobody accidentally passes a `UserId` or a dollar amount into an order ID parameter — Rust's compiler stops type confusion at compile time.
+
+* **`OrderManager` Search & Filter Chains — The Ledger Inspector**:
+  The exchange security guard searching through the order ledger. When you ask: *"Show me all pending orders for BTC,"* the guard iterates through the ledger, tests each order (`status == Pending` AND `symbol == "BTC"`), and returns a list of matching order copies.
+
+**Deep Technical Breakdown:**
+
+- **Enums with Data Variants**:
+  ```rust
+  pub enum OrderType {
+      Market,
+      Limit { price: u64 },
+  }
+  ```
+  - Unlike C/C++ or Java enums (which are plain integers), Rust enums are tagged unions (algebraic data types / sum types).
+  - Each variant can have different payload data: tuple variants (`Limit(u64)`), struct variants (`Limit { price: u64 }`), or unit variants (`Market`).
+  - Compiler guarantees memory layout is tagged with an internal discriminator integer plus space for the largest variant payload.
+
+- **Newtype Pattern (`pub struct OrderId(pub u64)`)**:
+  - Wraps a primitive type (`u64`) in a single-element tuple struct.
+  - Compiles away to zero runtime overhead (same memory layout as `u64`), but provides strong compile-time type safety so `OrderId` cannot be implicitly assigned to or compared with a `UserId` or raw `u64`.
+
+- **Iterator Filter Chains for In-Memory Queries**:
+  - `self.orders.iter().filter(|o| o.status == OrderStatus::Pending).cloned().collect::<Vec<Order>>()`
+  - `.iter()` yields `&Order` immutable references.
+  - `.filter(...)` accepts closure `Fn(&Order) -> bool`.
+  - `.cloned()` converts `&Order` to owned `Order` via `Clone`.
+  - `.collect::<Vec<Order>>()` allocates a new vector of matching orders.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
 
 

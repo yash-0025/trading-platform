@@ -1002,6 +1002,97 @@ impl OrderBuilder {
 
 ---
 
+### Solution 1.9-3 — Data-Bearing Enums (`OrderType`), Auto-Incrementing IDs (`OrderId`), & `OrderManager` Query Engine (`OrderType`, `OrderManager`, `.filter()`)
+
+**Reference Implementation:**
+```rust
+// src/orders.rs:
+use chrono::{DateTime, Utc};
+use serde::{Serialize, Deserialize};
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum OrderType {
+    Market,
+    Limit { limit_price: u64 },
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Order {
+    pub id: OrderId,
+    pub symbol: String,
+    pub side: OrderSide,
+    pub qty: u64,
+    pub price: u64,
+    pub status: OrderStatus,
+    pub order_type: OrderType,
+    pub created_at: DateTime<Utc>,
+}
+
+#[derive(Debug, Default, Serialize, Deserialize)]
+pub struct OrderManager {
+    pub next_id: u64,
+    pub orders: Vec<Order>,
+}
+
+impl OrderManager {
+    pub fn new() -> Self {
+        Self {
+            next_id: 1,
+            orders: Vec::new(),
+        }
+    }
+
+    pub fn submit(&mut self, symbol: String, side: OrderSide, order_type: OrderType, qty: u64) -> OrderId {
+        let id = self.next_id;
+        self.next_id += 1;
+        let price = match order_type {
+            OrderType::Market => 0,
+            OrderType::Limit { limit_price } => limit_price,
+        };
+        let mut order = Order::new(id, symbol, side, qty, price);
+        order.order_type = order_type;
+        self.orders.push(order.clone());
+        OrderId(id)
+    }
+
+    pub fn cancel(&mut self, id: OrderId) -> bool {
+        if let Some(order) = self.orders.iter_mut().find(|o| o.id == id) {
+            order.cancel()
+        } else {
+            false
+        }
+    }
+
+    pub fn get_pending_orders(&self) -> Vec<Order> {
+        self.orders
+            .iter()
+            .filter(|o| o.status == OrderStatus::Pending)
+            .cloned()
+            .collect()
+    }
+
+    pub fn filter_by_symbol(&self, symbol: &str) -> Vec<Order> {
+        self.orders
+            .iter()
+            .filter(|o| o.symbol == symbol)
+            .cloned()
+            .collect()
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `pub enum OrderType { Market, Limit { limit_price: u64 } }` — Defines data-bearing enum where `Limit` holds its target limit price.
+- `let id = self.next_id; self.next_id += 1;` — Auto-increments next ID sequentially for each submitted order.
+- `if let Some(order) = self.orders.iter_mut().find(|o| o.id == id)` — Finds mutable reference to order in vector by `OrderId` and invokes `.cancel()`.
+- `self.orders.iter().filter(|o| o.status == OrderStatus::Pending).cloned().collect()` — Filters vector for pending orders and returns owned `Vec<Order>`.
+
+**Compared to your attempt:**
+- **Great Job!**: You correctly defined `OrderType::Limit { limit_price: u64 }`, added `order_type: OrderType` to `Order`, created `OrderManager`, and initialized `next_id: 1` and `orders: Vec::new()`!
+- **Key Completion**: Notice spelling of `Deserialize` (typo `Deseiralize` in import), and complete `submit`, `cancel`, `get_pending_orders`, and `filter_by_symbol` methods!
+
+---
+
 ### Solution 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`)
 
 **Reference Implementation:**

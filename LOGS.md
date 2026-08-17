@@ -33,6 +33,48 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-18 01:03 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.9-3 & Solved Exercise 1.9-3 in Exact Numerical Order</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed attempt for Exercise 1.9-3 in `src/orders.rs` and requested solution. Placed Solution 1.9-3 in exact numerical position in SOLUTIONS.md, added plain English thought translation to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.9-3 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.9-3 — Data-Bearing Enums (`OrderType`), Auto-Incrementing IDs (`OrderId`), & `OrderManager` Query Engine
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.9-3 — Data-Bearing Enums (`OrderType`), Auto-Incrementing IDs (`OrderId`), & `OrderManager` Query Engine
++ [Plain English thought translation + line-by-line breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.9-3 — Data-Bearing Enums (`OrderType`), Auto-Incrementing IDs (`OrderId`), & `OrderManager` Query Engine [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-18 00:30 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 33 & Exercise 1.9-3</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Gap 4 (Module 1.9): Data-bearing enums (`OrderType::Market` vs `OrderType::Limit { limit_price: u64 }`), `OrderManager` struct, and order collection filtering (`get_pending_orders`, `filter_by_symbol`) were listed in ROADMAP.md but never coded in `src/orders.rs`. Added Concept 33 word-for-word to EXAMPLES.md and created Exercise 1.9-3 skeleton in EXERCISES.md.
+
+```diff
+[EXAMPLES.md]
++ ### 33. Enums with Data Variants (`OrderType`), Auto-Incrementing ID Generator (`OrderId`), & `OrderManager` Search Filtering
++ [ELI5 analogies + deep technical breakdowns]
+
+[EXERCISES.md]
++ ### Exercise 1.9-3 — Data-Bearing Enums (`OrderType`), Auto-Incrementing IDs (`OrderId`), & `OrderManager` Query Engine
++ **Status:** open
++ [4 TODOs: submit order with auto-increment ID, cancel order by ID, get_pending_orders filter, filter_by_symbol]
+```
+
+</details>
+
+<details>
 <summary>2026-08-17 23:25 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.8-3 & Solved Exercise 1.8-3 in Exact Numerical Order</summary>
 
 - **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
