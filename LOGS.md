@@ -33,6 +33,58 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-17 15:15 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.10-1 & Exercise 1.10-2</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Opened Solution 1.10-1 after learner completed `StorageEngine` in `src/storage.rs`. Moved Exercise 1.10-1 to solved in EXERCISES.md, and added Exercise 1.10-2 skeleton.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`)
++ **Reference Implementation:**
++ pub fn save_json<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError> { ... }
++ pub fn load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError> { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`) [open]
++ ### Exercise 1.10-2 — Domain Struct Serde Derives & Round-Trip Persistence Testing (`#[derive(Serialize, Deserialize)]`, `#[test]`) [open]
++ ### Exercise 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-16 22:24 IST — [errors.rs] — Added Json Variant to TradingError</summary>
+
+- **File:** src/errors.rs
+- **Change type:** Modified
+- **Reason:** Added `Json(#[from] serde_json::Error)` variant to `TradingError` so the `?` operator automatically desugars `serde_json::Error` in storage operations.
+
+```diff
+[src/errors.rs]
++ #[error("Serde JSON error: {0}")]
++ Json(#[from] serde_json::Error),
+```
+
+</details>
+
+<details>
+<summary>2026-08-16 19:35 IST — [README.md] — Created Project README & AI Learning System Documentation</summary>
+
+- **File:** README.md
+- **Change type:** Created
+- **Reason:** Learner requested comprehensive README detailing project vision, architecture, roadmap status, dependencies, AI learning system setup, and usage instructions.
+
+```diff
+[README.md]
++ # 🦀 Production-Grade Trading Platform in Rust
++ > A hands-on, zero-to-hero journey building a high-frequency, production-grade cryptocurrency and equity trading platform engine from scratch in Rust...
+```
+
+</details>
+
+<details>
 <summary>2026-08-16 15:54 IST — [Cargo.toml / EXAMPLES.md / EXERCISES.md / SOLUTIONS.md] — Added serde_json, Concept 26, Exercise 1.10-1, & Solution 1.9-2</summary>
 
 - **Files:** Cargo.toml, EXAMPLES.md, EXERCISES.md, SOLUTIONS.md

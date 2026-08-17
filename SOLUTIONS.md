@@ -862,7 +862,46 @@ impl OrderBuilder {
 
 ---
 
+### Solution 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`)
+
+**Reference Implementation:**
+```rust
+// src/storage.rs:
+use std::fs;
+use std::path::Path;
+use serde::{Serialize, de::DeserializeOwned};
+use crate::errors::TradingError;
+
+pub struct StorageEngine;
+
+impl StorageEngine {
+    pub fn save_json<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError> {
+        let json_str = serde_json::to_string_pretty(data)?;
+        fs::write(path, json_str)?;
+        Ok(())
+    }
+
+    pub fn load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError> {
+        let json_str = fs::read_to_string(path)?;
+        let data = serde_json::from_str::<T>(&json_str)?;
+        Ok(data)
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `path: &Path` — Borrows file paths flexibly (accepts `&PathBuf`, `&Path`, `Path::new(...)`).
+- `serde_json::to_string_pretty(data)?` — Formats data to pretty-printed JSON string.
+- `serde_json::from_str::<T>(&json_str)?` — Deserializes JSON text into target type `T`.
+- `fs::write` / `fs::read_to_string` — Disk I/O operations with `?` desugaring into `TradingError`.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/storage.rs` cleanly implemented `save_json` and `load_json` with generic type bounds and `&Path` reference parameters!
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

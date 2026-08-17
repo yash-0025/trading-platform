@@ -310,3 +310,40 @@
 - `Newtype Pattern` and `Order Lifecycle state machine`
 - The Builder Pattern and method => Chaining OrderBuilder , Fluent Interface, Validation
 - Encapsulation and Staging Incomplete state
+
+#### File Persistence - Saving State
+- In real financial infrastructure in-memory data must survive system crashes and server restarts. If an exchange restarts or power is lost:
+    1. User registration, multi-currency wallet balances and open orderbooks cannot be wiped out
+    2. The exchange uses Serialization(serde / serde_json) to convert in-memory Rust structs into JSON file on disk
+    3. On startup, the system Deserializes the files to reconstruct identical in-memory state
+
+```
++-------------------------------------------------------------------------+
+|                  EXCHANGE PERSISTENCE ENGINE & DATA FLOW                |
+|                                                                         |
+|  In-Memory Struct (User, Wallet, Order)                                 |
+|          |                                                              |
+|          | serde_json::to_string_pretty(&data)                          |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | Serialized JSON String                                            |  |
+|  +-------------------------------------------------------------------+  |
+|          |                                                              |
+|          | std::fs::write(&path, json_str)                              |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | Disk Storage: data/users.json, data/wallets.json                  |  |
+|  +-------------------------------------------------------------------+  |
+|          |                                                              |
+|          | std::fs::read_to_string(&path)                               |
+|          v                                                              |
+|  +-------------------------------------------------------------------+  |
+|  | serde_json::from_str::<T>(&json_str)                              |  |
+|  +-------------------------------------------------------------------+  |
+|          |                                                              |
+|          v                                                              |
+|  Restored In-Memory Struct                                              |
++-------------------------------------------------------------------------+
+
+```
+

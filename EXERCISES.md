@@ -38,40 +38,59 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`)
+### Exercise 1.10-2 — Domain Struct Serde Derives & Round-Trip Persistence Testing (`#[derive(Serialize, Deserialize)]`, `#[test]`)
 **Status:** open
-**Goal:** Create `src/storage.rs` with `StorageEngine` supporting `save_json<T: Serialize>(path: &Path, data: &T)` and `load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError>`.
+**Goal:** Add `#[derive(Serialize, Deserialize)]` to all domain types (`User`, `UserManager`, `Wallet`, `TransactionRecord`, `TransactionType`, `Position`, `Portfolio`, `OrderId`, `OrderSide`, `OrderStatus`, `Order`), and write a unit test in `src/storage.rs` verifying round-trip JSON serialization.
 
 **Skeleton:**
 ```rust
-// Create src/storage.rs:
-use std::fs;
-use std::path::Path;
-use serde::{Serialize, de::DeserializeOwned};
-use crate::errors::TradingError;
+// 1. Add serde derives to domain types:
+// In src/users.rs: #[derive(Debug, Clone, Serialize, Deserialize)] pub struct User { ... }
+// In src/users.rs: #[derive(Debug, Default, Serialize, Deserialize)] pub struct UserManager { ... }
+// In src/wallet.rs: #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub enum TransactionType { ... }
+// In src/wallet.rs: #[derive(Debug, Clone, Serialize, Deserialize)] pub struct TransactionRecord { ... }
+// In src/wallet.rs: #[derive(Debug, Default, Serialize, Deserialize)] pub struct Wallet { ... }
+// In src/portfolio.rs: #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)] pub struct Position { ... }
+// In src/portfolio.rs: #[derive(Debug, Default, Serialize, Deserialize)] pub struct Portfolio { ... }
+// In src/orders.rs: #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)] pub struct OrderId(pub u64);
+// In src/orders.rs: #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)] pub enum OrderSide { ... }
+// In src/orders.rs: #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)] pub enum OrderStatus { ... }
+// In src/orders.rs: #[derive(Debug, Clone, Serialize, Deserialize)] pub struct Order { ... }
 
-pub struct StorageEngine;
+// 2. In src/storage.rs, add a unit test block:
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::portfolio::{Portfolio, Position};
+    use std::path::PathBuf;
 
-impl StorageEngine {
-    // TODO(1): Implement save_json<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError>
-    // 1. Serialize data to pretty JSON string using serde_json::to_string_pretty(data).
-    // 2. Write string to file using fs::write(path, json_str)?.
-    // Return Ok(()).
+    #[test]
+    fn test_storage_roundtrip() {
+        let mut portfolio = Portfolio::new();
+        portfolio.add_position("BTC".into(), 1.5, 40000.0);
 
-    // TODO(2): Implement load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError>
-    // 1. Read JSON file content using fs::read_to_string(path)?.
-    // 2. Deserialize string using serde_json::from_str::<T>(&json_str).
-    // Return Ok(data).
+        let test_path = PathBuf::from("test_portfolio.json");
+        // TODO(1): Save portfolio using StorageEngine::save_json(&test_path, &portfolio).unwrap();
+        // TODO(2): Load portfolio using let loaded: Portfolio = StorageEngine::load_json(&test_path).unwrap();
+        // TODO(3): Assert loaded.positions.get("BTC") == portfolio.positions.get("BTC")
+        // TODO(4): Clean up file using std::fs::remove_file(&test_path).unwrap();
+    }
 }
 ```
 
-**Constraints:** Use `&Path` slice reference for borrowed file paths, and return `Result<T, TradingError>` with automatic `From` error conversion for `std::io::Error`.
+**Constraints:** Deriving `Serialize` and `Deserialize` across all domain types, and testing round-trip JSON serialization with `cargo test`.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
 ## Solved
+
+### Exercise 1.10-1 — Domain Model Serde Derive & Storage Persistence Engine (`Serialize`, `Deserialize`, `save`, `load`)
+**Status:** solved
+**Goal:** Create `src/storage.rs` with `StorageEngine` supporting `save_json<T: Serialize>(path: &Path, data: &T)` and `load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError>`.
+**Note:** Solved in `src/storage.rs`. Checked against `SOLUTIONS.md` — exact match on `save_json` and `load_json` with `&Path` slice references and generic type bounds.
+
 
 ### Exercise 1.9-2 — The Builder Pattern for Order Creation (`OrderBuilder`, Method Chaining, Validation)
 **Status:** solved

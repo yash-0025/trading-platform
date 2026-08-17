@@ -8,6 +8,7 @@ mod users;
 mod wallet;
 mod portfolio;
 mod orders;
+mod storage;
 
 use cli::{Cli, Commands};
 

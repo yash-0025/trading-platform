@@ -18,6 +18,9 @@ pub enum TradingError {
     #[error("I/O error: {0} ")]
     Io(#[from] std::io::Error),
 
+    #[error("Serde JSON error: {0}")]
+    Json(#[from] serde_json::Error),
+
     #[error("Config parse error: [0]")]
     ConfigParse(#[from] toml::de::Error),
 

@@ -407,3 +407,27 @@
 **Outcome / Next Step:** Learner creates `src/storage.rs` and implements `StorageEngine` with `save_json` and `load_json`.
 
 ---
+
+### 2026-08-16 19:35 IST — Prompt #50
+**Prompt:** "I want you to add a README.md file . Where it tells everything about this . what we are building, what is our end goal, all of our dependencies, about the AI file setup we are using , explaining how someone else can use this if they want to learn and build this project everything"
+**Context:** Learner requested creation of a comprehensive project README.md.
+**Output Summary:** AI created README.md with project vision, architecture diagrams, roadmap status, crate dependencies table, AI learning framework setup (RULES.md, LEARNING.md, ROADMAP.md, EXERCISES.md, SOLUTIONS.md, etc.), and step-by-step usage guide, and logged change in LOGS.md.
+**Outcome / Next Step:** Learner returns to Module 1.10 (File Persistence) and creates `src/storage.rs`.
+
+---
+
+### 2026-08-16 22:24 IST — Prompt #51
+**Prompt:** "Check the solution i tried using the todo code you provided but it is giving error"
+**Context:** Learner encountered `E0573` (lower-case `&path` vs `&Path`) and `E0277` (`From<serde_json::Error>` missing on `TradingError`).
+**Output Summary:** AI added `Json(#[from] serde_json::Error)` to `TradingError` in `src/errors.rs`, and explained fixing `path: &path` to `path: &Path`.
+**Outcome / Next Step:** Learner fixes `path: &Path` capitalization in `src/storage.rs`.
+
+---
+
+### 2026-08-17 15:14 IST — Prompt #52
+**Prompt:** "Done /next"
+**Context:** Learner completed `StorageEngine` with `save_json` and `load_json` in `src/storage.rs`.
+**Output Summary:** AI validated `src/storage.rs`, opened gated Solution 1.10-1 in SOLUTIONS.md, moved Exercise 1.10-1 to solved in EXERCISES.md, introduced Concept 27 (Deriving Serde Traits & Serde Field Customization Attributes `#[derive(Serialize, Deserialize)]`, `#[serde(rename_all = "...")]`, `#[serde(skip)]`, Serde Round-Trip Testing - Universal Customs Tag & Secret Envelope Marking analogy), committed Concept 27 to EXAMPLES.md word-for-word, created Exercise 1.10-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner derives `Serialize` and `Deserialize` across all domain models and adds a round-trip unit test in `src/storage.rs`.
+
+---
