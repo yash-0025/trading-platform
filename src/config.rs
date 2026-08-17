@@ -1,4 +1,5 @@
 use serde::Deserialize;
+use std::env;
 
 #[derive(Debug, Clone, Deserialize)]
 pub struct Config {
@@ -74,6 +75,26 @@ impl Config {
             }
             Err(_) => {
                 Self::from_env_or_default()
+            }
+        }
+    }
+/* 
+    pub fn apply_env_overrides(&mut self) {
+        match std::env::var("TRADING_PORT") {
+            Ok(val_str) => {
+                match val_str.parse::<u16>() {
+                    Ok(port) => self.network.port = port,
+                    Err(_) => println!("Failed to parse TRADING_PORT as u16")
+                }
+            }
+            Err(_) => {}
+        }
+    } */
+
+    pub fn apply_env_overrides(&mut self) {
+        if let Ok(val_str) = env::var("MAX_ORDER_SIZE") {
+            if let Ok(size) = val_str.parse::<u64>() {
+                self.max_order_size = size;
             }
         }
     }

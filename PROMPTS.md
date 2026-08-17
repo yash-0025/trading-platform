@@ -503,3 +503,51 @@
 **Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.11 completion, then moves to Module 1.12 (Testing Suite & Comprehensive Integration Tests).
 
 ---
+
+### 2026-08-17 21:22 IST — Prompt #62
+**Prompt:** "Do we have only 1.11.1 and not 1.11.2 ?"
+**Context:** Learner asked whether Module 1.11 includes Exercise 1.11-2.
+**Output Summary:** AI confirmed Exercise 1.11-2 (Shared Position Mutability & Unit Test Suite with `Rc<RefCell<Position>>` and `#[test]`), introduced Concept 29 (Shared Ownership & Interior Mutability in Action - Multi-Key Safe Deposit Box analogy), committed Concept 29 to EXAMPLES.md, created Exercise 1.11-2 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner appends unit tests to `src/tracker.rs` for Exercise 1.11-2 and runs `cargo test`.
+
+---
+
+### 2026-08-17 21:24 IST — Prompt #63
+**Prompt:** "Then why the hell did you ask to mark 1.11 as complete if we have exercise remaining .when i asked you previously why you are not following checks and rules : End-of-Module 1.11 Verification & Log Proposal"
+**Context:** Learner caught premature module completion proposal before Exercise 1.11-2 was finished.
+**Output Summary:** AI acknowledged the mistake, apologized for the oversight, re-affirmed Rule #14 compliance (holding ROADMAP.md and LEARNING.md until Exercise 1.11-2 is complete), and directed learner to complete Exercise 1.11-2.
+**Outcome / Next Step:** Learner appends unit tests for Exercise 1.11-2 in `src/tracker.rs` and runs `cargo test`.
+
+---
+
+### 2026-08-17 21:37 IST — Prompt #64
+**Prompt:** "First add a new rule that whatever it is mentioned in the roadmap it should be used in the code to when we are writing code and building the project ."
+**Context:** Learner requested adding Rule 18 to RULES.md requiring that every concept listed in ROADMAP.md MUST be actively coded, compiled, and tested in `src/` source files.
+**Output Summary:** AI added Rule 18 to RULES.md and logged change in LOGS.md.
+**Outcome / Next Step:** Learner and AI begin executing hands-on code exercises for all missing roadmap concepts in `src/`.
+
+---
+
+### 2026-08-17 21:42 IST — Prompt #65
+**Prompt:** "Now lets go exercise by exercise start with the sequence only"
+**Context:** Learner instructed to systematically address all roadmap code gaps exercise by exercise in numerical module order under Rule 18.
+**Output Summary:** AI began with Gap 1 (Module 1.4: Environment Variable Overrides `std::env::var`), introduced Concept 30 (Reading Environment Variables `std::env::var` - Command Post Override Switch analogy), committed Concept 30 to EXAMPLES.md word-for-word, created Exercise 1.4-3 skeleton in EXERCISES.md, and recorded diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements `apply_env_overrides` on `Config` in `src/config.rs`.
+
+---
+
+### 2026-08-17 21:51 IST — Prompt #66
+**Prompt:** "Provide me the solution . Don't add exercises and solution randomly add it according to their numbers so it will be easier when i revisit if i needed sometime"
+**Context:** Learner completed Exercise 1.4-3 in `src/config.rs` and instructed to keep all exercises and solutions strictly in numerical order.
+**Output Summary:** AI placed Solution 1.4-3 in exact numerical position in SOLUTIONS.md, moved Exercise 1.4-3 to exact numerical position under Solved in EXERCISES.md, logged diffs in LOGS.md, and walked through learner attempt vs reference implementation.
+**Outcome / Next Step:** Learner moves to Gap 2 (Module 1.7: Wallet Iterator Adapters `.fold()`, `.sum()`, Turbofish `::<>`, and Closure Generics in `src/wallet.rs`).
+
+---
+
+### 2026-08-17 21:59 IST — Prompt #67
+**Prompt:** "cargo check error: no field `network` on type `&mut Config`"
+**Context:** Learner pointed out `cargo check` error because `Config` fields are `exchange_name`, `currency`, `max_order_size`, `log_level`.
+**Output Summary:** AI updated Exercise 1.4-3 in SOLUTIONS.md and EXERCISES.md to target `max_order_size`, logged change in LOGS.md, and directed learner to update line 95 to `self.max_order_size = port as u64;`.
+**Outcome / Next Step:** Learner updates `self.max_order_size` in `src/config.rs` and verifies compilation with `cargo check`.
+
+---

@@ -384,3 +384,24 @@
 ```
 
 ##### Heap Allocation and Shared Interior Mutability (Box<T>, RC<T>, RefCell<T>, Rc<RefCell<T>>)
+
+##### System Architecture & Precedence Flow 
+
+```
++-------------------------------------------------------------------------+
+|                  CONFIGURATION PRECEDENCE ARCHITECTURE                  |
+|                                                                         |
+|  1. Config::default() -> Hardcoded fallback (port: 8080)                |
+|           |                                                             |
+|           v                                                             |
+|  2. Config::from_file("config.toml") -> Overrides with file settings    |
+|           |                                                             |
+|           v                                                             |
+|  3. Config::apply_env_overrides(&mut self)                              |
+|         - Reads std::env::var("TRADING_PORT")                           |
+|         - If present: overrides self.network.port                       |
++-------------------------------------------------------------------------+
+
+```
+
+##### Reading Environment Variables `std::env::var` , `VarError`

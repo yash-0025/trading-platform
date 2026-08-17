@@ -38,9 +38,45 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-*(No open exercises at the moment. All exercises completed for current step!)*
+
+### Exercise 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
+**Status:** open
+**Goal:** In `src/tracker.rs`, add a comprehensive unit test suite (`#[cfg(test)] mod tests`) testing `process_fill` across multiple buy and sell trades and verifying exact realized vs total P&L calculations.
+
+**Skeleton:**
+```rust
+// In src/tracker.rs, append:
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::orders::OrderSide;
+
+    #[test]
+    fn test_position_tracker_buy_sell_pnl() {
+        let mut tracker = PositionTracker::new();
+
+        // 1. Buy 2.0 BTC @ $40,000
+        tracker.process_fill(OrderSide::Buy, "BTC", 2.0, 40000.0);
+        assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 2.0);
+
+        // TODO(1): Sell 1.0 BTC @ $50,000 (locks in $10,000 realized P&L)
+        // Call tracker.process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0);
+        // Assert tracker.realized_pnl == 10000.0
+        // Assert remaining BTC quantity == 1.0
+
+        // TODO(2): Verify total_pnl at market price $55,000
+        // Create price map with BTC = $55,000
+        // Assert tracker.total_pnl(&prices) == 25000.0 (10k realized + 15k unrealized)
+    }
+}
+```
+
+**Constraints:** Test position state transitions and P&L calculations using `cargo test`.
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
 
 ## Solved
 
@@ -122,6 +158,12 @@ fn example() -> Result<(), TradingError> {
 **Goal:** Add `thiserror = "1.0"` to `Cargo.toml`, create `src/errors.rs`, and define the `TradingError` enum with formatted error variants.
 **Note:** Solved in `src/errors.rs`. Checked against `SOLUTIONS.md` — exact match on `thiserror` attributes and variants.
 
+
+
+### Exercise 1.4-3 — Environment Variable Overrides (`std::env::var`, `TRADING_MAX_ORDER_SIZE`)
+**Status:** solved
+**Goal:** In `src/config.rs`, implement `apply_env_overrides(&mut self)` method on `Config` to read `TRADING_MAX_ORDER_SIZE` from `std::env::var` and override `self.max_order_size` if present.
+**Note:** Solved in `src/config.rs`. Checked against `SOLUTIONS.md` — exact match on `std::env::var` reading and `self.max_order_size` updating.
 
 
 ### Exercise 1.4-2 — Command Parsing & Dispatching (`Cli::parse()`, `match cli.command`)

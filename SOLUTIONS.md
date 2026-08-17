@@ -330,7 +330,37 @@ fn main() {
 
 ---
 
+### Solution 1.4-3 — Environment Variable Overrides (`std::env::var`, `TRADING_MAX_ORDER_SIZE`)
+
+**Reference Implementation:**
+```rust
+// src/config.rs:
+use std::env;
+
+impl Config {
+    pub fn apply_env_overrides(&mut self) {
+        if let Ok(val_str) = env::var("TRADING_MAX_ORDER_SIZE") {
+            if let Ok(size) = val_str.parse::<u64>() {
+                self.max_order_size = size;
+            }
+        }
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `if let Ok(val_str) = env::var("TRADING_MAX_ORDER_SIZE")` — Checks if `TRADING_MAX_ORDER_SIZE` exists in host OS environment table.
+- `if let Ok(size) = val_str.parse::<u64>()` — Parses environment string into numeric `u64` size value.
+- `self.max_order_size = size;` — Dynamically overrides `max_order_size` configuration field.
+
+**Compared to your attempt:**
+- **Easy Fix**: In `src/config.rs`, `Config` has fields `exchange_name`, `currency`, `max_order_size`, and `log_level` (without a nested `network` field). Updating line 97 to `self.max_order_size = port as u64;` (or parsing `u64` into `self.max_order_size`) makes it compile cleanly!
+
+---
+
+
 ### Solution 1.5-1 — Custom `TradingError` Enum (`thiserror`, `#[derive(Error)]`)
+
 
 **Reference Implementation:**
 ```rust
@@ -1030,4 +1060,4 @@ impl PositionTracker {
 
 
 
-
+

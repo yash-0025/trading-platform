@@ -33,6 +33,88 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-17 21:59 IST — [SOLUTIONS.md / EXERCISES.md] — Updated Exercise 1.4-3 Field Target to max_order_size</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Updated Exercise 1.4-3 target field to `max_order_size` to match `Config` struct's actual fields (`exchange_name`, `currency`, `max_order_size`, `log_level`).
+
+```diff
+[SOLUTIONS.md]
+- ### Solution 1.4-3 — Environment Variable Overrides (`std::env::var`, `TRADING_PORT`)
++ ### Solution 1.4-3 — Environment Variable Overrides (`std::env::var`, `TRADING_MAX_ORDER_SIZE`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 21:51 IST — [SOLUTIONS.md / EXERCISES.md] — Placed Solution 1.4-3 & Solved Exercise 1.4-3 in Strict Numerical Order</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed Exercise 1.4-3 in `src/config.rs`. Added Solution 1.4-3 in exact numerical position in SOLUTIONS.md and moved Exercise 1.4-3 to exact numerical position under Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.4-3 — Environment Variable Overrides (`std::env::var`, `TRADING_PORT`)
++ **Reference Implementation:**
++ pub fn apply_env_overrides(&mut self) { ... }
+
+[EXERCISES.md]
++ ### Exercise 1.4-3 — Environment Variable Overrides (`std::env::var`, `TRADING_PORT`) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 21:42 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 30 & Exercise 1.4-3</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 30 (Reading Environment Variables `std::env::var` - Command Post Override Switch analogy) word-for-word to EXAMPLES.md per Rule 8, and created Exercise 1.4-3 skeleton in EXERCISES.md to begin systematically filling all roadmap code gaps.
+
+```diff
+[EXAMPLES.md]
++ ### 30. Reading Environment Variables (`std::env::var`, `VarError`) — The Command Post Override Switch
+
+[EXERCISES.md]
++ ### Exercise 1.4-3 — Environment Variable Overrides (`std::env::var`, `TRADING_PORT`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 21:37 IST — [RULES.md] — Added Rule 18 (100% Roadmap-to-Code Implementation Enforcement)</summary>
+
+- **File:** RULES.md
+- **Change type:** Modified
+- **Reason:** Learner requested adding a governance rule requiring that every concept listed in `ROADMAP.md` MUST be actively coded, compiled, and tested in `src/` source files, prohibiting theory-only explanations without code.
+
+```diff
+[RULES.md]
++ 18. **100% Roadmap-to-Code Implementation Enforcement:** Every single concept, data structure, smart pointer, iterator adapter, trait, and design pattern listed under a module in `ROADMAP.md` MUST be actively coded, compiled, and tested in `src/` source files. Theory-only or text-only explanations of roadmap concepts in markdown files (`EXAMPLES.md` or chat) are STRICTLY FORBIDDEN unless accompanied by hands-on Rust code in `src/`.
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 21:22 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 29 & Exercise 1.11-2</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Added Concept 29 (Shared Ownership & Interior Mutability in Action - Multi-Key Safe Deposit Box analogy) word-for-word to EXAMPLES.md per Rule 8, and created Exercise 1.11-2 skeleton in EXERCISES.md.
+
+```diff
+[EXAMPLES.md]
++ ### 29. Shared Ownership & Interior Mutability in Action (`Rc<RefCell<T>>` & `Weak<T>`) — The Multi-Key Safe Deposit Box
+
+[EXERCISES.md]
++ ### Exercise 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
+```
+
+</details>
+
+<details>
 <summary>2026-08-17 19:48 IST — [RULES.md] — Added Rule 17 (Plain English / Layman's Natural Language Code Translation)</summary>
 
 - **File:** RULES.md

@@ -427,7 +427,34 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 29. Shared Ownership & Interior Mutability in Action (`Rc<RefCell<T>>` & `Weak<T>`) — The Multi-Key Safe Deposit Box
+
+**ELI5 Analogy: The Multi-Key Safe Deposit Box**
+* **`Rc<RefCell<Position>>`**: Giving keycards to both the `PortfolioManager` and an active `OrderExecutionEngine` for the exact same physical safe box. Both can access and modify the position data inside without making a duplicate copy.
+* **`Weak<T>` (The Visitor Pass)**: A temporary observer badge that lets you peek inside the safe box if it still exists (`upgrade()`), but doesn't prevent the box from being destroyed if all real keycard holders return their cards.
+
+**Deep Technical Breakdown:**
+- **Shared Reference Mutability**: Combining `Rc<T>` (shared heap reference count) with `RefCell<T>` (dynamic runtime borrow checks) bypasses Rust's strict compile-time aliasing rules safely for single-threaded shared state.
+- **Cycle Prevention with `Weak<T>`**: When two structs hold `Rc` references to each other (e.g. `Parent -> Child` and `Child -> Parent`), reference counts never reach 0, creating a memory leak. `Weak<T>` holds a non-owning reference that does not increment `strong_count`. Calling `.upgrade()` returns `Option<Rc<T>>`.
+
+---
+
+### 30. Reading Environment Variables (`std::env::var`, `VarError`) — The Command Post Override Switch
+
+**ELI5 Analogy: The Command Post Override Switch**
+* **Configuration File (`config.toml`)**: The printed instruction manual sitting inside the glovebox of your car setting default parameters (e.g. `port = 8080`).
+* **Environment Variable Override (`std::env::var`)**: The emergency command post flip-switch on the dashboard. If the driver flips the switch (`set TRADING_PORT=9090`), the car ignores the printed manual value and immediately runs on the dashboard override value (`9090`).
+
+**Deep Technical Breakdown:**
+- **Environment Inspection (`std::env::var`)**: Interrogates the host process environment table at runtime for a given environment variable key (e.g. `"TRADING_PORT"`). Returns `Result<String, VarError>`.
+- **Parsing String to Numeric (`str::parse::<T>()`)**: Converts the retrieved environment `String` into numeric types (`u16`, `u64`) using `parse::<u16>()`, propagating or handling parse errors with `.ok()` or `.unwrap_or()`.
+- **Precedence Hierarchy**: Production applications apply configuration with increasing precedence: Default Struct $\rightarrow$ TOML/JSON File $\rightarrow$ Environment Variables $\rightarrow$ CLI Arguments.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
+
 
 
 
