@@ -38,52 +38,20 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
-**Status:** open
-**Goal:** Create `src/tracker.rs` with `PositionTracker` storing `realized_pnl: f64` and positions map, supporting `process_fill(&mut self, side: OrderSide, symbol: &str, fill_qty: f64, fill_price: f64)` to calculate realized P&L on closing/partial-closing fills and update weighted cost basis on opening fills.
-
-**Skeleton:**
-```rust
-// Create src/tracker.rs:
-use std::collections::HashMap;
-use crate::orders::OrderSide;
-use crate::portfolio::Position;
-
-#[derive(Debug, Default)]
-pub struct PositionTracker {
-    pub positions: HashMap<String, Position>,
-    pub realized_pnl: f64,
-}
-
-impl PositionTracker {
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // TODO(1): Implement process_fill(&mut self, side: OrderSide, symbol: &str, qty: f64, price: f64)
-    // 1. Check existing position in self.positions.get_mut(symbol).
-    // 2. If Buy (opening long / adding position):
-    //    pos.update(qty, price) or insert new Position if vacant.
-    // 3. If Sell (closing/reducing long position):
-    //    Calculate realized P&L: (price - pos.avg_cost_basis) * qty_sold.
-    //    Add calculated value to self.realized_pnl.
-    //    Reduce pos.quantity by qty_sold.
-    //    If pos.quantity <= 0.0, remove position from self.positions map.
-
-    // TODO(2): Implement total_pnl(&self, current_prices: &HashMap<String, f64>) -> f64
-    // Sum self.realized_pnl + all unrealized P&L from self.positions.
-}
-```
-
-**Constraints:** Maintain exact realized P&L accounting when closing positions, and update weighted average cost basis when opening positions.
-**Hints used:** 0/3
-**My attempt:** *(paste here when ready, even if broken/partial)*
+*(No open exercises at the moment. All exercises completed for current step!)*
 
 ---
 
 ## Solved
 
+### Exercise 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
+**Status:** solved
+**Goal:** Create `src/tracker.rs` with `PositionTracker` storing `realized_pnl: f64` and positions map, supporting `process_fill` and `total_pnl`.
+**Note:** Solved in `src/tracker.rs`. Checked against `SOLUTIONS.md` — exact match on `process_fill` P&L accounting and `total_pnl` mark-to-market calculations.
+
+
 ### Exercise 1.10-2 — Domain Struct Serde Derives & Round-Trip Persistence Testing (`#[derive(Serialize, Deserialize)]`, `#[test]`)
+
 **Status:** solved
 **Goal:** Add `#[derive(Serialize, Deserialize)]` to all domain types (`User`, `UserManager`, `Wallet`, `TransactionRecord`, `TransactionType`, `Position`, `Portfolio`, `OrderId`, `OrderSide`, `OrderStatus`, `Order`), and write a unit test in `src/storage.rs` verifying round-trip JSON serialization.
 **Note:** Solved across domain models and `src/storage.rs`. Checked against `SOLUTIONS.md` — exact match on `test_storage_rountrip` and Serde derives.

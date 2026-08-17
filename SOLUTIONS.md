@@ -940,7 +940,79 @@ mod tests {
 
 ---
 
+### Solution 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
+
+**Reference Implementation:**
+```rust
+// src/tracker.rs:
+use std::collections::HashMap;
+use crate::orders::OrderSide;
+use crate::portfolio::Position;
+
+#[derive(Debug, Default)]
+pub struct PositionTracker {
+    pub positions: HashMap<String, Position>,
+    pub realized_pnl: f64,
+}
+
+impl PositionTracker {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    pub fn process_fill(&mut self, side: OrderSide, symbol: &str, qty: f64, price: f64) {
+        match side {
+            OrderSide::Buy => {
+                self.positions
+                    .entry(symbol.to_string())
+                    .and_modify(|pos| pos.update(qty, price))
+                    .or_insert_with(|| Position::new(symbol.to_string(), qty, price));
+            }
+            OrderSide::Sell => {
+                if let Some(pos) = self.positions.get_mut(symbol) {
+                    let pnl = (price - pos.avg_cost_basis) * qty;
+                    self.realized_pnl += pnl;
+                    pos.quantity -= qty;
+
+                    if pos.quantity <= 0.0 {
+                        self.positions.remove(symbol);
+                    }
+                }
+            }
+        }
+    }
+
+    pub fn total_pnl(&self, current_prices: &HashMap<String, f64>) -> f64 {
+        let mut total = self.realized_pnl;
+
+        for pos in self.positions.values() {
+            let market_price = current_prices.get(&pos.symbol).copied().unwrap_or(pos.avg_cost_basis);
+            total += pos.unrealized_pnl(market_price);
+        }
+
+        total
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `match side` — Pattern matches order fill direction (`Buy` vs `Sell`).
+- `self.positions.entry(...).and_modify(...).or_insert_with(...)` — Atomically updates position quantity and weighted cost basis on Buy fills.
+- `(price - pos.avg_cost_basis) * qty` — Calculates locked-in realized P&L when selling shares.
+- `pos.unrealized_pnl(market_price)` — Calls the `Position` method to compute paper profit/loss against live prices.
+- `total` — Returns the combined sum of Realized P&L + Unrealized P&L.
+
+**Compared to your attempt:**
+- **Great Effort!**: Your logic for `OrderSide::Sell` was spot on (`if let Some(pos) = ...`, calculating `pnl`, updating `realized_pnl`, and removing empty positions)!
+- **Key Adjustments Needed**:
+  1. For `Buy`, `self.positions.entry(...)` returns an `Entry` enum — calling `.and_modify()` and `.or_insert_with()` properly executes the update/insert.
+  2. For `total_pnl`, `pos.unrealized_pnl` is a method (`pos.unrealized_pnl(*price)`), so it needs method arguments `(*price)` and parenthetic call syntax `()`.
+  3. Return `total` at the end of `total_pnl`.
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
+
 
 
 

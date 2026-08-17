@@ -9,6 +9,8 @@ mod wallet;
 mod portfolio;
 mod orders;
 mod storage;
+mod tracker;
+
 
 use cli::{Cli, Commands};
 

@@ -455,3 +455,51 @@
 **Outcome / Next Step:** Learner creates `src/tracker.rs` and implements `PositionTracker` with `process_fill` and `total_pnl`.
 
 ---
+
+### 2026-08-17 19:32 IST — Prompt #56
+**Prompt:** "Not ablel to get the total_pnl calculation syntax setup help me with it"
+**Context:** Learner asked for conceptual and structural help on implementing `total_pnl` in `src/tracker.rs`.
+**Output Summary:** AI incremented Hints counter to 1/3 in EXERCISES.md, logged change in LOGS.md, provided Hint 1 (conceptual breakdown of realized P&L + unrealized P&L sum) and Hint 2 (structural method calls `.values()`, `get(&pos.symbol)`, and `pos.unrealized_pnl`), and pointed out entry upsert syntax fix for `process_fill`.
+**Outcome / Next Step:** Learner implements `total_pnl` and fixes `process_fill` entry upserting in `src/tracker.rs`.
+
+---
+
+### 2026-08-17 19:43 IST — Prompt #57
+**Prompt:** "I am confused and stuck i need a clear understanding with solution"
+**Context:** Learner submitted an attempt in `src/tracker.rs` and asked to reveal the reference solution and clear explanation.
+**Output Summary:** AI verified gate conditions (attempt + explicit ask), opened Solution 1.11-1 in SOLUTIONS.md, moved Exercise 1.11-1 to solved in EXERCISES.md, logged diffs in LOGS.md, and walked through line-by-line comparison of learner attempt vs reference implementation.
+**Outcome / Next Step:** Learner updates `src/tracker.rs` with reference implementation and verifies compilation with `cargo check`.
+
+---
+
+### 2026-08-17 19:48 IST — Prompt #58
+**Prompt:** "Add one more rule in their to explain solution in layman terms whenever asked witt this match side thing we write like this match side { OrderSide::Buy => { ... } But in natural language to understand it we say like if position is there for this symbol modify it something like very natural english low level to understand it clearly"
+**Context:** Learner requested adding Rule 17 to RULES.md requiring plain natural English "thought translations" alongside complex Rust code idioms, and asked for a plain English breakdown of the `process_fill` Buy/Sell logic.
+**Output Summary:** AI added Rule 17 to RULES.md, logged change in LOGS.md, and provided a plain natural English thought translation of the `match side` / `entry()` pattern in `process_fill`.
+**Outcome / Next Step:** Learner completes `src/tracker.rs` and tests with `cargo check`.
+
+---
+
+### 2026-08-17 20:23 IST — Prompt #59
+**Prompt:** "What about the total_pnl explanation"
+**Context:** Learner completed `src/tracker.rs` and asked for a plain English thought translation of `total_pnl` per Rule 17.
+**Output Summary:** AI provided plain everyday English thought translation of `total_pnl` (calculating realized P&L + mark-to-market unrealized P&L).
+**Outcome / Next Step:** Learner verifies `src/tracker.rs` with `cargo check` and moves to the next step.
+
+---
+
+### 2026-08-17 21:17 IST — Prompt #60
+**Prompt:** "it is avg_cost right not avg_cost_basis"
+**Context:** Learner accurately noted that `Position` struct in `src/portfolio.rs` names the field `avg_cost`.
+**Output Summary:** AI confirmed `pub avg_cost: f64` on `Position` in `src/portfolio.rs` and directed learner to update line 46 in `src/tracker.rs` to `pos.avg_cost`.
+**Outcome / Next Step:** Learner updates `pos.avg_cost` on line 46 in `src/tracker.rs` and runs `cargo check`.
+
+---
+
+### 2026-08-17 21:20 IST — Prompt #61
+**Prompt:** "Done /next"
+**Context:** Learner completed `PositionTracker` in `src/tracker.rs` with `pos.avg_cost`.
+**Output Summary:** AI validated `src/tracker.rs` implementation, verified Module 1.11 completion per Rule 14, and proposed marking Module 1.11 complete in LEARNING.md and ROADMAP.md.
+**Outcome / Next Step:** Learner approves LEARNING.md and ROADMAP.md updates for Module 1.11 completion, then moves to Module 1.12 (Testing Suite & Comprehensive Integration Tests).
+
+---

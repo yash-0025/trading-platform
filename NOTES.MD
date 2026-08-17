@@ -356,3 +356,31 @@
 
 - Serialize and Deserialize - Stamping every item in our store with a universal bar code tag so any automatic scanning robot can instatnly register pack or unpack it without needing custom instructions
 - Applying #[derive(Serialize,Deserialize)] to struct and enums invokes Rust procedural macros to generate Serializer and Deserializer trait implementations at compile time, maintaining zero-overhead performance 
+
+
+#### Positions Tracking and Order execution
+- IN real brokerage and exchnage systems. 
+    1. Opening Fills - When a buy order executes an existing positions quantity and weighted average cost basis increase
+    2. Closing fills - When a sell order executes , the trader closes part or all of their long positions . The system locks in realized P&L `(sell_price - avg_cost_basis) * qty_sold` , updates remaining quantity and remove the position if quantity reaches zero
+    3. Mark-to-Market Accounting - Total P&L is the sum of Realized P&L(locked-in cash profit/loss) + Unrealized P&L (paper profit/loss of currently open positions)
+
+```
++-------------------------------------------------------------------------+
+|              POSITION TRACKING & SMART POINTER ARCHITECTURE             |
+|                                                                         |
+|  Order Execution Handler              Portfolio Manager                 |
+|         \                                   /                           |
+|          \  Rc::clone(&pos_ref)            /  Rc::clone(&pos_ref)       |
+|           v                               v                             |
+|  +-------------------------------------------------------------------+  |
+|  | Rc<RefCell<Position>>  (Shared Heap Ownership & Interior Mutability)||
+|  |   - RefCell.borrow_mut() -> Mutate qty & avg_cost_basis           |   |
+|  +-------------------------------------------------------------------+  |
+|                                                                         |
+|  Mark-to-Market P&L Calculation:                                        |
+|  Total P&L = Realized P&L (closed fills) + Unrealized P&L (open pos)    |
++-------------------------------------------------------------------------+
+
+```
+
+##### Heap Allocation and Shared Interior Mutability (Box<T>, RC<T>, RefCell<T>, Rc<RefCell<T>>)

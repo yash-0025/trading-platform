@@ -33,6 +33,56 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-17 19:48 IST — [RULES.md] — Added Rule 17 (Plain English / Layman's Natural Language Code Translation)</summary>
+
+- **File:** RULES.md
+- **Change type:** Modified
+- **Reason:** Learner requested adding a governance rule requiring plain everyday English "thought translations" alongside complex Rust code idioms.
+
+```diff
+[RULES.md]
++ 17. **Plain English / Layman's Natural Language Code Translation:** Whenever explaining complex Rust code, idiom blocks (`match`, `HashMap::entry().and_modify().or_insert_with()`, `get_mut()`, `if let`, etc.), or solutions, the AI MUST provide a plain natural English "thought translation" alongside the technical breakdown...
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 19:44 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.11-1</summary>
+
+- **Files:** SOLUTIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Opened Solution 1.11-1 after learner submitted an attempt for `PositionTracker` in `src/tracker.rs`. Moved Exercise 1.11-1 to solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
++ **Reference Implementation:**
++ pub fn process_fill(&mut self, side: OrderSide, symbol: &str, qty: f64, price: f64) { ... }
++ pub fn total_pnl(&self, current_prices: &HashMap<String, f64>) -> f64 { ... }
+
+[EXERCISES.md]
+- ### Exercise 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution) [open]
++ ### Exercise 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution) [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-17 19:33 IST — [EXERCISES.md] — Incremented Hint Counter (1/3)</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Incremented hint counter to 1/3 for Exercise 1.11-1 as learner asked for guidance on `total_pnl`.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 0/3
++ **Hints used:** 1/3
+```
+
+</details>
+
+<details>
 <summary>2026-08-17 17:44 IST — [SOLUTIONS.md / EXERCISES.md] — Added Solution 1.10-2 & Exercise 1.11-1</summary>
 
 - **Files:** SOLUTIONS.md, EXERCISES.md
