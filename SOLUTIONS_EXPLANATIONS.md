@@ -269,6 +269,28 @@
 
 ---
 
+### Solution 1.13-2 — Services Subtree Organization (`src/services.rs`, `src/services/`) & Re-exports (`pub use`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Turn `src/services.rs` into the root manager for the `src/services/` folder by declaring `pub mod order_manager;` and `pub mod tracker;`. Then re-export active business engines (`pub use order_manager::*;`, `pub use tracker::*;`) so callers can import `use trading_platform::services::OrderManager;` or top-level `use trading_platform::OrderManager;` without needing deep nested file paths."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `pub mod order_manager;`
+   - `pub mod`: Public module declaration loading `src/services/order_manager.rs`.
+2. `pub mod tracker;`
+   - `pub mod`: Public module declaration loading `src/services/tracker.rs`.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `pub use order_manager::{OrderManager, OrderId, OrderSide, OrderType, OrderStatus, Order};`
+   - `pub use`: Publicly re-exports `OrderManager` and related types at the `services` module level.
+2. `pub use tracker::PositionTracker;`
+   - `pub use`: Re-exports `PositionTracker` at the `services` module level.
+3. `pub use services::{OrderManager, PositionTracker, OrderSide, OrderType, OrderStatus, Order};`
+   - Top-level re-export facade in `src/lib.rs` granting clean top-level import access for external users.
+
+---
+
+
 
 
 

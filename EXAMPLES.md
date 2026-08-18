@@ -737,7 +737,31 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 40. Full Infrastructure Subtree Refactoring (`src/storage/`, `src/errors/`, `src/cli/`, `src/config/`)
+
+**ELI5 Analogy: Dedicated Facilities Rooms for Utilities**
+
+* **Infrastructure Subtrees (`storage/`, `errors/`, `cli/`, `config/`)**:
+  - Domain models (`models/`) and business engines (`services/`) need dedicated utility infrastructure to run.
+  - Just as a high-rise building dedicates specific rooms for electrical controls (`config/`), power backup (`storage/`), security alarms (`errors/`), and the front lobby (`cli/`), every infrastructure component gets its own dedicated module folder (`src/storage/`, `src/errors/`, `src/cli/`, `src/config/`) rather than residing in loose root files.
+
+**Deep Technical Breakdown:**
+
+- **Complete Modular Codebase Structure**:
+  - `src/models/` (`portfolio.rs`, `users.rs`, `wallet.rs`)
+  - `src/services/` (`order_manager.rs`, `tracker.rs`)
+  - `src/storage/` (`engine.rs`)
+  - `src/errors/` (`trading_error.rs`)
+  - `src/cli/` (`parser.rs`)
+  - `src/config/` (`settings.rs`)
+
+- **Zero Flat Root Files**:
+  - Every root `.rs` file in `src/` (`models.rs`, `services.rs`, `storage.rs`, `errors.rs`, `cli.rs`, `config.rs`) acts strictly as a module hierarchy coordinator that exposes public sub-module types via `pub use`.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

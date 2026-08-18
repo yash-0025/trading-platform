@@ -60,7 +60,7 @@ impl StorageEngine {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::portfolio::{Portfolio, Position};
+    use crate::models::portfolio::{Portfolio, Position};
     use std::path::PathBuf;
 
     #[test]

@@ -726,6 +726,22 @@
 
 ---
 
+### 2026-08-19 00:19 IST — Prompt #90
+**Prompt:** "Renamed the file to order_manager Done /next"
+**Context:** Learner moved `src/orders.rs` $\rightarrow$ `src/services/order_manager.rs` and `src/tracker.rs` $\rightarrow$ `src/services/tracker.rs`, updated `src/services.rs` and `src/lib.rs`, and invoked `/next`.
+**Output Summary:** AI placed Solution 1.13-2 in exact numerical position in SOLUTIONS.md, appended plain English explanation + skeleton and solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, moved Exercise 1.13-2 to Solved in EXERCISES.md, logged diffs in LOGS.md, and conducted Rule 14 audit for Module 1.13.
+**Outcome / Next Step:** Learner approves Rule 14 audit for Module 1.13, updating status to `[x]` in `ROADMAP.md` and `LEARNING.md`, before advancing to Module 1.14 Documentation & Code Quality.
+
+### 2026-08-19 00:26 IST — Prompt #91
+**Prompt:** "I don't think so it is a complete refactor and all the things is not completed from roadmap..."
+**Context:** Learner caught that `src/storage.rs`, `src/errors.rs`, `src/cli.rs`, and `src/config.rs` were still loose root files in `src/` rather than being fully refactored into subtrees per `ROADMAP.md` Module 1.13 ("Refactor the entire codebase into clean module architecture: src/models/, src/services/, src/storage/, src/errors/, src/cli/, src/config/").
+**Output Summary:** AI acknowledged the mistake, canceled premature Module 1.13 completion, added Concept 40 (Full Infrastructure Subtree Refactoring) to EXAMPLES.md, created Exercise 1.13-3 in EXERCISES.md to complete all remaining 4 infrastructure subtrees, printed full exercise skeleton in chat response, and logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner completes Exercise 1.13-3 refactoring `storage/`, `errors/`, `cli/`, and `config/` into dedicated directories.
+
+---
+
+
+
 
 
 

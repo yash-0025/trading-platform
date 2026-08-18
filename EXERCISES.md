@@ -38,31 +38,50 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.13-2 — Services Subtree Organization (`src/services.rs`, `src/services/`) & Re-exports (`pub use`)
+### Exercise 1.13-3 — Complete Infrastructure Subtree Refactoring (`src/storage/`, `src/errors/`, `src/cli/`, `src/config/`)
 
 **Status:** open
-**Goal:** Create `src/services.rs` declaring `pub mod order_manager;` and `pub mod tracker;`, move `src/orders.rs` into `src/services/order_manager.rs` and `src/tracker.rs` into `src/services/tracker.rs`, re-export them in `src/services.rs`, and update `src/lib.rs`.
+**Goal:** Refactor the remaining 4 loose infrastructure files (`src/storage.rs`, `src/errors.rs`, `src/cli.rs`, `src/config.rs`) into dedicated sub-folders (`src/storage/engine.rs`, `src/errors/trading_error.rs`, `src/cli/parser.rs`, `src/config/settings.rs`), updating root files and `src/lib.rs` with re-exports.
 
 **Skeleton:**
 ```rust
-// Create src/services.rs:
-pub mod order_manager;
-pub mod tracker;
+// 1. Move files into dedicated infrastructure directories:
+//    src/storage.rs -> src/storage/engine.rs
+//    src/errors.rs  -> src/errors/trading_error.rs
+//    src/cli.rs     -> src/cli/parser.rs
+//    src/config.rs  -> src/config/settings.rs
 
-// TODO(1): Re-export OrderManager and PositionTracker from services sub-modules:
-// pub use order_manager::{OrderManager, OrderId, OrderSide, OrderType, OrderStatus, Order};
-// pub use tracker::PositionTracker;
+// TODO(1): Update src/storage.rs:
+// pub mod engine;
+// pub use engine::*;
 
-// Update src/lib.rs:
-// pub mod services;
-// pub use services::{OrderManager, PositionTracker, OrderSide, OrderType};
+// TODO(2): Update src/errors.rs:
+// pub mod trading_error;
+// pub use trading_error::*;
+
+// TODO(3): Update src/cli.rs:
+// pub mod parser;
+// pub use parser::*;
+
+// TODO(4): Update src/config.rs:
+// pub mod settings;
+// pub use settings::*;
 ```
 
-**Constraints:** Run `cargo check` and `cargo test` to confirm all unit and integration tests compile cleanly.
+**Constraints:** Run `cargo check` and `cargo test` to verify every module resolves with 0 errors.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
+
+## Solved
+
+### Exercise 1.13-2 — Services Subtree Organization (`src/services.rs`, `src/services/`) & Re-exports (`pub use`)
+**Status:** solved
+**Goal:** Create `src/services.rs` declaring `pub mod order_manager;` and `pub mod tracker;`, move `src/orders.rs` into `src/services/order_manager.rs` and `src/tracker.rs` into `src/services/tracker.rs`, re-export them in `src/services.rs`, and update `src/lib.rs`.
+**Note:** Solved in `src/services.rs` and `src/lib.rs`. Checked against `SOLUTIONS.md` — exact match on moving engine files to `src/services/` and re-exporting `OrderManager` and `PositionTracker`.
+
 
 
 ## Solved

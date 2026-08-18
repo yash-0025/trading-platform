@@ -1492,6 +1492,44 @@ pub use models::{Portfolio, Position, User, UserManager, Wallet, TransactionReco
 
 ---
 
+### Solution 1.13-2 — Services Subtree Organization (`src/services.rs`, `src/services/`) & Re-exports (`pub use`)
+
+**Reference Implementation:**
+```rust
+// src/services.rs:
+pub mod order_manager;
+pub mod tracker;
+
+pub use order_manager::{OrderManager, OrderId, OrderSide, OrderType, OrderStatus, Order};
+pub use tracker::PositionTracker;
+```
+
+```rust
+// src/lib.rs:
+pub mod config;
+pub mod errors;
+pub mod models;
+pub mod services;
+pub mod storage;
+pub mod cli;
+
+pub use models::{Portfolio, Position, User, UserManager, Wallet, TransactionRecord, TransactionType};
+pub use services::{OrderManager, OrderId, OrderSide, OrderType, OrderStatus, Order, PositionTracker};
+```
+
+**Line-by-Line Breakdown:**
+- `pub mod order_manager;` — Declares business engine sub-module `src/services/order_manager.rs`.
+- `pub mod tracker;` — Declares business engine sub-module `src/services/tracker.rs`.
+- `pub use order_manager::{...};` — Re-exports order management engine and order types at `services` level.
+- `pub use tracker::PositionTracker;` — Re-exports position tracking engine at `services` level.
+- `pub use services::{...};` — Top-level library API re-export facade in `src/lib.rs`.
+
+**Compared to your attempt:**
+- **Exact Match!**: You successfully moved `orders.rs` and `tracker.rs` into `src/services/`, declared sub-modules in `src/services.rs`, and re-exported all engines and order types cleanly in `src/lib.rs`!
+
+---
+
+
 
 
 

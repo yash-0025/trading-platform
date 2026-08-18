@@ -1,6 +1,5 @@
-use trading_platform::wallet::Wallet;
-use trading_platform::orders::{OrderManager, OrderSide, OrderType};
-use trading_platform::tracker::PositionTracker;
+use trading_platform::models::Wallet;
+use trading_platform::services::{OrderManager, OrderSide, OrderType, PositionTracker};
 use std::collections::HashMap;
 
 

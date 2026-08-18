@@ -4,12 +4,8 @@ mod models;
 mod config;
 mod cli;
 mod errors;
-mod users;
-mod wallet;
-mod portfolio;
-mod orders;
+mod services;
 mod storage;
-mod tracker;
 
 
 use cli::{Cli, Commands};

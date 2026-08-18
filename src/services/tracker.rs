@@ -1,6 +1,6 @@
 use std::collections::HashMap;
-use crate::orders::OrderSide;
-use crate::portfolio::Position;
+use crate::services::order_manager::OrderSide;
+use crate::models::portfolio::Position;
 
 
 #[derive(Debug, Default)]
@@ -55,7 +55,7 @@ impl PositionTracker {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::orders::OrderSide;
+    use crate::services::order_manager::OrderSide;
 
     #[test]
     fn test_position_tracker_buy_sell_pnl() {
