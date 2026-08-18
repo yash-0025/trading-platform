@@ -1529,6 +1529,39 @@ pub use services::{OrderManager, OrderId, OrderSide, OrderType, OrderStatus, Ord
 
 ---
 
+### Solution 1.13-3 — Complete Infrastructure Subtree Refactoring (`src/storage/`, `src/errors/`, `src/cli/`, `src/config/`)
+
+**Reference Implementation:**
+```rust
+// src/storage.rs:
+pub mod engine;
+pub use engine::*;
+
+// src/errors.rs:
+pub mod trading_errors;
+pub use trading_errors::*;
+
+// src/cli.rs:
+pub mod parser;
+pub use parser::*;
+
+// src/config.rs:
+pub mod settings;
+pub use settings::*;
+```
+
+**Line-by-Line Breakdown:**
+- `pub mod engine; pub use engine::*;` — Re-exports storage engine sub-module types at `storage` level.
+- `pub mod trading_errors; pub use trading_errors::*;` — Re-exports error enum types at `errors` level.
+- `pub mod parser; pub use parser::*;` — Re-exports CLI parser types at `cli` level.
+- `pub mod settings; pub use settings::*;` — Re-exports config settings types at `config` level.
+
+**Compared to your attempt:**
+- **Exact Match!**: You successfully refactored all 4 infrastructure subtrees, created parent root module files, and re-exported all types in `src/lib.rs`!
+
+---
+
+
 
 
 

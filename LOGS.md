@@ -33,6 +33,69 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-19 01:26 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 41 & Exercise 1.14-1 for Crate Documentation</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Starting Module 1.14 (Documentation & Code Quality). Added Concept 41 (Module Documentation `//!` & strict missing_docs lint) to EXAMPLES.md and created Exercise 1.14-1 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 41. Module-Level Documentation (`//!`), Strict Doc Lints (`#![deny(missing_docs)]`), and Intra-Doc Links
+
+[EXERCISES.md]
++ ### Exercise 1.14-1 — Crate-Level Documentation (`//!`) & Intra-Doc Links
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 01:26 IST — [ROADMAP.md / LEARNING.md] — Marked Module 1.13 [x] Completed Upon Learner Approval</summary>
+
+- **Files:** ROADMAP.md, LEARNING.md
+- **Change type:** Modified
+- **Reason:** Completed Rule 14 audit for Module 1.13 (Multi-Module Architecture Refactoring). Learner explicitly approved updating status markers to `[x]`.
+
+```diff
+[ROADMAP.md]
+- - [ ] **You build:** Refactor the entire codebase into clean module architecture...
++ - [x] **You build:** Refactor the entire codebase into clean module architecture...
+- - [ ] **Concepts:** Module system deep dive — mod.rs vs foo.rs + foo/ (modern style)...
++ - [x] **Concepts:** Module system deep dive — mod.rs vs foo.rs + foo/ (modern style)...
+- - [ ] **Architecture:** Clean architecture principles...
++ - [x] **Architecture:** Clean architecture principles...
+- - [ ] **Deliverable:** Clean module tree...
++ - [x] **Deliverable:** Clean module tree...
+
+[LEARNING.md]
++ ### Module 1.13 — Multi-Module Architecture Refactoring — 2026-08-19 [x]
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 00:50 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.13-3 & Solved Exercise 1.13-3</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Completed all 6 domain subtrees for Module 1.13 (`models/`, `services/`, `storage/`, `errors/`, `cli/`, `config/`). Placed Solution 1.13-3 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.13-3 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.13-3 — Complete Infrastructure Subtree Refactoring
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.13-3 — Complete Infrastructure Subtree Refactoring
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.13-3 — Complete Infrastructure Subtree Refactoring [solved]
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 00:26 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 40 & Exercise 1.13-3 for Full Infrastructure Refactoring</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md

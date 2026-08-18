@@ -38,41 +38,40 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.13-3 — Complete Infrastructure Subtree Refactoring (`src/storage/`, `src/errors/`, `src/cli/`, `src/config/`)
+### Exercise 1.14-1 — Crate-Level Documentation (`//!`) & Intra-Doc Links
 
 **Status:** open
-**Goal:** Refactor the remaining 4 loose infrastructure files (`src/storage.rs`, `src/errors.rs`, `src/cli.rs`, `src/config.rs`) into dedicated sub-folders (`src/storage/engine.rs`, `src/errors/trading_error.rs`, `src/cli/parser.rs`, `src/config/settings.rs`), updating root files and `src/lib.rs` with re-exports.
+**Goal:** In `src/lib.rs`, add an inner doc comment `//!` at the very top of the file documenting the `trading_platform` crate architecture with intra-doc links to `Wallet` and `OrderManager`.
 
 **Skeleton:**
 ```rust
-// 1. Move files into dedicated infrastructure directories:
-//    src/storage.rs -> src/storage/engine.rs
-//    src/errors.rs  -> src/errors/trading_error.rs
-//    src/cli.rs     -> src/cli/parser.rs
-//    src/config.rs  -> src/config/settings.rs
+// In src/lib.rs (at the very top of the file):
 
-// TODO(1): Update src/storage.rs:
-// pub mod engine;
-// pub use engine::*;
+//! # Trading Platform Architecture
+//!
+//! A production-grade financial trading ecosystem.
+//!
+//! ## Core Domain Subsystems
+//! - Domain Models: [`Wallet`](crate::models::Wallet), [`Position`](crate::models::Position)
+//! - Business Services: [`OrderManager`](crate::services::OrderManager)
 
-// TODO(2): Update src/errors.rs:
-// pub mod trading_error;
-// pub use trading_error::*;
-
-// TODO(3): Update src/cli.rs:
-// pub mod parser;
-// pub use parser::*;
-
-// TODO(4): Update src/config.rs:
-// pub mod settings;
-// pub use settings::*;
+// TODO(1): Add the inner doc comment above at line 1 of src/lib.rs
 ```
 
-**Constraints:** Run `cargo check` and `cargo test` to verify every module resolves with 0 errors.
+**Constraints:** Run `cargo doc --open` to verify documentation builds without warnings.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
+
+## Solved
+
+### Exercise 1.13-3 — Complete Infrastructure Subtree Refactoring (`src/storage/`, `src/errors/`, `src/cli/`, `src/config/`)
+**Status:** solved
+**Goal:** Refactor the remaining 4 loose infrastructure files (`src/storage.rs`, `src/errors.rs`, `src/cli.rs`, `src/config.rs`) into dedicated sub-folders (`src/storage/engine.rs`, `src/errors/trading_errors.rs`, `src/cli/parser.rs`, `src/config/settings.rs`), updating root files and `src/lib.rs` with re-exports.
+**Note:** Solved across `src/storage/`, `src/errors/`, `src/cli/`, and `src/config/`. Checked against `SOLUTIONS.md` — 100% match on all 6 domain subtrees.
+
 
 
 ## Solved

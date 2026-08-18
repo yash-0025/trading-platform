@@ -151,10 +151,11 @@ Every module has:
 ---
 
 ### Module 1.13 — Multi-Module Architecture Refactoring
-- [ ] **You build:** Refactor the entire codebase into clean module architecture: `src/models/`, `src/services/`, `src/storage/`, `src/errors/`, `src/cli/`, `src/config/`.
-- [ ] **Concepts:** Module system deep dive — `mod.rs` vs `foo.rs` + `foo/` (modern style) · Re-exports with `pub use` · Visibility levels · `pub(crate)` vs `pub(super)` · Dependency direction — services depend on models, not vice versa · Circular dependency prevention
-- [ ] **Architecture:** Clean architecture principles. Separation of concerns. Dependency inversion. How production Rust projects organize code.
-- [ ] **Deliverable:** Clean module tree. No circular dependencies. Each module has a clear single responsibility.
+- [x] **You build:** Refactor the entire codebase into clean module architecture: `src/models/`, `src/services/`, `src/storage/`, `src/errors/`, `src/cli/`, `src/config/`.
+- [x] **Concepts:** Module system deep dive — `mod.rs` vs `foo.rs` + `foo/` (modern style) · Re-exports with `pub use` · Visibility levels · `pub(crate)` vs `pub(super)` · Dependency direction — services depend on models, not vice versa · Circular dependency prevention
+- [x] **Architecture:** Clean architecture principles. Separation of concerns. Dependency inversion. How production Rust projects organize code.
+- [x] **Deliverable:** Clean module tree. No circular dependencies. Each module has a clear single responsibility.
+
 
 ---
 

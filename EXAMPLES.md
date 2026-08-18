@@ -760,7 +760,35 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 41. Module-Level Documentation (`//!`), Strict Doc Lints (`#![deny(missing_docs)]`), and Intra-Doc Links
+
+**ELI5 Analogy: The Room Sign vs The Desk Plaque**
+
+* **Inner Doc Comments (`//!`) — The Room Sign**:
+  - Outer doc comments (`///`) document the specific struct or function immediately below them (like a nameplate on a desk).
+  - Inner doc comments (`//!`) document the **containing file/module itself** (like the sign at the entrance door of the department).
+
+* **Strict Doc Lints (`#![deny(missing_docs)]`) — The Quality Gatekeeper**:
+  - In production Rust crates, undocumented public APIs lead to misuse and bugs.
+  - Adding `#![deny(missing_docs)]` at the top of `src/lib.rs` instructs `rustc` to fail compilation if any `pub` struct, enum, method, or module lacks a documentation comment.
+
+**Deep Technical Breakdown:**
+
+- **Inner vs Outer Attributes**:
+  - `///`: Outer attribute macro targeting the next item.
+  - `//!`: Inner attribute macro targeting the parent containing item (`lib.rs` or module root).
+
+- **Intra-Doc Markdown Links**:
+  - Rustdoc resolves code symbol paths directly inside Markdown links:
+    ```rust
+    /// Manages trades for [`Wallet`](crate::models::Wallet).
+    ```
+  - Running `cargo doc --open` compiles all intra-doc links into clickable HTML anchors.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

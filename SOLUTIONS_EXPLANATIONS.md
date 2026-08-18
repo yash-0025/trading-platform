@@ -290,6 +290,34 @@
 
 ---
 
+### Solution 1.13-3 — Complete Infrastructure Subtree Refactoring (`src/storage/`, `src/errors/`, `src/cli/`, `src/config/`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Turn `src/storage.rs`, `src/errors.rs`, `src/cli.rs`, and `src/config.rs` into root module managers for their respective subfolders (`src/storage/`, `src/errors/`, `src/cli/`, `src/config/`). Then re-export all infrastructure types at the module root and top-level `src/lib.rs` so callers can access `use trading_platform::storage::StorageEngine;` or `use trading_platform::StorageEngine;` without breaking existing API contracts."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `pub mod engine;`
+   - `pub mod`: Public module declaration loading child file `src/storage/engine.rs`.
+2. `pub mod trading_errors;`
+   - Loads child file `src/errors/trading_errors.rs`.
+3. `pub mod parser;`
+   - Loads child file `src/cli/parser.rs`.
+4. `pub mod settings;`
+   - Loads child file `src/config/settings.rs`.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `pub use engine::*;`
+   - Glob re-export making `StorageEngine` and `StorageMetadata` publicly accessible at `storage` module level.
+2. `pub use trading_errors::*;`
+   - Glob re-export making `TradingError` and `Result` accessible at `errors` module level.
+3. `pub use parser::*;`
+   - Glob re-export making `Cli` and `Commands` accessible at `cli` module level.
+4. `pub use settings::*;`
+   - Glob re-export making `Config` accessible at `config` module level.
+
+---
+
+
 
 
 

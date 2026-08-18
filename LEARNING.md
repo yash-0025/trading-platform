@@ -174,5 +174,17 @@
 - Created `tests/integration_test.rs` with `test_end_to_end_trading_flow`.
 - Added executable doc comments and panic tests to `src/wallet.rs`.
 
+### Module 1.13 — Multi-Module Architecture Refactoring — 2026-08-19
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Modern Rust module subtrees (`foo.rs` + `foo/`) across 100% of codebase domains.
+- Public re-export facades (`pub use path::Item`) decoupling internal file structures from public crate APIs.
+- Visibility level controls (`pub(crate)`) restricting internal helpers to crate scope.
+- One-way dependency direction (Services depend on Models, Models never depend on Services).
+**Code I wrote / project progress:**
+- Refactored all 6 subtrees: `src/models/`, `src/services/`, `src/storage/`, `src/errors/`, `src/cli/`, `src/config/`.
+- Updated `src/lib.rs` and `src/main.rs` to re-export clean crate facade.
+
+
 
 
