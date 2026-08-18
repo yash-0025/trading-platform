@@ -33,6 +33,47 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-18 12:49 IST — [RULES.md / next.md / SOLUTIONS_EXPLANATIONS.md] — Expanded Rule 19 for Exhaustive Token/Syntax Breakdown</summary>
+
+- **Files:** RULES.md, .agents/workflows/next.md, SOLUTIONS_EXPLANATIONS.md
+- **Change type:** Modified
+- **Reason:** Learner requested expanding Rule 19 requiring every solution entry in `SOLUTIONS_EXPLANATIONS.md` to include exhaustive line-by-line token, keyword, symbol, type bound, and method call breakdowns for BOTH skeleton syntax and solution syntax (what it is, why used, exact syntax mechanics, and technical rationale). Updated workflow `.agents/workflows/next.md` and expanded Solution 1.10-3 entry.
+
+```diff
+[RULES.md]
+- 19. Solution Plain English Explanation Storage (SOLUTIONS_EXPLANATIONS.md)...
++ 19. Solution Plain English Explanation & Exhaustive Syntax Storage (SOLUTIONS_EXPLANATIONS.md)... [requires exhaustive token/keyword/symbol/type-bound syntax breakdowns for both skeleton and solution syntax]
+
+[.agents/workflows/next.md]
++ Updated STEP 3.5-D Revealing and STEP 7 Self-Audit checklist for Rule 19 expanded syntax breakdown requirements.
+
+[SOLUTIONS_EXPLANATIONS.md]
++ Solution 1.10-3: Added 🦴 Skeleton Syntax Deep Breakdown and 💡 Solution Syntax Deep Breakdown covering every token, keyword, and method call.
+```
+
+</details>
+
+<details>
+<summary>2026-08-18 02:00 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 34 & Exercise 1.10-3</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Gap 5 (Module 1.10): Serde attributes (`#[serde(rename_all = "camelCase")]`, `#[serde(default)]`, `#[serde(skip)]`), struct lifetimes (`StorageMetadata<'a>`), `PathBuf` path extension methods, and atomic file saving (`.tmp` write & rename) were listed in ROADMAP.md but never coded in `src/storage.rs`. Added Concept 34 word-for-word to EXAMPLES.md and created Exercise 1.10-3 skeleton in EXERCISES.md.
+
+```diff
+[EXAMPLES.md]
++ ### 34. Serde Field Attributes (`rename_all`, `default`, `skip`), Struct Lifetimes (`'a`), `PathBuf` vs `Path`, & Atomic File Writes (`.tmp` Rename)
++ [ELI5 analogies + deep technical breakdowns]
+
+[EXERCISES.md]
++ ### Exercise 1.10-3 — Serde Field Attributes, Struct Lifetimes, `PathBuf` & Atomic Storage Writes
++ **Status:** open
++ [2 TODOs: load_json_or_default with T::default() fallback, save_json_atomic with .tmp path write & fs::rename]
+```
+
+</details>
+
+<details>
 <summary>2026-08-18 01:03 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.9-3 & Solved Exercise 1.9-3 in Exact Numerical Order</summary>
 
 - **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md

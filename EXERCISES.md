@@ -77,13 +77,19 @@ mod tests {
 
 ---
 
-
 ## Solved
 
 ### Exercise 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
 **Status:** solved
 **Goal:** Create `src/tracker.rs` with `PositionTracker` storing `realized_pnl: f64` and positions map, supporting `process_fill` and `total_pnl`.
 **Note:** Solved in `src/tracker.rs`. Checked against `SOLUTIONS.md` — exact match on `process_fill` P&L accounting and `total_pnl` mark-to-market calculations.
+
+
+### Exercise 1.10-3 — Serde Field Attributes, Struct Lifetimes, `PathBuf` & Atomic Storage Writes (`#[serde(default)]`, `StorageMetadata<'a>`, `save_json_atomic`)
+**Status:** solved
+**Goal:** In `src/storage.rs`, (1) define `StorageMetadata<'a>` holding `&'a Path` and `&'a str` with Serde attributes `rename_all`, `default`, and `skip`, (2) implement `load_json_or_default<T: DeserializeOwned + Default>(path: &Path) -> T`, and (3) implement `save_json_atomic<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError>`.
+**Note:** Solved in `src/storage.rs`. Checked against `SOLUTIONS.md` — exact match on `StorageMetadata<'a>`, `load_json_or_default`, and `save_json_atomic`.
+
 
 
 ### Exercise 1.10-2 — Domain Struct Serde Derives & Round-Trip Persistence Testing (`#[derive(Serialize, Deserialize)]`, `#[test]`)

@@ -1,7 +1,22 @@
 use std::fs;
 use std::path::Path;
-use serde::{Serialize,  de::DeserializeOwned};
+use serde::{Serialize, Deserialize, de::DeserializeOwned};
 use crate::errors::TradingError;
+
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct StorageMetadata<'a> {
+    #[serde(borrow)]
+    pub filename: &'a Path,
+    pub author: &'a str,
+    #[serde(default)]
+    pub version: u32,
+    #[serde(skip)]
+    pub runtime_cache: u64,
+}
+
+
 
 pub struct StorageEngine;
 
@@ -25,6 +40,18 @@ impl StorageEngine {
         // Deserialize json string into struct T
         let data = serde_json::from_str::<T>(&json_str)?;
         Ok(data)
+    }
+
+
+    pub fn load_json_or_default<T: DeserializeOwned + Default>(path: &Path) -> T {
+        Self::load_json::<T>(path).unwrap_or_default()
+    }
+
+    pub fn save_json_atomic<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError> {
+        let tmp_path = path.with_extension("tmp");
+        Self::save_json(&tmp_path, data)?;
+        fs::rename(&tmp_path, path)?;
+        Ok(())
     }
 }
 

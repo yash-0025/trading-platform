@@ -93,7 +93,8 @@ Bump "Hints used" each time. Never give hint 2 before hint 1, never bundle tiers
 
 **C. Solution gate.** Don't open `SOLUTIONS.md` until BOTH: (1) learner pasted/described a real attempt, even broken; (2) learner explicitly asked to see the solution. Zero-attempt asks get a nudge to try first.
 
-**D. Revealing.** Once gated: read/create matching `SOLUTIONS.md` entry (full code + line-by-line per Rules #9/#11) AND write plain English thought translation into `SOLUTIONS_EXPLANATIONS.md` in exact numerical order (Rule #19). **Compare, don't dump** — walk learner's attempt against reference: what matched, what differed, why. Mark `EXERCISES.md` `Status: solved`, log to `LOGS.md`.
+**D. Revealing.** Once gated: read/create matching `SOLUTIONS.md` entry (full code + line-by-line per Rules #9/#11) AND write plain English thought translation + exhaustive syntax breakdown (explaining every token, keyword, symbol, type bound, and method call in BOTH skeleton and solution syntax: what it is, why used, exact meaning, technical rationale) into `SOLUTIONS_EXPLANATIONS.md` in exact numerical order (Rule #19). **Compare, don't dump** — walk learner's attempt against reference: what matched, what differed, why. Mark `EXERCISES.md` `Status: solved`, log to `LOGS.md`.
+
 
 ## STEP 4 — File-Edit Discipline (Rules #1, #2)
 
@@ -125,7 +126,8 @@ Hard gate. Check every box against what you ACTUALLY DID, not intended. If any f
 - [ ] **`EXAMPLES.md` was actually edited** for every concept taught — verified file write happened.
 - [ ] **Rule 17**: Plain English thought translation provided alongside technical breakdown.
 - [ ] **Rule 18**: Every `ROADMAP.md` concept has active code in `src/`. Theory-only forbidden.
-- [ ] **Rule 19**: Solution revealed → thought translation appended to `SOLUTIONS_EXPLANATIONS.md` in numerical order.
+- [ ] **Rule 19**: Solution revealed → thought translation + exhaustive syntax breakdown (skeleton & solution tokens/keywords/mechanics/rationale) appended to `SOLUTIONS_EXPLANATIONS.md` in numerical order.
+
 - [ ] Hands-on portion → skeleton exercise in `EXERCISES.md` (STEP 3.5-A), no finished solution given (Rule #16).
 - [ ] `SOLUTIONS.md` untouched unless both gate conditions (STEP 3.5-C) met this turn.
 - [ ] Every file written has matching `LOGS.md` entry.

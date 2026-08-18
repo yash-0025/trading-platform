@@ -1171,6 +1171,72 @@ mod tests {
 
 ---
 
+### Solution 1.10-3 — Serde Field Attributes, Struct Lifetimes, `PathBuf` & Atomic Storage Writes (`#[serde(default)]`, `StorageMetadata<'a>`, `save_json_atomic`)
+
+**Reference Implementation:**
+```rust
+// src/storage.rs:
+use std::fs;
+use std::path::Path;
+use serde::{Serialize, de::DeserializeOwned, Deserialize};
+use crate::errors::TradingError;
+
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct StorageMetadata<'a> {
+    #[serde(borrow)]
+    pub filename: &'a Path,
+    pub author: &'a str,
+    #[serde(default)]
+    pub version: u32,
+    #[serde(skip)]
+    pub runtime_cache: u64,
+}
+
+pub struct StorageEngine;
+
+impl StorageEngine {
+    pub fn save_json<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError> {
+        let json_str = serde_json::to_string_pretty(data)?;
+        fs::write(path, json_str)?;
+        Ok(())
+    }
+
+    pub fn load_json<T: DeserializeOwned>(path: &Path) -> Result<T, TradingError> {
+        let json_str = fs::read_to_string(path)?;
+        let data = serde_json::from_str::<T>(&json_str)?;
+        Ok(data)
+    }
+
+    pub fn load_json_or_default<T: DeserializeOwned + Default>(path: &Path) -> T {
+        Self::load_json::<T>(path).unwrap_or_default()
+    }
+
+    pub fn save_json_atomic<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError> {
+        let tmp_path = path.with_extension("tmp");
+        Self::save_json(&tmp_path, data)?;
+        fs::rename(&tmp_path, path)?;
+        Ok(())
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `pub struct StorageMetadata<'a>` — Struct declaring explicit lifetime `'a` for borrowed slice fields `&'a Path` and `&'a str`.
+- `#[serde(rename_all = "camelCase")]` — Serde container attribute converting field names to `camelCase` in serialized JSON.
+- `#[serde(borrow)]` — Borrow attribute allowing Serde to borrow slice references from input JSON without allocating string copies.
+- `#[serde(default)]` — Field attribute using `Default::default()` for missing JSON fields during deserialization.
+- `#[serde(skip)]` — Excludes field from serialization and deserialization entirely.
+- `Self::load_json::<T>(path).unwrap_or_default()` — Calls `load_json` and returns `T::default()` gracefully if missing or corrupted.
+- `let tmp_path = path.with_extension("tmp");` — Uses `PathBuf` extension method to construct temporary target path.
+- `fs::rename(&tmp_path, path)?` — Atomically replaces the target file with the temp file in a single OS operation.
+
+**Compared to your attempt:**
+- **Great Start!**: You correctly defined `StorageMetadata<'a>` with all Serde attributes (`rename_all`, `borrow`, `default`, `skip`), and declared `load_json_or_default` inside `StorageEngine`!
+- **Key Completion**: `load_json_or_default` can be written in 1 line using `.unwrap_or_default()`, and `save_json_atomic` uses `path.with_extension("tmp")` and `fs::rename`.
+
+---
+
 ### Solution 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
 
 **Reference Implementation:**

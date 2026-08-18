@@ -58,6 +58,67 @@
 
 ---
 
+### Solution 1.10-3 — Serde Field Attributes, Struct Lifetimes, `PathBuf` & Atomic Storage Writes (`#[serde(default)]`, `StorageMetadata<'a>`, `save_json_atomic`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"For `StorageMetadata<'a>`, use explicit lifetime `'a` so it can hold borrowed file paths and author strings without cloning, and use Serde attributes so field names convert to `camelCase`, missing fields default automatically, and runtime cache fields get skipped. For `load_json_or_default`, try reading the file from disk: if the file is missing or corrupted, return a blank default struct instead of crashing. For `save_json_atomic`, write the data to a temporary file ending in `.tmp` first, then swap `.tmp` to the real filename in one atomic OS step so a crash mid-write never corrupts the database."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `#[derive(Debug, Serialize, Deserialize)]`
+   - `#[derive(...)]`: Outer attribute procedural macro. Instructs compiler to generate default code implementations automatically.
+   - `Debug`: Trait allowing debug formatting via `{:?}` in `println!`.
+   - `Serialize`: Serde trait enabling struct conversion into serialized formats (JSON).
+   - `Deserialize`: Serde trait enabling struct construction from raw JSON text.
+2. `#[serde(rename_all = "camelCase")]`
+   - `serde(...)`: Serde attribute namespace passed to Serde procedural macros.
+   - `rename_all = "camelCase"`: Container-level rule converting Rust `snake_case` field names (`runtime_cache`) into JavaScript `camelCase` (`runtimeCache`) when outputting JSON.
+3. `pub struct StorageMetadata<'a>`
+   - `pub`: Visibility modifier making struct accessible outside the module.
+   - `struct`: Keyword defining a nominal product type data structure.
+   - `<'a>`: Generic lifetime parameter syntax. Declares lifetime scope `'a` that constrains all borrowed reference fields inside the struct.
+4. `#[serde(borrow)] pub filename: &'a Path`
+   - `#[serde(borrow)]`: Field-level Serde attribute instructing deserializer to borrow string/path slices directly from input JSON without heap allocation.
+   - `&'a`: Immutable reference tied to lifetime scope `'a`.
+   - `Path`: Unsized OS filesystem path slice type (like `str`).
+5. `pub author: &'a str`
+   - `&'a str`: Immutable string slice reference borrowed for duration of lifetime `'a`.
+6. `#[serde(default)] pub version: u32`
+   - `#[serde(default)]`: Tells Serde to populate field with `u32::default()` (0) if `version` key is missing in input JSON file.
+7. `#[serde(skip)] pub runtime_cache: u64`
+   - `#[serde(skip)]`: Completely excludes field from serialization and deserialization; populated with `Default` at runtime.
+8. `pub fn load_json_or_default<T: DeserializeOwned + Default>(path: &Path) -> T`
+   - `pub fn`: Public function declaration.
+   - `<T: ...>`: Generic type parameter `T` constrained by trait bounds.
+   - `DeserializeOwned`: Trait bound requiring `T` to be deserialized from owned buffers (independent of input string lifetime).
+   - `+ Default`: Trait bound joining operator requiring `T` to implement `Default` for fallback construction.
+   - `path: &Path`: Immutable reference to borrowed path slice.
+   - `-> T`: Return type signature returning owned instance of `T`.
+9. `pub fn save_json_atomic<T: Serialize>(path: &Path, data: &T) -> Result<(), TradingError>`
+   - `T: Serialize`: Trait bound requiring data type `T` to implement Serde `Serialize`.
+   - `data: &T`: Immutable reference to data payload (avoids taking ownership).
+   - `Result<(), TradingError>`: Return type yielding empty unit tuple `()` on success or `TradingError` enum on failure.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `Self::load_json::<T>(path).unwrap_or_default()`
+   - `Self`: Keyword referencing current enclosing type (`StorageEngine`).
+   - `load_json::<T>(path)`: Calls static method `load_json` using Turbofish `::<T>` to explicitly pass generic type `T`.
+   - `.unwrap_or_default()`: `Result` method returning inner `T` on `Ok(T)` or constructing `T::default()` on `Err(_)`. Replaces manual `match` block in 1 clean line.
+2. `let tmp_path = path.with_extension("tmp");`
+   - `let`: Variable binding keyword.
+   - `path.with_extension("tmp")`: `Path` method returning a new owned `PathBuf` with file extension replaced by `"tmp"`.
+3. `Self::save_json(&tmp_path, data)?;`
+   - `&tmp_path`: Borrows `PathBuf` as `&Path` slice reference.
+   - `?`: Question mark operator. If `save_json` returns `Err(e)`, `?` automatically converts error via `From` trait and returns early from function.
+4. `fs::rename(&tmp_path, path)?;`
+   - `fs::rename`: Standard library filesystem function invoking OS atomic file move/rename syscall (`rename` on POSIX, `MoveFileExW` on Windows).
+   - `?`: Propagates I/O errors if file rename fails.
+5. `Ok(())`
+   - `Ok(...)`: `Result` enum success variant.
+   - `()`: Unit tuple representing zero-sized success value.
+
+---
+
+
 ### Solution 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
 
 #### 🗣️ Plain English "Thought Translation":
