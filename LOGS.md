@@ -33,6 +33,45 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-19 02:16 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 42 & Exercise 1.14-2 for Code Quality Configs</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Continuing Module 1.14 (Documentation & Code Quality). Added Concept 42 (Production Code Quality Lints & Configs) to EXAMPLES.md and created Exercise 1.14-2 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 42. Production Code Quality & Lint Enforcement (`#![deny(missing_docs)]`, `clippy.toml`, `rustfmt.toml`)
+
+[EXERCISES.md]
++ ### Exercise 1.14-2 — Code Quality Configs (`rustfmt.toml`, `clippy.toml`) & Doc Warnings (`#![warn(missing_docs)]`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 02:16 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.14-1 & Solved Exercise 1.14-1</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed attempt for Exercise 1.14-1 in `src/lib.rs` and invoked `/next`. Placed Solution 1.14-1 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.14-1 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.14-1 — Crate-Level Documentation (`//!`) & Intra-Doc Links
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.14-1 — Crate-Level Documentation & Intra-Doc Links
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.14-1 — Crate-Level Documentation & Intra-Doc Links [solved]
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 01:26 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 41 & Exercise 1.14-1 for Crate Documentation</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md

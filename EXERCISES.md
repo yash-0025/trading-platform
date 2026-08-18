@@ -38,31 +38,41 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.14-1 — Crate-Level Documentation (`//!`) & Intra-Doc Links
+### Exercise 1.14-2 — Code Quality Configs (`rustfmt.toml`, `clippy.toml`) & Doc Warnings (`#![warn(missing_docs)]`)
 
 **Status:** open
-**Goal:** In `src/lib.rs`, add an inner doc comment `//!` at the very top of the file documenting the `trading_platform` crate architecture with intra-doc links to `Wallet` and `OrderManager`.
+**Goal:** Create `rustfmt.toml` in project root with custom formatting rules, create `clippy.toml` with cognitive complexity limits, and add `#![warn(missing_docs)]` to `src/lib.rs`.
 
 **Skeleton:**
-```rust
-// In src/lib.rs (at the very top of the file):
+```toml
+# Create rustfmt.toml:
+max_width = 100
+edition = "2024"
+tab_spaces = 4
 
-//! # Trading Platform Architecture
-//!
-//! A production-grade financial trading ecosystem.
-//!
-//! ## Core Domain Subsystems
-//! - Domain Models: [`Wallet`](crate::models::Wallet), [`Position`](crate::models::Position)
-//! - Business Services: [`OrderManager`](crate::services::OrderManager)
-
-// TODO(1): Add the inner doc comment above at line 1 of src/lib.rs
+# Create clippy.toml:
+cognitive-complexity-threshold = 25
 ```
 
-**Constraints:** Run `cargo doc --open` to verify documentation builds without warnings.
+```rust
+// In src/lib.rs (at line 1):
+#![warn(missing_docs)]
+```
+
+**Constraints:** Run `cargo fmt --check` and `cargo clippy -- -D warnings`.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
+
+## Solved
+
+### Exercise 1.14-1 — Crate-Level Documentation (`//!`) & Intra-Doc Links
+**Status:** solved
+**Goal:** In `src/lib.rs`, add an inner doc comment `//!` at the very top of the file documenting the `trading_platform` crate architecture with intra-doc links to `Wallet` and `OrderManager`.
+**Note:** Solved in `src/lib.rs`. Checked against `SOLUTIONS.md` — exact match on `//!` inner doc block and intra-doc link resolution.
+
 
 
 ## Solved

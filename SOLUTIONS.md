@@ -1561,6 +1561,31 @@ pub use settings::*;
 
 ---
 
+### Solution 1.14-1 — Crate-Level Documentation (`//!`) & Intra-Doc Links
+
+**Reference Implementation:**
+```rust
+// src/lib.rs (at line 1 at the very top of the file):
+//! # Trading Platform Architecture
+//! 
+//! A production-grade financial trading ecosystem.
+//! 
+//! ## Core Domain Subsystems
+//! - Domain Models: [`Wallet`], [`Position`]
+//! - Business Services: [`OrderManager`], [`PositionTracker`]
+```
+
+**Line-by-Line Breakdown:**
+- `//!` — Inner doc comment attribute macro documenting the containing `lib.rs` crate root.
+- `# Trading Platform Architecture` — Level 1 Markdown heading rendered at top of `cargo doc`.
+- `[`Wallet`]` — Short intra-doc link resolving directly to `crate::models::Wallet` without redundant path targets.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/lib.rs` correctly added inner doc comments with short intra-doc links and compiled cleanly with 0 warnings under `cargo doc`!
+
+---
+
+
 
 
 

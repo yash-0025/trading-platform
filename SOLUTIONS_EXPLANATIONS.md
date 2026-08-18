@@ -317,6 +317,28 @@
 
 ---
 
+### Solution 1.14-1 — Crate-Level Documentation (`//!`) & Intra-Doc Links
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Place an inner doc comment `//!` at the very top of `src/lib.rs` describing the trading platform crate architecture, using bracketed intra-doc links `[`Wallet`]` and `[`OrderManager`]` so rustdoc automatically converts code symbol names into clickable links in the HTML documentation site."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `//!`
+   - Inner documentation comment attribute macro. Applies documentation to the enclosing container (`lib.rs` crate root).
+2. `# Trading Platform Architecture`
+   - Markdown top-level heading rendered as the crate documentation title in rustdoc.
+3. `[`Wallet`](crate::models::Wallet)`
+   - Explicit intra-doc path link syntax pointing to `crate::models::Wallet`.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `[`Wallet`]`
+   - Short intra-doc link syntax. Resolves directly to the re-exported `Wallet` struct without requiring explicit path target strings, eliminating redundant rustdoc link warnings.
+2. `[`OrderManager`]`
+   - Short intra-doc link resolving directly to `OrderManager` service engine.
+
+---
+
+
 
 
 

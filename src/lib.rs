@@ -1,3 +1,12 @@
+//! # Trading Platform Architecture
+//! 
+//! A production-grade financial trading ecosystem
+//! 
+//! ## Core Domain Subsystems
+//! - Domain Models: [`Wallet`], [`Position`]
+//! - Business Services: [`OrderManager`], [`PositionTracker`]
+
+
 pub mod config;
 pub mod errors;
 pub mod models;
