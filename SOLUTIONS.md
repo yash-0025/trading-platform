@@ -1413,6 +1413,49 @@ fn test_end_to_end_trading_flow() -> Result<(), String> {
 
 ---
 
+### Solution 1.12-2 — Documentation Testing (`///`) & Panic Verification (`#[should_panic]`)
+
+**Reference Implementation:**
+```rust
+// src/wallet.rs:
+impl Wallet {
+    /// Deposits a specified amount of currency into the wallet balance.
+    ///
+    /// # Example
+    /// ```
+    /// use trading_platform::wallet::Wallet;
+    /// let mut wallet = Wallet::new();
+    /// wallet.deposit("USD".to_string(), 500);
+    /// assert_eq!(wallet.get_balance("USD"), 500);
+    /// ```
+    pub fn deposit(&mut self, currency: String, amount: u64) -> Result<()> { ... }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic(expected = "InsufficientFunds")]
+    fn test_withdraw_insufficient_funds_panic() {
+        let mut wallet = Wallet::new();
+        wallet.deposit("USD".to_string(), 100);
+        wallet.withdraw("USD", 500).unwrap();
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `///` — Doc comment attribute compiled and executed by `cargo test --doc`.
+- `#[should_panic(expected = "InsufficientFunds")]` — Asserts that thread panics with error substring `"InsufficientFunds"`.
+- `wallet.withdraw("USD", 500).unwrap()` — Attempts withdrawal exceeding balance, unwrapping `Err(TradingError::InsufficientFunds)`, which triggers panic.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/wallet.rs` added the doc comment example and `#[should_panic(expected = "InsufficientFunds")]` test perfectly!
+
+---
+
+
 
 
 *(Additional solutions will be added as exercises get gated open.)*

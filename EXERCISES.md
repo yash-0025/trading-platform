@@ -38,53 +38,15 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.12-2 — Documentation Testing (`///`) & Panic Verification (`#[should_panic]`)
-
-**Status:** open
-**Goal:** In `src/wallet.rs`, (1) add a doc test `///` on `Wallet::deposit` with executable code block demonstrating deposits, and (2) write a `#[should_panic]` unit test `test_withdraw_insufficient_funds_panic` asserting that withdrawing more funds than available panics.
-
-**Skeleton:**
-```rust
-// In src/wallet.rs:
-
-impl Wallet {
-    /// Deposits a specified amount of currency into the wallet balance.
-    ///
-    /// # Example
-    /// ```
-    /// use trading_platform::wallet::Wallet;
-    /// let mut wallet = Wallet::new();
-    /// wallet.deposit("USD".to_string(), 500);
-    /// assert_eq!(wallet.get_balance("USD"), 500);
-    /// ```
-    // TODO(1): Add the executable doc comment above `pub fn deposit` in src/wallet.rs
-}
-
-// In src/wallet.rs unit tests block (#[cfg(test)] mod tests):
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    // TODO(2): Write a #[test] with #[should_panic(expected = "Insufficient funds")]
-    // #[test]
-    // #[should_panic(expected = "Insufficient funds")]
-    // fn test_withdraw_insufficient_funds_panic() {
-    //     let mut wallet = Wallet::new();
-    //     wallet.deposit("USD".to_string(), 100);
-    //     // Attempting to withdraw 500 USD must panic with "Insufficient funds"
-    //     wallet.withdraw("USD", 500).unwrap();
-    // }
-}
-```
-
-**Constraints:** Maintain existing `Wallet` API signatures; run `cargo test --doc` and `cargo test`.
-**Hints used:** 0/3
-**My attempt:** *(paste here when ready, even if broken/partial)*
-
 ---
 
-
 ## Solved
+
+### Exercise 1.12-2 — Documentation Testing (`///`) & Panic Verification (`#[should_panic]`)
+**Status:** solved
+**Goal:** In `src/wallet.rs`, (1) add a doc test `///` on `Wallet::deposit` with executable code block demonstrating deposits, and (2) write a `#[should_panic]` unit test `test_withdraw_insufficient_funds_panic` asserting that withdrawing more funds than available panics.
+**Note:** Solved in `src/wallet.rs`. Checked against `SOLUTIONS.md` — exact match on `///` doc comment block and `#[should_panic(expected = "InsufficientFunds")]`.
+
 
 ### Exercise 1.12-1 — Integration Testing & Result-Returning Tests (`tests/integration_test.rs`, `Result<(), String>`)
 **Status:** solved

@@ -28,6 +28,14 @@ impl Wallet {
         Self::default()
     }
 
+    /// # Example 
+    /// ```
+    /// use trading_platform::wallet::Wallet;
+    /// let mut wallet = Wallet::new();
+    /// wallet.deposit("USD".to_string(), 500);
+    /// assert_eq!(wallet.get_balance("USD"), 500);
+    /// ```
+
     pub fn deposit(&mut self, currency: String, amount: u64) -> Result<()> {
         *self.balances.entry(currency.clone()).or_insert(0) += amount;
         self.history.push(TransactionRecord {
@@ -88,5 +96,18 @@ impl Wallet {
             .filter(|rec| predicate(rec))
             .cloned()
             .collect::<Vec<_>>()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[should_panic(expected = "InsufficientFunds")]
+    fn test_withdraw_insufficient_funds_panic() {
+        let mut wallet = Wallet::new();
+        wallet.deposit("USD".to_string(), 100);
+        wallet.withdraw("USD", 500).unwrap();
     }
 }

@@ -686,4 +686,13 @@
 
 ---
 
+### 2026-08-18 22:38 IST — Prompt #85
+**Prompt:** "Done /next"
+**Context:** Learner completed Exercise 1.12-2 (`src/wallet.rs`) and fixed `expected = "InsufficientFunds"`. Invoked `/next` to move to the next concept in Module 1.12.
+**Output Summary:** AI placed Solution 1.12-2 in exact numerical position in SOLUTIONS.md, appended plain English explanation + skeleton and solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, moved Exercise 1.12-2 to Solved in EXERCISES.md, logged diffs in LOGS.md, and conducted Rule 14 audit for Module 1.12.
+**Outcome / Next Step:** Learner approves Rule 14 audit for Module 1.12, updating status to `[x]` in `ROADMAP.md` and `LEARNING.md`, before advancing to Module 1.13 Multi-Module Architecture Refactoring.
+
+---
+
+
 

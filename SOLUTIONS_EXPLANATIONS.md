@@ -218,4 +218,30 @@
 
 ---
 
+### Solution 1.12-2 — Documentation Testing (`///`) & Panic Verification (`#[should_panic]`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Add a doc comment above `pub fn deposit` with a runnable code example so `cargo test --doc` tests our documentation examples. Then in `src/wallet.rs` unit tests, write a test that deposits $100 and tries to withdraw $500, marking it with `#[should_panic(expected = "InsufficientFunds")]` so cargo passes the test when the withdrawal triggers an emergency panic."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `///`
+   - Outer documentation comment attribute syntax. Documenting outer items immediately following it.
+2. `# Example`
+   - Markdown heading level 1 inside doc comments parsed by rustdoc.
+3. ` ``` `
+   - Fenced Markdown code block. Code inside triple backticks is compiled as runnable doc tests.
+4. `use trading_platform::wallet::Wallet;`
+   - Imports `Wallet` struct into doc test implicit `main` scope.
+5. `#[should_panic(expected = "InsufficientFunds")]`
+   - `#[should_panic(...)]`: Attribute macro instructing test runner that the test function is expected to panic.
+   - `expected = "InsufficientFunds"`: Substring payload filter requiring panic payload message to contain `"InsufficientFunds"`.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `wallet.withdraw("USD", 500).unwrap()`
+   - `.withdraw("USD", 500)`: Attempts to withdraw $500 USD when balance is only $100, returning `Err(TradingError::InsufficientFunds)`.
+   - `.unwrap()`: Calls `unwrap()` on `Err`, which triggers a panic thread termination with payload `"called Result::unwrap() on an Err value: InsufficientFunds { required: 500, available: 100 }"`, satisfying `#[should_panic]`.
+
+---
+
+
 

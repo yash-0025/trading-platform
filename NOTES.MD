@@ -441,3 +441,6 @@
      src/wallet.rs   src/orders.rs   src/tracker.rs   src/storage.rs
 
 ```
+
+
+- `///` Outer doc comment attirbute macro targeting the function  immediately below.

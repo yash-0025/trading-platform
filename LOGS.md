@@ -33,6 +33,28 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-18 22:38 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.12-2 & Solved Exercise 1.12-2</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed Exercise 1.12-2 in `src/wallet.rs` and invoked `/next`. Placed Solution 1.12-2 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.12-2 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.12-2 — Documentation Testing (`///`) & Panic Verification (`#[should_panic]`)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.12-2 — Documentation Testing & Panic Verification
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.12-2 — Documentation Testing & Panic Verification [solved]
+```
+
+</details>
+
+<details>
 <summary>2026-08-18 18:55 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 37 & Exercise 1.12-2 for Doc Tests & Panic Verification</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md
