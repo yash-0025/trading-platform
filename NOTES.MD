@@ -444,3 +444,16 @@
 
 
 - `///` Outer doc comment attirbute macro targeting the function  immediately below.
+
+##### Refactoring codebase to production build
+```
+                              src/lib.rs (Public API Facade)
+                                          │ (pub use)
+                  ┌───────────────────────┴───────────────────────┐
+                  ▼                                               ▼
+         src/models.rs (Domain Data)                  src/services.rs (Business Engines)
+          ├── models/wallet.rs                         ├── services/order_manager.rs
+          ├── models/portfolio.rs                      └── services/tracker.rs
+          └── models/user.rs
+
+```

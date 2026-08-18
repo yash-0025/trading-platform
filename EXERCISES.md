@@ -38,29 +38,40 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.13-1 — Sub-Module Tree Organization (`src/models.rs`, `src/models/`) & Re-exports (`pub use`)
+### Exercise 1.13-2 — Services Subtree Organization (`src/services.rs`, `src/services/`) & Re-exports (`pub use`)
 
 **Status:** open
-**Goal:** Create `src/models.rs` and `src/models/wallet.rs` moving `Wallet` into the `models` domain namespace, and re-export `pub use wallet::Wallet;` in `src/models.rs` so callers can import `use trading_platform::models::Wallet;`.
+**Goal:** Create `src/services.rs` declaring `pub mod order_manager;` and `pub mod tracker;`, move `src/orders.rs` into `src/services/order_manager.rs` and `src/tracker.rs` into `src/services/tracker.rs`, re-export them in `src/services.rs`, and update `src/lib.rs`.
 
 **Skeleton:**
 ```rust
-// Create src/models.rs:
-pub mod wallet;
+// Create src/services.rs:
+pub mod order_manager;
+pub mod tracker;
 
-// TODO(1): Re-export Wallet from the wallet sub-module
-// pub use wallet::{Wallet, TransactionRecord, TransactionType};
+// TODO(1): Re-export OrderManager and PositionTracker from services sub-modules:
+// pub use order_manager::{OrderManager, OrderId, OrderSide, OrderType, OrderStatus, Order};
+// pub use tracker::PositionTracker;
 
 // Update src/lib.rs:
-// pub mod models;
-// pub use models::Wallet;
+// pub mod services;
+// pub use services::{OrderManager, PositionTracker, OrderSide, OrderType};
 ```
 
-**Constraints:** Maintain backward compatibility with existing tests by re-exporting `Wallet`.
+**Constraints:** Run `cargo check` and `cargo test` to confirm all unit and integration tests compile cleanly.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
+
+## Solved
+
+### Exercise 1.13-1 — Sub-Module Tree Organization (`src/models.rs`, `src/models/`) & Re-exports (`pub use`)
+**Status:** solved
+**Goal:** In `src/models.rs`, declare `pub mod portfolio;`, `pub mod users;`, and `pub mod wallet;`, and re-export domain structs (`pub use portfolio::*;`, `pub use users::*;`, `pub use wallet::*;`) to connect `src/models/` files cleanly into the crate module tree.
+**Note:** Solved in `src/models.rs` and `src/lib.rs`. Checked against `SOLUTIONS.md` — exact match on sub-module declarations and `pub use` domain re-exports.
+
 
 
 ## Solved

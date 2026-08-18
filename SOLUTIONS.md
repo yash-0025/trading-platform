@@ -1451,9 +1451,47 @@ mod tests {
 - `wallet.withdraw("USD", 500).unwrap()` — Attempts withdrawal exceeding balance, unwrapping `Err(TradingError::InsufficientFunds)`, which triggers panic.
 
 **Compared to your attempt:**
-- **Exact Match!**: Your implementation in `src/wallet.rs` added the doc comment example and `#[should_panic(expected = "InsufficientFunds")]` test perfectly!
+---
+
+### Solution 1.13-1 — Sub-Module Tree Organization (`src/models.rs`, `src/models/`) & Re-exports (`pub use`)
+
+**Reference Implementation:**
+```rust
+// src/models.rs:
+pub mod portfolio;
+pub mod users;
+pub mod wallet;
+
+pub use portfolio::{Portfolio, Position};
+pub use users::{User, UserManager};
+pub use wallet::{Wallet, TransactionRecord, TransactionType};
+```
+
+```rust
+// src/lib.rs:
+pub mod config;
+pub mod errors;
+pub mod models;
+pub mod orders;
+pub mod storage;
+pub mod tracker;
+pub mod cli;
+
+pub use models::{Portfolio, Position, User, UserManager, Wallet, TransactionRecord, TransactionType};
+```
+
+**Line-by-Line Breakdown:**
+- `pub mod portfolio;` — Declares child sub-module `src/models/portfolio.rs`.
+- `pub mod users;` — Declares child sub-module `src/models/users.rs`.
+- `pub mod wallet;` — Declares child sub-module `src/models/wallet.rs`.
+- `pub use portfolio::{Portfolio, Position};` — Re-exports domain structs so consumers can import directly from `models::*`.
+- `pub use models::{...};` — Top-level re-export in `src/lib.rs` granting zero-cost convenient paths for external users.
+
+**Compared to your attempt:**
+- **Exact Match!**: Your implementation in `src/models.rs` and `src/lib.rs` correctly declared all sub-modules and re-exported all domain models cleanly!
 
 ---
+
 
 
 

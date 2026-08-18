@@ -714,7 +714,31 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 39. Services Subtree (`src/services/`) & Visibility Level Scopes (`pub(crate)`)
+
+**ELI5 Analogy: The Engine Room Operators & Employee Security Badges**
+
+* **Services Subtree (`src/services/`) — The Engine Room Operators**:
+  - Domain `models` are inanimate data records (`Position`, `User`, `Wallet`).
+  - `services` are the active business engines that perform work (`OrderManager`, `PositionTracker`). Separating active logic into `src/services/` ensures clear single-responsibility architecture.
+
+* **Visibility Level Scopes (`pub(crate)`) — Employee Security Badges**:
+  - `pub`: Publicly accessible to external library callers.
+  - `pub(crate)`: Accessible anywhere inside the current crate (`trading_platform`), but hidden from external consumers.
+  - `pub(super)`: Accessible only within the immediate parent module scope.
+
+**Deep Technical Breakdown:**
+
+- **Clean Architectural Dependency Flow**:
+  - High-level services depend on low-level models (`OrderManager` processes `Order`), but models **never** depend on services. This strict one-way dependency flow eliminates circular dependency compilation errors.
+
+- **`pub(crate)` API Encapsulation**:
+  - Restricts helper functions or internal struct fields to crate-internal use, preventing API surface bloat.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 

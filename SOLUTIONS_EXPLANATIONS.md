@@ -243,5 +243,32 @@
 
 ---
 
+### Solution 1.13-1 — Sub-Module Tree Organization (`src/models.rs`, `src/models/`) & Re-exports (`pub use`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Turn `src/models.rs` into the root manager for the `src/models/` folder by declaring `pub mod portfolio;`, `pub mod users;`, and `pub mod wallet;`. Then re-export all domain models (`pub use portfolio::*;`, `pub use wallet::*;`, `pub use users::*;`) so consumers can import `use trading_platform::models::Wallet;` without needing deep nested file paths."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `pub mod portfolio;`
+   - `pub`: Visibility modifier making the sub-module accessible outside `src/models.rs`.
+   - `mod`: Keyword declaring a module tree node.
+   - `portfolio`: Sub-module identifier resolving to `src/models/portfolio.rs`.
+2. `pub mod users;`
+   - Loads and exposes `src/models/users.rs`.
+3. `pub mod wallet;`
+   - Loads and exposes `src/models/wallet.rs`.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `pub use portfolio::{Portfolio, Position};`
+   - `pub use`: Public re-export statement. Makes items from `portfolio` accessible at `models` level (`models::Portfolio`).
+   - `{Portfolio, Position}`: Grouped import list bringing specific structs into public re-export scope.
+2. `pub use users::{User, UserManager};`
+   - Re-exports `User` and `UserManager` at `models` level.
+3. `pub use wallet::{Wallet, TransactionRecord, TransactionType};`
+   - Re-exports `Wallet`, `TransactionRecord`, `TransactionType` at `models` level.
+
+---
+
+
 
 
