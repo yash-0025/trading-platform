@@ -162,4 +162,17 @@
 - Created `src/tracker.rs` with `PositionTracker`, `process_fill`, `total_pnl`, and `test_position_tracker_buy_sell_pnl`.
 - Linked `mod tracker;` in `src/main.rs` and re-exported in `src/lib.rs`.
 
+### Module 1.12 — Testing Suite — 2026-08-18
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Integration testing in root `tests/` directory (`tests/*.rs`) treating crate as an external library consumer (`use trading_platform::*`).
+- `Result<(), E>` returning test signatures for clean `?` error propagation without panicking.
+- Executable documentation tests (`///`) compiled and executed via `cargo test --doc`.
+- Edge-case panic testing with `#[should_panic(expected = "InsufficientFunds")]`.
+**Code I wrote / project progress:**
+- Created `src/lib.rs` re-exporting all modules.
+- Created `tests/integration_test.rs` with `test_end_to_end_trading_flow`.
+- Added executable doc comments and panic tests to `src/wallet.rs`.
+
+
 

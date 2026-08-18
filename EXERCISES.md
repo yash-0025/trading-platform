@@ -38,7 +38,30 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
+### Exercise 1.13-1 — Sub-Module Tree Organization (`src/models.rs`, `src/models/`) & Re-exports (`pub use`)
+
+**Status:** open
+**Goal:** Create `src/models.rs` and `src/models/wallet.rs` moving `Wallet` into the `models` domain namespace, and re-export `pub use wallet::Wallet;` in `src/models.rs` so callers can import `use trading_platform::models::Wallet;`.
+
+**Skeleton:**
+```rust
+// Create src/models.rs:
+pub mod wallet;
+
+// TODO(1): Re-export Wallet from the wallet sub-module
+// pub use wallet::{Wallet, TransactionRecord, TransactionType};
+
+// Update src/lib.rs:
+// pub mod models;
+// pub use models::Wallet;
+```
+
+**Constraints:** Maintain backward compatibility with existing tests by re-exporting `Wallet`.
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
+
 ---
+
 
 ## Solved
 

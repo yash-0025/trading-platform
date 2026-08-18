@@ -33,6 +33,47 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-18 23:05 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 38 & Exercise 1.13-1 for Multi-Module Refactoring</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Starting Module 1.13 (Multi-Module Architecture Refactoring). Added Concept 38 (Modern Module Trees `src/models/` & `pub use` re-exports) to EXAMPLES.md and created Exercise 1.13-1 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 38. Modern Module Trees (`src/models/`, `src/services/`) & Public Re-exports (`pub use`)
+
+[EXERCISES.md]
++ ### Exercise 1.13-1 — Sub-Module Tree Organization (`src/models.rs`, `src/models/`) & Re-exports (`pub use`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-18 23:04 IST — [ROADMAP.md / LEARNING.md] — Marked Module 1.12 [x] Completed Upon Learner Approval</summary>
+
+- **Files:** ROADMAP.md, LEARNING.md
+- **Change type:** Modified
+- **Reason:** Completed Rule 14 audit for Module 1.12 (Testing Suite). Learner explicitly approved updating status markers to `[x]`.
+
+```diff
+[ROADMAP.md]
+- - [ ] **You build:** Comprehensive tests across ALL Phase 1 modules...
++ - [x] **You build:** Comprehensive tests across ALL Phase 1 modules...
+- - [ ] **Concepts:** #[cfg(test)] mod tests · #[test], assert_eq! · #[should_panic]...
++ - [x] **Concepts:** #[cfg(test)] mod tests · #[test], assert_eq! · #[should_panic]...
+- - [ ] **Architecture:** Testing strategies in financial software...
++ - [x] **Architecture:** Testing strategies in financial software...
+- - [ ] **Deliverable:** 90%+ test coverage. Every public API has doc tests...
++ - [x] **Deliverable:** 90%+ test coverage. Every public API has doc tests...
+
+[LEARNING.md]
++ ### Module 1.12 — Testing Suite — 2026-08-18 [x]
+```
+
+</details>
+
+<details>
 <summary>2026-08-18 22:38 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.12-2 & Solved Exercise 1.12-2</summary>
 
 - **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md

@@ -142,10 +142,11 @@ Every module has:
 ---
 
 ### Module 1.12 — Testing Suite
-- [ ] **You build:** Comprehensive tests across ALL Phase 1 modules. Unit tests, integration tests, doc tests. Test helpers and fixtures for trading scenarios.
-- [ ] **Concepts:** `#[cfg(test)] mod tests` · `#[test]`, `assert!`, `assert_eq!`, `assert_ne!` · `#[should_panic]` · `Result`-returning tests · Integration tests in `tests/` directory · Doc tests in `///` comments · Test organization and `pub(crate)` · Function pointers vs closures · Test fixtures and builders
-- [ ] **Architecture:** Testing strategies in financial software. Why trading systems need exhaustive edge-case testing. Property-based testing concepts (preview).
-- [ ] **Deliverable:** 90%+ test coverage. Every public API has doc tests. Integration tests for end-to-end trading flows.
+- [x] **You build:** Comprehensive tests across ALL Phase 1 modules. Unit tests, integration tests, doc tests. Test helpers and fixtures for trading scenarios.
+- [x] **Concepts:** `#[cfg(test)] mod tests` · `#[test]`, `assert!`, `assert_eq!`, `assert_ne!` · `#[should_panic]` · `Result`-returning tests · Integration tests in `tests/` directory · Doc tests in `///` comments · Test organization and `pub(crate)` · Function pointers vs closures · Test fixtures and builders
+- [x] **Architecture:** Testing strategies in financial software. Why trading systems need exhaustive edge-case testing. Property-based testing concepts (preview).
+- [x] **Deliverable:** 90%+ test coverage. Every public API has doc tests. Integration tests for end-to-end trading flows.
+
 
 ---
 
