@@ -1355,6 +1355,65 @@ mod tests {
 
 ---
 
+### Solution 1.12-1 — Integration Testing & Result-Returning Tests (`tests/integration_test.rs`, `Result<(), String>`)
+
+**Reference Implementation:**
+```rust
+// tests/integration_test.rs:
+use trading_platform::wallet::Wallet;
+use trading_platform::orders::{OrderManager, OrderSide};
+use trading_platform::tracker::PositionTracker;
+use std::collections::HashMap;
+
+#[test]
+fn test_end_to_end_trading_flow() -> Result<(), String> {
+    // 1. Initialize Wallet and deposit funds
+    let mut wallet = Wallet::new();
+    wallet.deposit("USD".to_string(), 100_000);
+    if wallet.get_balance("USD") != 100_000 {
+        return Err("Wallet deposit failed".to_string());
+    }
+
+    // 2. Initialize OrderManager and submit a Buy order for BTC
+    let mut order_mgr = OrderManager::new();
+    let order = order_mgr.submit("BTC".to_string(), OrderSide::Buy, 2.0, 40000.0);
+    if order.id != 1 {
+        return Err("Order ID auto-increment failed".to_string());
+    }
+
+    // 3. Initialize PositionTracker and process buy fill of 2.0 BTC @ $40,000
+    let mut tracker = PositionTracker::new();
+    tracker.process_fill(OrderSide::Buy, "BTC", 2.0, 40000.0);
+    if tracker.positions.get("BTC").ok_or("Missing position")?.quantity != 2.0 {
+        return Err("Position fill quantity mismatch".to_string());
+    }
+
+    // 4. Verify mark-to-market total P&L at BTC = $45,000
+    let prices = HashMap::from([("BTC".to_string(), 45000.0)]);
+    if tracker.total_pnl(&prices) != 10000.0 {
+        return Err("Total mark-to-market P&L mismatch".to_string());
+    }
+
+    Ok(())
+}
+```
+
+**Line-by-Line Breakdown:**
+- `use trading_platform::*` — Imports public library items exported from `src/lib.rs`.
+- `fn test_end_to_end_trading_flow() -> Result<(), String>` — Returns `Result<(), String>` so setup failures yield `Err("reason")` instead of panicking.
+- `if tracker.total_pnl(&prices) != 10000.0 { return Err(...); }` — Evaluates total paper profit against live $45,000 BTC price map and returns `Err` if it doesn't match expected $10,000.
+- `Ok(())` — Returns unit success variant indicating test passed.
+
+**Compared to your attempt:**
+- **Excellent Work!**: You wrote 33 lines of clean integration test code including `Wallet`, `OrderManager`, `OrderSide`, `PositionTracker`, and constructing the `HashMap` price map!
+- **Key Syntax Fixes Needed**:
+  1. Line 13: Remove the extra semicolon inside `return Err("Wallet deposit failed".to_string());`.
+  2. Line 2: Import `OrderSide` (`use trading_platform::orders::{OrderManager, OrderSide};`).
+  3. Lines 33-35: Complete TODO 2 by checking `if tracker.total_pnl(&prices) != 10000.0 { return Err("Total mark-to-market P&L mismatch".to_string()); }` and returning `Ok(())` at the end!
+
+---
+
+
 
 *(Additional solutions will be added as exercises get gated open.)*
 

@@ -33,6 +33,60 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-18 18:55 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 37 & Exercise 1.12-2 for Doc Tests & Panic Verification</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Continuing Module 1.12 (Testing Suite). Added Concept 37 (Documentation Tests `///` & `#[should_panic]` panic verification) to EXAMPLES.md and created Exercise 1.12-2 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 37. Documentation Tests (`///` Markdown Comments) & Panic Testing (`#[should_panic]`)
+
+[EXERCISES.md]
++ ### Exercise 1.12-2 — Documentation Testing (`///`) & Panic Verification (`#[should_panic]`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-18 17:47 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.12-1 & Solved Exercise 1.12-1</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed attempt for Exercise 1.12-1 in `tests/integration_test.rs` and requested solution. Placed Solution 1.12-1 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.12-1 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.12-1 — Integration Testing & Result-Returning Tests (`tests/integration_test.rs`, `Result<(), String>`)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.12-1 — Integration Testing & Result-Returning Tests
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.12-1 — Integration Testing & Result-Returning Tests [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-18 17:37 IST — [EXERCISES.md] — Bumped Hints for Exercise 1.12-1 to 1/3</summary>
+
+- **File:** EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Provided Tier 1 conceptual hint for mark-to-market total P&L verification in Exercise 1.12-1. Bumped hints counter to 1/3.
+
+```diff
+[EXERCISES.md]
+- **Hints used:** 0/3
++ **Hints used:** 1/3
+```
+
+</details>
+
+<details>
 <summary>2026-08-18 16:59 IST — [ROADMAP.md / LEARNING.md] — Marked Module 1.11 [x] Completed Upon Learner Approval</summary>
 
 - **Files:** ROADMAP.md, LEARNING.md

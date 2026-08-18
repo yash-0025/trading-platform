@@ -663,3 +663,27 @@
 **Outcome / Next Step:** Learner works on Exercise 1.12-1 in `tests/integration_test.rs`.
 
 ---
+
+### 2026-08-18 17:37 IST — Prompt #82
+**Prompt:** "how to verify the mark-to-market total p&l help me with it"
+**Context:** Learner asked for help/guidance on verifying the mark-to-market total P&L in `tests/integration_test.rs`.
+**Output Summary:** AI provided Hint 1 (Tier 1 conceptual nudge) explaining how mark-to-market total P&L is evaluated against current market price map and returned as `Result<(), String>`, bumped hints to 1/3 in EXERCISES.md, and logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner completes TODO 2 in `tests/integration_test.rs` and tests with `cargo test --test integration_test`.
+
+### 2026-08-18 17:47 IST — Prompt #83
+**Prompt:** "Help me with solution I am not able to get it"
+**Context:** Learner attempted code in `tests/integration_test.rs` (33 lines of code including imports, wallet deposit, order submit, tracker fill verification, and prices map initialization), and requested the solution for Exercise 1.12-1.
+**Output Summary:** AI placed Solution 1.12-1 in exact numerical position in SOLUTIONS.md, appended plain English explanation + skeleton and solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, moved Exercise 1.12-1 to Solved in EXERCISES.md, logged diffs in LOGS.md, and provided line-by-line breakdown and comparison in chat.
+**Outcome / Next Step:** Learner completes `tests/integration_test.rs`, runs `cargo test --test integration_test`, and moves to Concept 37 (Doc Tests & `///` Markdown Comments).
+
+---
+
+### 2026-08-18 18:55 IST — Prompt #84
+**Prompt:** "Done /next"
+**Context:** Learner completed Exercise 1.12-1 (`tests/integration_test.rs`) and invoked `/next` to advance to the next concept in Module 1.12 (Testing Suite).
+**Output Summary:** AI introduced Concept 37 (Documentation Tests `///` & `#[should_panic]` panic verification), committed word-for-word to EXAMPLES.md, created Exercise 1.12-2 skeleton in EXERCISES.md, printed full exercise skeleton in chat response, and logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements 2 TODOs in `src/wallet.rs`: adding `///` doc comment with executable code block above `deposit`, and writing `#[should_panic(expected = "Insufficient funds")]` unit test `test_withdraw_insufficient_funds_panic`.
+
+---
+
+

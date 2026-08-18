@@ -661,7 +661,33 @@ Rust decouples version management (`rustup`), compilation (`rustc`), and package
 
 ---
 
+### 37. Documentation Tests (`///` Markdown Comments) & Panic Testing (`#[should_panic]`)
+
+**ELI5 Analogy: The Executable Cookbook & The Stress-Test Ejection Seat**
+
+* **Documentation Tests (`///`) — The Executable Cookbook**:
+  - Ordinary code documentation quickly becomes outdated and wrong when APIs change.
+  - Rust solves this with **doc tests**: when you write a `///` documentation comment on a public function (`Wallet::deposit`), Rust treats code blocks inside triple backticks ` ```rust ... ``` ` as real executable tests during `cargo test`. If your documentation code breaks, your build fails!
+
+* **`#[should_panic]` — The Stress-Test Ejection Seat**:
+  - Some financial functions are designed to reject invalid inputs by triggering an explicit safety shutdown (`panic!`) — for example, attempting a trade allocation of 0 quantity.
+  - `#[should_panic]` flips testing behavior: the test **passes** when the function panics as expected, and **fails** if the invalid input was accepted.
+
+**Deep Technical Breakdown:**
+
+- **Doc Tests (`///`) & `cargo test --doc`**:
+  - Doc comments start with `///` and accept Markdown formatting.
+  - Rustdoc extracts fenced code blocks (` ```rust ... ``` `) and compiles each block as an individual test main function.
+  - Lines starting with `# ` inside doc code blocks are executed during testing but hidden from generated HTML documentation.
+
+- **`#[should_panic(expected = "message")]`**:
+  - Attribute macro asserting that the test thread panics before completion.
+  - The `expected` parameter specifies a substring filter on the panic message payload, ensuring the test fails if a panic occurs for an unintended reason.
+
+---
+
 *(New analogies and explanations will be added as each module introduces new concepts.)*
+
 
 
 
