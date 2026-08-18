@@ -60,26 +60,26 @@ For the module you're teaching/continuing, include in order:
 5. **ELI5 analogy + deep technical explanation** (Rule #8) — **mandatory.** Write the **EXACT, word-for-word** ELI5 and technical breakdown into `EXAMPLES.md` in the SAME turn.
 6. **Plain English "Thought Translation"** (Rule #17) — translate Rust idioms (`match`, `entry().and_modify()`, `.sum::<u64>()`, etc.) into natural everyday thoughts.
 7. **100% Roadmap-to-Code Enforcement** (Rule #18) — every concept in `ROADMAP.md` MUST be actively coded, compiled, tested in `src/`. Theory-only is strictly forbidden.
-8. **Exercise, not finished answer** (Rules #7, #16) — learner writes code via skeleton with `todo!()` blocks.
+8. **Exercise, not finished answer** (Rules #7, #16) — learner writes code via skeleton with `todo!()` blocks. **MANDATORY:** Print the FULL exercise skeleton code block directly inside the chat reply so the learner doesn't have to open `EXERCISES.md`.
 9. **Line-by-line explanation** of any code YOU show — every `&`, `*`, `mut`, `Option`, method call, `self`.
 
 ## STEP 3.5 — Exercise Mode (skeleton → hints → attempt-gated solution)
 
 Replaces "just show the code" for every hands-on part. Never skip to a full solution.
 
-**A. Write exercise into `EXERCISES.md`.** Format:
+**A. Write exercise into `EXERCISES.md` AND print full skeleton in chat response.** Format:
 ```
 ### Exercise <module#>.<n> — <short title>
 **Status:** open
 **Goal:** one sentence.
 **Skeleton:**
-\```rust
+```rust
 fn place_order(/* ... */) -> Result<Order, TradingError> {
     // TODO(1): validate quantity > 0
     // TODO(2): construct the Order with a generated ID
     todo!()
 }
-\```
+```
 **Constraints:** don't change the signature / don't add deps.
 **Hints used:** 0/3
 ```
@@ -128,7 +128,7 @@ Hard gate. Check every box against what you ACTUALLY DID, not intended. If any f
 - [ ] **Rule 18**: Every `ROADMAP.md` concept has active code in `src/`. Theory-only forbidden.
 - [ ] **Rule 19**: Solution revealed → thought translation + exhaustive syntax breakdown (skeleton & solution tokens/keywords/mechanics/rationale) appended to `SOLUTIONS_EXPLANATIONS.md` in numerical order.
 
-- [ ] Hands-on portion → skeleton exercise in `EXERCISES.md` (STEP 3.5-A), no finished solution given (Rule #16).
+- [ ] Hands-on portion → skeleton exercise written to `EXERCISES.md` (STEP 3.5-A) AND printed in full inside chat reply, no finished solution given (Rule #16).
 - [ ] `SOLUTIONS.md` untouched unless both gate conditions (STEP 3.5-C) met this turn.
 - [ ] Every file written has matching `LOGS.md` entry.
 - [ ] `ROADMAP.md`/`LEARNING.md` only touched if learner said yes this turn.

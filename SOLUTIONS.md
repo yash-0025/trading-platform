@@ -1308,6 +1308,54 @@ impl PositionTracker {
 
 ---
 
+### Solution 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
+
+**Reference Implementation:**
+```rust
+// src/tracker.rs:
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::orders::OrderSide;
+
+    #[test]
+    fn test_position_tracker_buy_sell_pnl() {
+        let mut tracker = PositionTracker::new();
+
+        // 1. Buy 2.0 BTC @ $40,000
+        tracker.process_fill(OrderSide::Buy, "BTC", 2.0, 40000.0);
+        assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 2.0);
+
+        // 2. Sell 1.0 BTC @ $50,000 (locks in $10,000 realized P&L)
+        tracker.process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0);
+        assert_eq!(tracker.realized_pnl, 10000.0);
+        assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 1.0);
+
+        // 3. Verify total_pnl at market price $55,000
+        let prices = HashMap::from([("BTC".to_string(), 55000.0)]);
+        assert_eq!(tracker.total_pnl(&prices), 25000.0);
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `#[cfg(test)] mod tests` — Defines inner test module conditionally compiled only for test builds.
+- `use super::*;` — Imports outer module scope symbols (`PositionTracker`, `Position`) into test module.
+- `tracker.process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0)` — Simulates sell trade fill, updating realized P&L and remaining holdings.
+- `assert_eq!(tracker.realized_pnl, 10000.0)` — Asserts cash profit locked in from sell trade equals $10,000.
+- `let prices = HashMap::from([("BTC".to_string(), 55000.0)])` — Constructs live price map fixture.
+- `assert_eq!(tracker.total_pnl(&prices), 25000.0)` — Asserts total mark-to-market portfolio P&L ($10k realized + $15k unrealized) equals $25,000.
+
+**Compared to your attempt:**
+- **Great Start!**: You correctly added `mod tests`, imported `OrderSide`, created `PositionTracker`, performed the buy fill, and added `process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0)`!
+- **Key Fixes Needed**:
+  1. Typo `tracker.position` $\rightarrow$ `tracker.positions` (plural field name).
+  2. `assert_eq!(left, right)` requires two arguments (`assert_eq!(tracker.realized_pnl, 10000.0)`).
+  3. `HashMap::from([("BTC".to_string(), 55000.0)])` constructs price map to pass into `tracker.total_pnl(&prices)`.
+
+---
+
+
 *(Additional solutions will be added as exercises get gated open.)*
 
 

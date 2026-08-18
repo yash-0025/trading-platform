@@ -33,6 +33,87 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-18 16:59 IST — [ROADMAP.md / LEARNING.md] — Marked Module 1.11 [x] Completed Upon Learner Approval</summary>
+
+- **Files:** ROADMAP.md, LEARNING.md
+- **Change type:** Modified
+- **Reason:** Completed Rule 14 audit for Module 1.11 (Positions Tracking). Learner explicitly approved updating status markers to `[x]`.
+
+```diff
+[ROADMAP.md]
+- - [ ] **You build:** Open/close position tracking...
++ - [x] **You build:** Open/close position tracking...
+- - [ ] **Concepts:** Smart pointers — Box<T>, Rc<T>, RefCell<T>...
++ - [x] **Concepts:** Smart pointers — Box<T>, Rc<T>, RefCell<T>...
+- - [ ] **Architecture:** Position management in brokerages...
++ - [x] **Architecture:** Position management in brokerages...
+- - [ ] **Deliverable:** Position tracking integrated with order fills...
++ - [x] **Deliverable:** Position tracking integrated with order fills...
+
+[LEARNING.md]
++ ### Module 1.11 — Positions Tracking — 2026-08-18 [x]
+```
+
+</details>
+
+<details>
+<summary>2026-08-18 15:35 IST — [src/lib.rs / EXAMPLES.md / EXERCISES.md] — Created src/lib.rs & Exercise 1.12-1 for Module 1.12 Integration Testing</summary>
+
+- **Files:** src/lib.rs, EXAMPLES.md, EXERCISES.md
+- **Change type:** Created src/lib.rs, Modified EXAMPLES.md and EXERCISES.md
+- **Reason:** Starting Module 1.12 (Testing Suite). Created `src/lib.rs` to re-export modules for external integration tests (`tests/*.rs`). Added Concept 36 to EXAMPLES.md and created Exercise 1.12-1 skeleton in EXERCISES.md under Open.
+
+```diff
+[src/lib.rs]
++ pub mod config; pub mod errors; pub mod models; pub mod orders; pub mod portfolio; pub mod storage; pub mod tracker; pub mod users; pub mod wallet; pub mod cli;
+
+[EXAMPLES.md]
++ ### 36. Integration Testing (`tests/` Directory) & `Result`-Returning Tests (`Result<(), E>`)
+
+[EXERCISES.md]
++ ### Exercise 1.12-1 — Integration Testing & Result-Returning Tests (`tests/integration_test.rs`, `Result<(), String>`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-18 14:47 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.11-2 & Solved Exercise 1.11-2 (All Curriculum Gaps Cleared!)</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed attempt for Exercise 1.11-2 in `src/tracker.rs` and requested solution. Placed Solution 1.11-2 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.11-2 to Solved in EXERCISES.md. ALL curriculum gap exercises (Gaps 1-6) are now 100% complete!
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.11-2 — Shared Position Mutability & Unit Test Suite
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.11-2 — Shared Position Mutability & Unit Test Suite [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-18 13:04 IST — [EXAMPLES.md] — Added Concept 35 for Module 1.11 Unit Testing</summary>
+
+- **File:** EXAMPLES.md
+- **Change type:** Modified
+- **Reason:** Gap 6 (Module 1.11): `Rc<RefCell<T>>` smart pointer mechanics and `#[cfg(test)]` position tracker unit testing. Added Concept 35 word-for-word to EXAMPLES.md.
+
+```diff
+[EXAMPLES.md]
++ ### 35. Shared Position Mutability (`Rc<RefCell<T>>`) & Position Tracker Unit Testing (`#[cfg(test)]`)
++ [ELI5 analogies + deep technical breakdowns]
+```
+
+</details>
+
+<details>
 <summary>2026-08-18 12:49 IST — [RULES.md / next.md / SOLUTIONS_EXPLANATIONS.md] — Expanded Rule 19 for Exhaustive Token/Syntax Breakdown</summary>
 
 - **Files:** RULES.md, .agents/workflows/next.md, SOLUTIONS_EXPLANATIONS.md

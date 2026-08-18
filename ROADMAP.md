@@ -133,10 +133,11 @@ Every module has:
 ---
 
 ### Module 1.11 — Positions Tracking
-- [ ] **You build:** Open/close position tracking. When an order fills, a position opens. Track entry price, current value, realized vs unrealized P&L. Position sizing.
-- [ ] **Concepts:** Smart pointers — `Box<T>` for heap allocation · `Rc<T>` for shared ownership (positions referenced by both portfolio and order) · `RefCell<T>` for interior mutability · `Rc<RefCell<T>>` pattern · `Weak<T>` for breaking cycles · When to use each smart pointer
-- [ ] **Architecture:** Position management in brokerages. Mark-to-market. Margin concepts (preview for Phase 3).
-- [ ] **Deliverable:** Position tracking integrated with order fills. P&L breakdown: realized (closed positions) vs unrealized (open positions).
+- [x] **You build:** Open/close position tracking. When an order fills, a position opens. Track entry price, current value, realized vs unrealized P&L. Position sizing.
+- [x] **Concepts:** Smart pointers — `Box<T>` for heap allocation · `Rc<T>` for shared ownership (positions referenced by both portfolio and order) · `RefCell<T>` for interior mutability · `Rc<RefCell<T>>` pattern · `Weak<T>` for breaking cycles · When to use each smart pointer
+- [x] **Architecture:** Position management in brokerages. Mark-to-market. Margin concepts (preview for Phase 3).
+- [x] **Deliverable:** Position tracking integrated with order fills. P&L breakdown: realized (closed positions) vs unrealized (open positions).
+
 
 ---
 

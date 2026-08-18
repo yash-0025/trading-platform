@@ -134,3 +134,48 @@
 7. `total_pnl`: Sums `realized_pnl` + `pos.unrealized_pnl(market_price)` across all open positions.
 
 ---
+
+### Solution 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Set up a test module that runs when I type `cargo test`. Create a fresh `PositionTracker`, simulate buying 2.0 BTC @ $40,000, then simulate selling 1.0 BTC @ $50,000 to lock in $10,000 realized cash profit while leaving 1.0 BTC open. Finally, set up a price map with BTC at $55,000 market price and check that my total mark-to-market portfolio value equals $25,000 ($10,000 realized profit + $15,000 paper profit)."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `#[cfg(test)]`
+   - `#[cfg(...)]`: Conditional compilation attribute macro. Instructs compiler to include the annotated module/item only when the specified condition is met.
+   - `test`: Configuration flag active only during `cargo test` builds. Omits test code from release binaries.
+2. `mod tests`
+   - `mod`: Keyword declaring a new module namespace.
+   - `tests`: Standard idiomatic name for an inline unit test module.
+3. `use super::*;`
+   - `use`: Keyword importing paths into current scope.
+   - `super`: Keyword referencing outer parent module scope.
+   - `*`: Glob operator importing all items from parent module (`PositionTracker`, `Position`).
+4. `#[test]`
+   - `#[test]`: Attribute macro marking a function as a unit test entry point for the Rust test runner harness.
+5. `fn test_position_tracker_buy_sell_pnl()`
+   - `fn`: Function declaration keyword.
+   - `test_position_tracker_buy_sell_pnl`: Descriptive test function identifier.
+6. `let mut tracker = PositionTracker::new();`
+   - `let mut`: Binds mutable variable `tracker` so its fields can be updated during trade fill simulations.
+   - `PositionTracker::new()`: Static constructor call.
+7. `assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 2.0);`
+   - `assert_eq!(left, right)`: Standard library macro comparing left and right expressions for equality; panics with diff if unequal.
+   - `.get("BTC")`: HashMap lookup returning `Option<&Position>`.
+   - `.unwrap()`: Unwraps `Option`, returning `&Position` (panics if `None`).
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `tracker.process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0);`
+   - `tracker.process_fill(...)`: Calls method on `PositionTracker` passing `OrderSide::Sell`, stock symbol `"BTC"`, sold quantity `1.0`, and execution price `50000.0`.
+2. `assert_eq!(tracker.realized_pnl, 10000.0);`
+   - `assert_eq!(...)`: Verifies that `tracker.realized_pnl` field updated to exactly `10000.0` (`(50,000 - 40,000) * 1.0`).
+3. `assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 1.0);`
+   - `assert_eq!(...)`: Verifies remaining unsold BTC quantity in `HashMap` updated from `2.0` down to `1.0`.
+4. `let prices = HashMap::from([("BTC".to_string(), 55000.0)]);`
+   - `HashMap::from([...])`: Standard library array-to-map conversion method constructing a `HashMap<String, f64>` pre-populated with tuple `("BTC".to_string(), 55000.0)`.
+5. `assert_eq!(tracker.total_pnl(&prices), 25000.0);`
+   - `&prices`: Passes immutable reference slice to current market price map.
+   - `assert_eq!(..., 25000.0)`: Verifies total P&L equals `$25,000.0` (`$10,000` realized + `$15,000` unrealized).
+
+---
+

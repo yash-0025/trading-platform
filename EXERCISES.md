@@ -38,46 +38,62 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
+### Exercise 1.12-1 — Integration Testing & Result-Returning Tests (`tests/integration_test.rs`, `Result<(), String>`)
 
 **Status:** open
-**Goal:** In `src/tracker.rs`, add a comprehensive unit test suite (`#[cfg(test)] mod tests`) testing `process_fill` across multiple buy and sell trades and verifying exact realized vs total P&L calculations.
+**Goal:** In `tests/integration_test.rs`, write a `Result`-returning integration test `test_end_to_end_trading_flow() -> Result<(), String>` that initializes a `Wallet`, deposits $100,000 USD, submits an order for 2.0 BTC via `OrderManager`, executes a buy fill via `PositionTracker`, and verifies position balances using `?` for error handling.
 
 **Skeleton:**
 ```rust
-// In src/tracker.rs, append:
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::orders::OrderSide;
+// tests/integration_test.rs:
+use trading_platform::wallet::Wallet;
+use trading_platform::orders::{OrderManager, OrderSide};
+use trading_platform::tracker::PositionTracker;
+use std::collections::HashMap;
 
-    #[test]
-    fn test_position_tracker_buy_sell_pnl() {
-        let mut tracker = PositionTracker::new();
-
-        // 1. Buy 2.0 BTC @ $40,000
-        tracker.process_fill(OrderSide::Buy, "BTC", 2.0, 40000.0);
-        assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 2.0);
-
-        // TODO(1): Sell 1.0 BTC @ $50,000 (locks in $10,000 realized P&L)
-        // Call tracker.process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0);
-        // Assert tracker.realized_pnl == 10000.0
-        // Assert remaining BTC quantity == 1.0
-
-        // TODO(2): Verify total_pnl at market price $55,000
-        // Create price map with BTC = $55,000
-        // Assert tracker.total_pnl(&prices) == 25000.0 (10k realized + 15k unrealized)
+#[test]
+fn test_end_to_end_trading_flow() -> Result<(), String> {
+    // 1. Initialize Wallet and deposit funds
+    let mut wallet = Wallet::new();
+    wallet.deposit("USD".to_string(), 100_000);
+    if wallet.get_balance("USD") != 100_000 {
+        return Err("Wallet deposit failed".to_string());
     }
+
+    // 2. Initialize OrderManager and submit a Buy order for BTC
+    let mut order_mgr = OrderManager::new();
+    let order = order_mgr.submit("BTC".to_string(), OrderSide::Buy, 2.0, 40000.0);
+    if order.id != 1 {
+        return Err("Order ID auto-increment failed".to_string());
+    }
+
+    // TODO(1): Initialize PositionTracker and process buy fill of 2.0 BTC @ $40,000
+    // let mut tracker = PositionTracker::new();
+    // tracker.process_fill(OrderSide::Buy, "BTC", 2.0, 40000.0);
+    // If tracker.positions.get("BTC").ok_or("Missing position")?.quantity != 2.0 -> return Err(...)
+
+    // TODO(2): Verify mark-to-market total P&L at BTC = $45,000
+    // Create prices map HashMap::from([("BTC".to_string(), 45000.0)])
+    // If tracker.total_pnl(&prices) != 10000.0 -> return Err(...)
+
+    Ok(())
 }
 ```
 
-**Constraints:** Test position state transitions and P&L calculations using `cargo test`.
+**Constraints:** Return `Ok(())` on success or `Err(String)` on verification failures without crashing via panics.
 **Hints used:** 0/3
 **My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
 
+
 ## Solved
+
+### Exercise 1.11-2 — Shared Position Mutability & Unit Test Suite (`Rc<RefCell<Position>>`, `#[test]`)
+**Status:** solved
+**Goal:** In `src/tracker.rs`, add a comprehensive unit test suite (`#[cfg(test)] mod tests`) testing `process_fill` across multiple buy and sell trades and verifying exact realized vs total P&L calculations.
+**Note:** Solved in `src/tracker.rs`. Checked against `SOLUTIONS.md` — exact match on `#[cfg(test)]`, sell fill P&L assertions, and mark-to-market calculations.
+
 
 ### Exercise 1.11-1 — Realized & Unrealized P&L Accounting Engine (`PositionTracker`, `Order` Fill Execution)
 **Status:** solved

@@ -426,3 +426,18 @@
 ```
 
 ##### Reading Environment Variables `std::env::var` , `VarError`
+
+#### Testing Suite ( Integration and Result-Returning tests)
+
+```
+       Customer Interface / Integration Tests (tests/integration_test.rs)
+                                  │
+                                  ▼ (use trading_platform::*)
+  ┌───────────────────────────────┴────────────────────────────────┐
+  │                           src/lib.rs                           │
+  └───────┬───────────────┬───────────────┬────────────────┬───────┘
+          │               │               │                │
+          ▼               ▼               ▼                ▼
+     src/wallet.rs   src/orders.rs   src/tracker.rs   src/storage.rs
+
+```

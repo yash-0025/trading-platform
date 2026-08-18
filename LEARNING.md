@@ -152,3 +152,14 @@
 - Derived `Serialize` and `Deserialize` across all domain models.
 - Linked `mod storage;` in `src/main.rs`.
 
+### Module 1.11 — Positions Tracking — 2026-08-18
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Realized vs unrealized P&L accounting engines (locking cash profit on sell fills vs mark-to-market open position valuation).
+- Smart pointer mechanics: `Box<T>` (heap allocation), `Rc<T>` (shared reference counting), `RefCell<T>` (interior mutability runtime borrow checks), and `Rc<RefCell<T>>`.
+- Unit testing with `#[cfg(test)] mod tests` and `#[test]` assertion macros (`assert_eq!`).
+**Code I wrote / project progress:**
+- Created `src/tracker.rs` with `PositionTracker`, `process_fill`, `total_pnl`, and `test_position_tracker_buy_sell_pnl`.
+- Linked `mod tracker;` in `src/main.rs` and re-exported in `src/lib.rs`.
+
+

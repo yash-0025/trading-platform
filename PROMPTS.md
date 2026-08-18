@@ -631,3 +631,35 @@
 **Outcome / Next Step:** Learner completes `src/storage.rs` with `StorageMetadata<'a>`, `load_json_or_default`, and `save_json_atomic`, and moves to Gap 6 (Module 1.11: Position Tracker Unit Testing in `src/tracker.rs`).
 
 ---
+
+### 2026-08-18 13:04 IST — Prompt #78
+**Prompt:** "Done let's move to next gap exercise which you left 1.10.3 is completed"
+**Context:** Learner completed Exercise 1.10-3 (`src/storage.rs`), committed to git, and requested the next gap exercise. Moving to Gap 6 (Module 1.11: Position Tracker Unit Testing & Realized vs Total P&L Assertions in `src/tracker.rs`).
+**Output Summary:** AI introduced Concept 35 (Shared Position Mutability & Unit Testing Framework), committed word-for-word to EXAMPLES.md, activated Exercise 1.11-2 skeleton in EXERCISES.md with 2 TODOs, logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements 2 TODOs in `src/tracker.rs`: `test_position_tracker_buy_sell_pnl` selling shares to lock in $10,000 realized P&L and asserting $25,000 total mark-to-market P&L.
+
+---
+
+### 2026-08-18 14:47 IST — Prompt #79
+**Prompt:** "Give me solution . And after this we have completed gap exercises which you left before now i will be able to use /next as the command from teh next time right it will work perfectly"
+**Context:** Learner attempted code in `src/tracker.rs` (adding `mod tests`, `tracker.process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0)`), and requested the solution for Exercise 1.11-2.
+**Output Summary:** AI placed Solution 1.11-2 in exact numerical position in SOLUTIONS.md, appended plain English explanation + skeleton and solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, moved Exercise 1.11-2 to Solved in EXERCISES.md, logged diffs in LOGS.md, and confirmed ALL curriculum gap exercises (Gaps 1-6) are 100% complete so `/next` will resume advancing Module 1.12 standard sequence cleanly.
+**Outcome / Next Step:** Learner completes `src/tracker.rs` unit tests, runs `cargo test`, and uses `/next` (or "continue") to move to Module 1.12 Testing Suite.
+
+---
+
+### 2026-08-18 15:35 IST — Prompt #80
+**Prompt:** "Done /next . One more thing you stopped showing exercise in your ouput you used to show before please show it so i didn't have to check the exercise file again and again add it in the workflow also"
+**Context:** Learner invoked `/next` to start Module 1.12 Testing Suite, and requested updating `.agents/workflows/next.md` to mandate printing full exercise skeletons directly inside chat responses.
+**Output Summary:** AI updated `.agents/workflows/next.md` (STEP 3, STEP 3.5-A, and STEP 7 self-audit checklist), created `src/lib.rs` re-exporting modules, introduced Concept 36 in EXAMPLES.md, created Exercise 1.12-1 in EXERCISES.md, printed full exercise skeleton in chat response, and logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner implements `tests/integration_test.rs` with `test_end_to_end_trading_flow() -> Result<(), String>` completing 2 TODOs and verifying with `cargo test --test integration_test`.
+
+---
+
+### 2026-08-18 16:59 IST — Prompt #81
+**Prompt:** "yes approved"
+**Context:** Learner explicitly approved marking Module 1.11 as `[x]` complete in `ROADMAP.md` and `LEARNING.md` following the Rule 14 verification audit.
+**Output Summary:** AI updated Module 1.11 checkboxes to `[x]` in `ROADMAP.md`, appended Module 1.11 entry to `LEARNING.md`, and logged diffs in `LOGS.md`.
+**Outcome / Next Step:** Learner works on Exercise 1.12-1 in `tests/integration_test.rs`.
+
+---

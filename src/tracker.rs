@@ -49,3 +49,30 @@ impl PositionTracker {
         total
     }
 }
+
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::orders::OrderSide;
+
+    #[test]
+    fn test_position_tracker_buy_sell_pnl() {
+        let mut tracker = PositionTracker::new();
+
+        // Buy 2.0 BTC @ $40,000
+        tracker.process_fill(OrderSide::Buy, "BTC", 2.0, 40000.0);
+        assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 2.0);
+
+
+        // Sell 1.0 BTC @ $50,000 (realized 10k)
+        tracker.process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0);
+        assert_eq!(tracker.realized_pnl, 10000.0);
+        assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 1.0);
+
+        // Verify total pnl at market price 55,000
+        let prices = HashMap::from([("BTC".to_string(), 55000.0)]);
+        assert_eq!(tracker.total_pnl(&prices), 25000.0);
+    }
+}
