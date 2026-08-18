@@ -160,10 +160,11 @@ Every module has:
 ---
 
 ### Module 1.14 — Documentation & Code Quality
-- [ ] **You build:** `rustdoc` documentation for all public APIs. README.md with usage examples. Clippy configuration. Formatting rules.
-- [ ] **Concepts:** `///` and `//!` doc comments · `cargo doc --open` · Intra-doc links · Code examples in docs (that compile and run as tests) · `#![deny(missing_docs)]` · Clippy lints configuration · `rustfmt.toml` customization · `#[allow(...)]` and `#[warn(...)]`
-- [ ] **Architecture:** Documentation culture in production Rust. Why Rust's doc system is considered best-in-class.
-- [ ] **Deliverable:** Complete API documentation. README with quickstart guide. All clippy warnings resolved.
+- [x] **You build:** `rustdoc` documentation for all public APIs. README.md with usage examples. Clippy configuration. Formatting rules.
+- [x] **Concepts:** `///` and `//!` doc comments · `cargo doc --open` · Intra-doc links · Code examples in docs (that compile and run as tests) · `#![deny(missing_docs)]` · Clippy lints configuration · `rustfmt.toml` customization · `#[allow(...)]` and `#[warn(...)]`
+- [x] **Architecture:** Documentation culture in production Rust. Why Rust's doc system is considered best-in-class.
+- [x] **Deliverable:** Complete API documentation. README with quickstart guide. All clippy warnings resolved.
+
 
 ---
 

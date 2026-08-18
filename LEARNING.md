@@ -182,8 +182,22 @@
 - Visibility level controls (`pub(crate)`) restricting internal helpers to crate scope.
 - One-way dependency direction (Services depend on Models, Models never depend on Services).
 **Code I wrote / project progress:**
-- Refactored all 6 subtrees: `src/models/`, `src/services/`, `src/storage/`, `src/errors/`, `src/cli/`, `src/config/`.
-- Updated `src/lib.rs` and `src/main.rs` to re-export clean crate facade.
+
+### Module 1.14 — Documentation & Code Quality — 2026-08-19
+**Status:** `[x]` completed & understood
+**What I actually understood:**
+- Inner module doc comments (`//!`) for crate architecture overviews vs outer (`///`) for struct/function items.
+- Intra-doc link syntax (`[`Wallet`]`) automatically hyperlinking code symbols in generated HTML docs.
+- Compiler inner attributes (`#![warn(missing_docs)]`) enforcing documentation standards across public APIs.
+- Project-wide code quality configuration via `rustfmt.toml` and `clippy.toml`.
+- Item-level lint attributes (`#[allow(dead_code)]`, `#[warn(missing_docs)]`, `#[deny(unused_variables)]`) controlling lint severity per item.
+**Code I wrote / project progress:**
+- Created `rustfmt.toml` and `clippy.toml` in project root.
+- Added `//!` inner doc block and `#![warn(missing_docs)]` to `src/lib.rs`.
+- Added `#[allow(dead_code)]` to `clear_positions` in `src/services/tracker.rs`.
+- Added `#[warn(missing_docs)]` in `src/config/settings.rs` and `#[deny(unused_variables)]` in `src/storage/engine.rs`.
+- Updated `README.md` with complete Phase 1 module overview.
+
 
 
 

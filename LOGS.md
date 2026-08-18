@@ -33,6 +33,31 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-19 03:43 IST — [ROADMAP.md / LEARNING.md] — Marked Module 1.14 Complete [x]</summary>
+
+- **Files:** ROADMAP.md, LEARNING.md
+- **Change type:** Modified
+- **Reason:** Explicit learner approval to mark Module 1.14 (Documentation & Code Quality) as `[x]` completed and understood following Rule 14 audit.
+
+```diff
+[ROADMAP.md]
+- [ ] **You build:** rustdoc documentation...
++ [x] **You build:** rustdoc documentation...
+- [ ] **Concepts:** /// and //! doc comments...
++ [x] **Concepts:** /// and //! doc comments...
+- [ ] **Architecture:** Documentation culture...
++ [x] **Architecture:** Documentation culture...
+- [ ] **Deliverable:** Complete API documentation...
++ [x] **Deliverable:** Complete API documentation...
+
+[LEARNING.md]
++ ### Module 1.14 — Documentation & Code Quality — 2026-08-19
++ **Status:** `[x]` completed & understood
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 03:40 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.14-4 & Solved Exercise 1.14-4</summary>
 
 - **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
