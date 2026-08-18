@@ -38,8 +38,37 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
+### Exercise 1.14-4 — Code Severity Attributes (`#[deny(...)]` & `#[warn(...)]`)
+
+**Status:** open
+**Goal:** Add `#[warn(missing_docs)]` above `pub struct Config` in `src/config/settings.rs` and `#[deny(unused_variables)]` above `pub struct StorageEngine` in `src/storage/engine.rs`.
+
+**Skeleton:**
+```rust
+// File: src/config/settings.rs (above struct Config):
+#[warn(missing_docs)]
+pub struct Config { /* ... */ }
+
+// File: src/storage/engine.rs (above struct StorageEngine):
+#[deny(unused_variables)]
+pub struct StorageEngine;
+```
+
+**Constraints:** Run `cargo check` to verify compilation succeeds.
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
+
+## Solved
+
+### Exercise 1.14-3 — Item-Level Lint Control Attributes (`#[allow(...)]`)
+**Status:** solved
+**Goal:** In `src/services/tracker.rs`, add an item-level attribute `#[allow(dead_code)]` above a helper method `pub fn clear_positions(&mut self)` to demonstrate item-level lint suppression.
+**Note:** Solved in `src/services/tracker.rs`. Checked against `SOLUTIONS.md` — 100% match.
+
+
 
 ## Solved
 

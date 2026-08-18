@@ -360,6 +360,25 @@
 
 ---
 
+### Solution 1.14-3 — Item-Level Lint Control Attributes (`#[allow(...)]`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Place the item-level attribute `#[allow(dead_code)]` directly above the `clear_positions` helper method in `src/services/tracker.rs` so the compiler silences unused function warnings for just this single method, leaving all other dead code checks intact."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `#[allow(dead_code)]`
+   - Item-level outer attribute suppressing `dead_code` lint warnings for the single function below it.
+2. `pub fn clear_positions(&mut self)`
+   - Mutable helper method clearing position map entries and resetting realized P&L.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `#[allow(dead_code)]`
+   - `#`: Outer attribute syntax applying only to the immediately following item (`clear_positions`).
+   - `allow`: Instructs compiler to ignore matching lint warnings for this item scope.
+
+---
+
+
 
 
 

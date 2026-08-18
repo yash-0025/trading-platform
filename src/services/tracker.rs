@@ -49,6 +49,13 @@ impl PositionTracker {
         }
         total
     }
+
+    /// Resets all open positions and realized P&L
+    #[allow(dead_code)]
+    pub fn clear_positions(&mut self) {
+        self.positions.clear();
+        self.realized_pnl = 0.0;
+    }
 }
 
 #[cfg(test)]

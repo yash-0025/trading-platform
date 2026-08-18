@@ -83,10 +83,8 @@ impl Config {
     } */
 
     pub fn apply_env_overrides(&mut self) {
-        if let Ok(val_str) = env::var("MAX_ORDER_SIZE") {
-            if let Ok(size) = val_str.parse::<u64>() {
-                self.max_order_size = size;
-            }
+        if let Ok(size) = env::var("MAX_ORDER_SIZE").unwrap_or_default().parse::<u64>() {
+            self.max_order_size = size;
         }
     }
 }

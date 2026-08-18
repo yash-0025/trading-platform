@@ -35,7 +35,6 @@ impl Wallet {
     /// wallet.deposit("USD".to_string(), 500);
     /// assert_eq!(wallet.get_balance("USD"), 500);
     /// ```
-
     pub fn deposit(&mut self, currency: String, amount: u64) -> Result<()> {
         *self.balances.entry(currency.clone()).or_insert(0) += amount;
         self.history.push(TransactionRecord {

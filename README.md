@@ -63,7 +63,12 @@ The project is structured into progressive learning phases:
 - [x] **Module 1.7 — Wallet System (Money Management)**: Atomic map mutation (`HashMap::entry`), overdraft protection, `TransactionRecord` audit history, iterator filter chains.
 - [x] **Module 1.8 — Portfolio Management (Your Holdings)**: Position tracking, weighted average cost basis updates, real-time unrealized P&L calculations, custom sorting (`sort_by`, `PartialOrd::partial_cmp`).
 - [x] **Module 1.9 — Order Management (Basic OMS)**: Type-safe `OrderId(pub u64)` newtype, `OrderStatus` state machine transitions, `OrderBuilder` with fluent method chaining and atomic validation.
-- [~] **Module 1.10 — File Persistence (Saving State)**: Generic `StorageEngine` serialization and deserialization (`serde` + `serde_json`), disk I/O, `PathBuf` vs `&Path`.
+- [x] **Module 1.10 — File Persistence (Saving State)**: Generic `StorageEngine` serialization and deserialization (`serde` + `serde_json`), disk I/O, `PathBuf` vs `&Path`.
+- [x] **Module 1.11 — Position Tracking**: Realized vs unrealized P&L breakdown, position sizing, smart pointer memory model.
+- [x] **Module 1.12 — Testing Suite**: Integration tests in `tests/`, doc tests in `///`, `#[should_panic]` test assertions.
+- [x] **Module 1.13 — Multi-Module Architecture Refactoring**: Clean 6-domain subtree refactoring (`models/`, `services/`, `storage/`, `errors/`, `cli/`, `config/`).
+- [x] **Module 1.14 — Documentation & Code Quality**: Inner module docs (`//!`), intra-doc links, `rustfmt.toml`, `clippy.toml`, `#![warn(missing_docs)]`.
+
 
 ---
 

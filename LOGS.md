@@ -33,6 +33,62 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-19 03:30 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 44 & Exercise 1.14-4 for Lint Severity Levels</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Covering remaining lint severity concepts (`#[deny]` and `#[warn]`) from ROADMAP.md Module 1.14. Added Concept 44 to EXAMPLES.md and created Exercise 1.14-4 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 44. Lint Severity Levels (`#[deny(...)]` vs `#[warn(...)]`)
+
+[EXERCISES.md]
++ ### Exercise 1.14-4 — Code Severity Attributes (`#[deny(...)]` & `#[warn(...)]`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 03:27 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.14-3 & Solved Exercise 1.14-3</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed Exercise 1.14-3 (`#[allow(dead_code)]` in `src/services/tracker.rs`). Placed Solution 1.14-3 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.14-3 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.14-3 — Item-Level Lint Control Attributes (`#[allow(...)]`)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.14-3 — Item-Level Lint Control Attributes
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.14-3 — Item-Level Lint Control Attributes [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 03:08 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 43 & Exercise 1.14-3 for Item-Level Attributes</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Completing 100% of Module 1.14 concepts from ROADMAP.md. Added Concept 43 (Item-Level Lint Attributes `#[allow(...)]`) to EXAMPLES.md and created Exercise 1.14-3 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 43. Item-Level Lint Control Attributes (`#[allow(...)]`, `#[warn(...)]`, `#[deny(...)]`)
+
+[EXERCISES.md]
++ ### Exercise 1.14-3 — Item-Level Lint Control Attributes (`#[allow(...)]`)
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 02:50 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.14-2 & Solved Exercise 1.14-2</summary>
 
 - **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md

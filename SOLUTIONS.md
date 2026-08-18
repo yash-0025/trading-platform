@@ -1618,6 +1618,29 @@ cognitive-complexity-threshold = 25
 
 ---
 
+### Solution 1.14-3 — Item-Level Lint Control Attributes (`#[allow(...)]`)
+
+**Reference Implementation:**
+```rust
+// In src/services/tracker.rs inside impl PositionTracker:
+    /// Resets all open positions and realized P&L.
+    #[allow(dead_code)]
+    pub fn clear_positions(&mut self) {
+        self.positions.clear();
+        self.realized_pnl = 0.0;
+    }
+```
+
+**Line-by-Line Breakdown:**
+- `#[allow(dead_code)]` — Item-level outer attribute suppressing compiler unused code warnings for `clear_positions`.
+- `pub fn clear_positions(&mut self)` — Helper method clearing all positions map entries and resetting realized P&L.
+
+**Compared to your attempt:**
+- **Exact Match!**: You successfully added `clear_positions` with `#[allow(dead_code)]` to `src/services/tracker.rs`!
+
+---
+
+
 
 
 

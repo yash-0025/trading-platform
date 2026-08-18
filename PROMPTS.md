@@ -788,6 +788,31 @@
 
 ---
 
+### 2026-08-19 03:08 IST — Prompt #98
+**Prompt:** "Are you really sure you cover every concepts because i don't thik so"
+**Context:** Learner caught that `#[allow(...)]` and `#[warn(...)]` item-level lint attributes from `ROADMAP.md` Module 1.14 were not yet written into code.
+**Output Summary:** AI acknowledged the missing concept, added Concept 43 (Item-Level Lint Attributes `#[allow(...)]`) word-for-word to EXAMPLES.md, created Exercise 1.14-3 skeleton in EXERCISES.md, printed full exercise skeleton in chat response, and logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner completes Exercise 1.14-3 in `src/services/tracker.rs`.
+
+### 2026-08-19 03:27 IST — Prompt #99
+**Prompt:** "Done . Now are you sure we have completed everything..."
+**Context:** Learner completed Exercise 1.14-3 adding `clear_positions` with `#[allow(dead_code)]` in `src/services/tracker.rs` and asked to confirm that 100% of Module 1.14 concepts are now verified.
+**Output Summary:** AI placed Solution 1.14-3 in exact numerical position in SOLUTIONS.md, appended plain English explanation + skeleton and solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, moved Exercise 1.14-3 to Solved in EXERCISES.md, logged diffs in LOGS.md, and conducted a full Rule 14 audit table across all Module 1.14 requirements.
+**Outcome / Next Step:** Learner reviews and approves Rule 14 audit table for Module 1.14 before advancing to Module 1.15.
+
+---
+
+### 2026-08-19 03:30 IST — Prompt #100
+**Prompt:** "I think you are reading just half of concepts details like we ahve cover allow one what about warn ? and what about deny..."
+**Context:** Learner caught that `#[deny(...)]` and item-level `#[warn(...)]` attributes were not yet demonstrated in code.
+**Output Summary:** AI acknowledged the missing concepts, added Concept 44 (Lint Severity Levels `#[deny]` and `#[warn]`) word-for-word to EXAMPLES.md, created Exercise 1.14-4 skeleton in EXERCISES.md, printed full exercise skeleton in chat response, and logged diffs in LOGS.md.
+**Outcome / Next Step:** Learner applies `#[warn(missing_docs)]` in `src/config/settings.rs` and `#[deny(unused_variables)]` in `src/storage/engine.rs`.
+
+---
+
+
+
+
 
 
 
