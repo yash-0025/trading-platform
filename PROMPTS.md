@@ -810,6 +810,24 @@
 
 ---
 
+### 2026-08-19 03:38 IST — Prompt #101
+**Prompt:** "Now let's update you rules to tighten your rules and atleast try to get rid of your hallucinations and shortcuts..."
+**Context:** Learner instructed AI to update `RULES.md` and `.agents/workflows/next.md`: (1) Tightened Rule 14 to forbid asking for module completion unless 100% of "You build", "Concepts", "Architecture", and "Deliverable" bullets are verified in code; (2) Added Rule 20 forbidding paraphrasing or text alterations between workspace files and chat outputs; (3) Updated workflow STEP 2 and STEP 7 accordingly.
+**Output Summary:** AI updated `RULES.md` (Rule 14 and Rule 20) and `.agents/workflows/next.md` (STEP 2 and STEP 7 self-audit checklist), and logged diffs in LOGS.md.
+**Outcome / Next Step:** Both governance files updated and logged.
+
+---
+
+### 2026-08-19 03:40 IST — Prompt #102
+**Prompt:** "done cargo check compiled successfully"
+**Context:** Learner completed Exercise 1.14-4 (`#[warn(missing_docs)]` in `src/config/settings.rs` and `#[deny(unused_variables)]` in `src/storage/engine.rs`).
+**Output Summary:** AI placed Solution 1.14-4 in exact numerical position in SOLUTIONS.md, appended plain English explanation + skeleton and solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, moved Exercise 1.14-4 to Solved in EXERCISES.md, logged diffs in LOGS.md, and conducted a full Rule 14 audit table across all Module 1.14 requirements.
+**Outcome / Next Step:** Learner reviews and approves Rule 14 audit table for Module 1.14 before advancing to Module 1.15.
+
+---
+
+
+
 
 
 

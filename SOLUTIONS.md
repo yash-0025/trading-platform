@@ -1640,6 +1640,37 @@ cognitive-complexity-threshold = 25
 
 ---
 
+### Solution 1.14-4 — Code Severity Attributes (`#[deny(...)]` & `#[warn(...)]`)
+
+**Reference Implementation:**
+
+```rust
+// File: src/config/settings.rs (above struct Config):
+#[warn(missing_docs)]
+pub struct Config {
+    pub exchange_name: String,
+    pub currency: String,
+    pub max_order_size: u64,
+    pub log_level: String,
+}
+```
+
+```rust
+// File: src/storage/engine.rs (above struct StorageEngine):
+#[deny(unused_variables)]
+pub struct StorageEngine;
+```
+
+**Line-by-Line Breakdown:**
+- `#[warn(missing_docs)]` — Outer item-level attribute emitting compiler warnings if `Config` or its fields lack doc comments.
+- `#[deny(unused_variables)]` — Outer item-level attribute escalating unused variable warnings inside `StorageEngine` methods into fatal compilation errors.
+
+**Compared to your attempt:**
+- **Exact Match!**: You successfully applied `#[warn(missing_docs)]` in `src/config/settings.rs` and `#[deny(unused_variables)]` in `src/storage/engine.rs`!
+
+---
+
+
 
 
 

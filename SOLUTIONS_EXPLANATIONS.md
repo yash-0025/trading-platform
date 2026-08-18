@@ -378,6 +378,28 @@
 
 ---
 
+### Solution 1.14-4 — Code Severity Attributes (`#[deny(...)]` & `#[warn(...)]`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Place `#[warn(missing_docs)]` above `pub struct Config` in `src/config/settings.rs` to emit warnings if its fields lack doc comments, and place `#[deny(unused_variables)]` above `pub struct StorageEngine` in `src/storage/engine.rs` to force the compiler to reject builds if unused variables occur inside StorageEngine."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `#[warn(missing_docs)]`
+   - Item-level outer attribute emitting compiler warnings for un-documented items on `Config`.
+2. `#[deny(unused_variables)]`
+   - Item-level outer attribute escalating unused variable warnings inside `StorageEngine` into fatal build errors.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `#[warn(missing_docs)]`
+   - `#`: Outer attribute applying only to `struct Config`.
+   - `warn`: Lint level emitting compiler warnings without breaking the build.
+2. `#[deny(unused_variables)]`
+   - `#`: Outer attribute applying to `struct StorageEngine`.
+   - `deny`: Lint level escalating warnings to hard compilation errors.
+
+---
+
+
 
 
 

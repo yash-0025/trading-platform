@@ -44,11 +44,12 @@ Read these files in this exact order, in full, before any action:
 
 ## STEP 2 — Verify-Before-Advance (Rule #14)
 
-Before marking any module complete:
+Before asking the learner to mark any module complete:
 - Re-open the module block in `ROADMAP.md`.
-- List every bullet under "You build," "Concepts," "Architecture," "Deliverable."
-- Check each against what `LEARNING.md` records as done/understood.
-- If anything's missing, list it and address it before advancing — don't assume it was "usually" covered together.
+- Systematically audit EVERY SINGLE line, concept, data model, syntax element, architecture flow, and deliverable listed under "You build", "Concepts", "Architecture", and "Deliverable".
+- Check whether each item has been 100% actively coded, compiled, and tested in `src/`.
+- If even a single item or concept is not fully covered in code, you have NO RIGHT to ask to mark the module complete. List the missing items and implement them in `src/` first.
+
 
 ## STEP 3 — Teaching Format Checklist (every module, no exceptions)
 
@@ -127,6 +128,8 @@ Hard gate. Check every box against what you ACTUALLY DID, not intended. If any f
 - [ ] **Rule 17**: Plain English thought translation provided alongside technical breakdown.
 - [ ] **Rule 18**: Every `ROADMAP.md` concept has active code in `src/`. Theory-only forbidden.
 - [ ] **Rule 19**: Solution revealed → thought translation + exhaustive syntax breakdown (skeleton & solution tokens/keywords/mechanics/rationale) appended to `SOLUTIONS_EXPLANATIONS.md` in numerical order.
+- [ ] **Rule 20**: Zero paraphrasing or shortening when writing files — chat output text matches file contents word-for-word.
+
 
 - [ ] Hands-on portion → skeleton exercise written to `EXERCISES.md` (STEP 3.5-A) AND printed in full inside chat reply, no finished solution given (Rule #16).
 - [ ] `SOLUTIONS.md` untouched unless both gate conditions (STEP 3.5-C) met this turn.

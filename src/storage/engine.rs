@@ -15,6 +15,7 @@ pub struct StorageMetadata<'a> {
     pub runtime_cache: u64,
 }
 
+#[deny(unused_variables)]
 pub struct StorageEngine;
 
 impl StorageEngine {

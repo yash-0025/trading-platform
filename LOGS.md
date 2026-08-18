@@ -33,6 +33,47 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-19 03:40 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.14-4 & Solved Exercise 1.14-4</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed Exercise 1.14-4 (`#[warn(missing_docs)]` in `src/config/settings.rs` and `#[deny(unused_variables)]` in `src/storage/engine.rs`). Placed Solution 1.14-4 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.14-4 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.14-4 — Code Severity Attributes (`#[deny(...)]` & `#[warn(...)]`)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.14-4 — Code Severity Attributes
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.14-4 — Code Severity Attributes [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 03:38 IST — [RULES.md / .agents/workflows/next.md] — Tightened Rule 14 and Added Rule 20</summary>
+
+- **Files:** RULES.md, .agents/workflows/next.md
+- **Change type:** Modified
+- **Reason:** Tightened Rule 14 (Exhaustive Module Verification) to forbid asking for module completion unless 100% of "You build", "Concepts", "Architecture", and "Deliverable" bullets are verified in code. Added Rule 20 (Zero Paraphrasing During File Writes) forbidding text alterations between workspace files and chat outputs. Updated workflow STEP 2 and STEP 7 accordingly.
+
+```diff
+[RULES.md]
++ 14. **Exhaustive Module Verification Before Asking For Completion:** ...
++ 20. **Zero Independent Alteration or Paraphrasing During File Writes:** ...
+
+[.agents/workflows/next.md]
++ STEP 2 — Verify-Before-Advance (Rule #14) updated with exhaustive item-by-item audit.
++ STEP 7 — Mandatory Self-Audit updated with Rule 20 zero-paraphrasing check.
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 03:30 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 44 & Exercise 1.14-4 for Lint Severity Levels</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md

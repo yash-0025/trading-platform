@@ -2,6 +2,7 @@ use serde::Deserialize;
 use std::env;
 
 #[derive(Debug, Clone, Deserialize)]
+#[warn(missing_docs)]
 pub struct Config {
     pub exchange_name: String,
     pub currency: String,
