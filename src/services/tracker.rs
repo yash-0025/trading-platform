@@ -1,7 +1,6 @@
-use std::collections::HashMap;
-use crate::services::order_manager::OrderSide;
 use crate::models::portfolio::Position;
-
+use crate::services::order_manager::OrderSide;
+use std::collections::HashMap;
 
 #[derive(Debug, Default)]
 pub struct PositionTracker {
@@ -14,8 +13,7 @@ impl PositionTracker {
         Self::default()
     }
 
-    pub fn process_fill(&mut self, side: OrderSide, symbol: &str, qty: f64, price:f64) {
-
+    pub fn process_fill(&mut self, side: OrderSide, symbol: &str, qty: f64, price: f64) {
         match side {
             OrderSide::Buy => {
                 self.positions
@@ -43,14 +41,15 @@ impl PositionTracker {
         let mut total = self.realized_pnl;
 
         for pos in self.positions.values() {
-            let market_price = current_prices.get(&pos.symbol).copied().unwrap_or(pos.avg_cost);
+            let market_price = current_prices
+                .get(&pos.symbol)
+                .copied()
+                .unwrap_or(pos.avg_cost);
             total += pos.unrealized_pnl(market_price);
         }
         total
     }
 }
-
-
 
 #[cfg(test)]
 mod tests {
@@ -64,7 +63,6 @@ mod tests {
         // Buy 2.0 BTC @ $40,000
         tracker.process_fill(OrderSide::Buy, "BTC", 2.0, 40000.0);
         assert_eq!(tracker.positions.get("BTC").unwrap().quantity, 2.0);
-
 
         // Sell 1.0 BTC @ $50,000 (realized 10k)
         tracker.process_fill(OrderSide::Sell, "BTC", 1.0, 50000.0);

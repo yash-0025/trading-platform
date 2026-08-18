@@ -1,7 +1,6 @@
-use chrono::{DateTime, Utc};
 use crate::errors::TradingError;
-use serde::{Serialize, Deserialize};
-
+use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum OrderType {
@@ -17,7 +16,6 @@ pub struct OrderBuilder {
     pub price: Option<u64>,
 }
 
-
 impl OrderBuilder {
     pub fn new() -> Self {
         Self::default()
@@ -28,7 +26,7 @@ impl OrderBuilder {
         self
     }
 
-    pub fn side(mut self, side: OrderSide)-> Self {
+    pub fn side(mut self, side: OrderSide) -> Self {
         self.side = Some(side);
         self
     }
@@ -44,26 +42,37 @@ impl OrderBuilder {
     }
 
     pub fn build(self, id: u64) -> Result<Order, TradingError> {
-
-        let symbol = self.symbol.ok_or_else(|| TradingError::InvalidOrder{ message : "Missing symbol".into()})?;
+        let symbol = self.symbol.ok_or_else(|| TradingError::InvalidOrder {
+            message: "Missing symbol".into(),
+        })?;
         if symbol.is_empty() {
-            return Err(TradingError::InvalidOrder{ message : "Missing symbol".into(),
-        });
+            return Err(TradingError::InvalidOrder {
+                message: "Missing symbol".into(),
+            });
         }
 
-        let side = self.side.ok_or_else(|| TradingError::InvalidOrder{message:"Missing order side".into()})?;
+        let side = self.side.ok_or_else(|| TradingError::InvalidOrder {
+            message: "Missing order side".into(),
+        })?;
 
-        let qty = self.qty.ok_or_else(|| TradingError::InvalidOrder{message : "Quantity must be greater than zero".into()})?;
+        let qty = self.qty.ok_or_else(|| TradingError::InvalidOrder {
+            message: "Quantity must be greater than zero".into(),
+        })?;
         if qty == 0 {
-            return Err(TradingError::InvalidOrder{ message : "Quantity must be greater than zero".into()});
+            return Err(TradingError::InvalidOrder {
+                message: "Quantity must be greater than zero".into(),
+            });
         }
-        
-        let price = self.price.ok_or_else(|| TradingError::InvalidOrder{message : "Price must be greater than zero".into()})?;
-        if price == 0 {
-            return Err(TradingError::InvalidOrder{message : "Price must be greater than zero".into()});
-        }
-        Ok(Order::new(id,symbol, side, qty, price))
 
+        let price = self.price.ok_or_else(|| TradingError::InvalidOrder {
+            message: "Price must be greater than zero".into(),
+        })?;
+        if price == 0 {
+            return Err(TradingError::InvalidOrder {
+                message: "Price must be greater than zero".into(),
+            });
+        }
+        Ok(Order::new(id, symbol, side, qty, price))
     }
 }
 
@@ -132,7 +141,6 @@ pub struct OrderManager {
     pub orders: Vec<Order>,
 }
 
-
 impl OrderManager {
     pub fn new() -> Self {
         Self {
@@ -141,7 +149,13 @@ impl OrderManager {
         }
     }
 
-    pub fn submit(&mut self, symbol: String, side: OrderSide, order_type: OrderType, qty: u64) -> OrderId {
+    pub fn submit(
+        &mut self,
+        symbol: String,
+        side: OrderSide,
+        order_type: OrderType,
+        qty: u64,
+    ) -> OrderId {
         let id = self.next_id;
         self.next_id += 1;
         let price = match order_type {
@@ -152,12 +166,11 @@ impl OrderManager {
         order.order_type = order_type;
         self.orders.push(order.clone());
         OrderId(id)
-    } 
-
+    }
 
     pub fn cancel(&mut self, id: OrderId) -> bool {
         if let Some(order) = self.orders.iter_mut().find(|o| o.id == id) {
-            order.cancel() 
+            order.cancel()
         } else {
             false
         }

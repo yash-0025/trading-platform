@@ -1585,6 +1585,40 @@ pub use settings::*;
 
 ---
 
+### Solution 1.14-2 — Code Quality Configs (`rustfmt.toml`, `clippy.toml`) & Doc Warnings (`#![warn(missing_docs)]`)
+
+**Reference Implementation:**
+
+```toml
+# rustfmt.toml:
+max_width = 100
+edition = "2024"
+tab_spaces = 4
+```
+
+```toml
+# clippy.toml:
+cognitive-complexity-threshold = 25
+```
+
+```rust
+// src/lib.rs (line 1):
+#![warn(missing_docs)]
+```
+
+**Line-by-Line Breakdown:**
+- `max_width = 100` — Configures rustfmt to wrap code lines exceeding 100 characters.
+- `edition = "2024"` — Specifies Rust 2024 edition formatting rules.
+- `tab_spaces = 4` — Sets standard 4-space indentations.
+- `cognitive-complexity-threshold = 25` — Sets clippy threshold to flag functions exceeding cognitive complexity score of 25.
+- `#![warn(missing_docs)]` — Directs rustc to emit compiler warnings for un-documented public items in crate root.
+
+**Compared to your attempt:**
+- **Exact Match!**: You successfully created `rustfmt.toml` and `clippy.toml` in project root, and added `#![warn(missing_docs)]` to `src/lib.rs`!
+
+---
+
+
 
 
 

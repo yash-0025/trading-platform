@@ -1,9 +1,9 @@
-use uuid::Uuid;
+use crate::errors::{Result, TradingError};
 use chrono::{DateTime, Utc};
-use sha2::{Sha256, Digest};
+use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 use std::collections::HashMap;
-use crate::errors::{TradingError, Result};
-use serde::{Serialize, Deserialize};
+use uuid::Uuid;
 
 #[derive(Debug, Default, Serialize, Deserialize)]
 pub struct UserManager {
@@ -17,44 +17,44 @@ impl UserManager {
     }
 
     pub fn register(&mut self, username: String, password: &str) -> Result<&User> {
-       if self.username_index.contains_key(&username) {
-        return Err(TradingError::InvalidQuantity {
-            message: format!("Username '{}' already exists", username),
-        });
-       }
+        if self.username_index.contains_key(&username) {
+            return Err(TradingError::InvalidQuantity {
+                message: format!("Username '{}' already exists", username),
+            });
+        }
 
-       let user = User::new(username.clone(), password.to_string());
-       let user_id = user.id;
+        let user = User::new(username.clone(), password.to_string());
+        let user_id = user.id;
 
-       self.users.insert(user_id, user);
-       self.username_index.insert(username, user_id);
+        self.users.insert(user_id, user);
+        self.username_index.insert(username, user_id);
 
-       Ok(self.users.get(&user_id).unwrap())
+        Ok(self.users.get(&user_id).unwrap())
     }
 
     pub fn authenticate(&self, username: &str, password: &str) -> Result<&User> {
-        let user_id = self.username_index.get(username).ok_or_else(|| {
-            TradingError::InvalidQuantity {
-                message: "Invalid Credentials".into(),
-            }
-        })?;
+        let user_id =
+            self.username_index
+                .get(username)
+                .ok_or_else(|| TradingError::InvalidQuantity {
+                    message: "Invalid Credentials".into(),
+                })?;
 
-        let user = self.users.get(user_id).ok_or_else(|| {
-            TradingError::InvalidQuantity {
+        let user = self
+            .users
+            .get(user_id)
+            .ok_or_else(|| TradingError::InvalidQuantity {
                 message: "User record missing".into(),
-            }
-        })?;
+            })?;
 
         if user.verify_password(password) {
-            Ok(user) 
+            Ok(user)
         } else {
             Err(TradingError::InvalidQuantity {
                 message: "Invalid Credentials".into(),
             })
         }
     }
-
-    
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -66,7 +66,6 @@ pub struct User {
 }
 
 impl User {
-
     pub fn new(username: String, password: String) -> Self {
         let id = Uuid::new_v4();
         let password_hash = Self::hash_password(password).to_string();
@@ -91,4 +90,3 @@ impl User {
         Self::hash_password(password.to_string()) == self.password_hash
     }
 }
-

@@ -1,6 +1,6 @@
-use std::collections::{HashMap, BTreeMap};
+use serde::{Deserialize, Serialize};
 use std::cmp::Ordering;
-use serde::{Serialize, Deserialize};
+use std::collections::{BTreeMap, HashMap};
 use std::fmt;
 
 #[derive(Debug, Default, Serialize, Deserialize)]
@@ -14,25 +14,24 @@ impl Portfolio {
         Self::default()
     }
 
+    // Idiomatic entry chain => .and_modify() + .or_insert_with()
+    // .and_modify(|pos| ) - If the symbol already exists in positions it runs the closure on |pos| passing a mutable reference &mut Position so we can cal pos.update(quantity, price)
+    // .or_insert_with(|| ...) If the symbol does not exist yetm it creates a new Position::new(...) and inserts it.
 
-// Idiomatic entry chain => .and_modify() + .or_insert_with()
-// .and_modify(|pos| ) - If the symbol already exists in positions it runs the closure on |pos| passing a mutable reference &mut Position so we can cal pos.update(quantity, price)
-// .or_insert_with(|| ...) If the symbol does not exist yetm it creates a new Position::new(...) and inserts it.
+    // ----- Other way to write this function is this
+    /*
+        use std::collections::hash_map::Entry;
 
-// ----- Other way to write this function is this 
-/* 
-    use std::collections::hash_map::Entry;
-
-    match self.positions.entry(symbol.clone()) {
-        Entry::Occupied(mut entry) = {
-            entry.get_mut().update(quantity. price);
+        match self.positions.entry(symbol.clone()) {
+            Entry::Occupied(mut entry) = {
+                entry.get_mut().update(quantity. price);
+            }
+            Entry::Vacant(entry) => {
+                entry.insert(Position::new(symbol, quantity, price));
+            }
         }
-        Entry::Vacant(entry) => {
-            entry.insert(Position::new(symbol, quantity, price));
-        }
-    }
 
-*/
+    */
     pub fn add_position(&mut self, symbol: String, quantity: f64, price: f64) {
         self.positions
             .entry(symbol.clone())
@@ -50,8 +49,8 @@ impl Portfolio {
             let price_a = current_prices.get(&a.symbol).copied().unwrap_or(0.0);
             let price_b = current_prices.get(&b.symbol).copied().unwrap_or(0.0);
             b.unrealized_pnl(price_b)
-             .partial_cmp(&a.unrealized_pnl(price_a))
-             .unwrap_or(Ordering::Equal)
+                .partial_cmp(&a.unrealized_pnl(price_a))
+                .unwrap_or(Ordering::Equal)
         });
 
         positions
@@ -66,9 +65,11 @@ impl Portfolio {
     }
 
     pub fn portfolio_report(&self, _current_prices: &HashMap<String, f64>) -> Vec<String> {
-        let lines = self.sorted_holdings.values().enumerate().map(|(idx, pos)| {
-            format!("# {}: {}", idx + 1, pos)
-        });
+        let lines = self
+            .sorted_holdings
+            .values()
+            .enumerate()
+            .map(|(idx, pos)| format!("# {}: {}", idx + 1, pos));
         let summary = std::iter::once(format!("Total Positions: {}", self.sorted_holdings.len()));
         lines.chain(summary).collect::<Vec<String>>()
     }
@@ -76,7 +77,11 @@ impl Portfolio {
 
 impl fmt::Display for Position {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}: {:.2} shares @ avg ${:.2}", self.symbol, self.quantity, self.avg_cost)
+        write!(
+            f,
+            "{}: {:.2} shares @ avg ${:.2}",
+            self.symbol, self.quantity, self.avg_cost
+        )
     }
 }
 
@@ -88,7 +93,6 @@ impl fmt::Display for Portfolio {
         Ok(())
     }
 }
-
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Position {

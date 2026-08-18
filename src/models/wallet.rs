@@ -1,7 +1,7 @@
-use std::collections::HashMap;
-use crate::errors::{TradingError, Result};
+use crate::errors::{Result, TradingError};
 use chrono::{DateTime, Utc};
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum TransactionType {
@@ -28,7 +28,7 @@ impl Wallet {
         Self::default()
     }
 
-    /// # Example 
+    /// # Example
     /// ```
     /// use trading_platform::wallet::Wallet;
     /// let mut wallet = Wallet::new();
@@ -51,7 +51,7 @@ impl Wallet {
         let bal = self.balances.get_mut(currency);
 
         match bal {
-            // Currency exists and has enough money 
+            // Currency exists and has enough money
             Some(current_bal) if *current_bal >= amount => {
                 *current_bal -= amount;
                 self.history.push(TransactionRecord {
@@ -63,16 +63,15 @@ impl Wallet {
                 Ok(())
             }
             // Currency exists but does not have enough money
-            Some(current_bal) => 
-            Err(TradingError::InsufficientFunds {
-                    required: amount,
-                    available: *current_bal,
-                }),
+            Some(current_bal) => Err(TradingError::InsufficientFunds {
+                required: amount,
+                available: *current_bal,
+            }),
             // Currency Does not exist in the map at all
             None => Err(TradingError::InsufficientFunds {
-                    required: amount,
-                    available: 0,
-                }),
+                required: amount,
+                available: 0,
+            }),
         }
     }
 
@@ -82,14 +81,20 @@ impl Wallet {
     }
 
     pub fn get_history(&self, currency: &str) -> Vec<TransactionRecord> {
-        self.history.iter().filter(|tx| tx.currency == currency).cloned().collect()
+        self.history
+            .iter()
+            .filter(|tx| tx.currency == currency)
+            .cloned()
+            .collect()
     }
 
     pub fn total_balance(&self) -> u64 {
         self.balances.values().sum::<u64>()
     }
 
-    pub fn filter_transactions<F>(&self, predicate: F) -> Vec<TransactionRecord> where F: Fn(&TransactionRecord) -> bool, 
+    pub fn filter_transactions<F>(&self, predicate: F) -> Vec<TransactionRecord>
+    where
+        F: Fn(&TransactionRecord) -> bool,
     {
         self.history
             .iter()

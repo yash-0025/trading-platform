@@ -1,13 +1,18 @@
 use clap::{Parser, Subcommand};
 
 #[derive(Parser, Debug)]
-#[command(name = "trading-platform", author, version, about = "CLI Trading Terminal")]
+#[command(
+    name = "trading-platform",
+    author,
+    version,
+    about = "CLI Trading Terminal"
+)]
 pub struct Cli {
     #[command(subcommand)]
     pub command: Commands,
 }
 
-/* 
+/*
 Enable --symbol, --qty, --price Flags
 If you want named flags like --symbol BTC --qty 2 --price 50000, add #[arg(long)] above each field
 #[derive(Subcommand, Debug)]

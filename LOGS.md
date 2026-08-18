@@ -33,6 +33,28 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-19 02:50 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.14-2 & Solved Exercise 1.14-2</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed Exercise 1.14-2 (`rustfmt.toml`, `clippy.toml`, `#![warn(missing_docs)]` in `src/lib.rs`). Placed Solution 1.14-2 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.14-2 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.14-2 — Code Quality Configs & Doc Warnings
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.14-2 — Code Quality Configs & Doc Warnings
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.14-2 — Code Quality Configs & Doc Warnings [solved]
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 02:16 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 42 & Exercise 1.14-2 for Code Quality Configs</summary>
 
 - **Files:** EXAMPLES.md, EXERCISES.md

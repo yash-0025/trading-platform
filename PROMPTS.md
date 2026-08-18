@@ -780,6 +780,15 @@
 
 ---
 
+### 2026-08-19 02:50 IST — Prompt #97
+**Prompt:** "There's hell lot of issue - cargo fmt --check..."
+**Context:** Learner completed Exercise 1.14-2 (creating `rustfmt.toml`, `clippy.toml`, and adding `#![warn(missing_docs)]` to `src/lib.rs`), ran `cargo fmt --check`, and shared the formatting diff output.
+**Output Summary:** AI placed Solution 1.14-2 in exact numerical position in SOLUTIONS.md, appended plain English explanation + skeleton and solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, moved Exercise 1.14-2 to Solved in EXERCISES.md, logged diffs in LOGS.md, and conducted a full Rule 14 audit table for Module 1.14.
+**Outcome / Next Step:** Learner reviews and approves Rule 14 audit table for Module 1.14 before advancing to Module 1.15.
+
+---
+
+
 
 
 

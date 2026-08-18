@@ -338,6 +338,29 @@
 
 ---
 
+### Solution 1.14-2 — Code Quality Configs (`rustfmt.toml`, `clippy.toml`) & Doc Warnings (`#![warn(missing_docs)]`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Set up automated code quality rules for the trading platform codebase: create `rustfmt.toml` to enforce a 100-character line width and 4-space tabs, create `clippy.toml` to limit cognitive complexity, and add `#![warn(missing_docs)]` to `src/lib.rs` to warn developers whenever a public type or function is missing documentation comments."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `max_width = 100`
+   - TOML key-value setting max line length for rustfmt.
+2. `cognitive-complexity-threshold = 25`
+   - TOML key-value configuring clippy cognitive complexity lint limit.
+3. `#![warn(missing_docs)]`
+   - Inner crate attribute directing rustc compiler to emit warnings for un-documented public items.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `#![warn(missing_docs)]`
+   - `#!`: Inner attribute macro targeting the containing `src/lib.rs` crate root.
+   - `warn(...)`: Lint level setting. Emits warnings during `cargo check`, `cargo clippy`, and `cargo doc` compilation.
+2. `edition = "2024"`
+   - TOML key ensuring rustfmt formats code according to Rust 2024 edition idioms.
+
+---
+
+
 
 
 

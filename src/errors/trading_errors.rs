@@ -2,18 +2,17 @@ use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum TradingError {
-
     #[error("Insufficient funds: required {required}, available {available}")]
-    InsufficientFunds { required: u64, available: u64},
+    InsufficientFunds { required: u64, available: u64 },
 
     #[error("Order not found with ID {order_id}")]
-    OrderNotFound { order_id: u64},
+    OrderNotFound { order_id: u64 },
 
     #[error("Invalid order Quantity: {message}")]
-    InvalidQuantity { message: String},
+    InvalidQuantity { message: String },
 
     #[error("Invalid order: {message}")]
-    InvalidOrder { message: String},
+    InvalidOrder { message: String },
 
     #[error("I/O error: {0} ")]
     Io(#[from] std::io::Error),
@@ -23,7 +22,6 @@ pub enum TradingError {
 
     #[error("Config parse error: [0]")]
     ConfigParse(#[from] toml::de::Error),
-
 }
 
 // Crate level Result<T> type alias

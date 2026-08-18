@@ -4,4 +4,4 @@ pub mod wallet;
 
 pub use portfolio::{Portfolio, Position};
 pub use users::{User, UserManager};
-pub use wallet::{Wallet, TransactionRecord, TransactionType};
+pub use wallet::{TransactionRecord, TransactionType, Wallet};

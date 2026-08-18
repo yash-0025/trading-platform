@@ -38,32 +38,16 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
-### Exercise 1.14-2 — Code Quality Configs (`rustfmt.toml`, `clippy.toml`) & Doc Warnings (`#![warn(missing_docs)]`)
-
-**Status:** open
-**Goal:** Create `rustfmt.toml` in project root with custom formatting rules, create `clippy.toml` with cognitive complexity limits, and add `#![warn(missing_docs)]` to `src/lib.rs`.
-
-**Skeleton:**
-```toml
-# Create rustfmt.toml:
-max_width = 100
-edition = "2024"
-tab_spaces = 4
-
-# Create clippy.toml:
-cognitive-complexity-threshold = 25
-```
-
-```rust
-// In src/lib.rs (at line 1):
-#![warn(missing_docs)]
-```
-
-**Constraints:** Run `cargo fmt --check` and `cargo clippy -- -D warnings`.
-**Hints used:** 0/3
-**My attempt:** *(paste here when ready, even if broken/partial)*
 
 ---
+
+## Solved
+
+### Exercise 1.14-2 — Code Quality Configs (`rustfmt.toml`, `clippy.toml`) & Doc Warnings (`#![warn(missing_docs)]`)
+**Status:** solved
+**Goal:** Create `rustfmt.toml` in project root with custom formatting rules, create `clippy.toml` with cognitive complexity limits, and add `#![warn(missing_docs)]` to `src/lib.rs`.
+**Note:** Solved across `rustfmt.toml`, `clippy.toml`, and `src/lib.rs`. Checked against `SOLUTIONS.md` — 100% match.
+
 
 
 ## Solved

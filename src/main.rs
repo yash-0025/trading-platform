@@ -1,15 +1,13 @@
 use clap::Parser;
 
-mod models;
-mod config;
 mod cli;
+mod config;
 mod errors;
+mod models;
 mod services;
 mod storage;
 
-
 use cli::{Cli, Commands};
-
 
 fn main() {
     println!("=======================================");
@@ -17,15 +15,20 @@ fn main() {
     println!("=======================================");
     println!("System status: INITIALIZED");
 
-
     let cli = Cli::parse();
 
     match &cli.command {
         Commands::Buy { symbol, qty, price } => {
-            println!("[ORDER SUBMITTED] BUY {} shares of {} at ${}", qty, symbol, price);
+            println!(
+                "[ORDER SUBMITTED] BUY {} shares of {} at ${}",
+                qty, symbol, price
+            );
         }
         Commands::Sell { symbol, qty, price } => {
-            println!("[ORDER SUBMITTED] SELL {} shares of {} at ${}", qty, symbol, price);
+            println!(
+                "[ORDER SUBMITTED] SELL {} shares of {} at ${}",
+                qty, symbol, price
+            );
         }
         Commands::Balance => {
             println!("[ACCOUNT BALANCE] $100,000.00 USD");
@@ -35,6 +38,3 @@ fn main() {
         }
     }
 }
-
-
-
