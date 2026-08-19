@@ -169,10 +169,10 @@ Every module has:
 ---
 
 ### Module 1.15 — 🏁 Phase 1 Capstone: Portfolio-Ready CLI Trading Platform
-- [~] **You build:** Final polish pass. Refactor, optimize, add missing tests, improve error messages, benchmark key operations, write comprehensive README.
-- [~] **Concepts:** Review and solidify ALL Phase 1 concepts · Performance measurement with `std::time::Instant` · Code review checklist · Idiomatic Rust patterns review
-- [~] **Architecture:** Architecture review. What works, what doesn't, what Phase 2 will improve.
-- [~] **Deliverable:** A polished, tested, documented CLI trading platform. **Portfolio piece #1.**
+- [x] **You build:** Final polish pass. Refactor, optimize, add missing tests, improve error messages, benchmark key operations, write comprehensive README.
+- [x] **Concepts:** Review and solidify ALL Phase 1 concepts · Performance measurement with `std::time::Instant` · Code review checklist · Idiomatic Rust patterns review
+- [x] **Architecture:** Architecture review. What works, what doesn't, what Phase 2 will improve.
+- [x] **Deliverable:** A polished, tested, documented CLI trading platform. **Portfolio piece #1.**
 
 ---
 

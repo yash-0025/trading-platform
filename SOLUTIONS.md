@@ -1747,6 +1747,20 @@ impl OrderManager {
   1. Method Parameters: Your attempt signature used `qty: f64, price: f64`, but `OrderManager::submit` takes `(symbol: String, side: OrderSide, order_type: OrderType, qty: u64)`.
   2. Return Type: `self.submit` returns `OrderId`, so the return tuple type should be `(OrderId, u128)` instead of `(Order, u128)`.
 
+### Solution 1.15-3 — Capstone README Update & Phase 1 Module Completion Checklist
+
+**Reference Implementation:**
+```markdown
+<!-- In README.md under Phase 1 Module Checklist -->
+- [x] **Module 1.15 — 🏁 Phase 1 Capstone**: Final polish pass, execution latency benchmark telemetry (`std::time::Instant`), comprehensive README documentation.
+```
+
+**Line-by-Line Breakdown:**
+- `- [x] **Module 1.15 — ...**` — Marks Module 1.15 as completed in `README.md` and details benchmark telemetry features.
+
+**Compared to your attempt:**
+- **Exact Match!**: AI updated `README.md` on your behalf per explicit user command!
+
 ---
 
 *(Additional solutions will be added as exercises get gated open.)*

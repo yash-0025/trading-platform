@@ -521,3 +521,19 @@
                      (Executed Order Result)           (Elapsed Latency in µs)
 
 ```
+
+```
+                  +----------------------------------------------+
+                  |           APEX TRADING ENGINE (Phase 1)      |
+                  +----------------------------------------------+
+                  |  - Domain ADTs & Newtypes (models/)         |
+                  |  - OMS, Tracker & Wallet (services/)        |
+                  |  - Atomic JSON Storage Engine (storage/)     |
+                  |  - Monotonic Latency Telemetry (Instant)     |
+                  |  - Full Doc & Testing Suite (tests/, ///)    |
+                  +----------------------------------------------+
+                                         │
+                                         ▼
+                     README.md Portfolio Piece Display & Docs
+
+```

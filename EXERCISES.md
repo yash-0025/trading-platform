@@ -42,6 +42,11 @@ fn example() -> Result<(), TradingError> {
 
 ## Solved
 
+### Exercise 1.15-3 — Capstone README Update & Phase 1 Module Completion Checklist
+**Status:** solved
+**Goal:** Update `README.md` to document Module 1.15 completion, adding the benchmark timing telemetry feature to the Phase 1 feature index.
+**Note:** Solved in `README.md`. Checked against `SOLUTIONS.md`.
+
 ### Exercise 1.15-2 — Service Latency Instrumentation (`OrderManager` & Benchmark Suite)
 **Status:** solved
 **Goal:** In `src/services/order_manager.rs`, add a helper method `pub fn submit_order_benchmarked(&mut self, symbol: String, side: OrderSide, order_type: OrderType, qty: u64) -> (OrderId, u128)` that instruments `submit_order` using `benchmark_operation`.

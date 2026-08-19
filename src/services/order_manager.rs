@@ -194,8 +194,8 @@ impl OrderManager {
             .collect()
     }
 
-    pub fn submit_order_benchmarked(&mut self, symbol: String, side: OrderSide, qty: f64, price: f64) -> (Order, u128) {
-        benchmark_operation("submit_order", || { self.submit(symbol, side, qty, price) })
+    pub fn submit_order_benchmarked(&mut self, symbol: String, side: OrderSide, order_type: OrderType, qty: u64) -> (OrderId, u128) {
+        benchmark_operation("submit_order", || { self.submit(symbol, side, order_type, qty) })
         
     }
 }

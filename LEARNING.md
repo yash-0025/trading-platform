@@ -28,7 +28,7 @@
 
 | Phase | Focus Area | Status |
 |---|---|---|
-| Phase 1 | Rust Foundations Through Real Trading Features | `[~]` In progress |
+| Phase 1 | Rust Foundations Through Real Trading Features | `[x]` Completed & understood |
 | Phase 2 | Production Backend | `[ ]` Not started |
 | Phase 3 | Trading Infrastructure & HFT Concepts | `[ ]` Not started |
 
@@ -199,12 +199,16 @@
 - Updated `README.md` with complete Phase 1 module overview.
 
 ### Module 1.15 — 🏁 Phase 1 Capstone: Portfolio-Ready CLI Trading Platform — 2026-08-19
-**Status:** `[~]` in progress
+**Status:** `[x]` completed & understood
 **What I actually understood:**
 - Monotonic vs wall-clock time (`std::time::Instant` vs `std::time::SystemTime`).
 - High-precision execution latency benchmarking (`start.elapsed().as_micros()`).
+- Monomorphized closure wrapping for zero-overhead service telemetry.
+- Capstone architecture readiness & portfolio README documentation standards.
 **Code I wrote / project progress:**
-- Started Exercise 1.15-1 for performance latency benchmarking.
+- Created `benchmark_operation` in `src/services/tracker.rs`.
+- Created `submit_order_benchmarked` in `src/services/order_manager.rs`.
+- Completed Phase 1 capstone documentation in `README.md`.
 
 
 

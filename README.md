@@ -68,6 +68,7 @@ The project is structured into progressive learning phases:
 - [x] **Module 1.12 — Testing Suite**: Integration tests in `tests/`, doc tests in `///`, `#[should_panic]` test assertions.
 - [x] **Module 1.13 — Multi-Module Architecture Refactoring**: Clean 6-domain subtree refactoring (`models/`, `services/`, `storage/`, `errors/`, `cli/`, `config/`).
 - [x] **Module 1.14 — Documentation & Code Quality**: Inner module docs (`//!`), intra-doc links, `rustfmt.toml`, `clippy.toml`, `#![warn(missing_docs)]`.
+- [x] **Module 1.15 — 🏁 Phase 1 Capstone**: Final polish pass, execution latency benchmark telemetry (`std::time::Instant`), comprehensive README documentation.
 
 
 ---

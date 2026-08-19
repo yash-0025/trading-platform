@@ -447,7 +447,22 @@
 1. `benchmark_operation("submit_order", || { self.submit(symbol, side, order_type, qty) })`
    - `"submit_order"`: Operation name string slice passed as `&str`.
    - `|| { ... }`: Anonymous closure taking zero arguments (`FnOnce() -> OrderId`).
-   - `self.submit(...)`: Evaluates order submission logic inside the measured closure body.
+---
+
+### Solution 1.15-3 — Capstone README Update & Phase 1 Module Completion Checklist
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Update `README.md` to check off Module 1.15 in the Phase 1 curriculum roadmap checklist, recording that our CLI trading engine now includes microsecond-precision latency telemetry."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `- [x] **Module 1.15 — ...**`
+   - `- [x]`: GitHub Flavored Markdown checked task list item token.
+   - `**Module 1.15**`: Bold text emphasis tag.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `- [x] **Module 1.15 — 🏁 Phase 1 Capstone**: Final polish pass, execution latency benchmark telemetry (`std::time::Instant`), comprehensive README documentation.`
+   - Documents completion of Phase 1 capstone in `README.md`.
+
 
 
 
