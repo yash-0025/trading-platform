@@ -504,3 +504,20 @@
 - where => Clause specifying generice trait bounds
 - F: FnOnce() -> R => Constraints F to a closure that takes zero arguments can be called at least once and returns R.
 
+#### Benchmarking Service Operation and Idiomatic Rust performance patterns
+
+- Now that we have created the generic benchmark_operation function src/services/tracker.rs, we are going to instrument our core trading services (such as OrderManager::submit_order) to record real world execution latency without mutating our underlying domain logic
+
+```
+                                    submit_order_benchmarked(...)
+                                                  │
+                                                  ▼
+                                    benchmark_operation("submit_order", || {
+                                        self.submit_order(symbol, side, qty, price)
+                                    })
+                                                  │
+                                 ┌────────────────┴────────────────┐
+                                 ▼                                 ▼
+                     (Executed Order Result)           (Elapsed Latency in µs)
+
+```

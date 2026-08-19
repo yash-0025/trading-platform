@@ -427,10 +427,28 @@
 3. `let micros = start.elapsed().as_micros();`
    - `start.elapsed()`: `Instant` method returning `Duration` passed since `start`.
    - `.as_micros()`: `Duration` method converting time span to microseconds as `u128`.
-4. `println!("[BENCHMARK] {} executed in {} µs", name, micros);`
-   - `println!`: Macro printing formatted string to `stdout` with newline.
-5. `(result, micros)`
-   - Evaluates tuple expression returning `(R, u128)`.
+---
+
+### Solution 1.15-2 — Service Latency Instrumentation (`OrderManager` & Benchmark Suite)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"In `OrderManager`, create a benchmark wrapper method `submit_order_benchmarked`. Inside it, pass a zero-argument closure `|| { self.submit(...) }` to `benchmark_operation` under the label `"submit_order"`. `benchmark_operation` will run our submit method, measure its CPU clock latency, print the microsecond benchmark badge, and return the `(OrderId, u128)` result pair."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `use crate::services::tracker::benchmark_operation;`
+   - `use`: Path import keyword.
+   - `crate::services::tracker::benchmark_operation`: Targets `benchmark_operation` defined in `src/services/tracker.rs`.
+2. `pub fn submit_order_benchmarked(...) -> (OrderId, u128)`
+   - `pub fn`: Public method declaration.
+   - `&mut self`: Exclusive mutable reference to `OrderManager`.
+   - `-> (OrderId, u128)`: Return tuple signature returning created `OrderId` and microsecond latency `u128`.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `benchmark_operation("submit_order", || { self.submit(symbol, side, order_type, qty) })`
+   - `"submit_order"`: Operation name string slice passed as `&str`.
+   - `|| { ... }`: Anonymous closure taking zero arguments (`FnOnce() -> OrderId`).
+   - `self.submit(...)`: Evaluates order submission logic inside the measured closure body.
+
 
 
 

@@ -1714,6 +1714,39 @@ where
   3. `println!("[BENCHMARK] ...")` — You skipped printing the benchmark timing banner.
   4. Tuple Return: You returned `start.elapsed().as_micros()` directly instead of returning the tuple `(result, micros)` required by signature `-> (R, u128)`.
 
+### Solution 1.15-2 — Service Latency Instrumentation (`OrderManager` & Benchmark Suite)
+
+**Reference Implementation:**
+```rust
+use crate::services::tracker::benchmark_operation;
+
+impl OrderManager {
+    /// Submits an order while measuring execution latency in microseconds.
+    pub fn submit_order_benchmarked(
+        &mut self,
+        symbol: String,
+        side: OrderSide,
+        order_type: OrderType,
+        qty: u64,
+    ) -> (OrderId, u128) {
+        benchmark_operation("submit_order", || {
+            self.submit(symbol, side, order_type, qty)
+        })
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `use crate::services::tracker::benchmark_operation;` — Imports the `benchmark_operation` timing wrapper function from the `tracker` service module into `order_manager.rs`.
+- `pub fn submit_order_benchmarked(...) -> (OrderId, u128)` — Defines a public helper method accepting order parameters and returning a tuple of `(OrderId, u128)`.
+- `benchmark_operation("submit_order", || { ... })` — Passes tag name `"submit_order"` and zero-argument closure `||` wrapping `self.submit(...)` into `benchmark_operation`.
+
+**Compared to your attempt:**
+- **Matches**: You correctly called `benchmark_operation("submit_order", || { ... })` wrapping `self.submit(...)`!
+- **Parameter & Return Type Fixes Needed**:
+  1. Method Parameters: Your attempt signature used `qty: f64, price: f64`, but `OrderManager::submit` takes `(symbol: String, side: OrderSide, order_type: OrderType, qty: u64)`.
+  2. Return Type: `self.submit` returns `OrderId`, so the return tuple type should be `(OrderId, u128)` instead of `(Order, u128)`.
+
 ---
 
 *(Additional solutions will be added as exercises get gated open.)*

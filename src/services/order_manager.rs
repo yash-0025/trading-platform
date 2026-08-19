@@ -1,6 +1,8 @@
 use crate::errors::TradingError;
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
+use crate::services::tracker::benchmark_operation;
+
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum OrderType {
@@ -190,5 +192,10 @@ impl OrderManager {
             .filter(|o| o.symbol == symbol)
             .cloned()
             .collect()
+    }
+
+    pub fn submit_order_benchmarked(&mut self, symbol: String, side: OrderSide, qty: f64, price: f64) -> (Order, u128) {
+        benchmark_operation("submit_order", || { self.submit(symbol, side, qty, price) })
+        
     }
 }

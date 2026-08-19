@@ -62,9 +62,9 @@ impl PositionTracker {
 pub fn benchmark_operation<F, R>(name: &str, op: F) ->(R, u128) where F: FnOnce() -> R , {
     let start = Instant::now();
     let result = op();
-    let micros = start.elapsed().as_micros()
+    let micros = start.elapsed().as_micros();
     println!("[BENCHMARK] {} executed in {} µs", name, micros);
-    (restlt, micros)
+    (result, micros)
     
 }
 

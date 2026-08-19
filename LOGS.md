@@ -33,6 +33,45 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-19 15:31 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.15-2 & Solved Exercise 1.15-2</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed attempt for Exercise 1.15-2 in `src/services/order_manager.rs` and requested solution guidance. Placed Solution 1.15-2 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.15-2 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.15-2 — Service Latency Instrumentation (`OrderManager` & Benchmark Suite)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.15-2 — Service Latency Instrumentation
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.15-2 — Service Latency Instrumentation [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 15:19 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 46 & Exercise 1.15-2 for Service Latency Instrumentation</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Continuing Module 1.15 (Phase 1 Capstone). Added Concept 46 (Benchmarking Service Operations & Idiomatic Rust Performance Patterns) word-for-word to EXAMPLES.md and created Exercise 1.15-2 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 46. Benchmarking Service Operations & Idiomatic Rust Performance Patterns
+
+[EXERCISES.md]
++ ### Exercise 1.15-2 — Service Latency Instrumentation (`OrderManager` & Benchmark Suite)
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 14:51 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.15-1 & Solved Exercise 1.15-1</summary>
 
 - **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md

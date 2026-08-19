@@ -42,6 +42,11 @@ fn example() -> Result<(), TradingError> {
 
 ## Solved
 
+### Exercise 1.15-2 — Service Latency Instrumentation (`OrderManager` & Benchmark Suite)
+**Status:** solved
+**Goal:** In `src/services/order_manager.rs`, add a helper method `pub fn submit_order_benchmarked(&mut self, symbol: String, side: OrderSide, order_type: OrderType, qty: u64) -> (OrderId, u128)` that instruments `submit_order` using `benchmark_operation`.
+**Note:** Attempt made in `src/services/order_manager.rs`. Checked against `SOLUTIONS.md`.
+
 ### Exercise 1.15-1 — Performance Latency Benchmarking (`std::time::Instant`)
 **Status:** solved
 **Goal:** Create a benchmark helper function `pub fn benchmark_operation<F, R>(name: &str, op: F) -> (R, u128) where F: FnOnce() -> R` in `src/services/tracker.rs` using `Instant::now()` and `start.elapsed().as_micros()` to return the operation result alongside its execution duration in microseconds.
