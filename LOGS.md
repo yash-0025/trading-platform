@@ -33,6 +33,64 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-19 14:51 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 1.15-1 & Solved Exercise 1.15-1</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed attempt for Exercise 1.15-1 in `src/services/tracker.rs` and requested solution guidance. Placed Solution 1.15-1 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 1.15-1 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 1.15-1 — Performance Latency Benchmarking (`std::time::Instant`)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 1.15-1 — Performance Latency Benchmarking
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 1.15-1 — Performance Latency Benchmarking [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 03:58 IST — [ROADMAP.md / LEARNING.md] — Updated Module 1.15 Status to [~] In Progress</summary>
+
+- **Files:** ROADMAP.md, LEARNING.md
+- **Change type:** Modified
+- **Reason:** Automatically initialized Module 1.15 status to `[~]` (in progress) upon starting capstone benchmarking exercise.
+
+```diff
+[ROADMAP.md]
+- - [ ] **You build:** Final polish pass...
++ - [~] **You build:** Final polish pass...
+
+[LEARNING.md]
++ ### Module 1.15 — 🏁 Phase 1 Capstone — 2026-08-19
++ **Status:** `[~]` in progress
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 03:46 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 45 & Exercise 1.15-1 for Performance Latency Benchmarking</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Starting Module 1.15 (Phase 1 Capstone: Portfolio-Ready CLI Trading Platform). Added Concept 45 (High-Precision Runtime Performance Measurement using `std::time::Instant`) word-for-word to EXAMPLES.md and created Exercise 1.15-1 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 45. High-Precision Runtime Performance Measurement (`std::time::Instant` & `Instant::elapsed`)
+
+[EXERCISES.md]
++ ### Exercise 1.15-1 — Performance Latency Benchmarking (`std::time::Instant`)
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 03:43 IST — [ROADMAP.md / LEARNING.md] — Marked Module 1.14 Complete [x]</summary>
 
 - **Files:** ROADMAP.md, LEARNING.md

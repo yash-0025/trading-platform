@@ -397,7 +397,41 @@
    - `#`: Outer attribute applying to `struct StorageEngine`.
    - `deny`: Lint level escalating warnings to hard compilation errors.
 
----
+### Solution 1.15-1 — Performance Latency Benchmarking (`std::time::Instant`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Right before running the trade function, click my digital stopwatch (`let start = Instant::now()`) to capture the exact start time. Run the function and hold onto its output value (`let result = op()`). Stop the stopwatch and count how many microseconds passed (`let micros = start.elapsed().as_micros()`). Print a benchmark latency badge to the console, and return both the function output and the microsecond timing together as a pair."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `pub fn benchmark_operation<F, R>(name: &str, op: F) -> (R, u128)`
+   - `pub`: Visibility modifier exposing function outside module.
+   - `fn`: Function declaration keyword.
+   - `<F, R>`: Generic parameter list declaring type variables `F` and `R`.
+   - `name: &str`: Borrowed string slice parameter for benchmark tag name.
+   - `op: F`: Parameter taking closure `op` by value.
+   - `-> (R, u128)`: Return type declaration returning tuple containing generic result `R` and 128-bit unsigned integer `u128`.
+2. `where F: FnOnce() -> R`
+   - `where`: Generic clause introducing trait bounds.
+   - `F`: Target type parameter being constrained.
+   - `FnOnce() -> R`: Closure trait bound requiring `F` to take zero arguments, be callable at least once, and return `R`.
+3. `use std::time::Instant;`
+   - Imports `Instant` struct from standard library `time` module.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `let start = Instant::now();`
+   - `let start`: Binds immutable variable `start`.
+   - `Instant::now()`: Static constructor call reading OS monotonic clock.
+2. `let result = op();`
+   - `let result`: Binds variable `result` to closure return value.
+   - `op()`: Invokes closure `F`.
+3. `let micros = start.elapsed().as_micros();`
+   - `start.elapsed()`: `Instant` method returning `Duration` passed since `start`.
+   - `.as_micros()`: `Duration` method converting time span to microseconds as `u128`.
+4. `println!("[BENCHMARK] {} executed in {} µs", name, micros);`
+   - `println!`: Macro printing formatted string to `stdout` with newline.
+5. `(result, micros)`
+   - Evaluates tuple expression returning `(R, u128)`.
+
 
 
 

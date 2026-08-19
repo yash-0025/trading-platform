@@ -1680,6 +1680,42 @@ pub struct StorageEngine;
 
 
 
+### Solution 1.15-1 — Performance Latency Benchmarking (`std::time::Instant`)
+
+**Reference Implementation:**
+```rust
+use std::time::Instant;
+
+/// Measures the execution latency of a closure in microseconds.
+pub fn benchmark_operation<F, R>(name: &str, op: F) -> (R, u128)
+where
+    F: FnOnce() -> R,
+{
+    let start = Instant::now();
+    let result = op();
+    let micros = start.elapsed().as_micros();
+    println!("[BENCHMARK] {} executed in {} µs", name, micros);
+    (result, micros)
+}
+```
+
+**Line-by-Line Breakdown:**
+- `let start = Instant::now();` — Captures the current high-precision monotonic start timestamp.
+- `let result = op();` — Executes the closure `op` and binds its returned result `R`.
+- `let micros = start.elapsed().as_micros();` — Calculates the elapsed duration since `start` and converts it to microseconds (`u128`).
+- `println!("[BENCHMARK] {} executed in {} µs", name, micros);` — Prints the benchmark output banner to the terminal.
+- `(result, micros)` — Returns the tuple containing both the closure output `R` and execution latency `u128`.
+
+**Compared to your attempt:**
+- **Matches**: You correctly used `Instant::now()`, called `op()`, and referenced `start.elapsed().as_micros()`.
+- **Differences / Fixes Needed**:
+  1. `let start = Instant::now();` — You called `Instant::now();` without binding it to a variable `start`. Without `let start =`, the variable `start` doesn't exist on line 65.
+  2. `let result = op();` — You called `op();` without capturing its return value.
+  3. `println!("[BENCHMARK] ...")` — You skipped printing the benchmark timing banner.
+  4. Tuple Return: You returned `start.elapsed().as_micros()` directly instead of returning the tuple `(result, micros)` required by signature `-> (R, u128)`.
+
+---
+
 *(Additional solutions will be added as exercises get gated open.)*
 
 

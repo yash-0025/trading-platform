@@ -481,3 +481,26 @@
     4. Clippy and Formatting standards - Enforcing production code quality rules via clippy.toml and rustfm.toml.
 
 ##### Production Code Quality and lint enforcement (`#![denu(missing_cos)], clipp.toml, rustfmt.toml`)
+- Implement high-precision runtime execution latency benchmarking using `std::time::Instant`, Profile trade execution and persistence speeds, review our complete architecture and prepare the project .
+```
+                  Instant::now() (High-Precision Monotonic CPU Clock Start)
+                                            │
+                                            ▼
+                    ┌──────────────────────────────────────────┐
+                    │          Operation Execution             │
+                    │   (Trade Fill / Persistence / P&L)       │
+                    └───────────────────────┬──────────────────┘
+                                            │
+                                            ▼
+                  start.elapsed().as_micros() (Nanosecond Resolution Delta)
+                                            │
+                                            ▼
+                  [BENCHMARK] operation executed in X µs Banner
+
+```
+
+- <F , R> => Declares generic parameters F(closure type) and R(return type)
+- op: F => Takes ownership of closure instance (op)
+- where => Clause specifying generice trait bounds
+- F: FnOnce() -> R => Constraints F to a closure that takes zero arguments can be called at least once and returns R.
+

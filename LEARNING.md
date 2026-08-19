@@ -198,6 +198,15 @@
 - Added `#[warn(missing_docs)]` in `src/config/settings.rs` and `#[deny(unused_variables)]` in `src/storage/engine.rs`.
 - Updated `README.md` with complete Phase 1 module overview.
 
+### Module 1.15 — 🏁 Phase 1 Capstone: Portfolio-Ready CLI Trading Platform — 2026-08-19
+**Status:** `[~]` in progress
+**What I actually understood:**
+- Monotonic vs wall-clock time (`std::time::Instant` vs `std::time::SystemTime`).
+- High-precision execution latency benchmarking (`start.elapsed().as_micros()`).
+**Code I wrote / project progress:**
+- Started Exercise 1.15-1 for performance latency benchmarking.
+
+
 
 
 

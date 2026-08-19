@@ -1,6 +1,7 @@
 use crate::models::portfolio::Position;
 use crate::services::order_manager::OrderSide;
 use std::collections::HashMap;
+use std::time::Instant;
 
 #[derive(Debug, Default)]
 pub struct PositionTracker {
@@ -56,6 +57,15 @@ impl PositionTracker {
         self.positions.clear();
         self.realized_pnl = 0.0;
     }
+}
+
+pub fn benchmark_operation<F, R>(name: &str, op: F) ->(R, u128) where F: FnOnce() -> R , {
+    let start = Instant::now();
+    let result = op();
+    let micros = start.elapsed().as_micros()
+    println!("[BENCHMARK] {} executed in {} µs", name, micros);
+    (restlt, micros)
+    
 }
 
 #[cfg(test)]

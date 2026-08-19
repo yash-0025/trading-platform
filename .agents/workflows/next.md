@@ -20,7 +20,7 @@ If everything in `LEARNING.md` is `[ ]`, next step is **Module 1.1** — confirm
 
 Read these files in this exact order, in full, before any action:
 
-1. `RULES.md` — 19 governance rules. Re-internalize; obey silently.
+1. `RULES.md` — 20 governance rules. Re-internalize; obey silently. **Rule 20: chat output and file content must be identical, word-for-word, every write, both directions — no paraphrasing.**
 2. `LEARNING.md` — progress source of truth. Check snapshot table AND every module entry. Note `[!]` items.
 3. `ROADMAP.md` — curriculum. Locate current phase/module by cross-referencing `LEARNING.md`, never guessing.
 4. `QUESTIONS.md` — unresolved "Revisit? Yes" items for current/just-finished module.
@@ -50,7 +50,6 @@ Before asking the learner to mark any module complete:
 - Check whether each item has been 100% actively coded, compiled, and tested in `src/`.
 - If even a single item or concept is not fully covered in code, you have NO RIGHT to ask to mark the module complete. List the missing items and implement them in `src/` first.
 
-
 ## STEP 3 — Teaching Format Checklist (every module, no exceptions)
 
 For the module you're teaching/continuing, include in order:
@@ -58,15 +57,15 @@ For the module you're teaching/continuing, include in order:
 2. **Architecture deep dive** (Rule #15) — system design, ASCII diagram, data flow, thread/memory model where relevant.
 3. **Goal of this step** (Rule #12) — what will exist/work at the end.
 4. **One concept at a time** (Rule #6) — don't dump several unless learner asks to move faster.
-5. **ELI5 analogy + deep technical explanation** (Rule #8) — **mandatory.** Write the **EXACT, word-for-word** ELI5 and technical breakdown into `EXAMPLES.md` in the SAME turn.
+5. **ELI5 analogy + deep technical explanation** (Rule #8) — **mandatory.** Write the **EXACT, word-for-word** ELI5 and technical breakdown into `EXAMPLES.md` in the SAME turn (Rule #20: file text = chat text, identical).
 6. **Plain English "Thought Translation"** (Rule #17) — translate Rust idioms (`match`, `entry().and_modify()`, `.sum::<u64>()`, etc.) into natural everyday thoughts.
 7. **100% Roadmap-to-Code Enforcement** (Rule #18) — every concept in `ROADMAP.md` MUST be actively coded, compiled, tested in `src/`. Theory-only is strictly forbidden.
 8. **Exercise, not finished answer** (Rules #7, #16) — learner writes code via skeleton with `todo!()` blocks. **MANDATORY:** Print the FULL exercise skeleton code block directly inside the chat reply so the learner doesn't have to open `EXERCISES.md`.
-9. **Line-by-line explanation** of any code YOU show — every `&`, `*`, `mut`, `Option`, method call, `self`.
+9. **Line-by-line explanation** (Rule #11) of any code YOU show — every `&`, `*`, `mut`, `Option`, method call, `self`.
 
 ## STEP 3.5 — Exercise Mode (skeleton → hints → attempt-gated solution)
 
-Replaces "just show the code" for every hands-on part. Never skip to a full solution.
+Replaces "just show the code" for every hands-on part. Never skip to a full solution. (Rule #20 applies throughout: chat text = file text, exactly.)
 
 **A. Write exercise into `EXERCISES.md` AND print full skeleton in chat response.** Format:
 ```
@@ -94,13 +93,13 @@ Bump "Hints used" each time. Never give hint 2 before hint 1, never bundle tiers
 
 **C. Solution gate.** Don't open `SOLUTIONS.md` until BOTH: (1) learner pasted/described a real attempt, even broken; (2) learner explicitly asked to see the solution. Zero-attempt asks get a nudge to try first.
 
-**D. Revealing.** Once gated: read/create matching `SOLUTIONS.md` entry (full code + line-by-line per Rules #9/#11) AND write plain English thought translation + exhaustive syntax breakdown (explaining every token, keyword, symbol, type bound, and method call in BOTH skeleton and solution syntax: what it is, why used, exact meaning, technical rationale) into `SOLUTIONS_EXPLANATIONS.md` in exact numerical order (Rule #19). **Compare, don't dump** — walk learner's attempt against reference: what matched, what differed, why. Mark `EXERCISES.md` `Status: solved`, log to `LOGS.md`.
+**D. Revealing.** Once gated: read/create matching `SOLUTIONS.md` entry (full code + line-by-line per Rules #9/#11) AND write plain English thought translation + exhaustive syntax breakdown (explaining every token, keyword, symbol, type bound, and method call in BOTH skeleton and solution syntax: what it is, why used, exact meaning, technical rationale) into `SOLUTIONS_EXPLANATIONS.md` in exact numerical order (Rule #19). **Compare, don't dump** — walk learner's attempt against reference: what matched, what differed, why. Mark `EXERCISES.md` `Status: solved`, log to `LOGS.md`. Chat text and the `SOLUTIONS.md`/`SOLUTIONS_EXPLANATIONS.md` entries must match exactly (Rule #20).
 
-
-## STEP 4 — File-Edit Discipline (Rules #1, #2)
+## STEP 4 — File-Edit Discipline (Rules #1, #2, #20)
 
 - **Only `ROADMAP.md` and `LEARNING.md`** require explicit "yes" before editing. No implicit consent, ever.
 - **All other files — `EXAMPLES.md`, `EXERCISES.md`, `SOLUTIONS.md`, `SOLUTIONS_EXPLANATIONS.md`, `QUESTIONS.md`, `DECISIONS.md`, `LOGS.md`** — written directly, same turn. No confirmation step. Write it, move on.
+- **Rule #20:** compose text once, place identical copies in chat and file — no condensing or "cleaning up" in transit, either direction.
 - Any edit gets a new `LOGS.md` entry in the `<details>` + fenced ```diff``` format with real before/after lines (no ellipses, no summaries). Same turn as the edit.
 
 ## STEP 5 — Status Marker Updates
@@ -128,9 +127,7 @@ Hard gate. Check every box against what you ACTUALLY DID, not intended. If any f
 - [ ] **Rule 17**: Plain English thought translation provided alongside technical breakdown.
 - [ ] **Rule 18**: Every `ROADMAP.md` concept has active code in `src/`. Theory-only forbidden.
 - [ ] **Rule 19**: Solution revealed → thought translation + exhaustive syntax breakdown (skeleton & solution tokens/keywords/mechanics/rationale) appended to `SOLUTIONS_EXPLANATIONS.md` in numerical order.
-- [ ] **Rule 20**: Zero paraphrasing or shortening when writing files — chat output text matches file contents word-for-word.
-
-
+- [ ] **Rule 20**: Every file write this turn is byte-for-byte identical to its chat text — spot-check the longest one before sending.
 - [ ] Hands-on portion → skeleton exercise written to `EXERCISES.md` (STEP 3.5-A) AND printed in full inside chat reply, no finished solution given (Rule #16).
 - [ ] `SOLUTIONS.md` untouched unless both gate conditions (STEP 3.5-C) met this turn.
 - [ ] Every file written has matching `LOGS.md` entry.
@@ -148,6 +145,7 @@ End of Turn: name current module/status and single next pending action. Don't pr
 - Never fabricate crate versions, method names, or API signatures — say "let me verify that."
 - Never let "just give me the answer" bypass gate silently — nudge toward one attempt first (STEP 3.5-C); skip only if they insist twice.
 - Never combine two modules into one response — one module, one concept at a time (Rule #6).
+- Never rewrite or trim wording when moving text between chat and file (Rule #20) — copy it exactly.
 - Never skip the STEP 7 self-audit, even in a short reply.
 
 ## STEP 9 — Handling Off-Script Requests
