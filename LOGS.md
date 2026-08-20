@@ -33,6 +33,66 @@
 <!-- Newest entries go here, above older ones -->
 
 <details>
+<summary>2026-08-20 23:48 IST — [EXAMPLES.md / EXERCISES.md] — Added Concept 49 & Exercise 2.1-2 for Non-Blocking Timers</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Continuing Module 2.1 (Async Foundations). Added Concept 49 (Non-Blocking Timers & Cooperative .await Preemption Points) word-for-word to EXAMPLES.md and created Exercise 2.1-2 skeleton in EXERCISES.md under Open.
+
+```diff
+[EXAMPLES.md]
++ ### 49. Non-Blocking Timers (`tokio::time::sleep`) & Cooperative `.await` Preemption Points
+
+[EXERCISES.md]
++ ### Exercise 2.1-2 — Non-Blocking Latency Simulation (`tokio::time::sleep` & `.await`)
+```
+
+</details>
+
+<details>
+<summary>2026-08-20 23:47 IST — [SOLUTIONS.md / SOLUTIONS_EXPLANATIONS.md / EXERCISES.md] — Placed Solution 2.1-1 & Solved Exercise 2.1-1</summary>
+
+- **Files:** SOLUTIONS.md, SOLUTIONS_EXPLANATIONS.md, EXERCISES.md
+- **Change type:** Modified
+- **Reason:** Learner completed attempt for Exercise 2.1-1 in `Cargo.toml` and `src/main.rs` and invoked `/next`. Placed Solution 2.1-1 in exact numerical position in SOLUTIONS.md, added plain English thought translation + exhaustive skeleton/solution syntax deep breakdowns to SOLUTIONS_EXPLANATIONS.md per Rule 19, and moved Exercise 2.1-1 to Solved in EXERCISES.md.
+
+```diff
+[SOLUTIONS.md]
++ ### Solution 2.1-1 — Tokio Async Runtime Entry Point & Dependencies (`Cargo.toml` & `#[tokio::main]`)
++ [Reference implementation + line-by-line breakdown + attempt comparison]
+
+[SOLUTIONS_EXPLANATIONS.md]
++ ### Solution 2.1-1 — Tokio Async Runtime Entry Point & Dependencies
++ [Plain English thought translation + skeleton deep breakdown + solution deep breakdown]
+
+[EXERCISES.md]
++ ### Exercise 2.1-1 — Tokio Async Runtime Entry Point & Dependencies [solved]
+```
+
+</details>
+
+<details>
+<summary>2026-08-19 15:49 IST — [EXAMPLES.md / EXERCISES.md / LEARNING.md / ROADMAP.md] — Kick-off Phase 2 & Added Concept 48 / Exercise 2.1-1</summary>
+
+- **Files:** EXAMPLES.md, EXERCISES.md, LEARNING.md, ROADMAP.md
+- **Change type:** Modified
+- **Reason:** Started Phase 2: Production Backend, kicking off Module 2.1 (Async Foundations: Why Trading Needs Async). Set Phase 2 status to `[~]` in progress in LEARNING.md and ROADMAP.md. Added Concept 48 (Async Foundations, Tokio Runtime & Lazy Futures vs Eager Promises) word-for-word to EXAMPLES.md and created Exercise 2.1-1 skeleton in EXERCISES.md under Open.
+
+```diff
+[LEARNING.md / ROADMAP.md]
++ | Phase 2 | Production Backend | [~] In progress |
++ ### Module 2.1 — Async Foundations: Why Trading Needs Async — 2026-08-19 [~]
+
+[EXAMPLES.md]
++ ### 48. Async Foundations, Tokio Runtime & Lazy Futures vs Eager Promises
+
+[EXERCISES.md]
++ ### Exercise 2.1-1 — Tokio Async Runtime Entry Point & Dependencies (`Cargo.toml` & `#[tokio::main]`)
+```
+
+</details>
+
+<details>
 <summary>2026-08-19 15:43 IST — [ROADMAP.md / LEARNING.md] — Marked Module 1.15 Complete [x] (Phase 1 100% Complete!)</summary>
 
 - **Files:** ROADMAP.md, LEARNING.md

@@ -9,7 +9,8 @@ mod storage;
 
 use cli::{Cli, Commands};
 
-fn main() {
+#[tokio::main]
+async fn main() {
     println!("=======================================");
     println!("      TRADING PLATFORM ECOSYTEM        ");
     println!("=======================================");

@@ -1,5 +1,7 @@
 # Rust Trading Platform
 
+# ~~~~~~~~~~~~~~~ PHASE - 1 ~~~~~~~~~~~~~~~
+
 ##### Commands
 ``` bash
  cargo new trading_platform
@@ -535,5 +537,29 @@
                                          │
                                          ▼
                      README.md Portfolio Piece Display & Docs
+
+```
+
+# ~~~~~~~~~~~~~~~ PHASE - 2 ~~~~~~~~~~~~~~~
+
+##### Production backend
+##### Async Foundations: Why Trading needs async
+- IN phase 1 we built a memory-safe synchronous single-binary CLI trading monolith. In Phase 2 we transform our platform into a production grade asynchronous REST service capable of handling high concurrency client traffic, database storage[Postgres], caching(Redis),distributed tracing and Docker containerization
+- We build the foundation of Async Rust - Understanding why high throughput trading platforms cannot use OS thread-per-request models (the C10K problem) how Futures in Rust act as lazy finite state machines, why Rust requires an external async runtime(tokio) and how async tasks operate
+
+```
+                          10,000 Concurrent Client Requests
+                                          │
+                                          ▼
+                   ┌──────────────────────────────────────────────┐
+                   │           Tokio Work-Stealing Reactor        │
+                   │        (Single fixed pool of worker threads) │
+                   └──────────────────────┬───────────────────────┘
+                                          │
+                   ┌──────────────────────┼───────────────────────┐
+                   ▼                      ▼                       ▼
+           [Async Task 1]          [Async Task 2]          [Async Task 3]
+           State: Pending          State: Yielding         State: Ready
+           (Oven Timer / I/O)      (.await Preemption)     (Returns Result)
 
 ```

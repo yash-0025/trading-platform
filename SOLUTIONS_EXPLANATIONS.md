@@ -460,8 +460,31 @@
    - `**Module 1.15**`: Bold text emphasis tag.
 
 #### 💡 Solution Syntax Deep Breakdown:
-1. `- [x] **Module 1.15 — 🏁 Phase 1 Capstone**: Final polish pass, execution latency benchmark telemetry (`std::time::Instant`), comprehensive README documentation.`
-   - Documents completion of Phase 1 capstone in `README.md`.
+---
+
+### Solution 2.1-1 — Tokio Async Runtime Entry Point & Dependencies (`Cargo.toml` & `#[tokio::main]`)
+
+#### 🗣️ Plain English "Thought Translation":
+> *"Add Tokio to my project's manifest file (`Cargo.toml`). Annotate my application's `main` entry point with `#[tokio::main]` so Rust initializes a multi-threaded async reactor runtime on startup and executes `async fn main()` as a non-blocking asynchronous task."*
+
+#### 🦴 Skeleton Syntax Deep Breakdown:
+1. `tokio = { version = "1", features = ["full"] }`
+   - `tokio`: Crate name for Rust's premier asynchronous runtime framework.
+   - `version = "1"`: SemVer string specifying major version 1.x compatibility.
+   - `features = ["full"]`: Inline array enabling all Tokio features (multi-threaded runtime, timers, I/O, sync primitives).
+2. `#[tokio::main]`
+   - `#[...]`: Outer attribute procedural macro.
+   - `tokio::main`: Path macro targeting Tokio's main entry point transformer.
+3. `async fn main()`
+   - `async`: Keyword converting function body into a lazy `Future` state machine.
+   - `fn main()`: Standard binary entry point identifier.
+
+#### 💡 Solution Syntax Deep Breakdown:
+1. `#[tokio::main]`
+   - `#[tokio::main]`: Transforms `async fn main()` by expanding into a synchronous `fn main()` that calls `tokio::runtime::Runtime::new().unwrap().block_on(async { ... })`.
+2. `async fn main()`
+   - Converts execution into an async task running inside Tokio's work-stealing thread reactor pool.
+
 
 
 

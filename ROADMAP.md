@@ -199,10 +199,10 @@ Every module has:
 ---
 
 ### Module 2.1 — Async Foundations: Why Trading Needs Async
-- [ ] **You build:** Convert the trading engine's core operations to async. Understand why an exchange handling thousands of concurrent connections can't use thread-per-request.
-- [ ] **Concepts:** Why async exists — I/O-bound concurrency vs CPU-bound parallelism · `async fn`, `.await`, `Future` trait · Futures are lazy state machines (not JS promises!) · Why Rust needs an external runtime · Tokio: `#[tokio::main]`, `tokio::spawn`, tasks vs OS threads · Cooperative scheduling · `.await` as preemption points · `Send` + `Sync` bounds on futures
-- [ ] **Architecture:** Thread-per-connection vs event-loop vs async. How exchanges handle 100k+ concurrent WebSocket connections. C10K problem.
-- [ ] **Deliverable:** Core trading operations are async. Understanding of when async helps vs hurts.
+- [~] **You build:** Convert the trading engine's core operations to async. Understand why an exchange handling thousands of concurrent connections can't use thread-per-request.
+- [~] **Concepts:** Why async exists — I/O-bound concurrency vs CPU-bound parallelism · `async fn`, `.await`, `Future` trait · Futures are lazy state machines (not JS promises!) · Why Rust needs an external runtime · Tokio: `#[tokio::main]`, `tokio::spawn`, tasks vs OS threads · Cooperative scheduling · `.await` as preemption points · `Send` + `Sync` bounds on futures
+- [~] **Architecture:** Thread-per-connection vs event-loop vs async. How exchanges handle 100k+ concurrent WebSocket connections. C10K problem.
+- [~] **Deliverable:** Core trading operations are async. Understanding of when async helps vs hurts.
 
 ---
 

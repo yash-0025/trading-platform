@@ -38,9 +38,43 @@ fn example() -> Result<(), TradingError> {
 
 ## Open / In-Progress
 
+### Exercise 2.1-2 — Non-Blocking Latency Simulation (`tokio::time::sleep` & `.await`)
+**Status:** open
+**Goal:** Create an async method `submit_order_async` in `src/services/order_manager.rs` that non-blockingly awaits 50ms of latency using `tokio::time::sleep` before executing `submit_order_benchmarked`.
+
+**Skeleton:**
+```rust
+use std::time::Duration;
+use tokio::time::sleep;
+
+impl OrderManager {
+    /// Simulates network latency asynchronously before submitting an order.
+    pub async fn submit_order_async(
+        &mut self,
+        symbol: String,
+        side: OrderSide,
+        order_type: OrderType,
+        qty: u64,
+    ) -> (OrderId, u128) {
+        // TODO(1): Non-blockingly sleep for 50 milliseconds using tokio::time::sleep(Duration::from_millis(50)).await
+        // TODO(2): Call self.submit_order_benchmarked(symbol, side, order_type, qty) and return the tuple result
+        todo!()
+    }
+}
+```
+
+**Constraints:** Use `tokio::time::sleep` and `.await`. Do not use `std::thread::sleep`.
+**Hints used:** 0/3
+**My attempt:** *(paste here when ready, even if broken/partial)*
+
 ---
 
 ## Solved
+
+### Exercise 2.1-1 — Tokio Async Runtime Entry Point & Dependencies (`Cargo.toml` & `#[tokio::main]`)
+**Status:** solved
+**Goal:** Add `tokio = { version = "1", features = ["full"] }` to `Cargo.toml` dependencies, and annotate `async fn main()` in `src/main.rs` with `#[tokio::main]`.
+**Note:** Solved in `Cargo.toml` and `src/main.rs`. Checked against `SOLUTIONS.md`.
 
 ### Exercise 1.15-3 — Capstone README Update & Phase 1 Module Completion Checklist
 **Status:** solved

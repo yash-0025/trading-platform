@@ -29,7 +29,7 @@
 | Phase | Focus Area | Status |
 |---|---|---|
 | Phase 1 | Rust Foundations Through Real Trading Features | `[x]` Completed & understood |
-| Phase 2 | Production Backend | `[ ]` Not started |
+| Phase 2 | Production Backend | `[~]` In progress |
 | Phase 3 | Trading Infrastructure & HFT Concepts | `[ ]` Not started |
 
 ---
@@ -209,6 +209,15 @@
 - Created `benchmark_operation` in `src/services/tracker.rs`.
 - Created `submit_order_benchmarked` in `src/services/order_manager.rs`.
 - Completed Phase 1 capstone documentation in `README.md`.
+
+### Module 2.1 — Async Foundations: Why Trading Needs Async — 2026-08-19
+**Status:** `[~]` in progress
+**What I actually understood:**
+- Why trading engines use async I/O over thread-per-connection (C10K / 100k+ WebSocket connections).
+- Futures as lazy state machines in Rust vs eager JS Promises.
+**Code I wrote / project progress:**
+- Started Module 2.1 Async Foundations setup.
+
 
 
 

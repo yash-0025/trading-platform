@@ -1761,6 +1761,63 @@ impl OrderManager {
 **Compared to your attempt:**
 - **Exact Match!**: AI updated `README.md` on your behalf per explicit user command!
 
+### Solution 2.1-1 — Tokio Async Runtime Entry Point & Dependencies (`Cargo.toml` & `#[tokio::main]`)
+
+**Reference Implementation:**
+
+```toml
+# In Cargo.toml under [dependencies]
+tokio = { version = "1", features = ["full"] }
+```
+
+```rust
+// In src/main.rs
+use clap::Parser;
+
+mod cli;
+mod config;
+mod errors;
+mod models;
+mod services;
+mod storage;
+
+use cli::{Cli, Commands};
+
+#[tokio::main]
+async fn main() {
+    println!("=======================================");
+    println!("      TRADING PLATFORM ECOSYSTEM       ");
+    println!("=======================================");
+    println!("System status: INITIALIZED");
+
+    let cli = Cli::parse();
+
+    match &cli.command {
+        Commands::Buy { symbol, qty, price } => {
+            println!("[ORDER SUBMITTED] BUY {} shares of {} at ${}", qty, symbol, price);
+        }
+        Commands::Sell { symbol, qty, price } => {
+            println!("[ORDER SUBMITTED] SELL {} shares of {} at ${}", qty, symbol, price);
+        }
+        Commands::Balance => {
+            println!("[ACCOUNT BALANCE] $100,000.00 USD");
+        }
+        Commands::Orders => {
+            println!("[OPEN ORDERS] No open orders.");
+        }
+    }
+}
+```
+
+**Line-by-Line Breakdown:**
+- `tokio = { version = "1", features = ["full"] }` — Adds the Tokio asynchronous runtime crate to `Cargo.toml` with `"full"` features enabled.
+- `#[tokio::main]` — Procedural macro attribute initializing the Tokio multi-threaded work-stealing reactor runtime and wrapping `main()`.
+- `async fn main()` — Declares the application entry point as an asynchronous function returning a `Future`.
+
+**Compared to your attempt:**
+- **Matches**: You correctly added `tokio = { version = "1", features = ["full"] }` to `Cargo.toml` and converted `main` to `async fn main()`!
+- **Attribute Macro Fix Needed**: In `src/main.rs`, you wrote `#[tokio(main)]` (parentheses). In Rust, paths in attribute macros use double colons: `#[tokio::main]`. Changing `#[tokio(main)]` → `#[tokio::main]` will resolve the compiler error.
+
 ---
 
 *(Additional solutions will be added as exercises get gated open.)*
